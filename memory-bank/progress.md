@@ -1,6 +1,8 @@
 # Progress
 | Status      | Item                                  | Notes                                    | Updated     |
 |-------------|---------------------------------------|------------------------------------------|-------------|
+| Completed   | Setup memory bank và automation       | Complete memory bank structure, automation scripts, prompt templates | 2025-09-28  |
+| Completed   | Add communication rules              | Thêm rules về ngôn ngữ đơn giản và tiếng Việt vào project-rules.mdc | 2025-09-28  |
 | In Progress | Setup Next.js project structure       | TypeScript, Tailwind CSS, folder structure | 2025-09-28  |
 | Pending     | Configure Supabase client             | Environment variables và RLS setup       | 2025-09-28  |
 | Pending     | Create core services/hooks            | Theo architecture pattern đã định        | 2025-09-28  |
