@@ -1,6 +1,9 @@
 # Progress
 | Status      | Item                                  | Notes                                    | Updated     |
 |-------------|---------------------------------------|------------------------------------------|-------------|
+| In Progress | Setup Next.js project structure       | TypeScript, Tailwind CSS, folder structure | 2025-09-28  |
+| Pending     | Configure Supabase client             | Environment variables và RLS setup       | 2025-09-28  |
+| Pending     | Create core services/hooks            | Theo architecture pattern đã định        | 2025-09-28  |
 | Planned     | Tuần 0: Setup & Onboarding            | Chuẩn bị repo, Supabase, issue board     | 2025-09-28  |
 | Planned     | Tuần 1: Auth & Layout                 |                                          | 2025-09-28  |
 | Planned     | Tuần 2: Docs Editor (TipTap/Quill)    |                                          | 2025-09-28  |
