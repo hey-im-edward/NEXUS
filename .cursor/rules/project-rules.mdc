@@ -1,0 +1,193 @@
+---
+alwaysApply: true
+---
+# Project Rules (NEXUS PoC)
+
+## Architecture (Rất quan trọng)
+- **Layer:** UI (Components) -> Hooks/Services (Frontend Logic) -> API Route (Next.js) -> Supabase Client (Infra).
+- **Không gọi Supabase trực tiếp từ UI Component**: Logic truy vấn DB/Auth phải nằm trong hooks hoặc services riêng để dễ quản lý và test.
+- **API Routes của Next.js**: chỉ dùng để xử lý các tác vụ cần bảo mật phía server, không chứa business logic phức tạp.
+- **App-mini Rendering**: Chỉ render từ manifest JSON, tuyệt đối không dùng `eval()` hay `dangerouslySetInnerHTML` với nội dung từ người dùng.
+
+## Code Style & Tech
+- **TypeScript First**: Dùng `unknown` hoặc type cụ thể thay vì `any`. Mọi props và state phải có type rõ ràng.
+- **React**: Ưu tiên functional components với Hooks.
+- **Tailwind CSS**: Với các khối UI phức tạp, tạo component riêng thay vì dùng class string quá dài trong JSX.
+- **Editor**: Dùng TipTap/Quill, không tự xây dựng.
+
+## Testing
+- Mỗi service/hook quan trọng: có ít nhất 1 test cho luồng chính (happy path) và 1 test cho trường hợp lỗi (edge case).
+- Test API Route: Dùng tool như `supertest` hoặc `msw` để mock và kiểm tra response.
+- Ưu tiên test logic trong các pure function/hook.
+
+## Dependencies
+- Thêm thư viện mới (đặc biệt là UI) → phải ghi lý do và rủi ro vào `decisions/recent.md`.
+- Hạn chế các thư viện không được bảo trì tốt.
+
+## AI Collaboration
+- Thiếu context về file → hỏi, đừng đoán.
+- Yêu cầu code → trả về diff nhỏ hoặc một file/component hoàn chỉnh, không trả lời lan man.
+
+## Security (Cực kỳ quan trọng)
+- **Không bao giờ tin tưởng input của người dùng**: Luôn validate và sanitize dữ liệu ở cả frontend và backend (API Route).
+- **Supabase RLS (Row Level Security)**: Phải được bật và cấu hình cho các bảng chứa dữ liệu nhạy cảm.
+- **Không lưu secret/API key trong code frontend**: Dùng biến môi trường của Next.js (`NEXT_PUBLIC_` cho client, và không có prefix cho server).
+- **Rich Text Editor**: Dùng DOMPurify để làm sạch HTML trước khi hiển thị.
+
+## Git / Commit
+- **Commit**: `type(scope): summary` (ví dụ: `feat(auth): add register endpoint`).
+- **PR (Pull Request)**: PR nhỏ, tập trung một mục tiêu. Phải có mô tả rõ ràng.
+
+## Communication & Language (Rất quan trọng)
+
+### Ngôn ngữ đơn giản cho người mới
+- **Tránh thuật ngữ chuyên ngành**: Không dùng từ như "abstraction", "encapsulation", "polymorphism", "dependency injection" nếu không cần thiết.
+- **Giải thích đơn giản**: Luôn giải thích khái niệm phức tạp bằng ví dụ đời thường hoặc so sánh dễ hiểu.
+- **Dùng tiếng Việt**: Ưu tiên dùng tiếng Việt trong tất cả communication, chỉ dùng tiếng Anh khi cần trích dẫn code hoặc tên riêng.
+- **Ví dụ minh họa**: Khi giải thích khái niệm, luôn đưa ví dụ thực tế mà người mới có thể hiểu ngay.
+
+### Hướng dẫn cho người mới (Newbie-friendly)
+- **Bước 1: Cài đặt**: Hướng dẫn từng bước cụ thể, không giả định người dùng biết gì.
+- **Bước 2: Giải thích**: Giải thích tại sao cần làm bước đó và kết quả mong đợi.
+- **Bước 3: Kiểm tra**: Hướng dẫn cách kiểm tra xem bước có thành công không.
+- **Bước 4: Khắc phục lỗi**: Dự đoán lỗi thường gặp và cách sửa.
+
+### Ví dụ cách giải thích:
+❌ **Trước (chuyên ngành)**: "Implement singleton pattern với dependency injection"
+✅ **Sau (đơn giản)**: "Tạo một biến toàn cục để lưu thông tin người dùng, giống như hộp thư chung cho cả ứng dụng"
+
+❌ **Trước**: "Configure Webpack bundler với tree shaking"
+✅ **Sau**: "Cấu hình để chỉ đóng gói code thực sự cần dùng, giống như chỉ mang theo đồ cần thiết khi đi du lịch"
+
+## Documentation & Comments
+
+### Code Comments
+- **Tiếng Việt**: Tất cả comments trong code phải bằng tiếng Việt.
+- **Đơn giản**: Comment phải dễ hiểu, không dùng jargon.
+- **Ví dụ**:
+  ```typescript
+  // ❌ Bad: Implement memoization for performance optimization
+  // ✅ Good: Lưu kết quả tính toán để không phải tính lại, giúp app chạy nhanh hơn
+
+  // ❌ Bad: Utilize React.memo for component optimization
+  // ✅ Good: Chỉ re-render component khi props thực sự thay đổi
+  ```
+
+### Documentation
+- **README files**: Viết bằng tiếng Việt, hướng dẫn từng bước cho người mới.
+- **API docs**: Giải thích function làm gì, input/output, không chỉ liệt kê parameters.
+- **Error messages**: Thông báo lỗi bằng tiếng Việt, giải thích rõ ràng cách sửa.
+
+## Error Handling & User Feedback
+
+### Thông báo lỗi
+- **Tiếng Việt**: Tất cả error messages phải bằng tiếng Việt.
+- **Hữu ích**: Không chỉ nói "Lỗi xảy ra" mà giải thích tại sao và cách sửa.
+- **Ví dụ**:
+  ```typescript
+  // ❌ Bad: throw new Error("Invalid input")
+  // ✅ Good: throw new Error("Email không đúng định dạng. Vui lòng nhập email có @")
+  ```
+
+### Loading states
+- **Thân thiện**: Thay vì "Loading..." dùng "Đang tải dữ liệu..."
+- **Tiến trình**: Hiển thị tiến trình khi có thể (10%, 20%, v.v.)
+
+## Code Examples
+
+### Trước khi refactor (chuyên ngành):
+```typescript
+// Complex async state management
+const [data, setData] = useState(null);
+const [loading, setLoading] = useState(false);
+const [error, setError] = useState(null);
+
+useEffect(() => {
+  fetchData();
+}, []);
+
+const fetchData = async () => {
+  setLoading(true);
+  try {
+    const result = await api.get('/users');
+    setData(result.data);
+  } catch (err) {
+    setError(err.message);
+  } finally {
+    setLoading(false);
+  }
+};
+```
+
+### Sau khi refactor (đơn giản):
+```typescript
+// Quản lý trạng thái dữ liệu người dùng
+const [danhSachNguoiDung, setDanhSachNguoiDung] = useState(null);
+const [dangTai, setDangTai] = useState(false);
+const [loi, setLoi] = useState(null);
+
+useEffect(() => {
+  taiDanhSachNguoiDung();
+}, []);
+
+const taiDanhSachNguoiDung = async () => {
+  setDangTai(true);
+  try {
+    const ketQua = await api.get('/users');
+    setDanhSachNguoiDung(ketQua.data);
+  } catch (err) {
+    setLoi('Không thể tải danh sách người dùng: ' + err.message);
+  } finally {
+    setDangTai(false);
+  }
+};
+```
+
+## Variable & Function Naming
+
+### Tên biến và hàm
+- **Tiếng Việt**: Ưu tiên tên biến/hàm bằng tiếng Việt khi có thể.
+- **Ý nghĩa rõ ràng**: Tên phải mô tả chính xác những gì chứa/chức năng.
+- **Ví dụ**:
+  ```typescript
+  // ❌ Bad: const users = []; const fetch = async () => {}
+  // ✅ Good: const danhSachNguoiDung = []; const taiDuLieu = async () => {}
+
+  // ❌ Bad: const handleSubmit = () => {}
+  // ✅ Good: const xuLyGuiForm = () => {}
+  ```
+
+### Props naming
+- **Tự giải thích**: Props name phải rõ ràng không cần comment.
+- **Ví dụ**:
+  ```typescript
+  // ❌ Bad: <UserCard data={user} onAction={handleClick} />
+  // ✅ Good: <TheNguoiDung thongTinNguoiDung={user} khiClick={xuLyClick} />
+  ```
+
+## Learning Resources
+
+### Khi giới thiệu khái niệm mới
+- **Liên kết tài liệu**: Luôn cung cấp link đến tài liệu học tiếng Việt.
+- **Video hướng dẫn**: Ưu tiên video YouTube tiếng Việt cho người mới.
+- **Ví dụ thực tế**: Code examples phải thực tế, không abstract.
+
+### Resources cho người mới:
+- **React cơ bản**: [Học React từ đầu](https://react.dev/learn)
+- **TypeScript**: [TypeScript Handbook](https://www.typescriptlang.org/docs/)
+- **Next.js**: [Next.js Documentation](https://nextjs.org/docs)
+- **Supabase**: [Supabase Docs](https://supabase.com/docs)
+
+## Validation Checklist
+
+Trước khi gửi response:
+- [ ] Đã dùng tiếng Việt trong tất cả explanation?
+- [ ] Đã tránh thuật ngữ chuyên ngành hoặc giải thích đơn giản?
+- [ ] Đã đưa ví dụ thực tế dễ hiểu?
+- [ ] Code examples có comment tiếng Việt?
+- [ ] Error messages bằng tiếng Việt và hữu ích?
+- [ ] Variable/function names có ý nghĩa và tiếng Việt?
+
+---
+
+*Quy tắc này áp dụng cho tất cả AI responses trong dự án NEXUS để đảm bảo tính dễ hiểu và thân thiện với người mới học lập trình.*
