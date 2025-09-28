@@ -1,4 +1,5 @@
 # Recent Decisions
+- 2025-09-28: Push nhánh `feature/poc` lên GitHub với full memory bank. Status: Active.
 - 2025-09-28: Tạo nhánh `feature/poc` và bắt đầu development. Status: Active.
 - 2025-09-28: Cập nhật memory bank với full context files. Status: Active.
 
