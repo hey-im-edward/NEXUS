@@ -1,6 +1,6 @@
-# AI Prompts Guide - NEXUS Development
+# AI Prompts Guide - NEXUS Productivity OS
 
-> **Mục đích:** Hướng dẫn viết prompts hiệu quả cho GitHub Copilot, ChatGPT, Claude khi develop NEXUS.
+> **Mục đích:** Hướng dẫn viết prompts hiệu quả cho GitHub Copilot, ChatGPT, Claude khi develop NEXUS Productivity OS.
 
 ---
 
@@ -9,75 +9,84 @@
 ### ✅ DO:
 1. **Context rõ ràng** - Cho AI biết đang làm gì, ở đâu trong project
 2. **Specific requirements** - Càng cụ thể càng tốt
-3. **Tech stack mention** - Nhắc Next.js 14, Supabase, TypeScript
+3. **Tech stack mention** - Nhắc Next.js 16, React 19, Supabase, TypeScript, Zustand
 4. **Expected output** - Nói rõ muốn component, function, hay full page
-5. **Include constraints** - Free tier, performance, mobile-first
+5. **Include constraints** - Free tier, performance, mobile-first, keyboard shortcuts
 
 ### ❌ DON'T:
-1. Vague prompts: "Make a dashboard"
-2. Skip context: "Add auth" (auth ở đâu? dùng gì?)
-3. Assume AI biết project: "Fix the bug" (bug gì?)
-4. Multi-tasking prompts: "Build auth + dashboard + CRM in one go"
+1. Vague prompts: "Make a task manager"
+2. Skip context: "Add recurring tasks" (logic ở đâu? dùng thư viện gì?)
+3. Assume AI biết project: "Fix the filter" (filter nào? ở file nào?)
+4. Multi-tasking prompts: "Build Kanban + Calendar + Pages in one go"
 
 ---
 
-## 🎯 Template Prompts by Phase
+## 🎯 Template Prompts by Feature
 
-### Phase 1: Week 1 - Auth Setup
+### Priority 1: Task Management (70%)
 
-#### Prompt 1: Supabase Client Setup
+#### Prompt 1: Kanban Board Component
 ```
-Create Supabase client configuration for Next.js 14 App Router.
+Create Kanban board component for NEXUS Productivity OS.
 
 Context:
-- Project: NEXUS (project management platform)
-- Stack: Next.js 14, TypeScript, Supabase
-- Location: frontend/lib/supabase/
+- Project: Task management system with drag-drop boards
+- Stack: Next.js 16, React 19, TypeScript, @dnd-kit/core, Zustand
+- Location: frontend/components/kanban/kanban-board.tsx
 
 Requirements:
-1. Create client.ts for browser-side
-2. Create server.ts for server components
-3. Use @supabase/ssr package (latest)
-4. Handle cookies properly for SSR
-5. TypeScript strict mode
+1. 3 columns: TODO, IN_PROGRESS, DONE
+2. Drag & drop tasks between columns using @dnd-kit
+3. Update task.status and task.position in Supabase
+4. Optimistic UI updates (show change immediately)
+5. Props: projectId (UUID)
+6. Load tasks from useTasks(projectId) hook
 
-Environment variables needed:
-- NEXT_PUBLIC_SUPABASE_URL
-- NEXT_PUBLIC_SUPABASE_ANON_KEY
-
-Expected output: 2 files with full implementation + comments
-```
-
-#### Prompt 2: Login Page
-```
-Create login page with Google OAuth using Supabase Auth.
-
-Context:
-- Next.js 14 App Router
-- Location: frontend/app/(auth)/login/page.tsx
-- Using Supabase Auth (already configured in lib/supabase/)
-- Design: Clean, minimal, mobile-first
-
-Requirements:
-1. Google OAuth button (primary)
-2. Email/password form (secondary)
-3. "Sign up" link to /signup
-4. Error handling with toast
-5. Redirect to /dashboard after success
-6. Loading states
-7. Form validation with react-hook-form + zod
+State Management:
+- Use Zustand store from lib/stores/tasks.ts
+- Update task position on drop
+- Handle loading and error states
 
 Styling:
 - TailwindCSS
-- shadcn/ui Button component
-- Responsive (mobile-first)
+- Each column: min-w-80, bg-gray-50
+- Cards: bg-white, shadow-sm, rounded-lg
+- Drag handle visible on hover
 
-Expected output: Full page component with types
+Expected output: 
+- KanbanBoard.tsx
+- KanbanColumn.tsx  
+- KanbanCard.tsx
 ```
 
----
+#### Prompt 2: Recurring Tasks with rrule
+```
+Add recurring task support to task creation form.
 
-### Phase 2: Week 2 - Doc Editor
+Context:
+- Stack: React 19, TypeScript, rrule library (already installed)
+- Location: frontend/components/tasks/task-quick-add.tsx
+- Database: tasks table has `rrule` TEXT field
+
+Requirements:
+1. Add "Repeat" button next to quick add input
+2. Clicking opens modal with recurrence options:
+   - Daily, Weekly, Monthly, Yearly
+   - Custom: "Every 2 days", "Last Friday of month", etc.
+3. Generate rrule string (RFC-5545 format)
+4. Save to tasks.rrule field in Supabase
+5. Display recurrence summary: "Every 2 days" below task
+
+rrule examples:
+- Daily: "FREQ=DAILY"
+- Every 2 days: "FREQ=DAILY;INTERVAL=2"
+- Last Friday: "FREQ=MONTHLY;BYDAY=-1FR"
+
+Expected output:
+- Updated TaskQuickAdd.tsx
+- RecurrenceModal.tsx (new component)
+- Helper function: rruleToHumanReadable()
+```
 
 #### Prompt 3: Rich Text Editor
 ```

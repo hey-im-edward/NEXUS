@@ -1,10 +1,10 @@
-# 🚀 Quick Start - NEXUS Development
+# 🚀 Quick Start - NEXUS Productivity OS
 
-> **Goal:** Get from zero to first code in 30 minutes.
+> **Goal:** Get from zero to running app in 15 minutes.
 
 ---
 
-## ⚡ TL;DR (Too Long; Didn't Read)
+## ⚡ TL;DR (Super Quick)
 
 ```bash
 # 1. Install Node.js 20+ from nodejs.org
@@ -15,14 +15,15 @@ cd NEXUS/frontend
 npm install
 
 # 3. Create Supabase project at supabase.com
-# Copy Project URL and Anon Key
 
-# 4. Setup env
+# 4. Setup environment
 cp .env.local.example .env.local
-# Edit .env.local with your Supabase credentials
+# Edit .env.local with your Supabase URL and Anon Key
 
-# 5. Run database schema in Supabase SQL Editor
-# (Copy from docs/architecture/database-schema.sql)
+# 5. Deploy database schema
+# Open Supabase SQL Editor
+# Copy from docs/architecture/migrations/002_productivity_core_schema.sql
+# Paste and Run
 
 # 6. Start dev server
 npm run dev
@@ -36,20 +37,17 @@ npm run dev
 ### 1. Prerequisites (5 min)
 
 **Install Node.js:**
-
 - Go to [nodejs.org](https://nodejs.org)
 - Download v20 LTS (or latest)
 - Install (click Next, Next, Finish)
 - Verify: Open terminal → `node --version` (should show v20.x.x)
 
 **Install Git:**
-
 - Windows: [git-scm.com](https://git-scm.com)
 - Mac: Already installed (or `brew install git`)
 - Verify: `git --version`
 
-**Install VS Code:**
-
+**Install VS Code (Optional but Recommended):**
 - [code.visualstudio.com](https://code.visualstudio.com)
 
 ---
@@ -77,11 +75,23 @@ npm run dev
 
 **Setup Database:**
 
-1. Click SQL Editor (left sidebar)
-2. Open `docs/architecture/database-schema.sql` in VS Code
-3. Copy ALL content
-4. Paste in Supabase SQL Editor
-5. Run (Ctrl+Enter)
+1. Click SQL Editor (left sidebar, database icon)
+2. Click "+ New query" button
+3. Open `docs/architecture/migrations/002_productivity_core_schema.sql` in VS Code
+4. Copy ALL content (400+ lines)
+5. Paste in Supabase SQL Editor
+6. Click "Run" (or press Ctrl+Enter)
+7. Wait 10-15 seconds for SUCCESS message
+
+**Verify Tables Created:**
+```sql
+-- Run this query to verify:
+SELECT 
+  'tasks' as table_name, COUNT(*) FROM public.tasks
+UNION ALL
+SELECT 'projects', COUNT(*) FROM public.projects;
+-- Should show 0 rows each (tables exist but empty)
+```
 
 ---
 
@@ -128,11 +138,15 @@ You should see Next.js welcome page.
 
 ## ✅ You're Ready!
 
-Now you can start Week 1 development:
+Now test the app:
 
-- See `docs/ROADMAP_CHECKLIST.md` for tasks
-- See `docs/AI_PROMPTS.md` for prompt templates
-- See `docs/SETUP.md` for detailed guide
+1. Navigate to http://localhost:3000/today
+2. You should see "My Day" page with task list
+3. Try adding a task (it won't work yet - need to create workspace)
+
+**Next Steps:**
+1. Follow `docs/DEPLOY_DATABASE.md` - Steps 5-7 to create workspace
+2. Then you can add/complete tasks!
 
 ---
 
@@ -140,34 +154,48 @@ Now you can start Week 1 development:
 
 ```
 NEXUS/
-├── frontend/
-│   ├── app/
-│   │   └── page.tsx          ← Homepage (start here)
-│   ├── components/            ← Reusable components
-│   ├── lib/
-│   │   └── supabase/
-│   │       ├── client.ts     ← Browser Supabase client
-│   │       └── server.ts     ← Server Supabase client
-│   └── .env.local            ← Your secrets (NOT in git)
-└── docs/
-    ├── ROADMAP_CHECKLIST.md  ← Week-by-week tasks
-    ├── AI_PROMPTS.md         ← Prompt templates
-    └── SETUP.md              ← Detailed setup guide
+├── THIS_WEEK.md                    ← Weekly focus (read every Monday)
+├── README.md                        ← Project overview
+├── QUICKSTART.md                    ← This file
+│
+├── docs/
+│   ├── PROJECT_STATUS.md           ← ⭐ Master documentation
+│   ├── DEPLOY_DATABASE.md          ← ⭐ Database deployment
+│   ├── AI_PROMPTS.md               ← ⭐ AI prompting guide
+│   ├── SETUP.md                    ← Detailed setup
+│   └── architecture/
+│       └── migrations/
+│           └── 002_productivity_core_schema.sql  ← Database schema
+│
+└── frontend/
+    ├── app/
+    │   └── (productivity)/
+    │       ├── today/page.tsx      ← "My Day" view
+    │       ├── inbox/page.tsx      ← Inbox view
+    │       └── projects/page.tsx   ← Projects list
+    ├── components/
+    │   └── tasks/                  ← Task components
+    ├── lib/
+    │   ├── stores/tasks.ts         ← Task state (Zustand)
+    │   └── hooks/use-tasks.ts      ← Task CRUD logic
+    └── .env.local                  ← Your secrets (NOT in git)
 ```
 
 ---
 
-## 🎯 Your First Task (Week 1)
+## 🎯 Your First Tasks
 
-1. **Read these docs:**
+### **Option A: Deploy & Test (Recommended - 30 min)**
+1. ✅ **Read:** `docs/PROJECT_STATUS.md` for full context
+2. ✅ **Follow:** `docs/DEPLOY_DATABASE.md` Steps 5-7 (create workspace)
+3. ✅ **Test:** Add tasks at http://localhost:3000/today
+4. ✅ **Celebrate:** You have working task management! 🎉
 
-   - [X] `docs/research/user-personas.md`
-   - [X] `docs/research/interview-script.md`
-2. **Schedule 3 interviews this week**
-3. **While waiting for interviews, code:**
-
-   - [ ] Follow Week 4 tasks in `ROADMAP_CHECKLIST.md`
-   - [ ] Build login page (use prompts from `AI_PROMPTS.md`)
+### **Option B: Start User Research (Week 0 Focus)**
+1. ✅ **Read:** `docs/research/interview-script.md`
+2. ✅ **Schedule:** 3 interviews this week
+3. ✅ **Update:** `THIS_WEEK.md` with your progress
+4. ✅ **Code later:** After getting user feedback
 
 ---
 
@@ -175,25 +203,28 @@ NEXUS/
 
 **Common Issues:**
 
-1. **npm install errors:**
-
+1. **`npm install` errors:**
    ```bash
    rm -rf node_modules package-lock.json
    npm install
    ```
+
 2. **Supabase connection error:**
+   - Check `.env.local` has correct URL and Anon Key
+   - Restart dev server: Stop (Ctrl+C) and run `npm run dev` again
 
-   - Check `.env.local` values
-   - Restart dev server
 3. **TypeScript errors:**
-
    - Save all files
    - Restart VS Code
    - Or: Ctrl+Shift+P → "Restart TS Server"
 
-**Still stuck?**
+4. **Database migration error:**
+   - See `docs/DEPLOY_DATABASE.md` Troubleshooting section
+   - Common: "relation already exists" (already deployed, skip to verify step)
 
+**Still stuck?**
 - Check `docs/SETUP.md` for detailed troubleshooting
+- Read `docs/PROJECT_STATUS.md` → Known Issues section
 - Google the error message
 - Ask ChatGPT/Claude with full error + context
 
@@ -203,9 +234,15 @@ NEXUS/
 
 Once dev server runs successfully:
 
-1. ✅ Mark setup complete
-2. 📖 Read `ROADMAP_CHECKLIST.md`
-3. 🎤 Start user interviews
-4. 💻 Build first feature (Auth)
+1. ✅ Read `THIS_WEEK.md` for current week focus
+2. ✅ Read `docs/PROJECT_STATUS.md` for full project understanding
+3. ✅ Follow `docs/DEPLOY_DATABASE.md` to create workspace
+4. ✅ Test task management at `/today`
+5. ✅ Schedule user interviews (Week 0 priority!)
 
-**You're officially on the journey to MVP! 🚀**
+**You're officially on the journey to building Productivity OS! 🚀**
+
+---
+
+**Last Updated:** November 7, 2025  
+**Version:** 2.0.0 - Productivity OS Core

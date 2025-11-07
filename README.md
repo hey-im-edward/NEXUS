@@ -1,43 +1,60 @@
-# NEXUS - All-in-One Project Management Platform
+# NEXUS - Productivity OS
 
-> **Vision:** Giảm tool fragmentation cho SMEs bằng dashboard có thể mở rộng với app mini ecosystem.
+> **Vision:** Personal productivity platform combining task management, calendar, and flexible pages—built for SMEs and power users who need more than simple todo apps.
 
 ## 🎯 What is NEXUS?
 
-NEXUS là nền tảng quản lý dự án **all-in-one** cho SMEs (10-50 người), kết hợp:
-- **Core Dashboard** giống Notion để docs và organization
-- **App Mini System** - Các modules có thể cài đặt (CRM, Kanban, Time tracking, etc.)
-- **Marketplace** - Chia sẻ và download app minis từ cộng đồng
+NEXUS is a **Productivity OS** focused on three core systems:
+
+### **70% Priority: Productivity Core**
+
+- **Smart Task Management** - Advanced recurring tasks (rrule), smart lists (Today, Inbox, Upcoming)
+- **Kanban Boards** - Project visualization with drag-drop
+- **Calendar Time Blocking** - Schedule tasks as time blocks
+
+### **20% Priority: Flexible Pages**
+
+- **Notion-like Editor** - Create notes, docs, wikis with Tiptap
+- **Mix with Tasks** - Embed task lists inside pages
+
+### **10% Priority: App Minis**
+
+- **Lightweight Extensions** - CRM, Habit Tracker, Pomodoro Timer
+- **Dashboard Widgets** - Add to your workspace dashboard
 
 ### Target Users
-- **Primary:** Project Managers tại SMEs (agencies, software houses)
-- **Secondary:** Freelancer teams (2-5 người)
-- **Pain Point:** Đang dùng 5-8 tools rời rạc, tốn $40+/user/month, mất thời gian switch
+
+- **Primary:** SME Project Managers and freelancers managing 20-100+ tasks
+- **Secondary:** Knowledge workers who need both tasks + notes in one place
+- **Pain Point:** Current tools are either too simple (Todoist) or too complex (ClickUp/Notion full suite)
 
 ### Value Proposition
-Replace 5+ tools với 1 platform:
-- ✅ Docs (thay Notion)
-- ✅ Tasks (thay Trello/Asana)
-- ✅ CRM (thay Google Sheets)
-- ✅ Time tracking (thay Harvest)
-- ✅ Files (thay Drive)
 
-**Target Price:** $15-20/user/month (save 50%+ so với multiple tools)
+- ✅ **Advanced task management** (recurring patterns like "every 2 days", "last Friday of month")
+- ✅ **Flexible structure** (Projects + Standalone tasks + Pages)
+- ✅ **Calendar integration** (Time blocking, not just due dates)
+- ✅ **Clean, fast UI** (Not bloated like ClickUp)
+
+**Target Price:** $10-15/month per user (positioning between Todoist Pro $4 and ClickUp $9)
 
 ---
 
 ## 🚀 Current Status
 
-**Phase:** POC (Proof of Concept)  
-**Timeline:** Week 0 - User Research  
-**Next Milestone:** Week 4 - POC Demo
+**Phase:** Week 0 - User Research  
+**Last Updated:** November 7, 2025  
+**Version:** 2.0.0 - Productivity OS Core
 
 ### Progress
-- [x] Project setup
-- [x] User research templates created
+
+- [x] Project structure reorganized (Productivity OS focus)
+- [x] Database schema v2 designed (11 tables with rrule support)
+- [x] Core task components built (TaskItem, TaskList, TaskQuickAdd)
+- [x] State management setup (Zustand + Immer)
+- [x] Dependencies installed (rrule, date-fns, @dnd-kit, react-big-calendar)
+- [ ] **Database NOT YET DEPLOYED** ⚠️ Critical blocker
 - [ ] 0/10 user interviews completed
-- [ ] Supabase project setup
-- [ ] First prototype
+- [ ] First working prototype
 
 ---
 
@@ -46,35 +63,38 @@ Replace 5+ tools với 1 platform:
 ### Architecture Decision: Supabase + Next.js (No Backend)
 
 **Why NOT NestJS backend?**
+
 - Supabase provides auth, database, real-time out of the box
 - Free tier: 500MB DB, 50K MAU - đủ cho 1000 users đầu
 - Faster development: No server setup, deploy, DevOps
 - AI-friendly: Easier for Cursor/Copilot to generate code
 
 ### Stack
+
 ```yaml
 Frontend:
-  - Next.js 14 (App Router)
+  - Next.js 16.0.1 (App Router, Turbopack)
   - React 19
+  - TypeScript strict mode
   - TailwindCSS 4
   - shadcn/ui components
-  - Zustand (state management)
-  - react-grid-layout (dashboard drag & drop)
+  - Zustand + Immer (optimistic updates)
+  - rrule (RFC-5545 recurring tasks)
+  - @dnd-kit/* (Kanban drag-drop)
+  - react-big-calendar (Calendar view)
+  - Tiptap (Rich text editor)
+  - react-hotkeys-hook (Keyboard shortcuts)
 
 Backend:
-  - Supabase (PostgreSQL + Auth + Storage + Edge Functions)
-  - No separate backend needed for MVP
+  - Supabase (PostgreSQL + Row Level Security)
+  - 11 tables: tasks, projects, pages, time_blocks, workspaces, etc.
 
 Deployment:
   - Vercel (frontend, free tier)
   - Supabase Cloud (database, free tier)
-
-Monitoring:
-  - Vercel Analytics (built-in)
-  - Sentry (error tracking, free tier)
 ```
 
-**Cost:** $0/month for first 500 users
+**Cost:** $0/month for first 500-1000 users
 
 ---
 
@@ -82,254 +102,230 @@ Monitoring:
 
 ```
 NEXUS/
-├── frontend/                 # Next.js app
-│   ├── app/                 # App Router pages
-│   │   ├── (auth)/         # Auth routes (login, signup)
-│   │   ├── (dashboard)/    # Dashboard routes
-│   │   └── (marketing)/    # Landing page
+├── frontend/
+│   ├── app/
+│   │   ├── (auth)/login/         # Authentication pages
+│   │   ├── (productivity)/       # Main app routes
+│   │   │   ├── today/           # "My Day" smart list
+│   │   │   ├── inbox/           # Unsorted tasks
+│   │   │   ├── projects/        # Project list + Kanban boards
+│   │   │   ├── upcoming/        # Upcoming tasks view
+│   │   │   └── calendar/        # Calendar time blocking
+│   │   ├── auth/callback/       # OAuth callback
+│   │   └── dashboard/           # User dashboard
 │   ├── components/
-│   │   ├── ui/            # shadcn/ui components
-│   │   ├── auth/          # Auth components
-│   │   ├── dashboard/     # Dashboard layout
-│   │   └── app-mini/      # App mini components
+│   │   ├── tasks/              # TaskItem, TaskList, TaskQuickAdd
+│   │   ├── projects/           # Project components
+│   │   ├── kanban/             # Kanban board (to be built)
+│   │   ├── calendar/           # Calendar components
+│   │   ├── pages/              # Pages editor components
+│   │   ├── dashboard/          # ProductivitySidebar, Header
+│   │   ├── editor/             # Tiptap editor
+│   │   └── ui/                 # shadcn/ui primitives
 │   ├── lib/
-│   │   ├── supabase/      # Supabase client configs
-│   │   └── utils/         # Helper functions
-│   ├── types/             # TypeScript types
-│   └── hooks/             # Custom React hooks
+│   │   ├── stores/             # Zustand stores (tasks, etc.)
+│   │   ├── hooks/              # useTasks, useKeyboard
+│   │   ├── supabase/           # Supabase client/server
+│   │   └── utils/              # Helper functions
+│   └── types/                  # Task, Project, Page types
 ├── docs/
-│   ├── research/          # User research
-│   │   ├── interview-script.md
-│   │   ├── success-metrics.md
-│   │   └── user-personas.md
-│   ├── architecture/      # Tech decisions
-│   └── archive/           # Old chat logs
-├── scripts/               # Automation scripts
-└── README.md
+│   ├── PROJECT_STATUS.md       # ⭐ Master documentation
+│   ├── DEPLOY_DATABASE.md      # ⭐ Quick deployment guide
+│   ├── AI_PROMPTS.md           # ⭐ AI prompts guide
+│   ├── SETUP.md                # Development setup
+│   ├── AUTH_SETUP.md           # Supabase Auth config
+│   ├── architecture/
+│   │   ├── database-schema-v2-productivity.sql  # Full schema
+│   │   ├── migrations/         # Safe migration scripts
+│   │   └── decisions.md        # Tech decisions
+│   └── research/               # User interviews
+├── THIS_WEEK.md                # ⭐ Weekly focus tracker
+├── QUICKSTART.md               # ⭐ Quick project overview
+└── README.md                   # ⭐ This file
 ```
 
 ---
 
 ## 🗓️ 12-Week Roadmap
 
-### Phase 0: User Research (Week 0-3) - CURRENT
-**Goal:** Validate problem and solution
+### **Week 0-3: User Research** (YOU ARE HERE)
 
-**Tasks:**
-- [ ] Complete 10 user interviews with SME PMs
-- [ ] Document pain points and must-have features
-- [ ] Get 20 people to commit to beta testing
-- [ ] Define MVP scope based on insights
+**Goal:** Validate Productivity OS priorities
 
-**Success Criteria:**
-- ✅ 7/10 interviews show strong interest
-- ✅ Clear top 3 pain points
-- ✅ 50%+ willing to pay $10+/user/month
+- [x] Project restructured for Productivity OS focus
+- [x] Database schema v2 designed (11 tables)
+- [x] Core task components scaffolded
+- [ ] **10 SME interviews** ⚠️ Critical
+- [ ] Validate priorities (70% tasks, 20% pages, 10% app minis)
+- [ ] Identify must-have vs nice-to-have features
+
+**Key Questions for Interviews:**
+
+- Do you need advanced recurring tasks? (e.g., "every 2 days", "last Friday of month")
+- Kanban board essential, or can start with list view?
+- Calendar time blocking vs simple due dates?
+- Would you pay $10-15/month for this?
 
 ---
 
-### Phase 1: POC (Week 1-4)
-**Goal:** Prove technical concept works
+### **Week 4-7: POC (Proof of Concept)**
 
-#### Week 1: Auth + Dashboard Shell
-- [ ] Supabase setup (auth, database)
-- [ ] Google OAuth login
-- [ ] Empty dashboard layout
+**Goal:** Working task management + basic Kanban + Pages
+
+**Deliverables:**
+
+- [ ] Task CRUD (create, read, update, delete, toggle complete)
+- [ ] Smart filters (Today, Inbox, Upcoming)
+- [ ] Kanban board with drag-drop (`/projects/[id]/board`)
+- [ ] Keyboard shortcuts (j/k navigate, x complete, c create)
+- [ ] Simple Pages editor (Tiptap integration)
 - [ ] Deploy to Vercel
 
-#### Week 2: Simple Doc Editor
-- [ ] Rich text editor (Tiptap)
-- [ ] Create/edit/delete docs
-- [ ] Auto-save to Supabase
-- [ ] Sidebar navigation
-
-#### Week 3: App Mini System v0.1
-- [ ] 3 pre-built app minis:
-  - [ ] Todo List
-  - [ ] Kanban Board
-  - [ ] Simple Table
-- [ ] Add to dashboard
-- [ ] Data persistence
-
-#### Week 4: Dashboard Grid Layout
-- [ ] react-grid-layout integration
-- [ ] Drag & drop app minis
-- [ ] Save layout to Supabase
-- [ ] Mobile responsive
-
 **Success Criteria:**
-- ✅ 5 people test it, 3/5 say "would use"
-- ✅ Technical foundation solid
-- ✅ Public demo URL
 
-**GO/NO-GO Decision:** If <3/5 interested → Pivot
+- 5 testers try it
+- 3/5 say "I would use this daily"
+- Core task flow works smoothly
 
 ---
 
-### Phase 2: MVP (Week 5-8)
-**Goal:** Production-ready MVP for beta testers
+### **Week 8-11: MVP**
 
-#### Week 5: Team Collaboration
-- [ ] Invite users to workspace
-- [ ] Share dashboards
-- [ ] Basic permissions (owner/viewer/editor)
+**Goal:** Add Calendar + Polish + 1-2 App Minis
 
-#### Week 6: App Mini Marketplace
-- [ ] Browse marketplace UI
-- [ ] Install app mini to dashboard
-- [ ] 5-10 curated app minis
-- [ ] Basic ratings
+**Deliverables:**
 
-#### Week 7-8: Polish
-- [ ] Mobile optimization
-- [ ] Error handling
-- [ ] Loading states
-- [ ] Onboarding flow (3 questions)
-- [ ] Help docs
+- [ ] Calendar view with time blocking
+- [ ] Recurring tasks (rrule implementation)
+- [ ] 1-2 App Minis (Habit Tracker or Pomodoro)
+- [ ] Command palette (Ctrl+K quick actions)
+- [ ] Mobile responsive (basic)
+- [ ] Onboarding flow
 
 **Success Criteria:**
-- ✅ 20 sign-ups from beta list
-- ✅ 10 active users (≥2x/week)
-- ✅ 0 critical bugs
-- ✅ Average session >5 minutes
+
+- 20 signups
+- 10 active users (3+ sessions/week)
+- Average session >10 minutes
 
 ---
 
-### Phase 3: Iteration (Week 9-12)
-**Goal:** Product-market fit
+### **Week 12: GO/NO-GO Decision**
 
-- [ ] Fix top 5 bugs
-- [ ] Add top 3 requested features
-- [ ] Performance optimization
-- [ ] Prepare for public launch
+**Metrics to Evaluate:**
 
-**Success Criteria:**
-- ✅ 50+ sign-ups
-- ✅ 20+ active users
-- ✅ Organic referrals
-- ✅ 1-2 paying customers
+- 50+ signups
+- 10+ active users (using 3+ times/week)
+- 1-2 paying users ($10-15/month)
+- NPS score >40
 
-**GO/NO-GO Decision:** 
-- If <10 active users after 12 weeks → Pivot or stop
+**Decision:**
+
+- **GO** → Continue to Scale phase (Week 13+)
+- **NO-GO** → Pivot or shut down
 
 ---
 
-## 🚦 Getting Started (For Developers)
+For detailed roadmap, see `docs/PROJECT_STATUS.md`
+
+---
+
+## 🚦 Quick Start
 
 ### Prerequisites
 - Node.js 20+ LTS
-- Git
-- VS Code (recommended)
-- Supabase account (free)
+- Supabase account (free tier)
 
-### Setup Instructions
+### Setup (5 minutes)
 
-1. **Clone repo**
+1. **Clone and install**
 ```bash
 git clone https://github.com/hey-im-edward/NEXUS.git
 cd NEXUS/frontend
-```
-
-2. **Install dependencies**
-```bash
 npm install
 ```
 
-3. **Setup Supabase**
-- Go to [supabase.com](https://supabase.com)
-- Create new project
-- Copy URL and Anon Key
-
-4. **Environment variables**
+2. **Configure Supabase**
 ```bash
-cp .env.local.example .env.local
-# Edit .env.local with your Supabase credentials
+# Create .env.local with your Supabase credentials
+NEXT_PUBLIC_SUPABASE_URL=your-project-url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
 ```
 
-5. **Run development server**
+3. **Deploy database**
+```bash
+# Open Supabase Dashboard → SQL Editor
+# Copy and run: docs/architecture/migrations/002_productivity_core_schema.sql
+# See docs/DEPLOY_DATABASE.md for detailed steps
+```
+
+4. **Start dev server**
 ```bash
 npm run dev
 # Open http://localhost:3000
 ```
 
-6. **Setup database schema**
-```sql
--- Run in Supabase SQL Editor
--- See docs/architecture/database-schema.sql
-```
+### Important Files
+- **`THIS_WEEK.md`** - Your weekly focus and tasks
+- **`docs/PROJECT_STATUS.md`** - Master documentation (read this!)
+- **`docs/DEPLOY_DATABASE.md`** - Database deployment guide
+- **`docs/AI_PROMPTS.md`** - How to prompt AI effectively
+
+### Next Steps After Setup
+1. Read `docs/PROJECT_STATUS.md` for full context
+2. Follow `docs/DEPLOY_DATABASE.md` to deploy schema
+3. Test task management at `/today` route
+4. See `THIS_WEEK.md` for current week goals
 
 ---
 
 ## 📚 Documentation
 
-- **[User Research](./docs/research/)** - Interview scripts, personas, metrics
-- **[Architecture](./docs/architecture/)** - Tech decisions, database schema
-- **[Archive](./docs/archive/)** - Historical chat logs with ChatGPT/Claude
+### Essential Docs (Start Here)
+- **`THIS_WEEK.md`** - Weekly focus and tasks
+- **`docs/PROJECT_STATUS.md`** - Complete project overview
+- **`docs/DEPLOY_DATABASE.md`** - Deploy database schema
+- **`docs/AI_PROMPTS.md`** - AI prompting guide
+
+### Additional Docs
+- **[Research](./docs/research/)** - User interview scripts
+- **[Architecture](./docs/architecture/)** - Database schema, tech decisions
+- **[Setup Guide](./docs/SETUP.md)** - Detailed development setup
+- **[Auth Setup](./docs/AUTH_SETUP.md)** - Supabase authentication
 
 ---
 
-## 🎨 Design System
+## 🎨 Design Philosophy
 
-**Colors:**
-- Primary: #2563eb (blue-600)
-- Background: #ffffff / #f9fafb
-- Text: #111827
-- Border: #e5e7eb
+**Productivity First:**
+- Fast keyboard navigation (j/k, x, c shortcuts)
+- Quick add everywhere (just press Enter)
+- Zero friction task capture
 
-**Typography:**
-- Font: Inter (system fallback)
-- Headings: 700 weight
-- Body: 400 weight
+**Clean UI:**
+- Minimal, focused interface
+- No overwhelming sidebars
+- Smart defaults (Today view on open)
 
-**Components:**
-- Using [shadcn/ui](https://ui.shadcn.com)
-- Customized with Tailwind
-
----
-
-## 🤝 Contributing
-
-Currently in **private development**. Will open source after MVP.
-
-If you're a beta tester:
-1. Use the app
-2. Report bugs via [GitHub Issues]
-3. Share feedback in user interviews
+**Flexible Structure:**
+- Projects when you need structure
+- Inbox for quick capture
+- Pages for freeform notes
 
 ---
 
-## 📊 Key Metrics (Updated Weekly)
+## 📊 Current Metrics
 
-**Current Week:** 0 (User Research)
-- Sign-ups: 0
-- Active users: 0
+**Week 0 Status:**
 - User interviews: 0/10
-- Beta commitments: 0/20
-
----
-
-## 📝 License
-
-Proprietary (for now)
-
----
-
-## 📧 Contact
-
-**Founder:** Edward  
-**Email:** [your-email]  
-**GitHub:** [@hey-im-edward](https://github.com/hey-im-edward)
-
----
-
-## 🙏 Acknowledgments
-
-- Next.js team for amazing framework
-- Supabase team for free tier
-- shadcn for beautiful components
-- ChatGPT & Claude for initial architecture discussions
+- Tasks scaffolded: ✅ Complete
+- Database deployed: ⚠️ Not yet
+- Dev server: ✅ Running
 
 ---
 
 **Last Updated:** November 7, 2025  
-**Version:** 0.1.0-poc
+**Version:** 2.0.0 - Productivity OS Core  
+**Current Phase:** Week 0 - User Research
+
+**⚠️ Critical Next Step:** Deploy database schema (see `docs/DEPLOY_DATABASE.md`)
