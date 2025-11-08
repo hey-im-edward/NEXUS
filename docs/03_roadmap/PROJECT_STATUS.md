@@ -85,7 +85,7 @@ frontend/
 #### **1. Deploy Database Schema ⚠️ CRITICAL**
 
 ```sql
--- File: docs/architecture/migrations/002_productivity_core_schema.sql
+-- File: docs/04_technical/architecture/migrations/002_productivity_core_schema.sql
 -- Action: Copy & paste into Supabase SQL Editor
 -- Expected: Create 6 new tables (projects, tasks, recurring_instances, time_blocks, time_entries, pages)
 -- Verification: Run query at end of migration script
@@ -105,7 +105,7 @@ frontend/
   - Do SMEs need advanced recurring tasks? (every 2 days, last Friday)
   - Is Kanban board essential or can start with list view?
   - Calendar time blocking vs simple due dates?
-- **File:** `docs/research/interview-script.md`
+- **File:** `docs/05_research/interview-script.md`
 
 **Why Important:**
 
@@ -265,7 +265,7 @@ EXTENSIBILITY (10% Priority):
 
 ```bash
 # 1. Open Supabase Dashboard → SQL Editor
-# 2. Copy content from: docs/architecture/migrations/002_productivity_core_schema.sql
+# 2. Copy content from: docs/04_technical/architecture/migrations/002_productivity_core_schema.sql
 # 3. Click "Run"
 # 4. Verify success with verification query at end
 ```
@@ -329,9 +329,9 @@ npm run dev
 
 **Actions:**
 
-1. ✅ Read `docs/research/interview-script.md`
+1. ✅ Read `docs/05_research/interview-script.md`
 2. ✅ Schedule 10 interviews (5 from network, 5 from LinkedIn/Facebook groups)
-3. ✅ Document insights in `docs/research/user-insights.md` (create this file)
+3. ✅ Document insights in `docs/05_research/interview-notes/` folder
 4. ✅ Adjust roadmap based on feedback
 5. ✅ THEN deploy schema & start coding
 
@@ -341,40 +341,49 @@ npm run dev
 
 ### **Getting Started**
 
-- `QUICKSTART.md` - Quick project overview
-- `docs/SETUP.md` - Development environment setup
-- `docs/QUICK_START.md` - Step-by-step first run
+- `README.md` - Quick project overview
+- `QUICKSTART.md` - Step-by-step setup (15 minutes)
+- `docs/00_start-here/README.md` - Documentation navigation
+- `docs/00_start-here/QUICKSTART_AI.md` - Daily workflow guide
+- `docs/04_technical/SETUP.md` - Development environment setup
+
+### **Status & Progress**
+
+- `docs/01_status/NOW.md` - Current status snapshot
+- `docs/01_status/FEATURES.md` - Feature implementation checklist
+- `docs/01_status/BUGS.md` - Known bugs and issues
+- `docs/01_status/UI_UX.md` - UI component status
 
 ### **Architecture**
 
-- `docs/architecture/database-schema-v2-productivity.sql` - Full schema (for reference)
-- `docs/architecture/migrations/002_productivity_core_schema.sql` - **Deploy this first**
-- `docs/architecture/decisions.md` - Tech stack rationale
+- `docs/04_technical/architecture/database-schema-v2-productivity.sql` - Full schema (for reference)
+- `docs/04_technical/architecture/migrations/002_productivity_core_schema.sql` - **Deploy this first**
+- `docs/04_technical/architecture/decisions.md` - Tech stack rationale
+- `docs/04_technical/TESTING_STRATEGY.md` - Testing philosophy and practices
 
-### **Features**
+### **Roadmap & Planning**
 
-- `docs/ROADMAP_CHECKLIST.md` - Detailed 12-week roadmap
-- `docs/IMPLEMENTATION_CHECKLIST.md` - Feature implementation guide
-- `docs/RESTRUCTURE_SUMMARY.md` - Recent restructure changes
+- `docs/03_roadmap/ROADMAP.md` - Detailed 12-week roadmap
+- `docs/03_roadmap/PROJECT_STATUS.md` - This file (master documentation)
+- `docs/03_roadmap/HISTORY.md` - Project timeline and decisions
+- `docs/03_roadmap/IDEAS.md` - Feature ideas backlog
 
-### **Auth & Login**
+### **AI Development**
 
-- `docs/AUTH_SETUP.md` - Supabase Auth configuration
-- `docs/LOGIN_ARCHITECTURE.md` - Auth flow diagram
-- `docs/LOGIN_PAGE_SUMMARY.md` - Login page details
-
-### **Tiptap Editor**
-
-- `docs/TIPTAP_ARCHITECTURE.md` - Editor architecture
-- `docs/TIPTAP_SETUP_GUIDE.md` - Setup instructions
-- `docs/TIPTAP_COMPLETION_SUMMARY.md` - Implementation status
-- `docs/TIPTAP_QUICK_REF.md` - Quick reference
+- `docs/02_ai-prompts/AI_PROMPTS.md` - AI prompts library
+- `docs/02_ai-prompts/COMPLETED.md` - Completed prompts log
+- `docs/02_ai-prompts/templates/` - Prompt templates
 
 ### **User Research**
 
-- `docs/research/interview-script.md` - Interview questions
-- `docs/research/user-personas.md` - Target user profiles
-- `docs/research/success-metrics.md` - KPIs to track
+- `docs/05_research/interview-script.md` - Interview questions
+- `docs/05_research/user-personas.md` - Target user profiles
+- `docs/05_research/success-metrics.md` - KPIs to track
+- `docs/05_research/interview-notes/` - Interview insights folder
+
+### **Knowledge Base**
+
+- `BRAIN_DUMP.md` - Complete knowledge repository (ADRs, bugs, ideas, patterns)
 
 ### **AI Assistance**
 

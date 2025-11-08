@@ -142,7 +142,7 @@ Know someone who might benefit? Share this repo with:
 
 **Developer:** Edward
 **GitHub:** [@hey-im-edward](https://github.com/hey-im-edward)
-**Email:** [your-email@example.com]
+**Email:** [hey_im_edward@icloud.com]
 **Project:** [NEXUS](https://github.com/hey-im-edward/NEXUS)
 
 ---

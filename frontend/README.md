@@ -222,18 +222,15 @@ npm run build
 
 ## 📊 Current Status
 
-- ✅ Task management core complete
-- ✅ Zustand store with optimistic updates
-- ✅ useTasks hook with Supabase CRUD
-- ✅ ProductivitySidebar + Header
-- ⚠️ Database not deployed yet (blocker)
-- [ ] Kanban board (to be built)
-- [ ] Calendar view (to be built)
-- [ ] Pages editor (partially built)
+**For detailed project status, see:** [`../docs/01_status/NOW.md`](../docs/01_status/NOW.md)
 
-See `../docs/PROJECT_STATUS.md` for full project status.
+**Quick summary:**
+- ✅ Database v2 deployed (Nov 7, 2025)
+- ✅ Task CRUD working
+- ✅ Kanban Board 100% complete (Nov 8, 2025)
+- 🔄 Task Management Polish in progress (Week 0)
 
 ---
 
-**Last Updated:** November 7, 2025  
+**Last Updated:** November 9, 2025  
 **Version:** 2.0.0 - Productivity OS Core

@@ -159,27 +159,43 @@ Now test the app:
 
 ```
 NEXUS/
-├── THIS_WEEK.md                    ← Weekly focus (read every Monday)
 ├── README.md                        ← Project overview
 ├── QUICKSTART.md                    ← This file
 │
 ├── docs/
-│   ├── PROJECT_STATUS.md           ← ⭐ Master documentation
-│   ├── DEPLOY_DATABASE.md          ← ⭐ Database deployment
-│   ├── AI_PROMPTS.md               ← ⭐ AI prompting guide
-│   ├── SETUP.md                    ← Detailed setup
-│   └── architecture/
-│       └── migrations/
-│           └── 002_productivity_core_schema.sql  ← Database schema
+│   ├── 00_start-here/
+│   │   ├── README.md               ← ⭐ Documentation index
+│   │   ├── QUICKSTART_AI.md        ← ⭐ Daily workflow guide
+│   │   ├── TECH_STACK.md           ← Tech stack explained
+│   │   └── PROJECT_STRUCTURE.md    ← File structure guide
+│   │
+│   ├── 01_status/
+│   │   ├── NOW.md                  ← ⭐ Current status
+│   │   ├── FEATURES.md             ← Feature checklist
+│   │   └── BUGS.md                 ← Known bugs
+│   │
+│   ├── 02_ai-prompts/
+│   │   └── AI_PROMPTS.md           ← ⭐ AI prompts library
+│   │
+│   ├── 03_roadmap/
+│   │   └── PROJECT_STATUS.md       ← ⭐ Master documentation
+│   │
+│   ├── 04_technical/
+│   │   ├── SETUP.md                ← Detailed setup
+│   │   ├── DEPLOY.md               ← ⭐ Database deployment
+│   │   └── architecture/
+│   │       └── migrations/
+│   │           └── 002_productivity_core_schema.sql
+│   │
+│   └── 05_research/
+│       └── interview-script.md     ← User interview guide
 │
 └── frontend/
-    ├── app/
-    │   └── (productivity)/
-    │       ├── today/page.tsx      ← "My Day" view
-    │       ├── inbox/page.tsx      ← Inbox view
-    │       └── projects/page.tsx   ← Projects list
-    ├── components/
-    │   └── tasks/                  ← Task components
+    ├── app/(productivity)/
+    │   ├── today/page.tsx          ← "My Day" view
+    │   ├── inbox/page.tsx          ← Inbox view
+    │   └── projects/page.tsx       ← Projects list
+    ├── components/tasks/           ← Task components
     ├── lib/
     │   ├── stores/tasks.ts         ← Task state (Zustand)
     │   └── hooks/use-tasks.ts      ← Task CRUD logic
@@ -201,7 +217,7 @@ NEXUS/
 
 1. ✅ **Read:** `docs/05_research/interview-script.md`
 2. ✅ **Schedule:** 3 interviews this week
-3. ✅ **Update:** `THIS_WEEK.md` with your progress
+3. ✅ **Update:** `docs/01_status/NOW.md` with your progress
 4. ✅ **Code later:** After getting user feedback
 
 ---
@@ -235,7 +251,7 @@ NEXUS/
 **Still stuck?**
 
 - Check `docs/04_technical/SETUP.md` for detailed troubleshooting
-- Read `docs/03_roadmap/PROJECT_STATUS.md` → Known Issues section
+- Read `docs/01_status/BUGS.md` → Known issues section
 - Google the error message
 - Ask ChatGPT/Claude with full error + context
 
@@ -245,7 +261,7 @@ NEXUS/
 
 Once dev server runs successfully:
 
-1. ✅ Read `THIS_WEEK.md` for current week focus
+1. ✅ Read `docs/01_status/NOW.md` for current week focus
 2. ✅ Read `docs/03_roadmap/PROJECT_STATUS.md` for full project understanding
 3. ✅ Follow `docs/04_technical/DEPLOY.md` to create workspace
 4. ✅ Test task management at `/today`
@@ -255,5 +271,5 @@ Once dev server runs successfully:
 
 ---
 
-**Last Updated:** November 7, 2025  
+**Last Updated:** November 9, 2025  
 **Version:** 2.0.0 - Productivity OS Core
