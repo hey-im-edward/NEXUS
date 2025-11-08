@@ -26,7 +26,6 @@
 - **[docs/04_technical/SETUP.md](./docs/04_technical/SETUP.md)** - Setup môi trường local
 - **[docs/01_status/BUGS.md](./docs/01_status/BUGS.md)** - Danh sách bugs đã biết
 
-
 ---
 
 ## � Trạng thái dự án

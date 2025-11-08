@@ -26,6 +26,7 @@
 Framework React để build web app production-ready.
 
 **Tại sao dùng:**
+
 - ✅ **File-based routing** - Tạo file = tự động có route
   - `app/today/page.tsx` → `/today` URL
   - Không cần config router như React Router
@@ -35,19 +36,22 @@ Framework React để build web app production-ready.
 - ✅ **Turbopack** - Build nhanh hơn Webpack 700%
 
 **Nhược điểm:**
+
 - ⚠️ Học curve cao hơn Create React App
 - ⚠️ App Router mới (từ v13), ít tutorial tiếng Việt
 
 **Ví dụ code:**
+
 ```tsx
 // app/today/page.tsx
 export default function TodayPage() {
-  return <h1>My Day</h1>
+  return <h1>My Day</h1>;
 }
 // Tự động có route /today - KHÔNG CẦN CONFIG!
 ```
 
-**Đọc thêm:**  
+**Đọc thêm:**
+
 - Docs: https://nextjs.org/docs
 - Tutorial: "Next.js 15 App Router Tutorial" (YouTube)
 
@@ -59,27 +63,26 @@ export default function TodayPage() {
 Thư viện JavaScript để build UI (User Interface).
 
 **Tại sao dùng:**
+
 - ✅ **Component-based** - Chia UI thành các component nhỏ, dễ maintain
 - ✅ **Declarative** - Viết "UI trông như thế nào", không phải "làm gì để có UI đó"
 - ✅ **Ecosystem lớn** - Có library cho mọi thứ
 - ✅ **Hooks** - `useState`, `useEffect` giúp logic đơn giản
 
 **Nhược điểm:**
+
 - ⚠️ Re-render nhiều nếu không optimize
 - ⚠️ Hooks rules khó nhớ (phải follow strict)
 
 **Ví dụ code:**
+
 ```tsx
-import { useState } from 'react'
+import { useState } from 'react';
 
 function TaskItem() {
-  const [completed, setCompleted] = useState(false)
-  
-  return (
-    <div onClick={() => setCompleted(!completed)}>
-      {completed ? '✅' : '⬜'} Buy milk
-    </div>
-  )
+  const [completed, setCompleted] = useState(false);
+
+  return <div onClick={() => setCompleted(!completed)}>{completed ? '✅' : '⬜'} Buy milk</div>;
 }
 ```
 
@@ -91,16 +94,19 @@ function TaskItem() {
 JavaScript + Types (kiểu dữ liệu).
 
 **Tại sao dùng:**
+
 - ✅ **Catch bugs sớm** - Lỗi hiện ở editor thay vì runtime
 - ✅ **Auto-complete tốt** - VS Code gợi ý chính xác
 - ✅ **Refactor an toàn** - Đổi tên function, TS tự update mọi nơi
 - ✅ **Document code** - Type = comment tự động
 
 **Nhược điểm:**
+
 - ⚠️ Viết code lâu hơn 10-20% (phải define types)
 - ⚠️ Học curve cao cho người mới
 
 **Ví dụ code:**
+
 ```typescript
 // Không có TypeScript
 function addTask(task) {
@@ -109,9 +115,9 @@ function addTask(task) {
 
 // Có TypeScript
 interface Task {
-  id: string
-  title: string
-  completed: boolean
+  id: string;
+  title: string;
+  completed: boolean;
 }
 
 function addTask(task: Task) {
@@ -130,6 +136,7 @@ function addTask(task: Task) {
 "Firebase nhưng dùng PostgreSQL" - Backend-as-a-Service.
 
 **Tại sao dùng:**
+
 - ✅ **Không cần code backend** - Auth, Database, Storage out-of-the-box
 - ✅ **PostgreSQL** - SQL database mạnh, không giới hạn queries
 - ✅ **Row Level Security (RLS)** - Bảo mật multi-tenant tự động
@@ -137,31 +144,32 @@ function addTask(task: Task) {
 - ✅ **Free tier** - 500MB DB, 50K users - Đủ cho 1000 users đầu
 
 **Nhược điểm:**
+
 - ⚠️ Vendor lock-in (khó migrate ra nếu sau này cần)
 - ⚠️ RLS policies khó debug
 
 **Tại sao KHÔNG dùng NestJS/Express backend:**
+
 - ❌ Phải setup server, deploy, DevOps
 - ❌ Viết auth từ đầu (tốn 2-3 tuần)
 - ❌ Chi phí server ($5-20/tháng)
 - ❌ AI khó generate backend code chính xác
 
 **Ví dụ code:**
+
 ```typescript
 // Fetch tasks từ database (1 dòng!)
-const { data: tasks } = await supabase
-  .from('tasks')
-  .select('*')
-  .eq('workspace_id', workspaceId)
+const { data: tasks } = await supabase.from('tasks').select('*').eq('workspace_id', workspaceId);
 
 // Không cần Express, routes, controllers!
 ```
 
 **Database Schema:**
+
 ```sql
 -- 11 tables
-tasks, projects, pages, tags, workspaces, 
-users, workspace_members, task_tags, 
+tasks, projects, pages, tags, workspaces,
+users, workspace_members, task_tags,
 app_minis, time_blocks, recurring_patterns
 
 -- Xem chi tiết: docs/04_technical/architecture/database-schema-v2-productivity.sql
@@ -177,6 +185,7 @@ app_minis, time_blocks, recurring_patterns
 Utility-first CSS framework.
 
 **Tại sao dùng:**
+
 - ✅ **Không phải đặt tên class** - Dùng `flex`, `mt-4`, `bg-blue-500`
 - ✅ **Responsive dễ** - `md:flex-col`, `lg:grid-cols-3`
 - ✅ **Không bị conflict CSS** - Mọi style inline, không global
@@ -184,10 +193,12 @@ Utility-first CSS framework.
 - ✅ **AI-friendly** - AI biết Tailwind, generate code chính xác
 
 **Nhược điểm:**
+
 - ⚠️ HTML dài (nhiều class names)
 - ⚠️ Phải nhớ class names (hoặc dùng VS Code extension)
 
 **Ví dụ code:**
+
 ```tsx
 // Không dùng Tailwind
 <div className="task-card">
@@ -213,16 +224,19 @@ Utility-first CSS framework.
 Component library - NHƯNG không phải npm package!
 
 **Tại sao dùng:**
+
 - ✅ **Copy-paste components** - Không vào `node_modules`
 - ✅ **Full control** - Edit code thoải mái
 - ✅ **Tailwind + Radix UI** - Accessible, đẹp, customizable
 - ✅ **30+ components** - Button, Dialog, Dropdown, Calendar, etc.
 
 **So sánh với Material UI:**
+
 - ❌ MUI: Import từ package, khó customize
 - ✅ shadcn/ui: Code trong project, edit thoải mái
 
 **Ví dụ code:**
+
 ```bash
 # Install component (copy vào project)
 npx shadcn-ui@latest add button
@@ -232,11 +246,11 @@ npx shadcn-ui@latest add button
 ```
 
 ```tsx
-import { Button } from '@/components/ui/button'
+import { Button } from '@/components/ui/button';
 
 <Button variant="destructive" size="lg">
   Delete Task
-</Button>
+</Button>;
 ```
 
 ---
@@ -245,50 +259,55 @@ import { Button } from '@/components/ui/button'
 
 ### **Zustand + Immer**
 
-**Là gì:**  
+**Là gì:**
+
 - **Zustand:** State management library (thay Redux)
 - **Immer:** Write "mutable" code → Tự động immutable
 
 **Tại sao dùng:**
+
 - ✅ **Đơn giản hơn Redux 10 lần** - Không boilerplate
 - ✅ **Optimistic updates dễ** - UI update ngay, sync sau
 - ✅ **TypeScript-first** - Auto-complete tốt
 - ✅ **Immer magic** - Viết `task.completed = true` thay vì `{ ...task, completed: true }`
 
 **Nhược điểm:**
+
 - ⚠️ Ít tutorial tiếng Việt
 - ⚠️ Debug khó hơn Redux DevTools
 
 **Ví dụ code:**
+
 ```typescript
 // Tạo store với Zustand + Immer
-import create from 'zustand'
-import { immer } from 'zustand/middleware/immer'
+import create from 'zustand';
+import { immer } from 'zustand/middleware/immer';
 
 interface TaskStore {
-  tasks: Task[]
-  toggleTask: (id: string) => void
+  tasks: Task[];
+  toggleTask: (id: string) => void;
 }
 
 export const useTaskStore = create<TaskStore>()(
   immer((set) => ({
     tasks: [],
-    
+
     // Immer cho phép viết mutable-looking code
-    toggleTask: (id) => set((state) => {
-      const task = state.tasks.find(t => t.id === id)
-      if (task) {
-        task.completed = !task.completed // Trông mutable nhưng thật ra immutable!
-      }
-    }),
+    toggleTask: (id) =>
+      set((state) => {
+        const task = state.tasks.find((t) => t.id === id);
+        if (task) {
+          task.completed = !task.completed; // Trông mutable nhưng thật ra immutable!
+        }
+      }),
   }))
-)
+);
 
 // Dùng trong component
 function TaskItem({ id }) {
-  const toggleTask = useTaskStore(state => state.toggleTask)
-  
-  return <button onClick={() => toggleTask(id)}>Toggle</button>
+  const toggleTask = useTaskStore((state) => state.toggleTask);
+
+  return <button onClick={() => toggleTask(id)}>Toggle</button>;
 }
 ```
 
@@ -302,6 +321,7 @@ function TaskItem({ id }) {
 Library xử lý recurring patterns (lặp lại).
 
 **Tại sao dùng:**
+
 - ✅ **Chuẩn quốc tế RFC-5545** - Google Calendar, Outlook đều dùng
 - ✅ **Flexible patterns:**
   - "Every 2 days"
@@ -311,17 +331,18 @@ Library xử lý recurring patterns (lặp lại).
 - ✅ **Calculate next occurrence** - Biết task lặp lại khi nào
 
 **Ví dụ code:**
+
 ```javascript
-import { RRule } from 'rrule'
+import { RRule } from 'rrule';
 
 // "Every Monday and Thursday"
 const rule = new RRule({
   freq: RRule.WEEKLY,
   byweekday: [RRule.MO, RRule.TH],
   dtstart: new Date(2025, 0, 1),
-})
+});
 
-rule.all() // [Jan 2, Jan 6, Jan 9, Jan 13, ...]
+rule.all(); // [Jan 2, Jan 6, Jan 9, Jan 13, ...]
 ```
 
 ---
@@ -332,16 +353,19 @@ rule.all() // [Jan 2, Jan 6, Jan 9, Jan 13, ...]
 Modern drag-and-drop library cho React.
 
 **Tại sao dùng:**
+
 - ✅ **Accessible** - Screen reader friendly
 - ✅ **Performant** - Smooth trên mobile
 - ✅ **Touch support** - Drag trên điện thoại
 - ✅ **Flexible** - List, grid, tree, kanban board
 
 **So sánh react-beautiful-dnd:**
+
 - ❌ rbd: Deprecated, không update nữa
 - ✅ @dnd-kit: Active development, modern
 
 **Ví dụ use case:**
+
 - Kanban board: Drag task từ TODO → IN PROGRESS
 - Task list: Reorder tasks by drag
 
@@ -353,17 +377,20 @@ Modern drag-and-drop library cho React.
 Headless rich text editor (như Notion/Google Docs).
 
 **Tại sao dùng:**
+
 - ✅ **Headless** - Bạn control UI 100%
 - ✅ **Extensible** - Add custom nodes (task list, table, etc.)
 - ✅ **React-first** - Hooks, components
 - ✅ **Markdown support** - `**bold**` → **bold**
 
 **So sánh Draft.js / Slate.js:**
+
 - ❌ Draft.js: Facebook deprecated
 - ⚠️ Slate.js: Quá low-level, phức tạp
 - ✅ Tiptap: Balance giữa flexibility và ease-of-use
 
 **Ví dụ use case:**
+
 - Pages editor (like Notion)
 - Task description (rich text)
 
@@ -375,11 +402,13 @@ Headless rich text editor (như Notion/Google Docs).
 Google Calendar-like component.
 
 **Tại sao dùng:**
+
 - ✅ **Month/Week/Day views**
 - ✅ **Drag events** - Move tasks on calendar
 - ✅ **Time blocking** - Schedule tasks as events
 
 **Ví dụ use case:**
+
 - Calendar view: Xem tasks theo ngày/tuần/tháng
 
 ---
@@ -390,21 +419,24 @@ Google Calendar-like component.
 Modern date utility library.
 
 **Tại sao dùng:**
+
 - ✅ **Immutable** - Không mutate dates
 - ✅ **Tree-shakable** - Import chỉ function cần dùng
 - ✅ **TypeScript** - Full type safety
 
 **So sánh Moment.js:**
+
 - ❌ Moment.js: Deprecated, mutable, bundle size lớn
 - ✅ date-fns: Modern, recommended
 
 **Ví dụ code:**
-```typescript
-import { format, addDays, isToday } from 'date-fns'
 
-format(new Date(), 'dd/MM/yyyy') // "08/11/2025"
-addDays(new Date(), 3) // 3 ngày sau
-isToday(task.dueDate) // true/false
+```typescript
+import { format, addDays, isToday } from 'date-fns';
+
+format(new Date(), 'dd/MM/yyyy'); // "08/11/2025"
+addDays(new Date(), 3); // 3 ngày sau
+isToday(task.dueDate); // true/false
 ```
 
 ---
@@ -417,11 +449,13 @@ isToday(task.dueDate) // true/false
 Keyboard shortcuts cho React.
 
 **Tại sao dùng:**
+
 - ✅ **Easy API** - `useHotkeys('j', goDown)`
 - ✅ **Global + Local scopes**
 - ✅ **Combos** - `Ctrl+K`, `Cmd+Shift+P`
 
 **Ví dụ use case:**
+
 - `j/k` - Navigate tasks (như Gmail)
 - `x` - Toggle complete
 - `Cmd+K` - Command palette
@@ -434,11 +468,13 @@ Keyboard shortcuts cho React.
 Command palette component (như VS Code `Cmd+Shift+P`).
 
 **Tại sao dùng:**
+
 - ✅ **Keyboard-first** - Power users love it
 - ✅ **Fuzzy search** - Type "crtsk" → "Create Task"
 - ✅ **Accessible** - Screen reader friendly
 
 **Ví dụ use case:**
+
 - `Cmd+K` → Search/create tasks
 - Quick actions without mouse
 
@@ -482,6 +518,7 @@ Dev Tools:
 ## 💰 **CHI PHÍ HOSTING**
 
 ### **POC/MVP (0-1000 users):**
+
 ```
 Vercel (Frontend):     $0/month (Free tier)
 Supabase (Backend):    $0/month (Free tier)
@@ -491,6 +528,7 @@ TOTAL: $0/month ✅
 ```
 
 ### **Scale (1K-10K users):**
+
 ```
 Vercel Pro:            $20/month
 Supabase Pro:          $25/month
@@ -504,11 +542,13 @@ TOTAL: $45/month
 ## 🎓 **HỌC THÊM**
 
 ### **Ưu tiên cao:**
+
 1. ✅ **Next.js App Router** - Watch: "Next.js 15 Tutorial" (YouTube, 2h)
 2. ✅ **TypeScript Basics** - Read: https://www.typescriptlang.org/docs/handbook/intro.html (1h)
 3. ✅ **Zustand** - Read: https://zustand-demo.pmnd.rs/ (30 min)
 
 ### **Khi cần:**
+
 4. **Supabase** - When: Setup database
 5. **Tailwind** - When: Build UI
 6. **rrule** - When: Implement recurring tasks
@@ -518,14 +558,17 @@ TOTAL: $45/month
 ## ❓ **FAQ**
 
 ### **Tại sao không dùng Vite thay vì Next.js?**
+
 - ✅ Next.js có SSR, SEO, API routes built-in
 - ⚠️ Vite chỉ là build tool, không có framework features
 
 ### **Tại sao không dùng Redux?**
+
 - ✅ Zustand đơn giản hơn 10 lần
 - ⚠️ Redux quá nhiều boilerplate cho dự án nhỏ
 
 ### **Tại sao không tự build backend với NestJS?**
+
 - ✅ Supabase nhanh hơn (không cần code auth, RLS, etc.)
 - ✅ Free tier đủ cho 1000 users đầu
 - ✅ AI dễ generate Supabase code hơn backend code

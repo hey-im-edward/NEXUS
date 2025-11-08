@@ -27,6 +27,7 @@ Week 12:   GO/NO-GO Decision Point            [░░░░░░░░░░░
 **Goal:** Task Management Polish + 3-5 User Interviews
 
 **Deliverables:**
+
 - [x] Database v2 deployed
 - [x] Google OAuth working
 - [x] Task CRUD basic
@@ -35,11 +36,13 @@ Week 12:   GO/NO-GO Decision Point            [░░░░░░░░░░░
 - [ ] 3-5 User interviews
 
 **Success Criteria:**
+
 - Task management 80% polished
 - 3+ interviews completed
 - Insights documented
 
 **Timeline với AI:**
+
 - Planned: 5 ngày manual work
 - Actual: 2 ngày với AI (ahead of schedule!)
 
@@ -50,12 +53,14 @@ Week 12:   GO/NO-GO Decision Point            [░░░░░░░░░░░
 **Goal:** Advanced task features + More interviews
 
 **Deliverables:**
+
 - [ ] Recurring tasks (rrule integration)
 - [ ] Calendar view basic
 - [ ] Command palette (Cmd+K)
 - [ ] 5+ User interviews
 
 **Key Features:**
+
 ```
 1. Recurring Patterns
    - Daily, Weekly, Monthly
@@ -74,6 +79,7 @@ Week 12:   GO/NO-GO Decision Point            [░░░░░░░░░░░
 ```
 
 **Success Criteria:**
+
 - Recurring tasks working
 - Calendar displays tasks correctly
 - 8/10 total interviews done
@@ -85,12 +91,14 @@ Week 12:   GO/NO-GO Decision Point            [░░░░░░░░░░░
 **Goal:** Notion-like pages + Polish
 
 **Deliverables:**
+
 - [ ] Tiptap editor integration
 - [ ] Create/Edit pages
 - [ ] Embed tasks in pages
 - [ ] Mobile responsive basic
 
 **Key Features:**
+
 ```
 1. Page Editor (Tiptap)
    - Rich text (bold, italic, headings)
@@ -105,6 +113,7 @@ Week 12:   GO/NO-GO Decision Point            [░░░░░░░░░░░
 ```
 
 **Success Criteria:**
+
 - Pages editor working
 - Can create notes with embedded tasks
 - Mobile usable (not perfect)
@@ -116,6 +125,7 @@ Week 12:   GO/NO-GO Decision Point            [░░░░░░░░░░░
 **Goal:** 1-2 App Minis + UI Polish
 
 **Deliverables:**
+
 - [ ] Habit Tracker mini
 - [ ] OR Pomodoro Timer mini
 - [ ] Empty states với illustrations
@@ -123,6 +133,7 @@ Week 12:   GO/NO-GO Decision Point            [░░░░░░░░░░░
 - [ ] 10/10 interviews done
 
 **Success Criteria:**
+
 - 1 App Mini working
 - UI polished, no major bugs
 - All 10 interviews done, insights analyzed
@@ -136,12 +147,14 @@ Week 12:   GO/NO-GO Decision Point            [░░░░░░░░░░░
 **Goal:** Deploy to production + Get first testers
 
 **Deliverables:**
+
 - [ ] Deploy to Vercel
 - [ ] Invite 5 beta testers
 - [ ] Onboarding flow
 - [ ] Fix deployment bugs
 
 **Success Criteria:**
+
 - App live tại nexus-productivity.vercel.app
 - 5 testers signed up
 - No critical bugs
@@ -153,12 +166,14 @@ Week 12:   GO/NO-GO Decision Point            [░░░░░░░░░░░
 **Goal:** Collect feedback, iterate
 
 **Deliverables:**
+
 - [ ] User feedback sessions (5 testers)
 - [ ] Bug fixes từ feedback
 - [ ] UX improvements
 - [ ] Performance optimization
 
 **Success Criteria:**
+
 - 3/5 testers say "I would use this daily"
 - Average session time >10 minutes
 - NPS score >30
@@ -170,12 +185,14 @@ Week 12:   GO/NO-GO Decision Point            [░░░░░░░░░░░
 **Goal:** Add must-have features từ feedback
 
 **Deliverables:**
+
 - [ ] Features requested by users (top 3)
 - [ ] Advanced search & filters
 - [ ] Notifications (toast/email)
 - [ ] Export data (CSV/JSON)
 
 **Success Criteria:**
+
 - Top 3 requested features done
 - User retention 60% (3/5 testers still active)
 
@@ -186,12 +203,14 @@ Week 12:   GO/NO-GO Decision Point            [░░░░░░░░░░░
 **Goal:** Invite more testers, test scale
 
 **Deliverables:**
+
 - [ ] Invite 15 more testers (total 20)
 - [ ] Monitor Supabase usage
 - [ ] Fix performance issues
 - [ ] Improve onboarding based on feedback
 
 **Success Criteria:**
+
 - 20 signups
 - 10 active users (3+ sessions/week)
 - Supabase free tier sufficient
@@ -205,12 +224,14 @@ Week 12:   GO/NO-GO Decision Point            [░░░░░░░░░░░
 **Goal:** Add pricing, payment
 
 **Deliverables:**
+
 - [ ] Stripe integration
 - [ ] Pricing page ($10-15/month)
 - [ ] Subscription management
 - [ ] Free trial (14 days)
 
 **Success Criteria:**
+
 - Payment flow working
 - 1-2 paying users
 
@@ -221,12 +242,14 @@ Week 12:   GO/NO-GO Decision Point            [░░░░░░░░░░░
 **Goal:** Multi-user workspaces
 
 **Deliverables:**
+
 - [ ] Invite team members
 - [ ] Workspace settings
 - [ ] Permissions (Owner, Member)
 - [ ] Activity log
 
 **Success Criteria:**
+
 - 2+ teams using NEXUS
 - Team collaboration working
 
@@ -237,12 +260,14 @@ Week 12:   GO/NO-GO Decision Point            [░░░░░░░░░░░
 **Goal:** External integrations
 
 **Deliverables:**
+
 - [ ] Google Calendar sync
 - [ ] Slack notifications (optional)
 - [ ] Email integration
 - [ ] API webhooks
 
 **Success Criteria:**
+
 - Google Calendar sync working
 - Users find value in integrations
 
@@ -253,12 +278,14 @@ Week 12:   GO/NO-GO Decision Point            [░░░░░░░░░░░
 **Goal:** Bug fixes, performance, UX
 
 **Deliverables:**
+
 - [ ] Fix all critical bugs
 - [ ] Performance optimization (<1s page load)
 - [ ] Mobile app-like experience
 - [ ] Dark mode (nice-to-have)
 
 **Success Criteria:**
+
 - Zero critical bugs
 - Lighthouse score >90
 - User satisfaction >80%
@@ -311,17 +338,17 @@ IF NO-GO:
 
 ## 📊 **SUCCESS METRICS BY WEEK**
 
-| Week | Signups | Active Users | Paying | NPS | Tasks Created |
-|------|---------|--------------|--------|-----|---------------|
-| 0    | 1       | 1            | 0      | N/A | 50            |
-| 1    | 5       | 3            | 0      | N/A | 200           |
-| 2    | 10      | 5            | 0      | N/A | 500           |
-| 3    | 15      | 8            | 0      | N/A | 800           |
-| 4    | 20      | 10           | 0      | 30  | 1,000         |
-| 7    | 30      | 15           | 0      | 35  | 2,000         |
-| 8    | 35      | 18           | 1      | 40  | 2,500         |
-| 11   | 50      | 20           | 2      | 45  | 4,000         |
-| 12   | **GO/NO-GO DECISION** ||||
+| Week | Signups               | Active Users | Paying | NPS | Tasks Created |
+| ---- | --------------------- | ------------ | ------ | --- | ------------- |
+| 0    | 1                     | 1            | 0      | N/A | 50            |
+| 1    | 5                     | 3            | 0      | N/A | 200           |
+| 2    | 10                    | 5            | 0      | N/A | 500           |
+| 3    | 15                    | 8            | 0      | N/A | 800           |
+| 4    | 20                    | 10           | 0      | 30  | 1,000         |
+| 7    | 30                    | 15           | 0      | 35  | 2,000         |
+| 8    | 35                    | 18           | 1      | 40  | 2,500         |
+| 11   | 50                    | 20           | 2      | 45  | 4,000         |
+| 12   | **GO/NO-GO DECISION** |              |        |     |
 
 ---
 

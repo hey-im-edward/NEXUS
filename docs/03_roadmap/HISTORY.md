@@ -14,11 +14,13 @@
 
 **Context:**  
 Cần tool quản lý tasks + projects + notes trong một app. Tools hiện tại:
+
 - Todoist: Quá đơn giản, thiếu project management
 - ClickUp: Quá phức tạp, bloated features
 - Notion: Tốt cho notes nhưng yếu về task management
 
 **Quyết định:** Build NEXUS - "Productivity OS" tập trung vào:
+
 - 70% Task Management (advanced recurring, smart lists)
 - 20% Flexible Pages (Notion-like)
 - 10% App Minis (lightweight extensions)
@@ -30,10 +32,12 @@ Cần tool quản lý tasks + projects + notes trong một app. Tools hiện t�
 ### **Week -2 (Oct 21-27, 2025) - Planning**
 
 #### **Oct 21:** Brainstorm ý tưởng
+
 - Viết vision: "Personal productivity platform for SMEs and power users"
 - Target users: SME project managers, freelancers (20-100+ tasks)
 
 #### **Oct 23:** Tech stack research
+
 - Evaluated: Next.js vs Vite, Supabase vs Firebase, Redux vs Zustand
 - **Quyết định chọn:**
   - ✅ Next.js 15 (App Router) - SSR, SEO, API routes
@@ -42,6 +46,7 @@ Cần tool quản lý tasks + projects + notes trong một app. Tools hiện t�
   - ❌ KHÔNG chọn NestJS backend (quá complex, tốn thời gian)
 
 #### **Oct 25:** Database schema v1
+
 - Designed 8 tables: tasks, projects, users, workspaces, etc.
 - **Problem discovered:** Không support recurring tasks tốt
 - **Quyết định:** Redesign schema → v2
@@ -51,24 +56,28 @@ Cần tool quản lý tasks + projects + notes trong một app. Tools hiện t�
 ### **Week -1 (Oct 28 - Nov 3, 2025) - Setup**
 
 #### **Oct 28:** Project init
+
 - Created GitHub repo: `NEXUS`
 - Installed Next.js 15, TypeScript, Tailwind CSS
 - Setup folder structure
 
 #### **Oct 30:** Database schema v2
+
 - **Major change:** Added `recurring_patterns` table
 - Added `rrule` field to tasks table (RFC-5545 standard)
 - Total 11 tables now (thêm pages, app_minis, time_blocks)
 
 #### **Nov 1:** UI component setup
+
 - Installed shadcn/ui
 - Added 15 components: Button, Input, Dialog, etc.
 - Created design system (colors, typography, spacing)
 
 #### **Nov 3:** Critical decision - Architecture
+
 - **Question:** Monorepo (frontend + backend) hay chỉ frontend?
 - **Quyết định:** ONLY frontend + Supabase
-- **Lý do:** 
+- **Lý do:**
   - ✅ Faster development
   - ✅ $0/month hosting (free tiers)
   - ✅ AI dễ generate Supabase code hơn backend code
@@ -78,20 +87,24 @@ Cần tool quản lý tasks + projects + notes trong một app. Tools hiện t�
 ### **Week 0 (Nov 4-10, 2025) - Development Starts**
 
 #### **Nov 4:** Documentation setup
+
 - Created `docs/` folder
 - Wrote initial README.md, PROJECT_STATUS.md
 - Setup AI_PROMPTS.md workflow
 
 #### **Nov 5:** Authentication
+
 - Integrated Supabase Auth
 - Google OAuth working
 - **Bug:** RLS policy infinite recursion → Fixed same day
 
 #### **Nov 6:** Task components scaffolding
+
 - Created TaskItem, TaskList, TaskQuickAdd components
 - Basic CRUD working (add, display, complete)
 
 #### **Nov 7: 🎉 MAJOR MILESTONE - Database Deployed**
+
 - **9:00 AM:** Ran migration `002_productivity_core_schema.sql`
 - **10:30 AM:** Created test workspace: `c6be91ba-98c3-43e5-8e5e-94e389894fa6`
 - **11:00 AM:** `/today` page working
@@ -102,6 +115,7 @@ Cần tool quản lý tasks + projects + notes trong một app. Tools hiện t�
 **Insight:** Với AI (ChatGPT/Claude), công việc 5 ngày → 1 ngày!
 
 #### **Nov 8: 🎉 MAJOR MILESTONE - Kanban Board Done**
+
 - **10:00 AM:** Started Prompt 1 (Kanban Board)
 - **12:00 PM:** AI generated code (KanbanBoard, KanbanColumn, KanbanCard)
 - **14:00 PM:** Fixed 2 bugs (ghost card offset, position không update)
@@ -112,6 +126,7 @@ Cần tool quản lý tasks + projects + notes trong một app. Tools hiện t�
 **Timeline:** 2 giờ (planned 1 ngày) - AI rất nhanh!
 
 #### **Nov 8 (Chiều): Documentation Overhaul**
+
 - **Problem discovered:** Docs lộn xộn, nhiều file duplicate/empty
 - **Quyết định:** Tái cấu trúc toàn bộ docs/
 - **Changes:**
@@ -126,6 +141,7 @@ Cần tool quản lý tasks + projects + notes trong một app. Tools hiện t�
 ## 🔄 **MAJOR DECISIONS & PIVOTS**
 
 ### **Decision #1: Supabase vs NestJS Backend**
+
 - **Date:** Oct 23, 2025
 - **Context:** Cần backend cho auth + database
 - **Options:**
@@ -141,6 +157,7 @@ Cần tool quản lý tasks + projects + notes trong một app. Tools hiện t�
 ---
 
 ### **Decision #2: Redux vs Zustand**
+
 - **Date:** Oct 30, 2025
 - **Context:** Cần state management cho optimistic updates
 - **Options:**
@@ -156,10 +173,11 @@ Cần tool quản lý tasks + projects + notes trong một app. Tools hiện t�
 ---
 
 ### **Decision #3: Manual Code vs AI-Driven Development**
+
 - **Date:** Nov 6, 2025
 - **Context:** Kanban board estimate 1-2 ngày manual code
 - **Experiment:** Thử dùng AI (ChatGPT) với prompts chi tiết
-- **Result:** 
+- **Result:**
   - ✅ Done trong 2 giờ (thay vì 1-2 ngày)
   - ✅ Code quality tốt (zero TypeScript errors)
   - ⚠️ Cần fix 2 bugs nhỏ
@@ -175,26 +193,29 @@ Cần tool quản lý tasks + projects + notes trong một app. Tools hiện t�
 
 ## 📊 **METRICS OVER TIME**
 
-| Date | Features Done | Lines of Code | Commits | Users | Tasks Created |
-|------|---------------|---------------|---------|-------|---------------|
-| Nov 4 | 0% | 0 | 1 | 0 | 0 |
-| Nov 5 | 5% (Auth) | 500 | 3 | 1 | 0 |
-| Nov 7 | 20% (Basic CRUD) | 2,000 | 8 | 1 | 50 |
-| Nov 8 | 35% (Kanban) | 3,500 | 13 | 1 | 75 |
+| Date  | Features Done    | Lines of Code | Commits | Users | Tasks Created |
+| ----- | ---------------- | ------------- | ------- | ----- | ------------- |
+| Nov 4 | 0%               | 0             | 1       | 0     | 0             |
+| Nov 5 | 5% (Auth)        | 500           | 3       | 1     | 0             |
+| Nov 7 | 20% (Basic CRUD) | 2,000         | 8       | 1     | 50            |
+| Nov 8 | 35% (Kanban)     | 3,500         | 13      | 1     | 75            |
 
 ---
 
 ## 🐛 **BUGS FIXED (Historical)**
 
 ### **Nov 5:**
+
 - ✅ RLS infinite recursion (workspace_members policy)
 
 ### **Nov 7:**
+
 - ✅ TaskList infinite loop (useEffect dependencies)
 - ✅ Tasks disappear after complete (filter issue)
 - ✅ Missing created_by field (schema fix)
 
 ### **Nov 8:**
+
 - ✅ Kanban ghost card offset (transform adjustment)
 - ✅ Task position not updating (added position field)
 
@@ -206,12 +227,15 @@ Cần tool quản lý tasks + projects + notes trong một app. Tools hiện t�
 ## 💡 **KEY LEARNINGS**
 
 ### **Technical:**
+
 1. ✅ **AI-driven development works!**
+
    - Prompt quality = code quality
    - Always test & fix 1-2 bugs
    - Document prompts cho reuse
 
 2. ✅ **Supabase RLS tricky nhưng powerful**
+
    - Cẩn thận với recursive policies
    - Test security với multiple users
 
@@ -220,11 +244,14 @@ Cần tool quản lý tasks + projects + notes trong một app. Tools hiện t�
    - Zustand + Immer perfect cho pattern này
 
 ### **Process:**
+
 1. ✅ **Documentation crucial**
+
    - Docs tốt = Biết làm gì tiếp
    - AI cần docs để generate đúng code
 
 2. ✅ **Small iterations win**
+
    - Deploy → Test → Fix → Repeat
    - Đừng code nhiều rồi mới test
 
@@ -237,11 +264,13 @@ Cần tool quản lý tasks + projects + notes trong một app. Tools hiện t�
 ## 🎯 **WHAT'S NEXT?**
 
 ### **Nov 9-11 (Tuần này):**
+
 - [ ] Complete Prompt 1.1-1.6 (Task Management Polish)
 - [ ] 3-5 User interviews
 - [ ] Update docs
 
 ### **Nov 14+ (Tuần sau):**
+
 - [ ] Recurring tasks (Week 1)
 - [ ] Calendar view (Week 1-2)
 - [ ] Pages editor (Week 2)
@@ -253,11 +282,13 @@ Cần tool quản lý tasks + projects + notes trong một app. Tools hiện t�
 ## 📝 **NOTES FOR FUTURE**
 
 ### **Nếu dự án thành công:**
+
 - Archive file HISTORY.md này
 - Viết case study: "How we built NEXUS in 12 weeks với AI"
 - Share learnings với community
 
 ### **Nếu dự án fail:**
+
 - Keep HISTORY.md để học từ mistakes
 - Analyze: Sai ở đâu? Tech? Market? Execution?
 - Apply learnings vào dự án tiếp theo

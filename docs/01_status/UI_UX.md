@@ -15,6 +15,7 @@
 ```
 
 **Legend:**
+
 - ✨ **Polished** - UI đẹp, UX smooth, production-ready
 - ⚠️ **Functional** - Hoạt động được nhưng UI chưa đẹp/chưa polish
 - ❌ **Not Started** - Chưa làm
@@ -24,6 +25,7 @@
 ## ✨ **POLISHED (2)**
 
 ### **/today - My Day Page**
+
 - **Status:** ✨ Polished 90%
 - **UI:** Đẹp, clean, minimalist
 - **UX:** Smooth, quick add works well
@@ -37,6 +39,7 @@
 ---
 
 ### **Kanban Board**
+
 - **Status:** ✨ Polished 95%
 - **UI:** Đẹp, 3 columns rõ ràng
 - **UX:** Drag & drop smooth, visual feedback tốt
@@ -51,6 +54,7 @@
 ## ⚠️ **FUNCTIONAL (6)**
 
 ### **/inbox - Inbox Page**
+
 - **Status:** ⚠️ Functional 60%
 - **UI:** Giống /today, đơn giản
 - **UX:** Hoạt động nhưng chưa có filter buttons
@@ -62,6 +66,7 @@
 ---
 
 ### **/projects - Projects List**
+
 - **Status:** ⚠️ Functional 50%
 - **UI:** Grid layout cơ bản
 - **UX:** Click card → project detail works
@@ -73,6 +78,7 @@
 ---
 
 ### **Task Item Component**
+
 - **Status:** ⚠️ Functional 70%
 - **UI:** Checkbox + title, đơn giản
 - **UX:** Click checkbox works, no lag
@@ -85,6 +91,7 @@
 ---
 
 ### **Login Page**
+
 - **Status:** ⚠️ Functional 60%
 - **UI:** Google button cơ bản
 - **UX:** OAuth flow works
@@ -96,6 +103,7 @@
 ---
 
 ### **Sidebar Navigation**
+
 - **Status:** ⚠️ Functional 70%
 - **UI:** List of links, cơ bản
 - **UX:** Navigation works, active state OK
@@ -107,6 +115,7 @@
 ---
 
 ### **Header**
+
 - **Status:** ⚠️ Functional 50%
 - **UI:** Title + logout button
 - **UX:** Cơ bản
@@ -120,12 +129,14 @@
 ## ❌ **NOT STARTED (2)**
 
 ### **/calendar - Calendar View**
+
 - **Status:** ❌ Not Started
 - **Plan:** Week 1-2
 
 ---
 
 ### **/pages/[id] - Page Editor**
+
 - **Status:** ❌ Not Started
 - **Plan:** Week 2-3
 
@@ -134,6 +145,7 @@
 ## 🎨 **DESIGN SYSTEM**
 
 ### **Colors**
+
 ```css
 Primary: Blue (#3B82F6)
 Success: Green (#10B981)
@@ -143,6 +155,7 @@ Gray Scale: Tailwind gray-50 → gray-900
 ```
 
 ### **Typography**
+
 ```
 Font Family: Inter (Google Fonts)
 Headings: font-semibold
@@ -151,12 +164,14 @@ Small: text-sm text-gray-600
 ```
 
 ### **Spacing**
+
 ```
 Sử dụng Tailwind spacing scale:
 p-4 (1rem), m-6 (1.5rem), gap-2 (0.5rem)
 ```
 
 ### **Components (shadcn/ui)**
+
 - ✅ Button (3 variants: default, destructive, outline)
 - ✅ Input
 - ✅ Checkbox
@@ -170,20 +185,24 @@ p-4 (1rem), m-6 (1.5rem), gap-2 (0.5rem)
 ## 📱 **RESPONSIVE STATUS**
 
 ### **Desktop (1920x1080)**
+
 - ✅ /today: Perfect
 - ✅ Kanban: Perfect
 - ⚠️ /projects: OK, có thể tối ưu grid
 
 ### **Laptop (1366x768)**
+
 - ✅ /today: Good
 - ✅ Kanban: Good
 - ⚠️ Sidebar: Hơi rộng, có thể thu gọn
 
 ### **Tablet (768px)**
+
 - ❌ Chưa test
 - **Plan:** Week 5
 
 ### **Mobile (375px)**
+
 - ❌ Chưa optimize
 - **Plan:** Week 5 (Priority HIGH)
 
@@ -192,6 +211,7 @@ p-4 (1rem), m-6 (1.5rem), gap-2 (0.5rem)
 ## ⚡ **PERFORMANCE**
 
 ### **Lighthouse Scores (Desktop)**
+
 ```
 Performance:    85/100  (⚠️ Cải thiện: image optimization)
 Accessibility:  90/100  (⚠️ Cải thiện: aria labels)
@@ -200,6 +220,7 @@ SEO:            80/100  (⚠️ Cải thiện: meta tags)
 ```
 
 ### **Loading Times**
+
 ```
 /today page:    1.2s  (⚠️ Target: <1s)
 Kanban board:   1.5s  (⚠️ Target: <1s)
@@ -211,10 +232,13 @@ Task add:       0.3s  (✅ Good - optimistic update)
 ## 🐛 **UI BUGS**
 
 ### **Critical (0):**
+
 - Không có ✅
 
 ### **Medium (2):**
+
 1. **Kanban drag ghost offset** - Ghost card không align đúng khi drag
+
    - Priority: MEDIUM
    - Plan: Week 1
 
@@ -223,6 +247,7 @@ Task add:       0.3s  (✅ Good - optimistic update)
    - Plan: Week 1 (optimistic update cần cải thiện)
 
 ### **Low (5):**
+
 1. No loading skeleton
 2. No empty state images
 3. Task hover effect không smooth
@@ -236,17 +261,20 @@ Task add:       0.3s  (✅ Good - optimistic update)
 ## 🎯 **IMPROVEMENT ROADMAP**
 
 ### **Week 1 (Nov 14-20):**
+
 - [ ] Add priority badges UI (Prompt 1.2)
 - [ ] Add tags display (Prompt 1.3)
 - [ ] Polish task detail modal (Prompt 1.4)
 - [ ] Improve loading states
 
 ### **Week 2 (Nov 21-27):**
+
 - [ ] Calendar UI polish
 - [ ] Command palette UI
 - [ ] Improve sidebar design
 
 ### **Week 3+:**
+
 - [ ] Empty states với illustrations
 - [ ] Loading skeletons
 - [ ] Mobile responsive
@@ -257,13 +285,16 @@ Task add:       0.3s  (✅ Good - optimistic update)
 ## 📸 **SCREENSHOTS**
 
 ### **Before (Nov 7):**
+
 - Basic task list, no styling
 
 ### **After (Nov 8):**
+
 - Polished /today page
 - Working Kanban board
 
 ### **Target (End of Week 0):**
+
 - Task management 80% polished
 - All features have smooth UI
 
@@ -272,12 +303,14 @@ Task add:       0.3s  (✅ Good - optimistic update)
 ## 🔗 **DESIGN REFERENCES**
 
 ### **Inspiration:**
+
 - **Linear:** Clean, minimal, keyboard-first
 - **Height:** Task management polish
 - **Notion:** Flexible pages
 - **Todoist:** Quick add, smart lists
 
 ### **Figma (If needed):**
+
 - (TODO: Create Figma mockups nếu cần)
 
 ---

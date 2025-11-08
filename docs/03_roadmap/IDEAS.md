@@ -9,11 +9,13 @@
 ## 🌟 **Ý TƯỞNG ĐÃ THỰC HIỆN**
 
 ### **1. Kanban Board** ✅
+
 - **Ngày ý tưởng:** Nov 1, 2025
 - **Ngày thực hiện:** Nov 8, 2025
 - **Kết quả:** Works great! Users love drag & drop
 
 ### **2. Smart Lists (Today, Inbox, Upcoming)** ✅
+
 - **Ngày ý tưởng:** Nov 2, 2025
 - **Ngày thực hiện:** Nov 7, 2025
 - **Kết quả:** Basic filters working
@@ -23,6 +25,7 @@
 ## 💭 **Ý TƯỞNG ĐANG XEM XÉT (High Priority)**
 
 ### **3. AI-Powered Task Suggestions**
+
 - **Mô tả:** AI suggest tasks dựa trên patterns
   - "You usually add 'Review emails' every Monday 9am"
   - "Similar projects had tasks: X, Y, Z"
@@ -41,6 +44,7 @@
 ---
 
 ### **4. Voice Input**
+
 - **Mô tả:** "Hey NEXUS, add task: Buy milk tomorrow 3pm"
 - **Priority:** MEDIUM
 - **Timeline:** Week 8+ (nice-to-have)
@@ -56,6 +60,7 @@
 ---
 
 ### **5. Time Tracking**
+
 - **Mô tả:** Click "Start" trên task → Track thời gian làm
 - **Priority:** HIGH
 - **Timeline:** Week 6-7
@@ -74,6 +79,7 @@
 ## 🔮 **Ý TƯỞNG MỚI (Chưa đánh giá)**
 
 ### **6. Daily Standup Summary**
+
 - **Mô tả:** Mỗi sáng email summary:
   - Tasks due today
   - Tasks overdue
@@ -85,6 +91,7 @@
 ---
 
 ### **7. Gamification**
+
 - **Mô tả:**
   - Streaks (7 days completed tasks)
   - Points for completing tasks
@@ -97,6 +104,7 @@
 ---
 
 ### **8. Templates cho Projects**
+
 - **Mô tả:** Pre-made templates:
   - "Client Onboarding" (tasks: Send contract, Schedule kickoff, etc.)
   - "Product Launch" (tasks: Marketing plan, PR, etc.)
@@ -108,6 +116,7 @@
 ---
 
 ### **9. Public Sharing**
+
 - **Mô tả:** Share project/page với public link (read-only)
 - **Use case:**
   - Share roadmap với clients
@@ -119,6 +128,7 @@
 ---
 
 ### **10. Mobile App (React Native)**
+
 - **Mô tả:** Native iOS/Android app
 - **Submitted by:** Self-brainstorm
 - **Date:** Nov 8, 2025
@@ -137,6 +147,7 @@
 ## ❌ **Ý TƯỞNG BỊ REJECTED**
 
 ### **11. Chat/Messaging Feature ❌**
+
 - **Mô tả:** Team chat như Slack
 - **Lý do reject:**
   - ❌ Cạnh tranh với Slack, Teams, Discord
@@ -147,6 +158,7 @@
 ---
 
 ### **12. Video Calls ❌**
+
 - **Mô tả:** Built-in video call
 - **Lý do reject:**
   - ❌ Zoom, Google Meet đã tốt
@@ -157,6 +169,7 @@
 ---
 
 ### **13. Email Client ❌**
+
 - **Mô tả:** Quản lý email trong NEXUS
 - **Lý do reject:**
   - ❌ Gmail, Outlook đã tốt
@@ -169,15 +182,18 @@
 ## 🎯 **Ý TƯỞNG TỪ USER INTERVIEWS**
 
 ### **Interview #1 (Pending)**
+
 - [ ] Schedule interview
 
 ### **Interview #2 (Pending)**
+
 - [ ] Schedule interview
 
 ### **Interview #3 (Pending)**
+
 - [ ] Schedule interview
 
-*(Cập nhật sau khi interviews done)*
+_(Cập nhật sau khi interviews done)_
 
 ---
 
@@ -187,6 +203,7 @@ Có ý tưởng mới? Thêm vào đây:
 
 ```markdown
 ### **[Số]. [Tên Ý Tưởng]**
+
 - **Mô tả:** [Chi tiết ý tưởng]
 - **Use case:** [Ai dùng? Dùng khi nào?]
 - **Priority:** [HIGH / MEDIUM / LOW]

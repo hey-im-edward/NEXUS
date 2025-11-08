@@ -6,7 +6,7 @@
 
 ## 🎯 **TEMPLATE**
 
-```
+````
 Create [Feature Name] for NEXUS Productivity OS.
 
 ### Context:
@@ -43,26 +43,28 @@ interface [ComponentName]Props {
 export default function [ComponentName]({ ... }: [ComponentName]Props) {
   // Implementation here
 }
-```
+````
 
 **State Management (Zustand):**
+
 ```typescript
 // Use existing task store: frontend/lib/stores/tasks.ts
 // Add action: [actionName]
 
 interface TaskStore {
   // ... existing state
-  [actionName]: (taskId: string, data: any) => void
+  [actionName]: (taskId: string, data: any) => void;
 }
 ```
 
 **Database Update (Supabase):**
+
 ```typescript
 // Update task in database
 const { error } = await supabase
   .from('tasks')
   .update({ [field]: [value] })
-  .eq('id', taskId)
+  .eq('id', taskId);
 
 // Handle error
 if (error) {
@@ -72,12 +74,14 @@ if (error) {
 ```
 
 **Optimistic Update Flow:**
+
 1. Update UI immediately (Zustand set)
 2. Call Supabase update
 3. If error → Revert UI + Show toast
 4. If success → Keep UI as is
 
 ### Edge Cases to Handle:
+
 - [ ] Loading state (show skeleton or spinner)
 - [ ] Error state (revert + toast notification)
 - [ ] Empty state (no tasks)
@@ -86,12 +90,14 @@ if (error) {
 - [ ] Mobile responsive (touch-friendly)
 
 ### Accessibility:
+
 - [ ] ARIA labels for screen readers
 - [ ] Keyboard navigation (Tab, Enter, Esc)
 - [ ] Focus management
 - [ ] Color contrast (WCAG AA)
 
 ### Testing Checklist:
+
 - [ ] Happy path: [Scenario]
 - [ ] Error case: Network failure
 - [ ] Error case: Validation failure
@@ -101,6 +107,7 @@ if (error) {
 - [ ] Keyboard: All shortcuts work
 
 ### Files to Create/Modify:
+
 ```
 frontend/components/tasks/[component-name].tsx       (NEW)
 frontend/lib/stores/tasks.ts                         (UPDATE - add action)
@@ -108,12 +115,14 @@ frontend/types/task.types.ts                         (UPDATE if needed)
 ```
 
 ### Expected Output:
+
 - TypeScript component code (full implementation)
 - Zustand store action
 - Type definitions (if new types needed)
 - Usage example
 
 ### Style Guide:
+
 - Use Tailwind CSS classes
 - Follow shadcn/ui patterns
 - Use existing colors from design system
@@ -121,15 +130,13 @@ frontend/types/task.types.ts                         (UPDATE if needed)
 - Spacing: p-4, gap-2 standard
 
 ### Example Usage:
-```tsx
-import { TaskFeatureName } from '@/components/tasks/task-feature-name'
 
-<TaskFeatureName 
-  taskId={task.id}
-  workspaceId={workspaceId}
-  onUpdate={handleUpdate}
-/>
+```tsx
+import { TaskFeatureName } from '@/components/tasks/task-feature-name';
+
+<TaskFeatureName taskId={task.id} workspaceId={workspaceId} onUpdate={handleUpdate} />;
 ```
+
 ```
 
 ---
@@ -137,9 +144,11 @@ import { TaskFeatureName } from '@/components/tasks/task-feature-name'
 ## 📋 **EXAMPLE - Edit Task Inline**
 
 ```
+
 Create **Edit Task Inline** feature for NEXUS Productivity OS.
 
 ### Context:
+
 - Project: Task management system built with Next.js 16, React 19, TypeScript
 - Current Status: TaskItem displays title (read-only), need to add inline editing
 - Location: frontend/components/tasks/task-item.tsx
@@ -147,6 +156,7 @@ Create **Edit Task Inline** feature for NEXUS Productivity OS.
 - State: Zustand + Immer for optimistic updates
 
 ### Requirements:
+
 1. Double-click task title → Convert to input field
 2. Press Enter or blur → Save changes
 3. Press ESC → Cancel editing (revert to original)
@@ -155,6 +165,7 @@ Create **Edit Task Inline** feature for NEXUS Productivity OS.
 6. Error handling với toast notification
 
 ### User Flow:
+
 1. User double-clicks task title
 2. UI shows input field với current title selected
 3. User types new title
@@ -166,35 +177,36 @@ Create **Edit Task Inline** feature for NEXUS Productivity OS.
 ### Technical Details:
 
 **Component Structure:**
+
 ```tsx
 interface TaskItemProps {
-  task: Task
-  workspaceId: string
+  task: Task;
+  workspaceId: string;
 }
 
 export default function TaskItem({ task, workspaceId }: TaskItemProps) {
-  const [isEditing, setIsEditing] = useState(false)
-  const [editedTitle, setEditedTitle] = useState(task.title)
-  
+  const [isEditing, setIsEditing] = useState(false);
+  const [editedTitle, setEditedTitle] = useState(task.title);
+
   // ... implementation
 }
 ```
 
 **State Management (Zustand):**
+
 ```typescript
 // In frontend/lib/stores/tasks.ts
 updateTask: (taskId: string, updates: Partial<Task>) => void
 ```
 
 **Database Update (Supabase):**
+
 ```typescript
-const { error } = await supabase
-  .from('tasks')
-  .update({ title: newTitle })
-  .eq('id', taskId)
+const { error } = await supabase.from('tasks').update({ title: newTitle }).eq('id', taskId);
 ```
 
 ### Edge Cases to Handle:
+
 - [x] Empty title (validation)
 - [x] Title too long (max 200 chars)
 - [x] Network error during save
@@ -202,6 +214,7 @@ const { error } = await supabase
 - [x] Click outside cancels edit
 
 ### Testing Checklist:
+
 - [x] Double-click → Input appears
 - [x] Enter → Saves and exits edit mode
 - [x] ESC → Cancels and reverts
@@ -209,13 +222,16 @@ const { error } = await supabase
 - [x] Network error → Revert + Toast
 
 ### Files to Modify:
+
 ```
 frontend/components/tasks/task-item.tsx              (UPDATE)
 frontend/lib/stores/tasks.ts                         (UPDATE - add updateTask)
 ```
+
 ```
 
 ---
 
-**Last Updated:** November 8, 2025  
+**Last Updated:** November 8, 2025
 **Usage:** Copy template, fill in details, paste to AI
+```

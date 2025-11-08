@@ -6,7 +6,7 @@
 
 ## 🎯 **TEMPLATE**
 
-```
+````
 Create [Component Name] component for NEXUS Productivity OS using shadcn/ui patterns.
 
 ### Context:
@@ -48,12 +48,12 @@ Create [Component Name] component for NEXUS Productivity OS using shadcn/ui patt
 interface [ComponentName]Props {
   // Required props
   children: React.ReactNode
-  
+
   // Optional props
   variant?: 'default' | 'primary' | 'secondary' | 'destructive'
   size?: 'sm' | 'md' | 'lg'
   className?: string
-  
+
   // Event handlers
   onClick?: () => void
   onClose?: () => void
@@ -69,23 +69,26 @@ export function [ComponentName]({
 }: [ComponentName]Props) {
   // Implementation
 }
-```
+````
 
 ### Variants:
 
 **variant="default":**
+
 - Background: bg-white
 - Border: border border-gray-200
 - Text: text-gray-900
 - Hover: bg-gray-50
 
 **variant="primary":**
+
 - Background: bg-blue-600
 - Border: No border
 - Text: text-white
 - Hover: bg-blue-700
 
 **variant="destructive":**
+
 - Background: bg-red-600
 - Border: No border
 - Text: text-white
@@ -94,21 +97,25 @@ export function [ComponentName]({
 ### Sizes:
 
 **size="sm":**
+
 - Height: h-8
 - Padding: px-3
 - Text: text-sm
 
 **size="md":**
+
 - Height: h-10
 - Padding: px-4
 - Text: text-base
 
 **size="lg":**
+
 - Height: h-12
 - Padding: px-6
 - Text: text-lg
 
 ### Accessibility:
+
 - [ ] role="[button/dialog/menu/etc]"
 - [ ] aria-label for icon-only components
 - [ ] aria-expanded for dropdowns
@@ -119,6 +126,7 @@ export function [ComponentName]({
 ### Implementation Details:
 
 **Use Class Variance Authority (cva):**
+
 ```tsx
 import { cva, type VariantProps } from "class-variance-authority"
 
@@ -146,6 +154,7 @@ const [componentName]Variants = cva(
 ```
 
 **Use cn() utility for className merging:**
+
 ```tsx
 import { cn } from "@/lib/utils"
 
@@ -155,11 +164,13 @@ import { cn } from "@/lib/utils"
 ```
 
 ### Files to Create:
+
 ```
 frontend/components/[category]/[component-name].tsx
 ```
 
 ### Example Usage:
+
 ```tsx
 import { [ComponentName] } from '@/components/[category]/[component-name]'
 
@@ -178,6 +189,7 @@ import { [ComponentName] } from '@/components/[category]/[component-name]'
 ```
 
 ### Testing:
+
 - [ ] All variants render correctly
 - [ ] All sizes work
 - [ ] Custom className merges properly
@@ -185,6 +197,7 @@ import { [ComponentName] } from '@/components/[category]/[component-name]'
 - [ ] Click handlers fire
 - [ ] Keyboard navigation works
 - [ ] Accessible (screen reader test)
+
 ```
 
 ---
@@ -192,15 +205,18 @@ import { [ComponentName] } from '@/components/[category]/[component-name]'
 ## 📋 **EXAMPLE - Priority Badge**
 
 ```
+
 Create **Priority Badge** component for NEXUS Productivity OS using shadcn/ui patterns.
 
 ### Context:
+
 - Project: Next.js 16 + React 19 + TypeScript
 - UI Library: shadcn/ui
 - Styling: Tailwind CSS 4
 - Location: frontend/components/tasks/priority-badge.tsx
 
 ### Requirements:
+
 1. Display priority level với color-coded badges
 2. 5 priority levels: Urgent, High, Medium, Low, None
 3. Each level có màu riêng (red, orange, blue, gray, default)
@@ -210,11 +226,13 @@ Create **Priority Badge** component for NEXUS Productivity OS using shadcn/ui pa
 ### Design Specs:
 
 **Visual:**
+
 - Size: sm (h-5 px-2 text-xs), lg (h-6 px-3 text-sm)
 - Border radius: rounded-full (pill shape)
 - Font: Inter, font-medium
 
 **Colors:**
+
 - Urgent: bg-red-100 text-red-700 border-red-200
 - High: bg-orange-100 text-orange-700 border-orange-200
 - Medium: bg-blue-100 text-blue-700 border-blue-200
@@ -225,18 +243,13 @@ Create **Priority Badge** component for NEXUS Productivity OS using shadcn/ui pa
 
 ```tsx
 interface PriorityBadgeProps {
-  priority: 'urgent' | 'high' | 'medium' | 'low' | 'none'
-  size?: 'sm' | 'lg'
-  onClick?: () => void // Optional - for clickable badge
-  className?: string
+  priority: 'urgent' | 'high' | 'medium' | 'low' | 'none';
+  size?: 'sm' | 'lg';
+  onClick?: () => void; // Optional - for clickable badge
+  className?: string;
 }
 
-export function PriorityBadge({
-  priority,
-  size = 'sm',
-  onClick,
-  className,
-}: PriorityBadgeProps) {
+export function PriorityBadge({ priority, size = 'sm', onClick, className }: PriorityBadgeProps) {
   // Implementation
 }
 ```
@@ -244,31 +257,29 @@ export function PriorityBadge({
 ### Variants:
 
 ```tsx
-const badgeVariants = cva(
-  "inline-flex items-center border font-medium transition-colors",
-  {
-    variants: {
-      priority: {
-        urgent: "bg-red-100 text-red-700 border-red-200 hover:bg-red-200",
-        high: "bg-orange-100 text-orange-700 border-orange-200 hover:bg-orange-200",
-        medium: "bg-blue-100 text-blue-700 border-blue-200 hover:bg-blue-200",
-        low: "bg-gray-100 text-gray-700 border-gray-200 hover:bg-gray-200",
-        none: "bg-transparent text-gray-400 border-transparent",
-      },
-      size: {
-        sm: "h-5 px-2 text-xs rounded-full",
-        lg: "h-6 px-3 text-sm rounded-full",
-      },
+const badgeVariants = cva('inline-flex items-center border font-medium transition-colors', {
+  variants: {
+    priority: {
+      urgent: 'bg-red-100 text-red-700 border-red-200 hover:bg-red-200',
+      high: 'bg-orange-100 text-orange-700 border-orange-200 hover:bg-orange-200',
+      medium: 'bg-blue-100 text-blue-700 border-blue-200 hover:bg-blue-200',
+      low: 'bg-gray-100 text-gray-700 border-gray-200 hover:bg-gray-200',
+      none: 'bg-transparent text-gray-400 border-transparent',
     },
-    defaultVariants: {
-      priority: "none",
-      size: "sm",
+    size: {
+      sm: 'h-5 px-2 text-xs rounded-full',
+      lg: 'h-6 px-3 text-sm rounded-full',
     },
-  }
-)
+  },
+  defaultVariants: {
+    priority: 'none',
+    size: 'sm',
+  },
+});
 ```
 
 ### Example Usage:
+
 ```tsx
 import { PriorityBadge } from '@/components/tasks/priority-badge'
 
@@ -279,14 +290,16 @@ import { PriorityBadge } from '@/components/tasks/priority-badge'
 <PriorityBadge priority="high" size="lg" />
 
 // Clickable (with dropdown)
-<PriorityBadge 
-  priority="medium" 
-  onClick={() => setShowDropdown(true)} 
+<PriorityBadge
+  priority="medium"
+  onClick={() => setShowDropdown(true)}
 />
 ```
+
 ```
 
 ---
 
-**Last Updated:** November 8, 2025  
+**Last Updated:** November 8, 2025
 **Usage:** Copy template, fill in details, paste to AI
+```

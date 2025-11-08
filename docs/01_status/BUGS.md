@@ -20,13 +20,13 @@
 
 ## 🔴 **CRITICAL (0)**
 
-*Không có bugs critical - Tốt! ✅*
+_Không có bugs critical - Tốt! ✅_
 
 ---
 
 ## 🟡 **MEDIUM (0)**
 
-*Không có bugs medium - Tốt! ✅*
+_Không có bugs medium - Tốt! ✅_
 
 ---
 
@@ -41,27 +41,30 @@ Workspace ID được hardcode trong code thay vì lấy từ user context.
 `frontend/app/(productivity)/today/page.tsx` - Dòng 15
 
 **Code:**
+
 ```typescript
-const WORKSPACE_ID = 'c6be91ba-98c3-43e5-8e5e-94e389894fa6' // ⚠️ Hardcoded
+const WORKSPACE_ID = 'c6be91ba-98c3-43e5-8e5e-94e389894fa6'; // ⚠️ Hardcoded
 ```
 
-**Impact:**  
+**Impact:**
+
 - ⚠️ Mọi user đều thấy chung workspace
 - ⚠️ Không thể có multi-user
 
 **Priority:** LOW (OK cho POC, fix khi có real users)
 
 **Plan to Fix:**
+
 ```typescript
 // Solution: Dùng user context
-const { workspace_id } = useUser()
+const { workspace_id } = useUser();
 
 // Hoặc: Get từ Supabase
 const { data } = await supabase
   .from('workspace_members')
   .select('workspace_id')
   .eq('user_id', user.id)
-  .single()
+  .single();
 ```
 
 **Timeline:** Week 2-3 (khi implement multi-workspace)
@@ -76,22 +79,26 @@ Khi không có tasks, chỉ hiện text "No tasks" - không có illustration.
 **File:**  
 `frontend/components/tasks/task-list.tsx`
 
-**Impact:**  
+**Impact:**
+
 - ⚠️ UI trông empty, không professional
 - ⚠️ User không biết làm gì tiếp theo
 
 **Priority:** LOW (UX improvement, không ảnh hưởng chức năng)
 
 **Plan to Fix:**
+
 ```tsx
 // Add empty state component
-{tasks.length === 0 && (
-  <div className="text-center py-12">
-    <img src="/empty-tasks.svg" alt="No tasks" />
-    <p>No tasks yet. Create your first task!</p>
-    <Button>Add Task</Button>
-  </div>
-)}
+{
+  tasks.length === 0 && (
+    <div className="text-center py-12">
+      <img src="/empty-tasks.svg" alt="No tasks" />
+      <p>No tasks yet. Create your first task!</p>
+      <Button>Add Task</Button>
+    </div>
+  );
+}
 ```
 
 **Timeline:** Week 4 (UI polish phase)
@@ -106,22 +113,26 @@ Khi fetch tasks, không có loading skeleton - chỉ thấy blank screen 1-2 gi�
 **File:**  
 `frontend/components/tasks/task-list.tsx`
 
-**Impact:**  
+**Impact:**
+
 - ⚠️ Blank screen, user tưởng bị lag
 - ⚠️ Không professional
 
 **Priority:** LOW (UX improvement)
 
 **Plan to Fix:**
+
 ```tsx
 // Add skeleton loader
-{isLoading && (
-  <>
-    <Skeleton className="h-12 w-full" />
-    <Skeleton className="h-12 w-full" />
-    <Skeleton className="h-12 w-full" />
-  </>
-)}
+{
+  isLoading && (
+    <>
+      <Skeleton className="h-12 w-full" />
+      <Skeleton className="h-12 w-full" />
+      <Skeleton className="h-12 w-full" />
+    </>
+  );
+}
 ```
 
 **Timeline:** Week 4 (UI polish phase)
@@ -150,16 +161,17 @@ useEffect dependency array thiếu, tạo infinite re-render.
 **Fixed Date:** Nov 7, 2025
 
 **Solution:**
+
 ```typescript
 // Before
 useEffect(() => {
-  fetchTasks()
-}, [fetchTasks]) // ❌ fetchTasks changes every render
+  fetchTasks();
+}, [fetchTasks]); // ❌ fetchTasks changes every render
 
 // After
 useEffect(() => {
-  fetchTasks()
-}, [workspace_id]) // ✅ Only re-run when workspace_id changes
+  fetchTasks();
+}, [workspace_id]); // ✅ Only re-run when workspace_id changes
 ```
 
 ---
@@ -175,13 +187,11 @@ Toggle task complete → Task biến mất khỏi UI.
 Filter only showed `completed: false` tasks.
 
 **Solution:**
+
 ```typescript
 // Show all tasks in /today, not just incomplete
-const tasks = await supabase
-  .from('tasks')
-  .select('*')
-  .eq('workspace_id', workspaceId)
-  // Removed: .eq('completed', false)
+const tasks = await supabase.from('tasks').select('*').eq('workspace_id', workspaceId);
+// Removed: .eq('completed', false)
 ```
 
 ---
@@ -190,7 +200,7 @@ const tasks = await supabase
 
 Nếu phát hiện bug mới, thêm vào đây theo format:
 
-```markdown
+````markdown
 ### **Bug #X: [Tên bug ngắn gọn]**
 
 **Mô tả:**  
@@ -200,6 +210,7 @@ Nếu phát hiện bug mới, thêm vào đây theo format:
 [Đường dẫn file + dòng]
 
 **Steps to Reproduce:**
+
 1. [Bước 1]
 2. [Bước 2]
 3. [Kết quả: Bug xuất hiện]
@@ -210,17 +221,21 @@ Nếu phát hiện bug mới, thêm vào đây theo format:
 **Actual Behavior:**  
 [Thực tế hoạt động ra sao]
 
-**Impact:**  
+**Impact:**
+
 - [Ảnh hưởng gì đến users/features]
 
 **Priority:** [CRITICAL / MEDIUM / LOW]
 
 **Plan to Fix:**
+
 ```code
 // Solution ở đây
 ```
+````
 
 **Timeline:** [Week X]
+
 ```
 
 ---
@@ -245,16 +260,20 @@ Nếu phát hiện bug mới, thêm vào đây theo format:
 
 ### **Week 0 (Nov 7-13):**
 ```
-Bugs found:   6
-Bugs fixed:   3
-Bugs open:    3 (all LOW)
-Fix rate:     50%
+
+Bugs found: 6
+Bugs fixed: 3
+Bugs open: 3 (all LOW)
+Fix rate: 50%
+
 ```
 
 ### **Target:**
 ```
+
 End of Week 1: 0 CRITICAL, 0 MEDIUM bugs
 End of Week 4: 0 bugs total (polish phase)
+
 ```
 
 ---
@@ -267,5 +286,6 @@ End of Week 4: 0 bugs total (polish phase)
 
 ---
 
-**Last Updated:** November 8, 2025  
+**Last Updated:** November 8, 2025
 **Next Review:** November 11, 2025 (End of Week 0)
+```
