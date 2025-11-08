@@ -1,7 +1,7 @@
 # 🎯 THIS WEEK'S FOCUS - Week 0
 
-**Date Started:** November 7, 2025  
-**Current Phase:** User Research + Database Deployment  
+**Date Started:** November 7, 2025
+**Current Phase:** User Research + Database Deployment
 **Team:** 2 people (part-time, 20h/week each)
 
 ---
@@ -14,16 +14,16 @@
 
 **Action Items:**
 
-- [ ] **Today:** Deploy database schema
+- [x] **Today:** Deploy database schema
   - Open Supabase SQL Editor
-  - Run `docs/architecture/migrations/002_productivity_core_schema.sql`
+  - Run `docs/04_technical/architecture/migrations/002_productivity_core_schema.sql`
   - Create test workspace (Steps 5-6 in DEPLOY_DATABASE.md)
   - Update frontend with workspace_id
-- [ ] **Test:** Task management at `/today`
+- [x] **Test:** Task management at `/today`
   - Add task
   - Complete task
   - Verify in Supabase table
-- [ ] **If works:** Celebrate! Core functionality complete ✅
+- [x] **If works:** Celebrate! Core functionality complete ✅
 - [ ] **If breaks:** Debug (check browser console, Supabase logs)
 
 **Success Metric:** Can add and complete tasks without errors
@@ -41,7 +41,7 @@
   - Freelancer team leads
   - Consultants managing multiple clients
 - [ ] **Tomorrow:** Send 10 interview invite emails
-  - Template: `docs/research/interview-script.md`
+  - Template: `docs/05_research/interview-script.md`
 - [ ] **This Week:** Complete 3 interviews
   - Use interview script
   - Document insights immediately after each call
@@ -71,36 +71,42 @@
 ## 📊 PROGRESS TRACKING
 
 **Monday:**
-- [ ] Deploy database schema (30 min)
-- [ ] Create workspace and test tasks (20 min)
+
+- [x] Deploy database schema (30 min)
+- [x] Create workspace and test tasks (20 min)
 - [ ] List 10 interview candidates
 - [ ] Send 5 invite emails
 
 **Tuesday:**
+
 - [ ] Send 5 more invite emails
-- [ ] Interview #1: __________ (Name)
+- [ ] Interview #1: \***\*\_\_\*\*** (Name)
 - [ ] Document interview insights
-- [ ] Fix any task management bugs found
+- [x] Fix any task management bugs found
 
 **Wednesday:**
-- [ ] Interview #2: __________
+
+- [ ] Interview #2: \***\*\_\_\*\***
 - [ ] Document insights
 - [ ] (Optional) Watch Next.js tutorial Part 1
 
 **Thursday:**
-- [ ] Interview #3: __________
+
+- [ ] Interview #3: \***\*\_\_\*\***
 - [ ] Document insights
 - [ ] (Optional) Watch Next.js tutorial Part 2
 
 **Friday:**
+
 - [ ] Analyze patterns from 3 interviews
-- [ ] Update `docs/PROJECT_STATUS.md` with learnings
+- [ ] Update `docs/03_roadmap/PROJECT_STATUS.md` with learnings
 - [ ] Plan next week (more interviews or start Kanban?)
 
 **Weekend (Optional):**
-- [ ] Start Kanban board if motivated
+
+- [x] Start Kanban board if motivated
 - [ ] Review all interview notes
-- [ ] Decide: Continue interviews (Week 1) or start coding features?
+- [x] Decide: Continue interviews (Week 1) or start coding features?
 
 ---
 
@@ -108,14 +114,14 @@
 
 **Interview #1:**
 
-- **Name:** _______
-- **Company:** _______
-- **Role:** _______
+- **Name:** **\_\_\_**
+- **Company:** **\_\_\_**
+- **Role:** **\_\_\_**
 - **Pain Points:**
-- **Tools Used:** _______
-- **Willingness to Pay:** $___/month
+- **Tools Used:** **\_\_\_**
+- **Willingness to Pay:** $\_\_\_/month
 - **Beta Interest:** Yes / No
-- **Key Quote:** "_______"
+- **Key Quote:** "**\_\_\_**"
 
 **Interview #2:**
 
@@ -130,13 +136,15 @@
 ## 🚧 BLOCKERS / CHALLENGES
 
 **Current Blockers:**
-- [X] Database schema not deployed (FIXED - just needs to be run)
+
+- [x] Database schema not deployed (FIXED - just needs to be run)
 - [ ] No test workspace created yet
 - [ ] 0 interviews scheduled
 
 **If Blocked:**
-1. Read `docs/DEPLOY_DATABASE.md` for database issues
-2. Read `docs/PROJECT_STATUS.md` for project context
+
+1. Read `docs/04_technical/DEPLOY.md` for database issues
+2. Read `docs/03_roadmap/PROJECT_STATUS.md` for project context
 3. Google the error/question
 4. Ask ChatGPT/Claude with full error + context
 5. If still stuck after 30 min, take a break
@@ -145,14 +153,11 @@
 
 ## 💡 IDEAS / NOTES
 
-**Random thoughts this week:**
---------------------------
+## **Random thoughts this week:**
 
-**Feature ideas from users:**
--------------------------
+## **Feature ideas from users:**
 
-**Questions to research:**
-----------------------
+## **Questions to research:**
 
 ---
 
@@ -160,35 +165,39 @@
 
 **This week is successful if:**
 
-- [X] Database schema deployed and tested
-- [X] Can add/complete tasks at `/today` route
-- [X] 3 user interviews completed
-- [X] Insights documented
-- [X] Understand whether to continue interviews or start coding Kanban
+- [x] Database schema deployed and tested
+- [x] Can add/complete tasks at `/today` route
+- [x] 3 user interviews completed
+- [x] Insights documented
+- [x] Understand whether to continue interviews or start coding Kanban
 
 ---
 
 ## 🔜 NEXT WEEK PREVIEW (Week 1)
 
 **Option A: More Interviews (if insights need validation)**
+
 - Schedule 5 more interviews
 - Total 8/10 interviews by end of Week 1
 - Decide on MVP scope based on feedback
 
 **Option B: Start Kanban Board (if confident in direction)**
+
 - Implement drag-drop Kanban board
 - Add project detail page
 - Build simple calendar view
 
 **Prep for Next Week:**
+
 - [ ] Review all interview notes
 - [ ] List top 3 pain points discovered
-- [ ] Update `docs/PROJECT_STATUS.md` with learnings
+- [ ] Update `docs/03_roadmap/PROJECT_STATUS.md` with learnings
 - [ ] Clear 20 hours in calendar for work
 
 ---
 
 **Remember:**
+
 - 🚀 Deploy database FIRST (blocks everything)
 - 🎤 User interviews = validate before building wrong thing
 - 📝 Document insights immediately after interviews
@@ -198,6 +207,6 @@
 
 ---
 
-**Last Updated:** November 7, 2025  
-**Next Review:** Sunday, November 10, 2025  
+**Last Updated:** November 7, 2025
+**Next Review:** Sunday, November 10, 2025
 **Current Status:** ⚠️ Database not deployed yet (30 min task)

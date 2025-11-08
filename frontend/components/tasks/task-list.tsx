@@ -1,9 +1,10 @@
 'use client';
 
-import { useTaskStore } from '@/lib/stores/tasks';
 import { useTasks } from '@/lib/hooks/use-tasks';
-import { TaskItem } from './task-item';
+import { useTaskStore } from '@/lib/stores/tasks';
 import { Loader2 } from 'lucide-react';
+import { useEffect } from 'react';
+import { TaskItem } from './task-item';
 
 /**
  * TaskList Component
@@ -17,6 +18,7 @@ import { Loader2 } from 'lucide-react';
  */
 
 interface TaskListProps {
+  workspaceId: string; // ⭐ REQUIRED: Pass workspace_id from parent
   filter?: {
     type: 'all' | 'today' | 'inbox' | 'upcoming' | 'project' | 'search';
     projectId?: string;
@@ -28,18 +30,21 @@ interface TaskListProps {
 }
 
 export function TaskList({
+  workspaceId, // ⭐ Pass to useTasks
   filter,
   enableKeyboardNav = false,
   enableDragReorder = false,
   showProjectMove = false,
 }: TaskListProps) {
-  const { loading, toggleComplete } = useTasks();
+  const { loading, toggleComplete } = useTasks(workspaceId);
   const { setFilter, getFilteredTasks } = useTaskStore();
   
-  // Set filter on mount
-  if (filter) {
-    setFilter(filter);
-  }
+  // Set filter on mount (useEffect to avoid infinite loop)
+  useEffect(() => {
+    if (filter) {
+      setFilter(filter);
+    }
+  }, [filter?.type, filter?.projectId, filter?.searchQuery]); // Only re-run if filter changes
   
   const tasks = getFilteredTasks();
   

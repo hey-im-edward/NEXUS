@@ -1,9 +1,9 @@
 'use client';
 
-import { useState } from 'react';
-import { useTasks } from '@/lib/hooks/use-tasks';
 import { Input } from '@/components/ui/input';
+import { useTasks } from '@/lib/hooks/use-tasks';
 import { Plus } from 'lucide-react';
+import { useState } from 'react';
 
 /**
  * TaskQuickAdd Component
@@ -17,6 +17,7 @@ import { Plus } from 'lucide-react';
  */
 
 interface TaskQuickAddProps {
+  workspaceId: string; // ⭐ REQUIRED: Pass workspace_id from parent
   placeholder?: string;
   defaultDate?: 'today' | string | null;
   projectId?: string | null;
@@ -24,6 +25,7 @@ interface TaskQuickAddProps {
 }
 
 export function TaskQuickAdd({
+  workspaceId, // ⭐ Pass to useTasks
   placeholder = 'Add a task...',
   defaultDate = null,
   projectId = null,
@@ -31,7 +33,7 @@ export function TaskQuickAdd({
 }: TaskQuickAddProps) {
   const [title, setTitle] = useState('');
   const [isAdding, setIsAdding] = useState(false);
-  const { createTask } = useTasks();
+  const { createTask } = useTasks(workspaceId);
   
   async function handleAdd() {
     if (!title.trim() || isAdding) return;

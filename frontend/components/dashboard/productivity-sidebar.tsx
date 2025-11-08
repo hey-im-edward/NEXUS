@@ -1,16 +1,16 @@
 'use client';
 
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';
 import {
-  Calendar,
-  Inbox,
-  LayoutDashboard,
-  FileText,
-  Folder,
-  Clock,
+    Calendar,
+    Clock,
+    FileText,
+    Folder,
+    Inbox,
+    LayoutDashboard,
 } from 'lucide-react';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 /**
  * ProductivitySidebar Component

@@ -1,6 +1,6 @@
+import { Task, TaskPriority, TaskStatus } from '@/types';
 import { create } from 'zustand';
 import { immer } from 'zustand/middleware/immer';
-import { Task, TaskStatus, TaskPriority } from '@/types';
 
 /**
  * TASK STORE
@@ -112,7 +112,8 @@ export const useTaskStore = create<TaskState>()(
           tomorrow.setDate(tomorrow.getDate() + 1);
           
           filtered = filtered.filter(task => {
-            if (task.status === 'done' || task.status === 'cancelled') return false;
+            // ✅ CHANGED: Show completed tasks too (will be styled differently)
+            // if (task.status === 'done' || task.status === 'cancelled') return false;
             
             // Due today
             if (task.due_date) {

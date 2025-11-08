@@ -1,0 +1,266 @@
+# 🚀 QUICKSTART AI - Làm gì hôm nay?
+
+> **Mục đích:** Trả lời câu hỏi "Hôm nay tôi code gì tiếp theo?" trong 10 giây.
+
+**Cập nhật:** 8 tháng 11, 2025
+**Làm việc với AI:** ChatGPT, Claude, GitHub Copilot
+
+---
+
+## ⚡ TL;DR - Đọc ngay
+
+### ✅ **ĐÃ HOÀN THÀNH (Hôm qua - 7/11/2025)**
+
+- ✅ **Database v2** - Deployed (11 tables)
+- ✅ **Authentication** - Google OAuth working
+- ✅ **Task Management Basic** - Add, display, complete tasks
+- ✅ **Kanban Board** - 100% hoàn thành (Prompt 1)
+- ✅ **/today page** - My Day view functional
+- ✅ **/inbox page** - Inbox view functional
+
+**Kết quả:** Ahead of schedule! 🎉
+
+---
+
+## 🔥 **LÀM TIẾP HÔM NAY (8/11/2025)**
+
+### **Prompt tiếp theo: 1.1 - Edit Task Inline**
+
+**File prompt:** `docs/02_ai-prompts/AI_PROMPTS.md` (Dòng 50-75)
+
+**Yêu cầu:**
+
+- Double-click vào task title → Chuyển thành input field
+- Enter/blur → Save
+- ESC → Cancel
+- Optimistic update (UI update ngay lập tức)
+
+**Thời gian ước tính:** 1-2 giờ (với AI)
+
+**Test ở đâu:** http://localhost:3000/today
+
+**Cách làm:**
+
+```bash
+1. Mở docs/02_ai-prompts/AI_PROMPTS.md
+2. Copy Prompt 1.1 (Edit Task Inline)
+3. Paste vào ChatGPT/Claude
+4. AI generate code → Copy vào VS Code
+5. Test tại /today page
+6. Fix bugs nếu có
+7. ✅ Done → Mark completed trong docs/02_ai-prompts/COMPLETED.md
+```
+
+---
+
+## 📋 **SAU ĐÓ - TUẦN NÀY (9-11/11)**
+
+### **Thứ 7 (9/11):**
+
+- ✅ **Sáng:** Prompt 1.1 - Edit Task Inline (1-2h)
+- ✅ **Chiều:** Prompt 1.2 - Set Priority UI (1-2h)
+
+### **Chủ nhật (10/11):**
+
+- ✅ **Sáng:** Prompt 1.3 - Add Tags (1-2h)
+- ✅ **Chiều:** Prompt 1.4 - Task Detail Modal (2-3h)
+
+### **Thứ 2 (11/11):**
+
+- ✅ **Sáng:** Prompt 1.5 - Delete Task (1-2h)
+- ✅ **Chiều:** Prompt 1.6 - Keyboard Shortcuts (2-3h)
+
+**Mục tiêu cuối tuần:** Task Management 80% polished ✨
+
+---
+
+## 🎯 **ROADMAP - 3 TUẦN TỚI**
+
+### **Week 0 (Tuần này - 7-13/11):**
+
+- [x] Kanban Board 100%
+- [ ] Task Management Polish 80%
+- [ ] 3-5 User Interviews
+
+### **Week 1 (14-20/11):**
+
+- [ ] Recurring Tasks (rrule integration)
+- [ ] Calendar View (Time blocking)
+- [ ] 5+ User Interviews
+
+### **Week 2 (21-27/11):**
+
+- [ ] Pages Integration (Tiptap rich text)
+- [ ] Command Palette (Cmd+K)
+- [ ] Mobile Responsive
+
+**Xem chi tiết:** `docs/03_roadmap/ROADMAP.md`
+
+---
+
+## 📊 **TRẠNG THÁI DỰ ÁN**
+
+### **Tính năng đã xong:**
+
+```
+✅ Database (11 tables)           100%
+✅ Authentication (Google)        100%
+✅ Task CRUD Basic                100%
+✅ Kanban Board                   100%
+⚠️ Task Management Polish          30% ← Đang làm tuần này
+❌ Recurring Tasks                  0%
+❌ Calendar View                    0%
+❌ Pages (Tiptap)                   0%
+```
+
+**Xem chi tiết:** `docs/01_status/FEATURES.md`
+
+---
+
+## 🐛 **BUGS CẦN FIX (Nếu có thời gian)**
+
+1. **Hardcoded workspace_id** (Priority: LOW)
+
+   - File: `app/(productivity)/today/page.tsx`
+   - Dòng: 15
+   - Fix: Dùng user context thay vì hardcode
+
+2. **No empty state images** (Priority: LOW)
+3. **No loading skeletons** (Priority: LOW)
+
+**Quyết định:** Chấp nhận bugs này cho POC, fix sau ✅
+
+**Xem đầy đủ:** `docs/01_status/BUGS.md`
+
+---
+
+## 💡 **WORKFLOW VỚI AI**
+
+### **Cách tôi làm việc hàng ngày:**
+
+```
+1. Mở QUICKSTART_AI.md (file này)
+2. Xem "Làm tiếp hôm nay"
+3. Mở file prompt trong docs/02_ai-prompts/
+4. Copy prompt → Paste vào AI
+5. AI generate code
+6. Test → Fix bugs
+7. ✅ Done → Update COMPLETED.md
+8. Quay lại bước 1 ngày mai
+```
+
+### **Tips làm việc với AI:**
+
+✅ **DO:**
+
+- Luôn đọc prompt đầy đủ trước khi paste
+- Test ngay sau khi AI generate code
+- Document bugs ngay khi phát hiện
+- Update COMPLETED.md sau khi xong
+
+❌ **DON'T:**
+
+- Paste prompt mà không hiểu context
+- Generate nhiều feature cùng lúc
+- Skip testing
+- Quên update docs
+
+---
+
+## 📁 **FILE QUAN TRỌNG - ĐỌC THƯỜNG XUYÊN**
+
+| File                               | Mục đích              | Tần suất đọc        |
+| ---------------------------------- | --------------------- | ------------------- |
+| **QUICKSTART_AI.md** (file này)    | Làm gì hôm nay?       | Mỗi sáng ☀️         |
+| `docs/02_ai-prompts/AI_PROMPTS.md` | Prompts để code       | Mỗi ngày 📝         |
+| `THIS_WEEK.md` (root)              | Focus tuần này        | Thứ 2 hàng tuần 📅  |
+| `docs/01_status/FEATURES.md`       | Tính năng đã/chưa làm | Khi cần kiểm tra ✅ |
+| `docs/03_roadmap/ROADMAP.md`       | Kế hoạch 12 tuần      | Mỗi tuần 🗓️         |
+
+---
+
+## 🆘 **GẶP VẤN ĐỀ?**
+
+### **Lỗi thường gặp:**
+
+**1. AI generate code lỗi syntax:**
+
+```
+→ Paste lại prompt + thêm context (file đang làm, tech stack)
+→ Hoặc: "Fix this error: [paste error message]"
+```
+
+**2. Feature không hoạt động:**
+
+```
+→ Check browser console (F12)
+→ Check Supabase logs
+→ Test từng function riêng lẻ
+```
+
+**3. Không biết làm gì tiếp:**
+
+```
+→ Đọc lại file này (QUICKSTART_AI.md)
+→ Check THIS_WEEK.md
+→ Xem docs/02_ai-prompts/AI_PROMPTS.md
+```
+
+**4. Muốn thêm feature mới không có trong prompts:**
+
+```
+→ Tạo prompt mới trong docs/02_ai-prompts/templates/
+→ Follow template có sẵn
+→ Test → Document → Update AI_PROMPTS.md
+```
+
+---
+
+## 🎉 **CHECKLIST HÀNG NGÀY**
+
+### **Mỗi sáng (9:00):**
+
+- [x] Đọc QUICKSTART_AI.md (file này)
+- [x] Check THIS_WEEK.md (cập nhật gì mới?)
+- [x] Mở prompt cần làm tiếp
+- [x] Chuẩn bị môi trường (VS Code + AI)
+
+### **Khi code (10:00-16:00):**
+
+- [ ] Copy prompt → Paste AI
+- [ ] Generate code → Test
+- [ ] Fix bugs → Commit
+- [ ] Repeat
+
+### **Mỗi tối (18:00):**
+
+- [ ] Update docs/02_ai-prompts/COMPLETED.md
+- [ ] Update docs/01_status/FEATURES.md (nếu xong feature)
+- [ ] Commit + Push code
+- [ ] Plan ngày mai (đọc prompt tiếp theo)
+
+---
+
+## 🚀 **BẮT ĐẦU NGAY!**
+
+**Bước tiếp theo của bạn:**
+
+1. ✅ Mở `docs/02_ai-prompts/AI_PROMPTS.md`
+2. ✅ Tìm "Prompt 1.1 - Edit Task Inline"
+3. ✅ Copy prompt
+4. ✅ Paste vào ChatGPT/Claude
+5. ✅ Generate code
+6. ✅ Test tại http://localhost:3000/today
+7. ✅ Celebrate! 🎉
+
+**Thời gian làm:** 1-2 giờ
+**Kết quả:** Task management tốt hơn 30%
+
+---
+
+**Good luck! You got this! 💪**
+
+---
+
+**Last Updated:** November 8, 2025
+**Next Update:** November 9, 2025 (sau khi xong Prompt 1.1)

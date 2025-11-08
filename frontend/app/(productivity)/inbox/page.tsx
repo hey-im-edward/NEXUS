@@ -1,7 +1,7 @@
-import { Metadata } from 'next';
 import { TaskList } from '@/components/tasks/task-list';
 import { TaskQuickAdd } from '@/components/tasks/task-quick-add';
 import { Inbox } from 'lucide-react';
+import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Inbox | NEXUS',
@@ -22,6 +22,10 @@ export const metadata: Metadata = {
  * - Process later → move to projects
  */
 export default function InboxPage() {
+  // ⚠️ TEMPORARY: Hardcoded workspace_id
+  // TODO: Get from context/auth after workspace creation
+  const WORKSPACE_ID = 'c6be91ba-98c3-43e5-8e5e-94e389894fa6'; // ✅ Edward's workspace
+  
   return (
     <div className="mx-auto max-w-4xl space-y-6">
       {/* Header */}
@@ -38,10 +42,14 @@ export default function InboxPage() {
       </div>
 
       {/* Quick Add */}
-      <TaskQuickAdd placeholder="What's on your mind?" />
+      <TaskQuickAdd 
+        workspaceId={WORKSPACE_ID}
+        placeholder="What's on your mind?" 
+      />
 
       {/* Task List - Filtered by no project */}
       <TaskList
+        workspaceId={WORKSPACE_ID}
         filter={{
           type: 'inbox', // project_id = NULL
         }}

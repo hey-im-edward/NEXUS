@@ -1,10 +1,10 @@
 'use client';
 
-import { Task } from '@/types';
 import { Checkbox } from '@/components/ui/checkbox';
-import { Calendar, Flag, MoreHorizontal } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { Task } from '@/types';
 import { format } from 'date-fns';
+import { Calendar, Flag, MoreHorizontal } from 'lucide-react';
 
 /**
  * TaskItem Component

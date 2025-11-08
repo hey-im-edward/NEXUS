@@ -8,12 +8,14 @@
 ## 📋 **STEPS**
 
 ### **1. Open Supabase Dashboard**
+
 ```
 URL: https://supabase.com/dashboard/project/YOUR_PROJECT_ID
 Click: "SQL Editor" in left sidebar
 ```
 
 ### **2. Copy Migration Script**
+
 ```bash
 # File location:
 docs/architecture/migrations/002_productivity_core_schema.sql
@@ -22,6 +24,7 @@ docs/architecture/migrations/002_productivity_core_schema.sql
 ```
 
 ### **3. Run in SQL Editor**
+
 ```
 1. Click "+ New query" button
 2. Paste the entire migration script
@@ -31,9 +34,10 @@ docs/architecture/migrations/002_productivity_core_schema.sql
 ```
 
 ### **4. Verify Tables Created**
+
 ```sql
 -- Run this query to verify:
-SELECT 
+SELECT
   'projects' as table_name, COUNT(*) as row_count FROM public.projects
 UNION ALL
 SELECT 'tasks', COUNT(*) FROM public.tasks
@@ -46,6 +50,7 @@ SELECT 'pages', COUNT(*) FROM public.pages;
 ```
 
 ### **5. Create Test Workspace**
+
 ```sql
 -- Get your user ID first:
 SELECT auth.uid();
@@ -64,6 +69,7 @@ RETURNING id;
 ```
 
 ### **6. Add Yourself to Workspace**
+
 ```sql
 -- Replace YOUR_USER_ID and YOUR_WORKSPACE_ID:
 INSERT INTO public.workspace_members (workspace_id, user_id, role, joined_at)
@@ -76,6 +82,7 @@ VALUES (
 ```
 
 ### **7. Update Frontend Code**
+
 ```tsx
 // File: frontend/app/(productivity)/today/page.tsx
 // Add at top of file (temporarily):
@@ -90,6 +97,7 @@ export default function TodayPage() {
 ```
 
 ### **8. Test App**
+
 ```bash
 cd frontend
 npm run dev
@@ -109,16 +117,20 @@ npm run dev
 ## ❌ **TROUBLESHOOTING**
 
 ### **Error: "relation already exists"**
+
 **Cause:** Tables already created  
 **Fix:** Skip to Step 4 (verify), then continue to Step 5
 
 ### **Error: "permission denied for schema public"**
+
 **Cause:** Not logged in or wrong project  
 **Fix:** Check you're in correct Supabase project
 
 ### **Error: "auth.uid() is null"**
+
 **Cause:** Not authenticated  
-**Fix:** 
+**Fix:**
+
 ```sql
 -- Check if you're authenticated:
 SELECT auth.uid();
@@ -128,17 +140,21 @@ SELECT auth.uid();
 ```
 
 ### **Error: "new row violates row-level security policy"**
+
 **Cause:** User not in workspace_members  
 **Fix:** Run Step 6 again (add yourself to workspace)
 
 ### **Tasks don't appear in UI**
+
 **Checklist:**
+
 - [ ] Workspace ID correct in frontend code?
 - [ ] User added to workspace_members?
 - [ ] Browser console shows errors?
 - [ ] Supabase Table Editor shows task?
 
 **Debug:**
+
 ```sql
 -- Check if task was created:
 SELECT * FROM public.tasks WHERE workspace_id = 'YOUR_WORKSPACE_ID';
@@ -152,11 +168,13 @@ SELECT * FROM public.workspace_members WHERE user_id = 'YOUR_USER_ID';
 ## 🎯 **NEXT STEPS AFTER DEPLOYMENT**
 
 ✅ **If tasks work:**
+
 1. Continue to Kanban board implementation
 2. Add recurring tasks UI (rrule)
 3. Build Calendar view
 
 ❌ **If errors:**
+
 1. Check browser DevTools console
 2. Check Supabase Logs (Dashboard → Logs → Postgres Logs)
 3. Verify all 6 steps completed

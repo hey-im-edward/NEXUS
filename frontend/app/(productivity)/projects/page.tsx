@@ -1,6 +1,6 @@
-import { Metadata } from 'next';
-import { ProjectGrid } from '@/components/projects/project-grid';
 import { CreateProjectButton } from '@/components/projects/create-project-button';
+import { ProjectGrid } from '@/components/projects/project-grid';
+import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Projects | NEXUS',

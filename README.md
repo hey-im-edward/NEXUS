@@ -1,331 +1,236 @@
-# NEXUS - Productivity OS
+# 🚀 NEXUS - Productivity OS
 
-> **Vision:** Personal productivity platform combining task management, calendar, and flexible pages—built for SMEs and power users who need more than simple todo apps.
+> Công cụ quản lý năng suất kết hợp **Task Management**, **Calendar**, và **Flexible Pages**—được xây dựng cho SMEs và power users.
 
-## 🎯 What is NEXUS?
-
-NEXUS is a **Productivity OS** focused on three core systems:
-
-### **70% Priority: Productivity Core**
-
-- **Smart Task Management** - Advanced recurring tasks (rrule), smart lists (Today, Inbox, Upcoming)
-- **Kanban Boards** - Project visualization with drag-drop
-- **Calendar Time Blocking** - Schedule tasks as time blocks
-
-### **20% Priority: Flexible Pages**
-
-- **Notion-like Editor** - Create notes, docs, wikis with Tiptap
-- **Mix with Tasks** - Embed task lists inside pages
-
-### **10% Priority: App Minis**
-
-- **Lightweight Extensions** - CRM, Habit Tracker, Pomodoro Timer
-- **Dashboard Widgets** - Add to your workspace dashboard
-
-### Target Users
-
-- **Primary:** SME Project Managers and freelancers managing 20-100+ tasks
-- **Secondary:** Knowledge workers who need both tasks + notes in one place
-- **Pain Point:** Current tools are either too simple (Todoist) or too complex (ClickUp/Notion full suite)
-
-### Value Proposition
-
-- ✅ **Advanced task management** (recurring patterns like "every 2 days", "last Friday of month")
-- ✅ **Flexible structure** (Projects + Standalone tasks + Pages)
-- ✅ **Calendar integration** (Time blocking, not just due dates)
-- ✅ **Clean, fast UI** (Not bloated like ClickUp)
-
-**Target Price:** $10-15/month per user (positioning between Todoist Pro $4 and ClickUp $9)
+**Tại sao NEXUS?** Các công cụ hiện tại quá đơn giản (Todoist) hoặc quá phức tạp (ClickUp). NEXUS cân bằng giữa tính năng mạnh mẽ và giao diện sạch đẹp.
 
 ---
 
-## 🚀 Current Status
+## 📖 Bắt đầu từ đâu?
 
-**Phase:** Week 0 - User Research  
-**Last Updated:** November 7, 2025  
-**Version:** 2.0.0 - Productivity OS Core
+### 🎯 **Người mới - Đọc theo thứ tự:**
 
-### Progress
+1. **[QUICKSTART.md](./QUICKSTART.md)** - Cài đặt và chạy dự án (15 phút)
+2. **[docs/00_start-here/README.md](./docs/00_start-here/README.md)** - Tổng quan toàn bộ documentation
+3. **[docs/03_roadmap/PROJECT_STATUS.md](./docs/03_roadmap/PROJECT_STATUS.md)** - Trạng thái dự án chi tiết
 
-- [x] Project structure reorganized (Productivity OS focus)
-- [x] Database schema v2 designed (11 tables with rrule support)
-- [x] Core task components built (TaskItem, TaskList, TaskQuickAdd)
-- [x] State management setup (Zustand + Immer)
-- [x] Dependencies installed (rrule, date-fns, @dnd-kit, react-big-calendar)
-- [ ] **Database NOT YET DEPLOYED** ⚠️ Critical blocker
-- [ ] 0/10 user interviews completed
-- [ ] First working prototype
+### ⚡ **Developer - Làm việc hàng ngày:**
+
+- **[docs/00_start-here/QUICKSTART_AI.md](./docs/00_start-here/QUICKSTART_AI.md)** ⭐ - Hôm nay làm gì tiếp? (Đọc mỗi sáng)
+- **[docs/02_ai-prompts/AI_PROMPTS.md](./docs/02_ai-prompts/AI_PROMPTS.md)** - Prompts để code với AI
+- **[THIS_WEEK.md](./THIS_WEEK.md)** - Focus tuần này (Cập nhật mỗi thứ 2)
+
+### 🐛 **Gặp lỗi?**
+
+- **[docs/04_technical/DEPLOY.md](./docs/04_technical/DEPLOY.md)** - Hướng dẫn deploy database
+- **[docs/04_technical/SETUP.md](./docs/04_technical/SETUP.md)** - Setup môi trường local
+- **[docs/01_status/BUGS.md](./docs/01_status/BUGS.md)** - Danh sách bugs đã biết
+
 
 ---
 
-## 🏗️ Tech Stack
+## � Trạng thái dự án
 
-### Architecture Decision: Supabase + Next.js (No Backend)
+**Giai đoạn:** Week 0 - User Research + Task Management Polish  
+**Cập nhật:** 8 tháng 11, 2025  
+**Tiến độ:** 40% (Tuần 0)
 
-**Why NOT NestJS backend?**
+### ✅ Đã hoàn thành:
 
-- Supabase provides auth, database, real-time out of the box
-- Free tier: 500MB DB, 50K MAU - đủ cho 1000 users đầu
-- Faster development: No server setup, deploy, DevOps
-- AI-friendly: Easier for Cursor/Copilot to generate code
+- Database v2 deployed (11 tables)
+- Authentication (Google OAuth)
+- Task CRUD (add, display, complete)
+- Kanban Board 100% (Nov 8)
+- `/today`, `/inbox`, `/projects` pages
 
-### Stack
+### 🔥 Đang làm tuần này:
 
-```yaml
-Frontend:
-  - Next.js 16.0.1 (App Router, Turbopack)
-  - React 19
-  - TypeScript strict mode
-  - TailwindCSS 4
-  - shadcn/ui components
-  - Zustand + Immer (optimistic updates)
-  - rrule (RFC-5545 recurring tasks)
-  - @dnd-kit/* (Kanban drag-drop)
-  - react-big-calendar (Calendar view)
-  - Tiptap (Rich text editor)
-  - react-hotkeys-hook (Keyboard shortcuts)
+- Task Management Polish (Edit inline, Priority, Tags, Modal, Delete, Shortcuts)
+- 3-5 User Interviews
 
-Backend:
-  - Supabase (PostgreSQL + Row Level Security)
-  - 11 tables: tasks, projects, pages, time_blocks, workspaces, etc.
+**Chi tiết:** [docs/01_status/NOW.md](./docs/01_status/NOW.md) | [docs/03_roadmap/ROADMAP.md](./docs/03_roadmap/ROADMAP.md)
 
-Deployment:
-  - Vercel (frontend, free tier)
-  - Supabase Cloud (database, free tier)
+---
+
+## 🛠️ Tech Stack
+
+```
+Frontend:  Next.js 16, React 19, TypeScript, TailwindCSS 4, shadcn/ui
+State:     Zustand + Immer (optimistic updates)
+Backend:   Supabase (PostgreSQL + Auth + RLS)
+Deploy:    Vercel (frontend) + Supabase Cloud (database)
 ```
 
-**Cost:** $0/month for first 500-1000 users
+**Chi tiết:** [docs/00_start-here/TECH_STACK.md](./docs/00_start-here/TECH_STACK.md)
 
 ---
 
-## 📂 Project Structure
+## � Cấu trúc dự án
 
 ```
 NEXUS/
-├── frontend/
-│   ├── app/
-│   │   ├── (auth)/login/         # Authentication pages
-│   │   ├── (productivity)/       # Main app routes
-│   │   │   ├── today/           # "My Day" smart list
-│   │   │   ├── inbox/           # Unsorted tasks
-│   │   │   ├── projects/        # Project list + Kanban boards
-│   │   │   ├── upcoming/        # Upcoming tasks view
-│   │   │   └── calendar/        # Calendar time blocking
-│   │   ├── auth/callback/       # OAuth callback
-│   │   └── dashboard/           # User dashboard
-│   ├── components/
-│   │   ├── tasks/              # TaskItem, TaskList, TaskQuickAdd
-│   │   ├── projects/           # Project components
-│   │   ├── kanban/             # Kanban board (to be built)
-│   │   ├── calendar/           # Calendar components
-│   │   ├── pages/              # Pages editor components
-│   │   ├── dashboard/          # ProductivitySidebar, Header
-│   │   ├── editor/             # Tiptap editor
-│   │   └── ui/                 # shadcn/ui primitives
-│   ├── lib/
-│   │   ├── stores/             # Zustand stores (tasks, etc.)
-│   │   ├── hooks/              # useTasks, useKeyboard
-│   │   ├── supabase/           # Supabase client/server
-│   │   └── utils/              # Helper functions
-│   └── types/                  # Task, Project, Page types
-├── docs/
-│   ├── PROJECT_STATUS.md       # ⭐ Master documentation
-│   ├── DEPLOY_DATABASE.md      # ⭐ Quick deployment guide
-│   ├── AI_PROMPTS.md           # ⭐ AI prompts guide
-│   ├── SETUP.md                # Development setup
-│   ├── AUTH_SETUP.md           # Supabase Auth config
-│   ├── architecture/
-│   │   ├── database-schema-v2-productivity.sql  # Full schema
-│   │   ├── migrations/         # Safe migration scripts
-│   │   └── decisions.md        # Tech decisions
-│   └── research/               # User interviews
-├── THIS_WEEK.md                # ⭐ Weekly focus tracker
-├── QUICKSTART.md               # ⭐ Quick project overview
-└── README.md                   # ⭐ This file
+├── README.md                           ← Bạn đang ở đây
+├── QUICKSTART.md                       ← Cài đặt nhanh (15 phút)
+├── THIS_WEEK.md                        ← Focus tuần này
+│
+├── docs/                               ← Documentation
+│   ├── 00_start-here/                  🎯 Bắt đầu tại đây
+│   │   ├── README.md                   ← Index toàn bộ docs
+│   │   ├── QUICKSTART_AI.md            ⭐ Làm gì hôm nay?
+│   │   ├── TECH_STACK.md               ← Giải thích công nghệ
+│   │   └── PROJECT_STRUCTURE.md        ← Cấu trúc folder/file
+│   │
+│   ├── 01_status/                      📊 Trạng thái
+│   │   ├── NOW.md                      ← Snapshot hiện tại
+│   │   ├── FEATURES.md                 ← 40 features checklist
+│   │   ├── UI_UX.md                    ← UI components status
+│   │   └── BUGS.md                     ← Bug tracking
+│   │
+│   ├── 02_ai-prompts/                  🤖 AI Prompts
+│   │   ├── AI_PROMPTS.md               ← Danh sách prompts
+│   │   ├── COMPLETED.md                ← Prompts đã xong
+│   │   └── templates/                  ← Templates cho prompts mới
+│   │
+│   ├── 03_roadmap/                     🗺️ Kế hoạch
+│   │   ├── PROJECT_STATUS.md           ← Overview dự án
+│   │   ├── ROADMAP.md                  ← 12 tuần roadmap
+│   │   ├── IDEAS.md                    ← Ideas backlog
+│   │   └── HISTORY.md                  ← Timeline dự án
+│   │
+│   ├── 04_technical/                   ⚙️ Kỹ thuật
+│   │   ├── SETUP.md                    ← Hướng dẫn cài đặt
+│   │   ├── DEPLOY.md                   ← Deploy database
+│   │   └── architecture/               ← Database schema & migrations
+│   │
+│   └── 05_research/                    🔬 User Research
+│       ├── user-personas.md
+│       ├── interview-script.md
+│       └── success-metrics.md
+│
+└── frontend/                           💻 Source code
+    ├── app/                            ← Next.js routes
+    ├── components/                     ← React components
+    ├── lib/                            ← Stores, hooks, utils
+    └── types/                          ← TypeScript types
 ```
 
----
-
-## 🗓️ 12-Week Roadmap
-
-### **Week 0-3: User Research** (YOU ARE HERE)
-
-**Goal:** Validate Productivity OS priorities
-
-- [x] Project restructured for Productivity OS focus
-- [x] Database schema v2 designed (11 tables)
-- [x] Core task components scaffolded
-- [ ] **10 SME interviews** ⚠️ Critical
-- [ ] Validate priorities (70% tasks, 20% pages, 10% app minis)
-- [ ] Identify must-have vs nice-to-have features
-
-**Key Questions for Interviews:**
-
-- Do you need advanced recurring tasks? (e.g., "every 2 days", "last Friday of month")
-- Kanban board essential, or can start with list view?
-- Calendar time blocking vs simple due dates?
-- Would you pay $10-15/month for this?
+**Chi tiết:** [docs/00_start-here/PROJECT_STRUCTURE.md](./docs/00_start-here/PROJECT_STRUCTURE.md)
 
 ---
 
-### **Week 4-7: POC (Proof of Concept)**
+## � Quick Start
 
-**Goal:** Working task management + basic Kanban + Pages
+```bash
+# 1. Clone repo
+git clone https://github.com/hey-im-edward/NEXUS.git
+cd NEXUS/frontend
 
-**Deliverables:**
+# 2. Install dependencies
+npm install
 
-- [ ] Task CRUD (create, read, update, delete, toggle complete)
-- [ ] Smart filters (Today, Inbox, Upcoming)
-- [ ] Kanban board with drag-drop (`/projects/[id]/board`)
-- [ ] Keyboard shortcuts (j/k navigate, x complete, c create)
-- [ ] Simple Pages editor (Tiptap integration)
-- [ ] Deploy to Vercel
+# 3. Setup Supabase (tạo account tại supabase.com)
+# 4. Copy .env.local.example → .env.local (điền credentials)
+# 5. Deploy database schema (copy từ docs/04_technical/architecture/migrations/)
 
-**Success Criteria:**
+# 6. Start dev server
+npm run dev  # http://localhost:3000
+```
 
-- 5 testers try it
-- 3/5 say "I would use this daily"
-- Core task flow works smoothly
+**Hướng dẫn chi tiết:** [QUICKSTART.md](./QUICKSTART.md) hoặc [docs/04_technical/SETUP.md](./docs/04_technical/SETUP.md)
 
 ---
+
+## 📖 Documentation Index
+
+### **Essential (Đọc trước):**
+
+- [QUICKSTART.md](./QUICKSTART.md) - Cài đặt và chạy (15 phút)
+- [docs/00_start-here/README.md](./docs/00_start-here/README.md) - Index toàn bộ docs
+- [docs/00_start-here/QUICKSTART_AI.md](./docs/00_start-here/QUICKSTART_AI.md) ⭐ - Làm gì hôm nay?
+
+### **Planning & Status:**
+
+- [THIS_WEEK.md](./THIS_WEEK.md) - Focus tuần này
+- [docs/01_status/NOW.md](./docs/01_status/NOW.md) - Snapshot hiện tại
+- [docs/01_status/FEATURES.md](./docs/01_status/FEATURES.md) - Checklist 40 features
+- [docs/03_roadmap/ROADMAP.md](./docs/03_roadmap/ROADMAP.md) - 12-week roadmap
+
+### **Development:**
+
+- [docs/02_ai-prompts/AI_PROMPTS.md](./docs/02_ai-prompts/AI_PROMPTS.md) - AI coding prompts
+- [docs/04_technical/SETUP.md](./docs/04_technical/SETUP.md) - Development setup
+- [docs/04_technical/DEPLOY.md](./docs/04_technical/DEPLOY.md) - Database deployment
+
+### **Research:**
+
+- [docs/05_research/interview-script.md](./docs/05_research/interview-script.md) - User interview script
+- [docs/05_research/user-personas.md](./docs/05_research/user-personas.md) - Target users
+
+**Xem tất cả:** [docs/00_start-here/README.md](./docs/00_start-here/README.md)
+
+---
+
+## 🎯 Roadmap - 12 Tuần
+
+### **Week 0-3: User Research** ← YOU ARE HERE
+
+- [x] Database deployed
+- [x] Task CRUD working
+- [x] Kanban Board done
+- [ ] 10 user interviews
+- [ ] Task Management polished
+
+### **Week 4-7: POC**
+
+- [ ] Recurring tasks (rrule)
+- [ ] Calendar view
+- [ ] Pages editor (Tiptap)
+- [ ] 20 signups target
 
 ### **Week 8-11: MVP**
 
-**Goal:** Add Calendar + Polish + 1-2 App Minis
-
-**Deliverables:**
-
-- [ ] Calendar view with time blocking
-- [ ] Recurring tasks (rrule implementation)
-- [ ] 1-2 App Minis (Habit Tracker or Pomodoro)
-- [ ] Command palette (Ctrl+K quick actions)
-- [ ] Mobile responsive (basic)
-- [ ] Onboarding flow
-
-**Success Criteria:**
-
-- 20 signups
-- 10 active users (3+ sessions/week)
-- Average session >10 minutes
-
----
+- [ ] Payment integration
+- [ ] Teams/collaboration
+- [ ] Mobile responsive
+- [ ] 50+ signups, 10+ active users
 
 ### **Week 12: GO/NO-GO Decision**
 
-**Metrics to Evaluate:**
+**Success Criteria:** 50+ signups, 10+ active, 1-2 paying, NPS >40
 
-- 50+ signups
-- 10+ active users (using 3+ times/week)
-- 1-2 paying users ($10-15/month)
-- NPS score >40
-
-**Decision:**
-
-- **GO** → Continue to Scale phase (Week 13+)
-- **NO-GO** → Pivot or shut down
+**Chi tiết:** [docs/03_roadmap/ROADMAP.md](./docs/03_roadmap/ROADMAP.md)
 
 ---
 
-For detailed roadmap, see `docs/PROJECT_STATUS.md`
+## 🤝 Contributing
+
+Dự án đang trong giai đoạn **User Research** (Week 0).  
+Hiện tại chưa nhận contributions từ bên ngoài.
+
+**Nếu bạn quan tâm:**
+
+- ⭐ Star repo này
+- 📧 Email: [your-email@example.com]
+- 💬 Tham gia user interviews (liên hệ qua email)
 
 ---
 
-## 🚦 Quick Start
+## 📄 License
 
-### Prerequisites
-- Node.js 20+ LTS
-- Supabase account (free tier)
-
-### Setup (5 minutes)
-
-1. **Clone and install**
-```bash
-git clone https://github.com/hey-im-edward/NEXUS.git
-cd NEXUS/frontend
-npm install
-```
-
-2. **Configure Supabase**
-```bash
-# Create .env.local with your Supabase credentials
-NEXT_PUBLIC_SUPABASE_URL=your-project-url
-NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
-```
-
-3. **Deploy database**
-```bash
-# Open Supabase Dashboard → SQL Editor
-# Copy and run: docs/architecture/migrations/002_productivity_core_schema.sql
-# See docs/DEPLOY_DATABASE.md for detailed steps
-```
-
-4. **Start dev server**
-```bash
-npm run dev
-# Open http://localhost:3000
-```
-
-### Important Files
-- **`THIS_WEEK.md`** - Your weekly focus and tasks
-- **`docs/PROJECT_STATUS.md`** - Master documentation (read this!)
-- **`docs/DEPLOY_DATABASE.md`** - Database deployment guide
-- **`docs/AI_PROMPTS.md`** - How to prompt AI effectively
-
-### Next Steps After Setup
-1. Read `docs/PROJECT_STATUS.md` for full context
-2. Follow `docs/DEPLOY_DATABASE.md` to deploy schema
-3. Test task management at `/today` route
-4. See `THIS_WEEK.md` for current week goals
+MIT License - Xem [LICENSE](./LICENSE) để biết chi tiết.
 
 ---
 
-## 📚 Documentation
+## 📞 Liên hệ
 
-### Essential Docs (Start Here)
-- **`THIS_WEEK.md`** - Weekly focus and tasks
-- **`docs/PROJECT_STATUS.md`** - Complete project overview
-- **`docs/DEPLOY_DATABASE.md`** - Deploy database schema
-- **`docs/AI_PROMPTS.md`** - AI prompting guide
-
-### Additional Docs
-- **[Research](./docs/research/)** - User interview scripts
-- **[Architecture](./docs/architecture/)** - Database schema, tech decisions
-- **[Setup Guide](./docs/SETUP.md)** - Detailed development setup
-- **[Auth Setup](./docs/AUTH_SETUP.md)** - Supabase authentication
+**Developer:** Edward  
+**GitHub:** [@hey-im-edward](https://github.com/hey-im-edward)  
+**Project:** [NEXUS](https://github.com/hey-im-edward/NEXUS)
 
 ---
 
-## 🎨 Design Philosophy
-
-**Productivity First:**
-- Fast keyboard navigation (j/k, x, c shortcuts)
-- Quick add everywhere (just press Enter)
-- Zero friction task capture
-
-**Clean UI:**
-- Minimal, focused interface
-- No overwhelming sidebars
-- Smart defaults (Today view on open)
-
-**Flexible Structure:**
-- Projects when you need structure
-- Inbox for quick capture
-- Pages for freeform notes
-
----
-
-## 📊 Current Metrics
-
-**Week 0 Status:**
-- User interviews: 0/10
-- Tasks scaffolded: ✅ Complete
-- Database deployed: ⚠️ Not yet
-- Dev server: ✅ Running
-
----
-
-**Last Updated:** November 7, 2025  
+**Cập nhật:** 8 tháng 11, 2025  
 **Version:** 2.0.0 - Productivity OS Core  
-**Current Phase:** Week 0 - User Research
+**Giai đoạn:** Week 0 - User Research
 
-**⚠️ Critical Next Step:** Deploy database schema (see `docs/DEPLOY_DATABASE.md`)
+**🚀 Ready to build? → [QUICKSTART.md](./QUICKSTART.md)**

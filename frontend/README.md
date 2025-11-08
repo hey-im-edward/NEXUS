@@ -81,12 +81,14 @@ frontend/
 ## 🛠️ Tech Stack
 
 ### Core
+
 - **Next.js 16.0.1** - App Router, Turbopack, React Server Components
 - **React 19** - Latest features
 - **TypeScript** - Strict mode
 - **TailwindCSS 4** - Utility-first CSS
 
 ### UI & Components
+
 - **shadcn/ui** - Radix UI components
 - **Tiptap** - Rich text editor
 - **@dnd-kit/** - Drag and drop (Kanban)
@@ -94,12 +96,14 @@ frontend/
 - **cmdk** - Command palette
 
 ### State & Data
+
 - **Zustand** - Client state management
 - **Immer** - Immutable updates
 - **Supabase** - Database + Auth
 - **rrule** - Recurring tasks (RFC-5545)
 
 ### Utils
+
 - **date-fns** - Date manipulation
 - **react-hotkeys-hook** - Keyboard shortcuts
 - **react-hook-form** - Form handling
@@ -110,6 +114,7 @@ frontend/
 ## 🎯 Key Features
 
 ### Task Management (70% Priority)
+
 - **Smart Lists:** Today, Inbox, Upcoming
 - **Advanced Recurring:** rrule support ("every 2 days", "last Friday")
 - **Quick Add:** Press Enter to add task
@@ -117,16 +122,19 @@ frontend/
 - **Optimistic Updates:** Instant UI feedback
 
 ### Projects & Kanban (70% Priority)
+
 - **Project Organization:** Group tasks by project
 - **Kanban Boards:** Drag-drop task status
 - **List/Board Views:** Toggle between views
 
 ### Pages (20% Priority)
+
 - **Tiptap Editor:** Rich text with task lists
 - **Flexible Canvas:** Mix notes + tasks
 - **Auto-save:** Save as you type
 
 ### App Minis (10% Priority)
+
 - **Lightweight Widgets:** CRM, Habit Tracker, Pomodoro
 - **Dashboard Integration:** Add to workspace
 
@@ -176,12 +184,14 @@ Get these from: Supabase Dashboard → Project Settings → API
 ## 🐛 Common Issues
 
 ### TypeScript Errors
+
 ```bash
 # Restart TypeScript server in VS Code
 Ctrl+Shift+P → "Restart TS Server"
 ```
 
 ### Supabase Connection Error
+
 ```bash
 # Check environment variables
 cat .env.local
@@ -191,6 +201,7 @@ npm run dev
 ```
 
 ### Build Errors
+
 ```bash
 # Clear cache and rebuild
 rm -rf .next

@@ -1,6 +1,6 @@
-import { Metadata } from 'next';
 import { TaskList } from '@/components/tasks/task-list';
 import { TaskQuickAdd } from '@/components/tasks/task-quick-add';
+import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Today | NEXUS',
@@ -23,6 +23,10 @@ export const metadata: Metadata = {
  * - Drag to reorder
  */
 export default function TodayPage() {
+  // ⚠️ TEMPORARY: Hardcoded workspace_id
+  // TODO: Get from context/auth after workspace creation
+  const WORKSPACE_ID = 'c6be91ba-98c3-43e5-8e5e-94e389894fa6'; // ✅ Edward's workspace
+  
   return (
     <div className="mx-auto max-w-4xl space-y-6">
       {/* Header */}
@@ -39,10 +43,15 @@ export default function TodayPage() {
       </div>
 
       {/* Quick Add */}
-      <TaskQuickAdd placeholder="Add a task to My Day..." defaultDate="today" />
+      <TaskQuickAdd
+        workspaceId={WORKSPACE_ID}
+        placeholder="Add a task to My Day..."
+        defaultDate="today"
+      />
 
       {/* Task List - Filtered by today */}
       <TaskList
+        workspaceId={WORKSPACE_ID}
         filter={{
           type: 'today', // Will fetch tasks due today + overdue
         }}

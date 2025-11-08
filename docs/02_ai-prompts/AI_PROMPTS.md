@@ -7,6 +7,7 @@
 ## 📋 Nguyên Tắc Chung
 
 ### ✅ DO:
+
 1. **Context rõ ràng** - Cho AI biết đang làm gì, ở đâu trong project
 2. **Specific requirements** - Càng cụ thể càng tốt
 3. **Tech stack mention** - Nhắc Next.js 16, React 19, Supabase, TypeScript, Zustand
@@ -14,6 +15,7 @@
 5. **Include constraints** - Free tier, performance, mobile-first, keyboard shortcuts
 
 ### ❌ DON'T:
+
 1. Vague prompts: "Make a task manager"
 2. Skip context: "Add recurring tasks" (logic ở đâu? dùng thư viện gì?)
 3. Assume AI biết project: "Fix the filter" (filter nào? ở file nào?)
@@ -26,6 +28,7 @@
 ### Priority 1: Task Management (70%)
 
 #### Prompt 1: Kanban Board Component
+
 ```
 Create Kanban board component for NEXUS Productivity OS.
 
@@ -53,13 +56,14 @@ Styling:
 - Cards: bg-white, shadow-sm, rounded-lg
 - Drag handle visible on hover
 
-Expected output: 
+Expected output:
 - KanbanBoard.tsx
-- KanbanColumn.tsx  
+- KanbanColumn.tsx
 - KanbanCard.tsx
 ```
 
 #### Prompt 2: Recurring Tasks with rrule
+
 ```
 Add recurring task support to task creation form.
 
@@ -89,6 +93,7 @@ Expected output:
 ```
 
 #### Prompt 3: Rich Text Editor
+
 ```
 Create rich text editor component using Tiptap for NEXUS.
 
@@ -115,7 +120,7 @@ Styling:
 - Editor looks like Notion (clean, spacious)
 - Mobile-friendly
 
-Expected output: 
+Expected output:
 - TiptapEditor.tsx component
 - EditorToolbar.tsx component
 - Types for editor props
@@ -126,6 +131,7 @@ Expected output:
 ### Phase 3: Week 3 - App Mini System
 
 #### Prompt 4: Todo List App Mini
+
 ```
 Create Todo List app mini component for NEXUS dashboard.
 
@@ -159,6 +165,7 @@ Expected output:
 ```
 
 #### Prompt 5: App Mini Container
+
 ```
 Create wrapper component for app minis on dashboard.
 
@@ -169,7 +176,7 @@ Context:
 
 Requirements:
 1. Props: appMini object (from database), onDelete callback
-2. Header: 
+2. Header:
    - Icon (based on type)
    - Title (editable inline)
    - Delete button (with confirmation)
@@ -197,6 +204,7 @@ Expected output:
 ### Phase 4: Week 4 - Dashboard Layout
 
 #### Prompt 6: Grid Layout
+
 ```
 Create draggable dashboard grid using react-grid-layout.
 
@@ -239,19 +247,21 @@ Expected output:
 ### When AI generates wrong code:
 
 **Prompt:**
+
 ```
 The code you generated has this error:
 [paste error message]
 
 Context: [where it's used, what you're trying to do]
 
-Please fix the code. 
+Please fix the code.
 Additional constraints: [if any]
 ```
 
 ### When you need explanation:
 
 **Prompt:**
+
 ```
 Explain this code in Vietnamese, line by line:
 
@@ -305,19 +315,22 @@ Use @testing-library/react
 ## 📚 Prompt Library by Feature
 
 ### Authentication
-- [ ] Supabase client setup
-- [ ] Login page (Google OAuth + Email)
+
+- [x] Supabase client setup
+- [x] Login page (Google OAuth + Email)
 - [ ] Signup page
 - [ ] Password reset flow
 - [ ] Auth middleware (protect routes)
 
 ### Dashboard
+
 - [ ] Dashboard layout (sidebar + main)
 - [ ] Sidebar navigation
 - [ ] Create new dashboard modal
 - [ ] Dashboard settings
 
 ### App Minis
+
 - [ ] Todo List component
 - [ ] Kanban Board component
 - [ ] Simple Table component
@@ -325,6 +338,7 @@ Use @testing-library/react
 - [ ] App Mini marketplace browse
 
 ### User Management
+
 - [ ] Invite user modal
 - [ ] User permissions UI
 - [ ] Member list component
@@ -348,6 +362,7 @@ Keep it practical and beginner-friendly.
 ```
 
 Example:
+
 ```
 I'm learning Server Components in the context of NEXUS project.
 
@@ -400,6 +415,7 @@ Expected output: [What files/code you want]
 ## 🎯 Success Metrics for Good Prompts
 
 ✅ **Good prompt results in:**
+
 - Code that runs without major errors
 - Follows project conventions (TypeScript, TailwindCSS)
 - Includes error handling and loading states
@@ -407,6 +423,7 @@ Expected output: [What files/code you want]
 - <5 minor fixes needed
 
 ❌ **Bad prompt results in:**
+
 - Code doesn't compile
 - Wrong libraries used
 - Missing key requirements

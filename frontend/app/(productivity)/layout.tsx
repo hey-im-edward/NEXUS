@@ -1,6 +1,6 @@
-import { ReactNode } from 'react';
-import { ProductivitySidebar } from '@/components/dashboard/productivity-sidebar';
 import { ProductivityHeader } from '@/components/dashboard/productivity-header';
+import { ProductivitySidebar } from '@/components/dashboard/productivity-sidebar';
+import { ReactNode } from 'react';
 
 /**
  * Layout for Productivity OS routes
