@@ -225,6 +225,7 @@ npm run build
 **For detailed project status, see:** [`../docs/01_status/NOW.md`](../docs/01_status/NOW.md)
 
 **Quick summary:**
+
 - ✅ Database v2 deployed (Nov 7, 2025)
 - ✅ Task CRUD working
 - ✅ Kanban Board 100% complete (Nov 8, 2025)
