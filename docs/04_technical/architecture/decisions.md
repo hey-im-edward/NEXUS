@@ -1,6 +1,28 @@
 # Architecture Decisions - NEXUS
 
-## ADR 001: Why Supabase Instead of NestJS Backend?
+> **Mục đích:** Lưu trữ các quyết định kiến trúc quan trọng (Architecture Decision Records - ADRs) để hiểu tại sao chọn X thay vì Y.
+
+**Created:** November 7, 2025  
+**Last Updated:** November 9, 2025
+
+---
+
+## Table of Contents
+
+1. [ADR-001: Supabase vs NestJS Backend](#adr-001-supabase-vs-nestjs-backend)
+2. [ADR-002: Next.js App Router vs Pages Router](#adr-002-nextjs-app-router-vs-pages-router)
+3. [ADR-003: Zustand vs Redux](#adr-003-zustand-vs-redux-for-state-management)
+4. [ADR-004: Tiptap vs Block Editor](#adr-004-block-editor-vs-rich-text-editor)
+5. [ADR-005: Real-time Collaboration](#adr-005-real-time-collaboration---skip-for-mvp)
+6. [ADR-006: App Mini Architecture](#adr-006-app-mini-architecture)
+7. [ADR-007: Database Schema Strategy](#adr-007-database-schema-strategy)
+8. [ADR-008: @dnd-kit vs react-beautiful-dnd](#adr-008-dnd-kit-vs-react-beautiful-dnd)
+9. [ADR-009: rrule for Recurring Tasks](#adr-009-rrule-for-recurring-tasks)
+10. [ADR-010: Documentation Structure](#adr-010-documentation-structure)
+
+---
+
+## ADR-001: Supabase vs NestJS Backend
 
 **Date:** November 7, 2025  
 **Status:** Accepted  
@@ -401,29 +423,499 @@ WHERE config @> '{"type": "kanban"}';
 
 ---
 
+## ADR-008: @dnd-kit vs react-beautiful-dnd
+
+**Date:** November 2025  
+**Status:** Accepted  
+**Decision Maker:** Edward (Founder)
+
+### Context
+Cần drag & drop library cho Kanban board. Hai options phổ biến:
+- `react-beautiful-dnd` - By Atlassian, used in Trello
+- `@dnd-kit` - Modern, modular library
+
+### Decision
+**Chọn @dnd-kit thay vì react-beautiful-dnd**
+
+### Rationale
+
+#### Why @dnd-kit:
+
+1. **React 18+ Support**
+   - `react-beautiful-dnd` không support React 18 Strict Mode
+   - Causes double rendering, warnings in console
+   - Atlassian chưa update (maintenance mode)
+
+2. **Modern Architecture**
+   - TypeScript-first design
+   - Modular (chỉ import những gì cần)
+   - Better performance với virtualized lists
+
+3. **Mobile Support**
+   - Touch support out-of-the-box
+   - Better multi-touch handling
+   - Works on iOS Safari (no quirks)
+
+4. **Accessibility**
+   - Built-in ARIA attributes
+   - Keyboard navigation support
+   - Screen reader friendly
+
+5. **Future-proof**
+   - Active development
+   - React 19 compatible
+   - Regular updates
+
+#### Why NOT react-beautiful-dnd:
+
+1. **Maintenance mode**
+   - Last major update: 2021
+   - React 18 strict mode issues
+   - Unclear future roadmap
+
+2. **Bundle size**
+   - Monolithic (must import everything)
+   - Larger bundle size
+
+3. **API complexity**
+   - Less intuitive API
+   - Harder to customize
+
+### Implementation Example:
+
+```typescript
+// @dnd-kit setup
+import { DndContext, closestCenter } from '@dnd-kit/core'
+import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable'
+
+function KanbanBoard() {
+  const sensors = useSensors(
+    useSensor(PointerSensor),
+    useSensor(KeyboardSensor)
+  )
+
+  return (
+    <DndContext
+      sensors={sensors}
+      collisionDetection={closestCenter}
+      onDragEnd={handleDragEnd}
+    >
+      <SortableContext items={tasks} strategy={verticalListSortingStrategy}>
+        {tasks.map(task => <TaskCard key={task.id} task={task} />)}
+      </SortableContext>
+    </DndContext>
+  )
+}
+```
+
+### Consequences
+
+**Positive:**
+- ✅ React 19 compatible (future-proof)
+- ✅ Works perfectly với Next.js App Router
+- ✅ Touch support = mobile-friendly
+- ✅ Accessibility built-in
+
+**Negative:**
+- ⚠️ API phức tạp hơn react-beautiful-dnd (steeper learning curve)
+- ⚠️ Cần học về sensors, collision detection
+- ⚠️ Ít examples trên internet hơn react-beautiful-dnd
+
+### Result
+✅ Kanban drag-drop hoạt động smooth, no React warnings, mobile works great
+
+**Effort:** 4 hours to learn API + implement  
+**Alternative considered:** HTML5 Drag & Drop API (rejected - poor mobile support)
+
+---
+
+## ADR-009: rrule for Recurring Tasks
+
+**Date:** October 2025  
+**Status:** Accepted (Planned for Week 5-6)  
+**Decision Maker:** Edward (Founder)
+
+### Context
+Users need recurring tasks (e.g., "Review emails every weekday 9am", "Pay rent 1st of month").
+
+Options:
+1. **Build custom recurring logic** - Code our own solution
+2. **Use rrule library** - Industry standard (RFC-5545)
+3. **Use cron syntax** - Server-style scheduling
+
+### Decision
+**Chọn rrule library (RFC-5545 standard)**
+
+### Rationale
+
+#### Why rrule:
+
+1. **Industry Standard**
+   - RFC-5545 (iCalendar standard)
+   - Google Calendar, Apple Calendar, Outlook use it
+   - Interoperable with calendar apps
+
+2. **Handles Edge Cases**
+   - Leap years
+   - Timezone changes (DST)
+   - "Last Friday of month"
+   - "Every 2 weeks on Monday and Wednesday"
+   - Exclusion dates (skip holidays)
+
+3. **Battle-tested**
+   - Used by millions of calendar apps
+   - Edge cases already solved
+   - TypeScript support
+
+4. **Future-proof**
+   - Can export to .ics files
+   - Can sync with Google Calendar (future feature)
+
+#### Why NOT Custom Logic:
+
+```typescript
+// Custom logic would look like:
+if (frequency === 'daily') {
+  nextDate = addDays(currentDate, interval)
+} else if (frequency === 'weekly') {
+  nextDate = addWeeks(currentDate, interval)
+  // But what about "every 2nd Tuesday"?
+  // What about "last Friday of month"?
+  // What about DST?
+}
+
+// Too many edge cases to handle!
+```
+
+- ❌ Reinventing the wheel
+- ❌ Bugs with edge cases (leap years, DST)
+- ❌ Can't sync with external calendars
+
+#### Why NOT Cron Syntax:
+
+```
+0 9 * * 1-5  # Every weekday 9am
+```
+
+- ❌ Server-centric (not designed for user-facing apps)
+- ❌ Confusing for users
+- ❌ Doesn't handle "until date" well
+- ❌ Timezone handling poor
+
+### Implementation Plan:
+
+```typescript
+import { RRule, RRuleSet } from 'rrule'
+
+// Database schema
+interface Task {
+  id: string
+  title: string
+  recurrence_rule: string | null  // rrule string
+  recurrence_end_date: Date | null
+}
+
+// Example usage
+const rule = new RRule({
+  freq: RRule.DAILY,
+  interval: 1,
+  dtstart: new Date(2025, 10, 9),
+  until: new Date(2026, 10, 9)
+})
+
+// Get next 10 occurrences
+const nextDates = rule.all((date, i) => i < 10)
+
+// Human-readable
+rule.toText() // "every day until November 9, 2026"
+```
+
+**UI Approach:**
+- Simple dropdown: "Does not repeat" | "Daily" | "Weekly" | "Monthly" | "Custom"
+- Custom modal for complex patterns
+- Display human-readable version below
+
+### Consequences
+
+**Positive:**
+- ✅ Solves all edge cases (DST, leap years, etc.)
+- ✅ Industry standard (interoperable)
+- ✅ Future-proof (can export/sync with calendars)
+- ✅ TypeScript support
+
+**Negative:**
+- ⚠️ rrule syntax is cryptic (FREQ=DAILY;INTERVAL=2)
+  - Mitigation: Hide syntax, show human-readable text
+- ⚠️ Bundle size (~15KB)
+  - Mitigation: Lazy load rrule library
+- ⚠️ Learning curve for developers
+  - Mitigation: Create helper functions
+
+### Result
+⏳ Planned for Week 5-6 implementation
+
+**Alternatives considered:**
+- Cronitor (paid service)
+- Custom date math (rejected - too complex)
+
+---
+
+## ADR-010: Documentation Structure
+
+**Date:** November 8, 2025  
+**Status:** Accepted  
+**Decision Maker:** Edward (Founder)
+
+### Context
+Documentation lộn xộn:
+- 31 files .md
+- Không rõ đọc file nào trước
+- AI và humans khó navigate
+- Alphabetical sort không phản ánh logical order
+
+### Decision
+**Chọn Numbered Folder Structure**
+
+### Folder Structure:
+
+```
+docs/
+  00_start-here/       # Số thấp = đọc trước
+    README.md
+    QUICKSTART_AI.md
+    PROJECT_STRUCTURE.md
+    
+  01_status/           # Current state
+    NOW.md
+    THIS_WEEK.md
+    FEATURES.md
+    BUGS.md
+    
+  02_ai-prompts/       # AI workflow
+    AI_PROMPTS.md
+    AI_PRINCIPLES.md
+    COMPLETED.md
+    templates/
+    
+  03_roadmap/          # Future planning
+    ROADMAP.md
+    IDEAS.md
+    HISTORY.md
+    
+  04_technical/        # Technical docs
+    SETUP.md
+    DEPLOY.md
+    TROUBLESHOOTING_LOG.md
+    architecture/
+    
+  05_research/         # User research
+    user-personas.md
+    interview-notes/
+    
+  archive/             # Old files
+    old-versions/
+    temp-fixes/
+```
+
+### Rationale
+
+#### Why Numbered Folders:
+
+1. **Auto-sort by Importance**
+   - File explorer sorts: 00 → 01 → 02...
+   - Matches logical reading order
+   - No manual organizing needed
+
+2. **Clear Hierarchy**
+   - `00_` = Start here
+   - `01_` = Current status
+   - `02_` = Workflow
+   - `03_` = Future
+   - `04_` = Technical
+   - `05_` = Research
+
+3. **AI-friendly**
+   - AI can easily find relevant docs
+   - Clear naming = better context
+
+4. **Human-friendly**
+   - New team members know where to start
+   - No guessing "which file to read first?"
+
+#### Why NOT Alphabetical:
+
+```
+❌ Alphabetical (confusing):
+- architecture/
+- BUGS.md
+- FEATURES.md
+- NOW.md
+- README.md
+- ROADMAP.md
+
+✅ Numbered (logical):
+- 00_start-here/
+- 01_status/
+- 02_ai-prompts/
+- 03_roadmap/
+- 04_technical/
+```
+
+#### Why NOT Date-based:
+
+```
+❌ Date folders:
+- 2025-10/
+- 2025-11/
+- latest/
+
+Problems:
+- Hard to find current docs
+- Duplication across months
+- Doesn't show importance
+```
+
+### Consequences
+
+**Positive:**
+- ✅ Auto-sorted logically
+- ✅ Easy navigation (humans + AI)
+- ✅ Clear hierarchy
+- ✅ Scalable (can add 06_, 07_ later)
+
+**Negative:**
+- ⚠️ Breaking change (need update all links)
+  - Mitigation: Used `git mv` to preserve history
+- ⚠️ Folder names longer (`00_start-here` vs `start-here`)
+  - Acceptable trade-off for clarity
+
+### Migration:
+
+```bash
+# Used git mv to preserve history
+git mv docs/NOW.md docs/01_status/NOW.md
+git mv docs/FEATURES.md docs/01_status/FEATURES.md
+git mv docs/AI_PROMPTS.md docs/02_ai-prompts/AI_PROMPTS.md
+# etc.
+```
+
+### Result
+✅ Documentation rõ ràng hơn nhiều, navigation dễ dàng
+
+**Lesson learned:** Structure matters, especially for AI-driven workflows
+
+---
+
 ## Summary Table
 
-| Decision | Choice | Rationale | Pivot Trigger |
-|----------|--------|-----------|---------------|
-| Backend | Supabase | Zero DevOps, free tier | >5K users |
-| State | Zustand | Simple, AI-friendly | >10 complex stores |
-| Editor | Tiptap | Fast to ship | User demand |
-| Real-time | Skip | Not MVP critical | Top 3 request |
-| App Mini | Components + iframe later | Hybrid flexibility | Users want custom |
-| Database | PostgreSQL JSONB | One DB simpler | >100GB data |
+| ADR | Decision | Choice | Rationale | Pivot Trigger | Status |
+|-----|----------|--------|-----------|---------------|--------|
+| 001 | Backend | Supabase | Zero DevOps, free tier | >5K users | ✅ Working |
+| 002 | Router | App Router | Future of Next.js | - | ✅ Working |
+| 003 | State | Zustand | Simple, AI-friendly | >10 complex stores | ✅ Working |
+| 004 | Editor | Tiptap | Fast to ship | User demand | ✅ Working |
+| 005 | Real-time | Skip | Not MVP critical | Top 3 request | ⏳ Skipped |
+| 006 | App Mini | Components + iframe | Hybrid flexibility | Users want custom | ⏳ Planned |
+| 007 | Database | PostgreSQL JSONB | One DB simpler | >100GB data | ✅ Working |
+| 008 | Drag & Drop | @dnd-kit | React 19 compatible | - | ✅ Working |
+| 009 | Recurring | rrule | Industry standard | - | ⏳ Planned |
+| 010 | Docs | Numbered folders | Logical order | - | ✅ Implemented |
+
+**Legend:**
+- ✅ Working: Implemented and working
+- ⏳ Planned: Decision made, not yet implemented
+- ⏳ Skipped: Intentionally skipped for MVP
 
 ---
 
 ## Open Questions (To Decide Later)
 
-1. **Payments:** Stripe vs Paddle vs LemonSqueezy?
-2. **Mobile:** PWA vs React Native?
-3. **Search:** PostgreSQL full-text vs Algolia vs Elasticsearch?
-4. **Email:** SendGrid vs Resend vs Amazon SES?
+### Future Decisions (Post-MVP)
 
-**Decision timing:** After MVP, based on actual needs
+1. **Payments Integration**
+   - **Options:** Stripe vs Paddle vs LemonSqueezy
+   - **Decision timing:** Week 10-12 (before launch)
+   - **Factors:** Transaction fees, EU VAT handling, UX
+
+2. **Mobile Strategy**
+   - **Options:** PWA vs React Native vs Flutter
+   - **Decision timing:** Month 6+ (after web traction)
+   - **Factors:** Development time, maintenance cost, user demand
+
+3. **Search Infrastructure**
+   - **Options:** PostgreSQL full-text vs Algolia vs Meilisearch vs Typesense
+   - **Decision timing:** When search becomes slow (>1000 docs)
+   - **Factors:** Cost, performance, maintenance
+
+4. **Email Service**
+   - **Options:** SendGrid vs Resend vs Amazon SES vs Postmark
+   - **Decision timing:** Week 8-10 (notifications needed)
+   - **Factors:** Deliverability, cost, developer experience
+
+5. **Analytics**
+   - **Options:** Posthog vs Mixpanel vs Amplitude vs Google Analytics 4
+   - **Decision timing:** Week 4-6 (track MVP metrics)
+   - **Factors:** Privacy, cost, features needed
+
+6. **Error Tracking**
+   - **Options:** Sentry vs LogRocket vs Highlight vs Rollbar
+   - **Decision timing:** Week 6-8 (production bugs)
+   - **Factors:** Cost, debugging features, performance impact
+
+7. **Hosting (if leave Vercel)**
+   - **Options:** Railway vs Fly.io vs Render vs AWS
+   - **Decision timing:** If Vercel costs >$100/month
+   - **Factors:** Cost, performance, deployment ease
 
 ---
 
-**Last Updated:** November 7, 2025  
-**Next Review:** Week 4 (POC complete)
+## Decision-Making Framework
+
+**When to make ADR:**
+- ✅ Technology choice với long-term impact
+- ✅ Trade-offs giữa 2+ viable options
+- ✅ Affects multiple parts của system
+- ✅ Có thể gây confusion cho future team members
+
+**ADR Template:**
+```markdown
+## ADR-XXX: [Title]
+
+**Date:** [Date]
+**Status:** Proposed | Accepted | Rejected | Superseded
+**Decision Maker:** [Who decided]
+
+### Context
+[Why this decision needed? What's the problem?]
+
+### Decision
+[What did we choose?]
+
+### Rationale
+[Why this choice? Pros/cons analysis]
+
+### Consequences
+**Positive:**
+- [Benefit 1]
+
+**Negative:**
+- [Trade-off 1]
+
+### Result
+[How did it turn out? Post-implementation notes]
+```
+
+---
+
+## Related Documents
+
+- `docs/03_roadmap/HISTORY.md` - Project timeline và major milestones
+- `docs/04_technical/TROUBLESHOOTING_LOG.md` - Bug fixes và learnings
+- `docs/02_ai-prompts/AI_PRINCIPLES.md` - Development principles
+- `docs/00_start-here/TECH_STACK.md` - Current technology stack
+
+---
+
+**Last Updated:** November 9, 2025  
+**Next Review:** Week 4 (POC complete) - Review all decisions, document any pivots  
+**Total ADRs:** 10
