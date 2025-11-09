@@ -1,12 +1,12 @@
 'use client';
 
-import { TaskPriorityBadge } from './task-priority-badge';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { getPriorityConfig, PRIORITY_OPTIONS } from '@/lib/constants/priority';
 import { cn } from '@/lib/utils';
 import { TaskPriority } from '@/types';
 import { Check } from 'lucide-react';
-import { useState, useRef, useEffect } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { TaskPriorityBadge } from './task-priority-badge';
 
 /**
  * TaskPrioritySelect Component
