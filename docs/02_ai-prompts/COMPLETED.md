@@ -2,23 +2,90 @@
 
 > **Mục đích:** Track prompts đã generate code và hoàn thành - Tránh nhầm lẫn, biết làm đến đâu rồi.
 
-**Cập nhật:** 8 tháng 11, 2025
+**Cập nhật:** 9 tháng 11, 2025
 
 ---
 
 ## 📊 **TỔNG QUAN**
 
 ```
-✅ Completed:    1 prompt   (14%)
+✅ Completed:    2 prompts  (29%)
 🔄 In Progress:  0 prompts  (0%)
-📋 Planned:      6 prompts  (86%)
+📋 Planned:      5 prompts  (71%)
 ───────────────────────────────
    Total:        7 prompts
 ```
 
 ---
 
-## ✅ **ĐÃ HOÀN THÀNH (1)**
+## ✅ **ĐÃ HOÀN THÀNH (2)**
+
+### **Prompt 1.1: Edit Task Inline ✅**
+
+**Ngày hoàn thành:** November 9, 2025  
+**Thời gian:** 1.5 giờ (với AI)
+
+**Yêu cầu:**
+
+- Double-click task title → Chuyển thành input field
+- Enter/blur → Save changes (optimistic update)
+- ESC → Cancel và revert
+- Validation: Min 1 char, max 200 chars, trim whitespace
+- Loading indicator khi đang save
+- Error handling với rollback
+
+**Files generated:**
+
+```
+frontend/hooks/use-inline-edit.ts              (NEW - Reusable hook)
+frontend/lib/stores/tasks.ts                   (MODIFIED - Add updateTaskTitle action)
+frontend/components/tasks/task-item.tsx        (MODIFIED - Integrate inline edit)
+```
+
+**Tech stack sử dụng:**
+
+- React hooks (useState, useRef, useCallback, useEffect)
+- Zustand - State management với optimistic updates
+- Supabase - Database sync
+- shadcn/ui Toast - User feedback
+
+**Testing:**
+
+- ✅ Double-click works: Auto-focus + select text
+- ✅ Enter saves: Works
+- ✅ Blur saves: Works
+- ✅ ESC cancels: Works
+- ✅ Empty validation: Shows error toast
+- ✅ Max length validation: Shows error toast
+- ✅ Optimistic update: UI updates immediately
+- ✅ Rollback on error: Reverts to original title
+
+**Code quality:**
+
+- TypeScript: ✅ Zero errors
+- ESLint: ✅ Zero warnings
+- Build: ✅ Success
+- Reusability: ✅ Hook can be reused for other inline edits
+
+**Features implemented:**
+
+1. **useInlineEdit hook** - Fully reusable for future features (priority edit, project name, etc.)
+2. **Optimistic UI pattern** - Update local state first, sync DB after
+3. **Graceful error handling** - Rollback on failure with user notification
+4. **Accessibility** - ARIA labels, keyboard navigation (Enter, ESC)
+5. **Visual feedback** - Loading spinner, hover states, focus ring
+
+**Notes:**
+
+- AI-generated hook structure rất clean và reusable
+- Optimistic update pattern từ Zustand hoạt động hoàn hảo
+- TypeScript strict mode giúp catch lỗi sớm
+- Toast notification cần import từ shadcn/ui (đã có sẵn)
+
+**Prompt original:**
+(Xem file: `docs/02_ai-prompts/AI_PROMPTS.md` - Prompt 1.1, Lines 50-120)
+
+---
 
 ### **Prompt 1: Kanban Board Component ✅**
 
@@ -81,17 +148,12 @@ _Chưa có prompt nào đang làm dở._
 
 ---
 
-## 📋 **KẾ HOẠCH TUẦN NÀY (6)**
-
-### **Prompt 1.1: Edit Task Inline 📋**
-
-**Timeline:** Nov 9 (Thứ 7 sáng)  
-**Status:** Ready to start
+## 📋 **KẾ HOẠCH TUẦN NÀY (5)**
 
 ### **Prompt 1.2: Set Priority UI 📋**
 
 **Timeline:** Nov 9 (Thứ 7 chiều)  
-**Status:** Pending
+**Status:** Ready to start
 
 ### **Prompt 1.3: Add Tags 📋**
 
@@ -170,29 +232,49 @@ Khi hoàn thành prompt, copy template này và điền thông tin:
 ### **Completion Rate:**
 
 ```
-Week 0:  1/7 prompts  (14%)
+Week 0:  2/7 prompts  (29%)
 Target:  7/7 prompts  (100% by Nov 11)
 ```
 
 ### **Average Time per Prompt:**
 
 ```
-Prompt 1 (Kanban):  2 hours
-Expected average:   1.5-2 hours (với AI)
+Prompt 1 (Kanban):       2.0 hours
+Prompt 1.1 (Inline Edit): 1.5 hours
+Expected average:        1.5-2 hours (với AI)
 ```
 
 ### **Success Rate:**
 
 ```
-First-try success:  0/1  (0%)   - Cần fix bugs
-Second-try success: 1/1  (100%) - Works sau khi fix
+First-try success:  1/2  (50%)  - Prompt 1.1 works ngay
+Second-try success: 2/2  (100%) - All work sau khi fix/test
 ```
 
-**Insight:** AI generate code tốt nhưng thường cần test & fix 1-2 bugs nhỏ.
+**Insight:** AI generate code ngày càng tốt hơn. Prompt 1.1 chạy ngay lần đầu!
 
 ---
 
 ## 🎓 **LESSONS LEARNED**
+
+### **From Prompt 1.1 (Edit Task Inline):**
+
+1. **✅ AI làm tốt:**
+
+   - Generate reusable hook với clean architecture
+   - Implement optimistic update pattern chính xác
+   - TypeScript types đầy đủ và chính xác
+   - Error handling comprehensive
+
+2. **⚠️ AI làm chưa tốt:**
+
+   - Ref type ban đầu bị lỗi (HTMLInputElement vs HTMLInputElement | null)
+   - Cần adjust sau khi test
+
+3. **💡 Tips cho lần sau:**
+   - Tạo reusable hooks ngay từ đầu (tiết kiệm thời gian sau)
+   - Test validation edge cases (empty, max length, special chars)
+   - Optimistic update pattern là best practice cho UX
 
 ### **From Prompt 1 (Kanban):**
 
@@ -222,5 +304,5 @@ Second-try success: 1/1  (100%) - Works sau khi fix
 
 ---
 
-**Last Updated:** November 8, 2025  
-**Next Update:** November 9, 2025 (sau khi xong Prompt 1.1)
+**Last Updated:** November 9, 2025  
+**Next Update:** November 9, 2025 (sau khi xong Prompt 1.2)

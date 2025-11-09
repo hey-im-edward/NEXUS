@@ -9,7 +9,7 @@
 
 ## ⚡ TL;DR - Đọc ngay
 
-### ✅ **ĐÃ HOÀN THÀNH (Hôm qua - 7/11/2025)**
+### ✅ **ĐÃ HOÀN THÀNH (Hôm qua - 8/11/2025)**
 
 - ✅ **Database v2** - Deployed (11 tables)
 - ✅ **Authentication** - Google OAuth working
@@ -17,23 +17,24 @@
 - ✅ **Kanban Board** - 100% hoàn thành (Prompt 1)
 - ✅ **/today page** - My Day view functional
 - ✅ **/inbox page** - Inbox view functional
+- ✅ **Edit Task Inline** - Double-click to edit (Prompt 1.1) - Nov 9
 
 **Kết quả:** Ahead of schedule! 🎉
 
 ---
 
-## 🔥 **LÀM TIẾP HÔM NAY (8/11/2025)**
+## 🔥 **LÀM TIẾP HÔM NAY (9/11/2025)**
 
-### **Prompt tiếp theo: 1.1 - Edit Task Inline**
+### **Prompt tiếp theo: 1.2 - Set Priority UI**
 
-**File prompt:** `docs/02_ai-prompts/AI_PROMPTS.md` (Dòng 50-75)
+**File prompt:** `docs/02_ai-prompts/AI_PROMPTS.md` (Dòng 140-200)
 
 **Yêu cầu:**
 
-- Double-click vào task title → Chuyển thành input field
-- Enter/blur → Save
-- ESC → Cancel
+- Click priority badge → Dropdown với 5 options (Urgent/High/Medium/Low/None)
+- Colored badges (🔴 Urgent, 🟠 High, 🟡 Medium, 🔵 Low, ⚪ None)
 - Optimistic update (UI update ngay lập tức)
+- Update task.priority trong Supabase
 
 **Thời gian ước tính:** 1-2 giờ (với AI)
 
@@ -43,7 +44,7 @@
 
 ```bash
 1. Mở docs/02_ai-prompts/AI_PROMPTS.md
-2. Copy Prompt 1.1 (Edit Task Inline)
+2. Copy Prompt 1.2 (Set Priority UI)
 3. Paste vào ChatGPT/Claude
 4. AI generate code → Copy vào VS Code
 5. Test tại /today page
@@ -57,18 +58,18 @@
 
 ### **Thứ 7 (9/11):**
 
-- ✅ **Sáng:** Prompt 1.1 - Edit Task Inline (1-2h)
-- ✅ **Chiều:** Prompt 1.2 - Set Priority UI (1-2h)
+- [x] **Sáng:** Prompt 1.1 - Edit Task Inline (1.5h) ✅
+- [ ] **Chiều:** Prompt 1.2 - Set Priority UI (1-2h)
 
 ### **Chủ nhật (10/11):**
 
-- ✅ **Sáng:** Prompt 1.3 - Add Tags (1-2h)
-- ✅ **Chiều:** Prompt 1.4 - Task Detail Modal (2-3h)
+- [ ] **Sáng:** Prompt 1.3 - Add Tags (1-2h)
+- [ ] **Chiều:** Prompt 1.4 - Task Detail Modal (2-3h)
 
 ### **Thứ 2 (11/11):**
 
-- ✅ **Sáng:** Prompt 1.5 - Delete Task (1-2h)
-- ✅ **Chiều:** Prompt 1.6 - Keyboard Shortcuts (2-3h)
+- [ ] **Sáng:** Prompt 1.5 - Delete Task (1-2h)
+- [ ] **Chiều:** Prompt 1.6 - Keyboard Shortcuts (2-3h)
 
 **Mục tiêu cuối tuần:** Task Management 80% polished ✨
 
@@ -79,7 +80,8 @@
 ### **Week 0 (Tuần này - 7-13/11):**
 
 - [x] Kanban Board 100%
-- [ ] Task Management Polish 80%
+- [x] Edit Task Inline (Prompt 1.1) ✅
+- [ ] Task Management Polish 80% (4/6 prompts)
 - [ ] 3-5 User Interviews
 
 ### **Week 1 (14-20/11):**
@@ -107,7 +109,8 @@
 ✅ Authentication (Google)        100%
 ✅ Task CRUD Basic                100%
 ✅ Kanban Board                   100%
-⚠️ Task Management Polish          30% ← Đang làm tuần này
+✅ Edit Task Inline               100% ← Vừa xong hôm nay!
+⚠️ Task Management Polish          40% ← Đang làm tuần này
 ❌ Recurring Tasks                  0%
 ❌ Calendar View                    0%
 ❌ Pages (Tiptap)                   0%
@@ -246,7 +249,7 @@
 **Bước tiếp theo của bạn:**
 
 1. ✅ Mở `docs/02_ai-prompts/AI_PROMPTS.md`
-2. ✅ Tìm "Prompt 1.1 - Edit Task Inline"
+2. ✅ Tìm "Prompt 1.2 - Set Priority UI"
 3. ✅ Copy prompt
 4. ✅ Paste vào ChatGPT/Claude
 5. ✅ Generate code
@@ -254,7 +257,7 @@
 7. ✅ Celebrate! 🎉
 
 **Thời gian làm:** 1-2 giờ
-**Kết quả:** Task management tốt hơn 30%
+**Kết quả:** Task management tốt hơn 20%
 
 ---
 
@@ -262,5 +265,5 @@
 
 ---
 
-**Last Updated:** November 8, 2025
-**Next Update:** November 9, 2025 (sau khi xong Prompt 1.1)
+**Last Updated:** November 9, 2025
+**Next Update:** November 9, 2025 (sau khi xong Prompt 1.2)

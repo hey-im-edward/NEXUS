@@ -2,16 +2,16 @@
 
 > **Mục đích:** Checklist TẤT CẢ tính năng - Đã làm, đang làm, chưa làm.
 
-**Cập nhật:** 8 tháng 11, 2025
+**Cập nhật:** 9 tháng 11, 2025
 
 ---
 
 ## 📊 **TỔNG QUAN**
 
 ```
-✅ Completed:     8 features  (20%)
-🔄 In Progress:   6 features  (15%)
-📋 Planned:      26 features  (65%)
+✅ Completed:     9 features  (23%)
+🔄 In Progress:   5 features  (13%)
+📋 Planned:      26 features  (64%)
 ─────────────────────────────────
    Total:        40 features
 ```
@@ -79,31 +79,38 @@
 - **Route:** `/projects`
 - **Ngày hoàn thành:** Nov 7, 2025
 
+#### ✅ 3.3 Edit Task Inline
+
+- **Mô tả:** Double-click task title → Edit inline, Enter/Blur to save, ESC to cancel
+- **Component:** `TaskItem.tsx` + `useInlineEdit` hook
+- **Ngày hoàn thành:** Nov 9, 2025
+- **Prompt:** Prompt 1.1 - AI_PROMPTS.md
+- **Features:**
+  - Optimistic UI updates
+  - Validation (min 1, max 200 chars)
+  - Loading indicator
+  - Error rollback
+  - Reusable hook for future inline edits
+
 ---
 
-## 🔄 **ĐANG LÀM (6 - Tuần này)**
+## 🔄 **ĐANG LÀM (5 - Tuần này)**
 
 ### **4. Task Management - Polish**
 
-#### 🔄 4.1 Edit Task Inline
-
-- **Mô tả:** Double-click task title → Edit
-- **Timeline:** Nov 9 (Thứ 7 sáng)
-- **Prompt:** Prompt 1.1
-
-#### 🔄 4.2 Set Priority
+#### 🔄 4.1 Set Priority
 
 - **Mô tả:** Dropdown chọn priority (Urgent/High/Medium/Low/None)
 - **Timeline:** Nov 9 (Thứ 7 chiều)
 - **Prompt:** Prompt 1.2
 
-#### 🔄 4.3 Add Tags
+#### 🔄 4.2 Add Tags
 
-- **Mô tả:** Thêm tags cho task (#work, #personal, etc.)
+- **Mô tả:** Add/remove tags cho tasks (#work, #personal)
 - **Timeline:** Nov 10 (Chủ nhật sáng)
 - **Prompt:** Prompt 1.3
 
-#### 🔄 4.4 Task Detail Modal
+#### 🔄 4.3 Task Detail Modal
 
 - **Mô tả:** Click task → Modal hiện full info (description, due date, priority, tags)
 - **Timeline:** Nov 10 (Chủ nhật chiều)
