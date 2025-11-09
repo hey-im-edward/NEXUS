@@ -1,6 +1,7 @@
 import { Task, TaskPriority, TaskStatus } from '@/types';
 import { create } from 'zustand';
 import { immer } from 'zustand/middleware/immer';
+import { createClient } from '@/lib/supabase/client';
 
 /**
  * TASK STORE
@@ -39,6 +40,7 @@ interface TaskState {
   setTasks: (tasks: Task[]) => void;
   addTask: (task: Task) => void;
   updateTask: (id: string, updates: Partial<Task>) => void;
+  updateTaskTitle: (taskId: string, newTitle: string) => Promise<void>;
   deleteTask: (id: string) => void;
   reorderTasks: (taskIds: string[]) => void;
   
@@ -77,6 +79,48 @@ export const useTaskStore = create<TaskState>()(
         state.tasks[index] = { ...state.tasks[index], ...updates };
       }
     }),
+    
+    updateTaskTitle: async (taskId: string, newTitle: string) => {
+      const supabase = createClient();
+      const originalTask = get().getTaskById(taskId);
+      if (!originalTask) return;
+      
+      // 1. Optimistic update (instant UI change)
+      set((state) => {
+        const index = state.tasks.findIndex(t => t.id === taskId);
+        if (index !== -1) {
+          state.tasks[index].title = newTitle;
+          state.tasks[index].updated_at = new Date().toISOString();
+        }
+      });
+      
+      try {
+        // 2. Sync with Supabase
+        const { error } = await supabase
+          .from('tasks')
+          .update({ 
+            title: newTitle,
+            updated_at: new Date().toISOString()
+          })
+          .eq('id', taskId);
+        
+        if (error) throw error;
+        
+      } catch (error) {
+        // 3. Rollback on error
+        console.error('Failed to update task title:', error);
+        
+        set((state) => {
+          const index = state.tasks.findIndex(t => t.id === taskId);
+          if (index !== -1) {
+            state.tasks[index].title = originalTask.title;
+            state.tasks[index].updated_at = originalTask.updated_at;
+          }
+        });
+        
+        throw error; // Re-throw để component handle error
+      }
+    },
     
     deleteTask: (id) => set((state) => {
       state.tasks = state.tasks.filter(t => t.id !== id);

@@ -4,7 +4,9 @@ import { Checkbox } from '@/components/ui/checkbox';
 import { cn } from '@/lib/utils';
 import { Task } from '@/types';
 import { format } from 'date-fns';
-import { Calendar, Flag, MoreHorizontal } from 'lucide-react';
+import { Calendar, Flag, MoreHorizontal, Loader2 } from 'lucide-react';
+import { useInlineEdit } from '@/hooks/use-inline-edit';
+import { useTaskStore } from '@/lib/stores/tasks';
 
 /**
  * TaskItem Component
@@ -35,6 +37,26 @@ const PRIORITY_COLORS = {
 
 export function TaskItem({ task, onToggle, onClick, className }: TaskItemProps) {
   const isOverdue = task.due_date && new Date(task.due_date) < new Date() && task.status !== 'done';
+  const updateTaskTitle = useTaskStore((state) => state.updateTaskTitle);
+  
+  // Inline edit functionality
+  const {
+    isEditing,
+    editValue,
+    isSaving,
+    inputRef,
+    handleStartEdit,
+    handleSave,
+    handleKeyDown,
+    setEditValue,
+  } = useInlineEdit({
+    initialValue: task.title,
+    onSave: async (newTitle) => {
+      await updateTaskTitle(task.id, newTitle);
+    },
+    maxLength: 200,
+    minLength: 1,
+  });
   
   return (
     <div
@@ -56,18 +78,48 @@ export function TaskItem({ task, onToggle, onClick, className }: TaskItemProps) 
       {/* Content */}
       <div className="flex-1 min-w-0">
         <div className="flex items-center gap-2">
-          {/* Title */}
-          <span
-            className={cn(
-              'text-sm font-medium truncate',
-              task.status === 'done' && 'line-through text-muted-foreground'
-            )}
-          >
-            {task.title}
-          </span>
+          {/* Title - Inline Editable */}
+          {isEditing ? (
+            <input
+              ref={inputRef}
+              type="text"
+              value={editValue}
+              onChange={(e) => setEditValue(e.target.value)}
+              onKeyDown={handleKeyDown}
+              onBlur={handleSave}
+              className={cn(
+                'flex-1 px-2 py-1 text-sm font-medium border-2 border-blue-500 rounded',
+                'focus:ring-2 focus:ring-blue-300 outline-none',
+                'transition-all duration-150'
+              )}
+              disabled={isSaving}
+              aria-label="Edit task title"
+              onClick={(e) => e.stopPropagation()}
+            />
+          ) : (
+            <span
+              onDoubleClick={(e) => {
+                e.stopPropagation();
+                handleStartEdit();
+              }}
+              className={cn(
+                'text-sm font-medium truncate cursor-text',
+                'hover:bg-accent/30 px-2 py-1 rounded transition-colors',
+                task.status === 'done' && 'line-through text-muted-foreground'
+              )}
+              title="Double-click to edit"
+            >
+              {task.title}
+            </span>
+          )}
+          
+          {/* Loading Indicator */}
+          {isSaving && (
+            <Loader2 className="h-3 w-3 animate-spin text-blue-500 shrink-0" />
+          )}
           
           {/* Priority Flag */}
-          {task.priority !== 'none' && (
+          {task.priority !== 'none' && !isEditing && (
             <Flag className={cn('h-3 w-3 shrink-0', PRIORITY_COLORS[task.priority])} />
           )}
         </div>
