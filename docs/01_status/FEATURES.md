@@ -9,16 +9,16 @@
 ## 📊 **TỔNG QUAN**
 
 ```
-✅ Completed:     9 features  (23%)
-🔄 In Progress:   5 features  (13%)
-📋 Planned:      26 features  (64%)
+✅ Completed:    10 features  (25%)
+🔄 In Progress:   4 features  (10%)
+📋 Planned:      26 features  (65%)
 ─────────────────────────────────
    Total:        40 features
 ```
 
 ---
 
-## ✅ **ĐÃ HOÀN THÀNH (8)**
+## ✅ **ĐÃ HOÀN THÀNH (10)**
 
 ### **1. Database & Authentication**
 
@@ -92,23 +92,32 @@
   - Error rollback
   - Reusable hook for future inline edits
 
+#### ✅ 3.4 Set Task Priority
+
+- **Mô tả:** Click priority badge → Dropdown chọn priority (Urgent/High/Medium/Low/None)
+- **Component:** `TaskPrioritySelect.tsx` + `TaskPriorityBadge.tsx`
+- **Ngày hoàn thành:** Nov 9, 2025
+- **Prompt:** Prompt 1.2 - AI_PROMPTS.md
+- **Features:**
+  - Colored priority badges (🔴🟠🟡🔵⚪)
+  - Optimistic UI updates
+  - Network timeout detection (5s)
+  - Keyboard navigation (↑↓ arrows, Enter, ESC)
+  - Focus management & visual indicators
+  - shadcn/ui Popover integration
+
 ---
 
-## 🔄 **ĐANG LÀM (5 - Tuần này)**
+## 🔄 **ĐANG LÀM (4 - Tuần này)**
 
 ### **4. Task Management - Polish**
-
-#### 🔄 4.1 Set Priority
-
-- **Mô tả:** Dropdown chọn priority (Urgent/High/Medium/Low/None)
-- **Timeline:** Nov 9 (Thứ 7 chiều)
-- **Prompt:** Prompt 1.2
 
 #### 🔄 4.2 Add Tags
 
 - **Mô tả:** Add/remove tags cho tasks (#work, #personal)
 - **Timeline:** Nov 10 (Chủ nhật sáng)
 - **Prompt:** Prompt 1.3
+- **Status:** Next in queue
 
 #### 🔄 4.3 Task Detail Modal
 
@@ -330,7 +339,7 @@
 ## 📈 **PROGRESS TIMELINE**
 
 ```
-Week 0  (Nov 7-13):   [████████░░░░░░░░░░] 40%  ← You are here
+Week 0  (Nov 7-13):   [██████████░░░░░░░░] 50%  ← You are here (Ahead!)
 Week 1  (Nov 14-20):  [██████████████░░░░] 70%
 Week 2  (Nov 21-27):  [████████████████░░] 80%
 Week 3  (Nov 28-Dec4): [██████████████████] 90%
@@ -347,5 +356,5 @@ Week 4+ (Dec 5+):     [███████████████████
 
 ---
 
-**Last Updated:** November 8, 2025  
-**Next Update:** November 9, 2025 (khi xong Prompt 1.1)
+**Last Updated:** November 9, 2025  
+**Next Update:** November 10, 2025 (khi xong Prompt 1.3 - Add Tags)

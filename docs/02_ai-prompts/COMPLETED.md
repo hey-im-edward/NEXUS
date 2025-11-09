@@ -9,16 +9,102 @@
 ## 📊 **TỔNG QUAN**
 
 ```
-✅ Completed:    2 prompts  (29%)
+✅ Completed:    3 prompts  (43%)
 🔄 In Progress:  0 prompts  (0%)
-📋 Planned:      5 prompts  (71%)
+📋 Planned:      4 prompts  (57%)
 ───────────────────────────────
    Total:        7 prompts
 ```
 
 ---
 
-## ✅ **ĐÃ HOÀN THÀNH (2)**
+## ✅ **ĐÃ HOÀN THÀNH (3)**
+
+### **Prompt 1.2: Set Priority UI ✅**
+
+**Ngày hoàn thành:** November 9, 2025  
+**Thời gian:** 1 giờ (với AI)
+
+**Yêu cầu:**
+
+- Click priority badge → Dropdown với 5 options (Urgent/High/Medium/Low/None)
+- Colored badges (🔴 Urgent, 🟠 High, 🟡 Medium, 🔵 Low, ⚪ None)
+- Optimistic update (UI update ngay lập tức)
+- Update task.priority trong Supabase
+- Keyboard navigation (Arrow keys, Enter, Escape)
+- Network timeout detection (5 seconds)
+
+**Files generated:**
+
+```
+frontend/lib/constants/priority.ts                    (NEW - Priority config)
+frontend/components/tasks/task-priority-badge.tsx     (NEW - Badge component)
+frontend/components/tasks/task-priority-select.tsx    (NEW - Dropdown selector)
+frontend/components/ui/popover.tsx                    (NEW - shadcn/ui component)
+frontend/lib/stores/tasks.ts                          (MODIFIED - Add updateTaskPriority)
+frontend/components/tasks/task-item.tsx               (MODIFIED - Integrate priority UI)
+```
+
+**Tech stack sử dụng:**
+
+- shadcn/ui Popover - Dropdown component
+- Zustand - State management với optimistic updates
+- Supabase - Database sync với timeout detection
+- Lucide React - Icons (Flag, Check)
+- TailwindCSS - Styling với color variants
+
+**Testing:**
+
+- ✅ Badge displays correct colors
+- ✅ Click badge → Popover opens
+- ✅ Select priority → UI updates instantly
+- ✅ Popover closes after selection
+- ✅ Supabase syncs successfully
+- ✅ Offline rollback works (5s timeout)
+- ✅ Keyboard navigation (↑↓ arrows, Enter, ESC)
+- ✅ Visual focus indicator (ring-2)
+- ✅ No conflict with inline edit
+
+**Bugs phát hiện & fixed:**
+
+1. ✅ Rollback chỉ xảy ra khi reconnect - FIXED (Add 5s timeout với Promise.race)
+2. ✅ Keyboard navigation không hoạt động - FIXED (Add focus management + keyboard handlers)
+3. ✅ Multiple clicks khi đang update - FIXED (Add isUpdating state)
+
+**Code quality:**
+
+- TypeScript: ✅ Zero errors
+- ESLint: ✅ Zero warnings
+- Build: ✅ Success
+- Accessibility: ✅ ARIA labels, keyboard nav, focus management
+
+**Features implemented:**
+
+1. **PRIORITY_CONFIG constant** - Centralized config cho colors, labels, icons
+2. **TaskPriorityBadge** - Reusable badge component với tooltip
+3. **TaskPrioritySelect** - Dropdown với keyboard navigation
+4. **Optimistic update với timeout** - 5s timeout để detect offline nhanh hơn
+5. **Full keyboard support** - Arrow keys, Enter, Escape
+6. **Visual feedback** - Focus ring, hover states, disabled state
+
+**Notes:**
+
+- shadcn/ui Popover install smooth (npx shadcn@latest add popover)
+- Promise.race pattern để detect network timeout rất hiệu quả
+- Keyboard navigation cần focus management với refs
+- PRIORITY_CONFIG giúp maintain consistency dễ dàng
+- Component architecture tốt: Badge + Select tách biệt, reusable
+
+**Improvements made after testing:**
+
+1. Network timeout detection: 5 giây thay vì chờ Supabase timeout
+2. Keyboard navigation: Full support với visual focus indicator
+3. Loading state: Prevent multiple clicks khi đang update
+
+**Prompt original:**
+(Xem file: `docs/02_ai-prompts/AI_PROMPTS.md` - Prompt 1.2, Lines 140-200)
+
+---
 
 ### **Prompt 1.1: Edit Task Inline ✅**
 
@@ -148,17 +234,12 @@ _Chưa có prompt nào đang làm dở._
 
 ---
 
-## 📋 **KẾ HOẠCH TUẦN NÀY (5)**
-
-### **Prompt 1.2: Set Priority UI 📋**
-
-**Timeline:** Nov 9 (Thứ 7 chiều)  
-**Status:** Ready to start
+## 📋 **KẾ HOẠCH TUẦN NÀY (4)**
 
 ### **Prompt 1.3: Add Tags 📋**
 
 **Timeline:** Nov 10 (Chủ nhật sáng)  
-**Status:** Pending
+**Status:** Next in queue
 
 ### **Prompt 1.4: Task Detail Modal 📋**
 
@@ -239,23 +320,45 @@ Target:  7/7 prompts  (100% by Nov 11)
 ### **Average Time per Prompt:**
 
 ```
-Prompt 1 (Kanban):       2.0 hours
-Prompt 1.1 (Inline Edit): 1.5 hours
-Expected average:        1.5-2 hours (với AI)
+Prompt 1 (Kanban):         2.0 hours
+Prompt 1.1 (Inline Edit):  1.5 hours
+Prompt 1.2 (Set Priority): 1.0 hours
+Expected average:          1.0-1.5 hours (với AI) ⚡ Improving!
 ```
 
 ### **Success Rate:**
 
 ```
-First-try success:  1/2  (50%)  - Prompt 1.1 works ngay
-Second-try success: 2/2  (100%) - All work sau khi fix/test
+First-try success:  2/3  (67%)  - Prompt 1.1 & 1.2 works gần như ngay
+Second-try success: 3/3  (100%) - All work sau khi fix/test
 ```
 
-**Insight:** AI generate code ngày càng tốt hơn. Prompt 1.1 chạy ngay lần đầu!
+**Insight:** AI generate code ngày càng tốt hơn. Prompts chi tiết → Code quality cao!
 
 ---
 
 ## 🎓 **LESSONS LEARNED**
+
+### **From Prompt 1.2 (Set Priority UI):**
+
+1. **✅ AI làm tốt:**
+
+   - Generate component architecture sạch (Badge + Select tách biệt)
+   - shadcn/ui integration smooth
+   - TypeScript types đầy đủ cho constants
+   - Popover component setup chính xác
+
+2. **⚠️ AI làm chưa tốt:**
+
+   - Thiếu network timeout detection (phải thêm Promise.race)
+   - Thiếu keyboard navigation (phải implement focus management)
+   - Tooltip component chưa có sẵn (dùng title attribute thay thế)
+
+3. **💡 Tips cho lần sau:**
+   - Always test offline scenarios (network timeout critical)
+   - Keyboard navigation là must-have cho accessibility
+   - Constants file giúp maintain consistency tốt hơn
+   - Promise.race pattern tốt cho timeout detection
 
 ### **From Prompt 1.1 (Edit Task Inline):**
 
@@ -305,4 +408,4 @@ Second-try success: 2/2  (100%) - All work sau khi fix/test
 ---
 
 **Last Updated:** November 9, 2025  
-**Next Update:** November 9, 2025 (sau khi xong Prompt 1.2)
+**Next Update:** November 10, 2025 (sau khi xong Prompt 1.3 - Add Tags)

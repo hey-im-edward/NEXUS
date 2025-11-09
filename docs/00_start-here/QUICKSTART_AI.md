@@ -9,7 +9,7 @@
 
 ## ⚡ TL;DR - Đọc ngay
 
-### ✅ **ĐÃ HOÀN THÀNH (Hôm qua - 8/11/2025)**
+### ✅ **ĐÃ HOÀN THÀNH (Hôm nay - 9/11/2025)**
 
 - ✅ **Database v2** - Deployed (11 tables)
 - ✅ **Authentication** - Google OAuth working
@@ -17,24 +17,26 @@
 - ✅ **Kanban Board** - 100% hoàn thành (Prompt 1)
 - ✅ **/today page** - My Day view functional
 - ✅ **/inbox page** - Inbox view functional
-- ✅ **Edit Task Inline** - Double-click to edit (Prompt 1.1) - Nov 9
+- ✅ **Edit Task Inline** - Double-click to edit (Prompt 1.1) ✅
+- ✅ **Set Priority UI** - Colored badges + dropdown (Prompt 1.2) ✅
 
-**Kết quả:** Ahead of schedule! 🎉
+**Kết quả:** Ahead of schedule! 🎉 2 prompts done in 1 day!
 
 ---
 
-## 🔥 **LÀM TIẾP HÔM NAY (9/11/2025)**
+## 🔥 **LÀM TIẾP HÔM NAY (10/11/2025)**
 
-### **Prompt tiếp theo: 1.2 - Set Priority UI**
+### **Prompt tiếp theo: 1.3 - Add Tags**
 
-**File prompt:** `docs/02_ai-prompts/AI_PROMPTS.md` (Dòng 140-200)
+**File prompt:** `docs/02_ai-prompts/AI_PROMPTS.md` (Dòng 200-300)
 
 **Yêu cầu:**
 
-- Click priority badge → Dropdown với 5 options (Urgent/High/Medium/Low/None)
-- Colored badges (🔴 Urgent, 🟠 High, 🟡 Medium, 🔵 Low, ⚪ None)
-- Optimistic update (UI update ngay lập tức)
-- Update task.priority trong Supabase
+- Tag input với auto-suggest từ existing tags
+- Colored pills display (#work, #personal, etc.)
+- Many-to-many relationship (task_tags table)
+- Click "x" to remove tag
+- Color generation từ tag name (consistent hash)
 
 **Thời gian ước tính:** 1-2 giờ (với AI)
 
@@ -44,7 +46,7 @@
 
 ```bash
 1. Mở docs/02_ai-prompts/AI_PROMPTS.md
-2. Copy Prompt 1.2 (Set Priority UI)
+2. Copy Prompt 1.3 (Add Tags)
 3. Paste vào ChatGPT/Claude
 4. AI generate code → Copy vào VS Code
 5. Test tại /today page
@@ -54,12 +56,7 @@
 
 ---
 
-## 📋 **SAU ĐÓ - TUẦN NÀY (9-11/11)**
-
-### **Thứ 7 (9/11):**
-
-- [x] **Sáng:** Prompt 1.1 - Edit Task Inline (1.5h) ✅
-- [ ] **Chiều:** Prompt 1.2 - Set Priority UI (1-2h)
+## 📋 **SAU ĐÓ - TUẦN NÀY (10-11/11)**
 
 ### **Chủ nhật (10/11):**
 
@@ -79,9 +76,10 @@
 
 ### **Week 0 (Tuần này - 7-13/11):**
 
-- [x] Kanban Board 100%
+- [x] Kanban Board 100% ✅
 - [x] Edit Task Inline (Prompt 1.1) ✅
-- [ ] Task Management Polish 80% (4/6 prompts)
+- [x] Set Priority UI (Prompt 1.2) ✅
+- [ ] Task Management Polish 66%+ (4/6 prompts)
 - [ ] 3-5 User Interviews
 
 ### **Week 1 (14-20/11):**
@@ -109,8 +107,9 @@
 ✅ Authentication (Google)        100%
 ✅ Task CRUD Basic                100%
 ✅ Kanban Board                   100%
-✅ Edit Task Inline               100% ← Vừa xong hôm nay!
-⚠️ Task Management Polish          40% ← Đang làm tuần này
+✅ Edit Task Inline               100% ✅
+✅ Set Priority UI                100% ← Vừa xong hôm nay!
+⚠️ Task Management Polish          50% ← Đang làm tuần này
 ❌ Recurring Tasks                  0%
 ❌ Calendar View                    0%
 ❌ Pages (Tiptap)                   0%
@@ -199,6 +198,7 @@
 → Check browser console (F12)
 → Check Supabase logs
 → Test từng function riêng lẻ
+→ Kiểm tra network timeout (offline rollback)
 ```
 
 **3. Không biết làm gì tiếp:**
@@ -230,17 +230,17 @@
 
 ### **Khi code (10:00-16:00):**
 
-- [ ] Copy prompt → Paste AI
-- [ ] Generate code → Test
-- [ ] Fix bugs → Commit
-- [ ] Repeat
+- [x] Copy prompt → Paste AI
+- [x] Generate code → Test
+- [x] Fix bugs → Commit
+- [x] Repeat
 
 ### **Mỗi tối (18:00):**
 
-- [ ] Update docs/02_ai-prompts/COMPLETED.md
-- [ ] Update docs/01_status/FEATURES.md (nếu xong feature)
-- [ ] Commit + Push code
-- [ ] Plan ngày mai (đọc prompt tiếp theo)
+- [x] Update docs/02_ai-prompts/COMPLETED.md
+- [x] Update docs/01_status/FEATURES.md (nếu xong feature)
+- [x] Commit + Push code
+- [x] Plan ngày mai (đọc prompt tiếp theo)
 
 ---
 
@@ -249,7 +249,7 @@
 **Bước tiếp theo của bạn:**
 
 1. ✅ Mở `docs/02_ai-prompts/AI_PROMPTS.md`
-2. ✅ Tìm "Prompt 1.2 - Set Priority UI"
+2. ✅ Tìm "Prompt 1.3 - Add Tags"
 3. ✅ Copy prompt
 4. ✅ Paste vào ChatGPT/Claude
 5. ✅ Generate code
@@ -266,4 +266,4 @@
 ---
 
 **Last Updated:** November 9, 2025
-**Next Update:** November 9, 2025 (sau khi xong Prompt 1.2)
+**Next Update:** November 10, 2025 (sau khi xong Prompt 1.3 - Add Tags)
