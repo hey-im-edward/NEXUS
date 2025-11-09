@@ -1,12 +1,13 @@
 'use client';
 
 import { Checkbox } from '@/components/ui/checkbox';
+import { useInlineEdit } from '@/hooks/use-inline-edit';
+import { useTaskStore } from '@/lib/stores/tasks';
 import { cn } from '@/lib/utils';
 import { Task } from '@/types';
 import { format } from 'date-fns';
-import { Calendar, Flag, MoreHorizontal, Loader2 } from 'lucide-react';
-import { useInlineEdit } from '@/hooks/use-inline-edit';
-import { useTaskStore } from '@/lib/stores/tasks';
+import { Calendar, Loader2, MoreHorizontal } from 'lucide-react';
+import { TaskPrioritySelect } from './task-priority-select';
 
 /**
  * TaskItem Component
@@ -27,17 +28,10 @@ interface TaskItemProps {
   className?: string;
 }
 
-const PRIORITY_COLORS = {
-  none: 'text-gray-400',
-  low: 'text-blue-500',
-  medium: 'text-yellow-500',
-  high: 'text-orange-500',
-  urgent: 'text-red-500',
-};
-
 export function TaskItem({ task, onToggle, onClick, className }: TaskItemProps) {
   const isOverdue = task.due_date && new Date(task.due_date) < new Date() && task.status !== 'done';
   const updateTaskTitle = useTaskStore((state) => state.updateTaskTitle);
+  const updateTaskPriority = useTaskStore((state) => state.updateTaskPriority);
   
   // Inline edit functionality
   const {
@@ -57,6 +51,16 @@ export function TaskItem({ task, onToggle, onClick, className }: TaskItemProps) 
     maxLength: 200,
     minLength: 1,
   });
+  
+  // Priority change handler
+  const handlePriorityChange = async (taskId: string, priority: import('@/types').TaskPriority) => {
+    try {
+      await updateTaskPriority(taskId, priority);
+    } catch (error) {
+      console.error('Priority update failed:', error);
+      // Error toast would be nice here (future enhancement)
+    }
+  };
   
   return (
     <div
@@ -118,9 +122,13 @@ export function TaskItem({ task, onToggle, onClick, className }: TaskItemProps) 
             <Loader2 className="h-3 w-3 animate-spin text-blue-500 shrink-0" />
           )}
           
-          {/* Priority Flag */}
-          {task.priority !== 'none' && !isEditing && (
-            <Flag className={cn('h-3 w-3 shrink-0', PRIORITY_COLORS[task.priority])} />
+          {/* Priority Badge - Now clickable with dropdown */}
+          {!isEditing && (
+            <TaskPrioritySelect
+              taskId={task.id}
+              currentPriority={task.priority}
+              onSelect={handlePriorityChange}
+            />
           )}
         </div>
         

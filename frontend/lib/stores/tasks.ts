@@ -1,7 +1,7 @@
+import { createClient } from '@/lib/supabase/client';
 import { Task, TaskPriority, TaskStatus } from '@/types';
 import { create } from 'zustand';
 import { immer } from 'zustand/middleware/immer';
-import { createClient } from '@/lib/supabase/client';
 
 /**
  * TASK STORE
@@ -41,6 +41,7 @@ interface TaskState {
   addTask: (task: Task) => void;
   updateTask: (id: string, updates: Partial<Task>) => void;
   updateTaskTitle: (taskId: string, newTitle: string) => Promise<void>;
+  updateTaskPriority: (taskId: string, newPriority: TaskPriority) => Promise<void>;
   deleteTask: (id: string) => void;
   reorderTasks: (taskIds: string[]) => void;
   
@@ -114,6 +115,55 @@ export const useTaskStore = create<TaskState>()(
           const index = state.tasks.findIndex(t => t.id === taskId);
           if (index !== -1) {
             state.tasks[index].title = originalTask.title;
+            state.tasks[index].updated_at = originalTask.updated_at;
+          }
+        });
+        
+        throw error; // Re-throw để component handle error
+      }
+    },
+    
+    updateTaskPriority: async (taskId: string, newPriority: TaskPriority) => {
+      const supabase = createClient();
+      const originalTask = get().getTaskById(taskId);
+      if (!originalTask) return;
+      
+      // 1. Optimistic update (instant UI change)
+      set((state) => {
+        const index = state.tasks.findIndex(t => t.id === taskId);
+        if (index !== -1) {
+          state.tasks[index].priority = newPriority;
+          state.tasks[index].updated_at = new Date().toISOString();
+        }
+      });
+      
+      try {
+        // 2. Sync with Supabase (with timeout to detect offline faster)
+        const updatePromise = supabase
+          .from('tasks')
+          .update({ 
+            priority: newPriority,
+            updated_at: new Date().toISOString()
+          })
+          .eq('id', taskId);
+        
+        // Add 5 second timeout to detect network issues faster
+        const timeoutPromise = new Promise((_, reject) => {
+          setTimeout(() => reject(new Error('Network timeout')), 5000);
+        });
+        
+        const { error } = await Promise.race([updatePromise, timeoutPromise]) as any;
+        
+        if (error) throw error;
+        
+      } catch (error) {
+        // 3. Rollback on error
+        console.error('Failed to update task priority:', error);
+        
+        set((state) => {
+          const index = state.tasks.findIndex(t => t.id === taskId);
+          if (index !== -1) {
+            state.tasks[index].priority = originalTask.priority;
             state.tasks[index].updated_at = originalTask.updated_at;
           }
         });
