@@ -7,31 +7,45 @@
 
 ## 📋 **STEPS**
 
-### **1. Open Supabase Dashboard**
-
-```
-URL: https://supabase.com/dashboard/project/YOUR_PROJECT_ID
-Click: "SQL Editor" in left sidebar
-```
-
-### **2. Copy Migration Script**
+### **1. Install Supabase CLI (if not already installed)**
 
 ```bash
-# File location:
-docs/architecture/migrations/002_productivity_core_schema.sql
-
-# Or copy this entire file content
+npm install -g supabase
 ```
 
-### **3. Run in SQL Editor**
+### **2. Login and Link Project**
 
+```bash
+# Login to Supabase
+supabase login
+
+# Link to your project
+# Get project-ref from: Supabase Dashboard → Settings → General → Reference ID
+supabase link --project-ref YOUR-PROJECT-REF
 ```
-1. Click "+ New query" button
-2. Paste the entire migration script
-3. Click "Run" (or press Cmd/Ctrl + Enter)
-4. Wait 10-15 seconds
-5. Check for SUCCESS message
+
+### **3. Deploy Migrations**
+
+```bash
+# Push all migrations from supabase/migrations/ to cloud database
+supabase db push
+
+# This will:
+# - Run all migrations in order (by timestamp)
+# - Track which migrations have been applied
+# - Show success/error for each migration
 ```
+
+**Alternative: Manual SQL (Fallback)**
+
+If you prefer to run SQL manually:
+
+1. Open Supabase Dashboard → SQL Editor
+2. Open migration files from `supabase/migrations/` in order:
+   - `20251107000000_add_documents_table.sql`
+   - `20251107000001_productivity_core_schema.sql`
+3. Copy and paste each file content
+4. Click "Run"
 
 ### **4. Verify Tables Created**
 
@@ -182,14 +196,61 @@ SELECT * FROM public.workspace_members WHERE user_id = 'YOUR_USER_ID';
 
 ---
 
-## 📚 **RELATED DOCS**
+## 🔄 **ROLLBACK MIGRATIONS**
 
-- Full documentation: `docs/PROJECT_STATUS.md`
-- Database schema reference: `docs/architecture/database-schema-v2-productivity.sql`
-- Architecture decisions: `docs/architecture/decisions.md`
-- Roadmap: `docs/ROADMAP_CHECKLIST.md`
+If you need to rollback a migration:
+
+```bash
+# List applied migrations
+supabase migration list
+
+# Rollback to a specific migration
+supabase db reset --version TIMESTAMP
+
+# Example: Rollback to before the last migration
+supabase db reset --version 20251107000000
+```
+
+**⚠️ Warning:** Rollback will reset database to that migration state. Make sure to backup data first!
 
 ---
 
-**Last Updated:** November 7, 2025  
+## 📚 **RELATED DOCS**
+
+- Full documentation: `docs/03_roadmap/PROJECT_STATUS.md`
+- Database schema reference: `docs/04_technical/architecture/database-schema-v2-productivity.sql`
+- Architecture decisions: `docs/04_technical/architecture/decisions.md`
+- Migration files: `supabase/migrations/`
+
+---
+
+## 🎯 **MIGRATION WORKFLOW**
+
+### **Creating New Migrations**
+
+```bash
+# Create a new migration file
+supabase migration new add_feature_name
+
+# This creates: supabase/migrations/YYYYMMDDHHMMSS_add_feature_name.sql
+# Edit the file, then:
+supabase db push
+```
+
+### **Local Development**
+
+```bash
+# Start local Supabase (runs all migrations automatically)
+supabase start
+
+# Reset local database (re-run all migrations)
+supabase db reset
+
+# Stop local Supabase
+supabase stop
+```
+
+---
+
+**Last Updated:** November 13, 2025  
 **Next:** Test task management, then start Kanban board

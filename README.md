@@ -18,7 +18,7 @@
 
 - **[docs/00_start-here/QUICKSTART_AI.md](./docs/00_start-here/QUICKSTART_AI.md)** ⭐ - Hôm nay làm gì tiếp? (Đọc mỗi sáng)
 - **[docs/02_ai-prompts/AI_PROMPTS.md](./docs/02_ai-prompts/AI_PROMPTS.md)** - Prompts để code với AI
-- **[THIS_WEEK.md](./THIS_WEEK.md)** - Focus tuần này (Cập nhật mỗi thứ 2)
+- **[docs/01_status/THIS_WEEK.md](./docs/01_status/THIS_WEEK.md)** - Focus tuần này (Cập nhật mỗi thứ 2)
 
 ### 🐛 **Gặp lỗi?**
 
@@ -28,26 +28,28 @@
 
 ---
 
-## � Trạng thái dự án
+## 📊 Trạng thái dự án
 
-**Giai đoạn:** Week 0 - User Research + Task Management Polish  
-**Cập nhật:** 8 tháng 11, 2025  
-**Tiến độ:** 40% (Tuần 0)
+**Giai đoạn:** Week 0 - Architecture & Design (Pivot to Platform)
+**Cập nhật:** 13 tháng 11, 2024
+**Tiến độ:** Week 0/12 - Platform MVP Focus
 
 ### ✅ Đã hoàn thành:
 
-- Database v2 deployed (11 tables)
-- Authentication (Google OAuth)
-- Task CRUD (add, display, complete)
-- Kanban Board 100% (Nov 8)
-- `/today`, `/inbox`, `/projects` pages
+- Database v2 deployed (11 tables) ✅
+- Authentication (Google OAuth) ✅
+- Task CRUD (add, display, complete) ✅
+- Task Management "đủ tốt" (Priority badges, Inline edit) ✅
+- Pivot decision documented ✅
 
-### 🔥 Đang làm tuần này:
+### 🔥 Đang làm tuần này (Week 0):
 
-- Task Management Polish (Edit inline, Priority, Tags, Modal, Delete, Shortcuts)
-- 3-5 User Interviews
+- Architecture Decision Record (ADR-001) cho App Mini system
+- Dashboard Grid wireframes (3 screens)
+- Research: react-grid-layout, Sandpack, iframe security
+- Technical spike (optional)
 
-**Chi tiết:** [docs/01_status/NOW.md](./docs/01_status/NOW.md) | [docs/03_roadmap/ROADMAP.md](./docs/03_roadmap/ROADMAP.md)
+**Chi tiết:** [docs/01_status/THIS_WEEK.md](./docs/01_status/THIS_WEEK.md) | [docs/03_roadmap/ROADMAP.md](./docs/03_roadmap/ROADMAP.md)
 
 ---
 
@@ -64,13 +66,12 @@ Deploy:    Vercel (frontend) + Supabase Cloud (database)
 
 ---
 
-## � Cấu trúc dự án
+## 📁 Cấu trúc dự án
 
 ```
 NEXUS/
 ├── README.md                           ← Bạn đang ở đây
 ├── QUICKSTART.md                       ← Cài đặt nhanh (15 phút)
-├── THIS_WEEK.md                        ← Focus tuần này
 │
 ├── docs/                               ← Documentation
 │   ├── 00_start-here/                  🎯 Bắt đầu tại đây
@@ -80,7 +81,7 @@ NEXUS/
 │   │   └── PROJECT_STRUCTURE.md        ← Cấu trúc folder/file
 │   │
 │   ├── 01_status/                      📊 Trạng thái
-│   │   ├── NOW.md                      ← Snapshot hiện tại
+│   │   ├── THIS_WEEK.md                ← Focus tuần hiện tại
 │   │   ├── FEATURES.md                 ← 40 features checklist
 │   │   ├── UI_UX.md                    ← UI components status
 │   │   └── BUGS.md                     ← Bug tracking
@@ -99,7 +100,7 @@ NEXUS/
 │   ├── 04_technical/                   ⚙️ Kỹ thuật
 │   │   ├── SETUP.md                    ← Hướng dẫn cài đặt
 │   │   ├── DEPLOY.md                   ← Deploy database
-│   │   └── architecture/               ← Database schema & migrations
+│   │   └── architecture/                ← Database schema & migrations
 │   │
 │   └── 05_research/                    🔬 User Research
 │       ├── user-personas.md
@@ -117,7 +118,7 @@ NEXUS/
 
 ---
 
-## � Quick Start
+## ⚡ Quick Start
 
 ```bash
 # 1. Clone repo
@@ -149,9 +150,9 @@ npm run dev  # http://localhost:3000
 
 ### **Planning & Status:**
 
-- [THIS_WEEK.md](./THIS_WEEK.md) - Focus tuần này
-- [docs/01_status/NOW.md](./docs/01_status/NOW.md) - Snapshot hiện tại
+- [docs/01_status/THIS_WEEK.md](./docs/01_status/THIS_WEEK.md) - Focus tuần này
 - [docs/01_status/FEATURES.md](./docs/01_status/FEATURES.md) - Checklist 40 features
+- [docs/01_status/UI_UX.md](./docs/01_status/UI_UX.md) - UI components status
 - [docs/03_roadmap/ROADMAP.md](./docs/03_roadmap/ROADMAP.md) - 12-week roadmap
 
 ### **Development:**
@@ -169,33 +170,44 @@ npm run dev  # http://localhost:3000
 
 ---
 
-## 🎯 Roadmap - 12 Tuần
+## 🎯 Roadmap - 12 Tuần (PIVOT TO PLATFORM)
 
-### **Week 0-3: User Research** ← YOU ARE HERE
+### **Week 0 (13-20/11): Architecture & Design** ← YOU ARE HERE
 
-- [x] Database deployed
-- [x] Task CRUD working
-- [x] Kanban Board done
-- [ ] 10 user interviews
-- [ ] Task Management polished
+- [x] Pivot decision documented ✅
+- [x] Update all documentation ✅
+- [ ] ADR-001: App Mini Architecture
+- [ ] Dashboard Grid wireframes
+- [ ] Technical spike: react-grid-layout
 
-### **Week 4-7: POC**
+### **Week 1 (21-27/11): Dashboard Infrastructure**
 
-- [ ] Recurring tasks (rrule)
-- [ ] Calendar view
-- [ ] Pages editor (Tiptap)
-- [ ] 20 signups target
+- [ ] Build DashboardGrid component
+- [ ] Build AppMiniCard wrapper
+- [ ] Layout persistence to Supabase
+- [ ] `/dashboard` route functional
 
-### **Week 8-11: MVP**
+### **Week 2 (28/11-4/12): First App Minis**
 
-- [ ] Payment integration
-- [ ] Teams/collaboration
-- [ ] Mobile responsive
-- [ ] 50+ signups, 10+ active users
+- [ ] Quick Notes app (localStorage)
+- [ ] Pomodoro Timer app
+- [ ] App registry system
 
-### **Week 12: GO/NO-GO Decision**
+### **Week 3-4 (5-18/12): App Builder v0.1**
 
-**Success Criteria:** 50+ signups, 10+ active, 1-2 paying, NPS >40
+- [ ] Builder canvas (drag-drop components)
+- [ ] 3 basic components (Input, Button, Text)
+- [ ] Save/load app definitions (JSON)
+
+### **Week 5-8: User Validation**
+
+- [ ] Public beta launch
+- [ ] 50 signups, 10 active users
+- [ ] 5 apps created by users
+
+### **Week 9-12: GO/NO-GO Decision**
+
+**Success Criteria:** 10+ active users, 1-2 paying, "apps built" metric growing
 
 **Chi tiết:** [docs/03_roadmap/ROADMAP.md](./docs/03_roadmap/ROADMAP.md)
 
@@ -203,14 +215,14 @@ npm run dev  # http://localhost:3000
 
 ## 🤝 Contributing
 
-Dự án đang trong giai đoạn **User Research** (Week 0).  
+Dự án đang trong giai đoạn **Architecture & Design** (Week 0 - Platform MVP).
 Hiện tại chưa nhận contributions từ bên ngoài.
 
 **Nếu bạn quan tâm:**
 
 - ⭐ Star repo này
 - 📧 Email: [your-email@example.com]
-- 💬 Tham gia user interviews (liên hệ qua email)
+- 💬 Follow progress tại [docs/01_status/THIS_WEEK.md](./docs/01_status/THIS_WEEK.md)
 
 ---
 
@@ -222,14 +234,14 @@ MIT License - Xem [LICENSE](./LICENSE) để biết chi tiết.
 
 ## 📞 Liên hệ
 
-**Developer:** Edward  
-**GitHub:** [@hey-im-edward](https://github.com/hey-im-edward)  
+**Developer:** Edward
+**GitHub:** [@hey-im-edward](https://github.com/hey-im-edward)
 **Project:** [NEXUS](https://github.com/hey-im-edward/NEXUS)
 
 ---
 
-**Cập nhật:** 8 tháng 11, 2025  
-**Version:** 2.0.0 - Productivity OS Core  
-**Giai đoạn:** Week 0 - User Research
+**Cập nhật:** 13 tháng 11, 2024
+**Version:** 2.0.0 - Productivity Platform (Pivot to Platform)
+**Giai đoạn:** Week 0 - Architecture & Design
 
 **🚀 Ready to build? → [QUICKSTART.md](./QUICKSTART.md)**

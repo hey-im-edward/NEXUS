@@ -6,7 +6,7 @@ import Link from '@tiptap/extension-link';
 import Placeholder from '@tiptap/extension-placeholder';
 import { EditorContent, useEditor } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { EditorToolbar } from './EditorToolbar';
 
 /**
@@ -30,7 +30,70 @@ export function TiptapEditor({
     const [saveStatus, setSaveStatus] = useState<SaveStatus>('idle');
     const [content, setContent] = useState(initialContent);
     const saveTimeoutRef = useRef<NodeJS.Timeout | null>(null);
-    const supabase = createClient();
+    const supabase = useMemo(() => createClient(), []);
+
+    /**
+     * Save content to Supabase
+     */
+    const saveContent = useCallback(
+        async (html: string) => {
+            try {
+                setSaveStatus('saving');
+
+                // TODO: Uncomment khi đã setup Supabase table
+                // const { error } = await supabase
+                //   .from('documents')
+                //   .update({
+                //     content: html,
+                //     updated_at: new Date().toISOString()
+                //   })
+                //   .eq('id', docId);
+
+                // if (error) {
+                //   throw error;
+                // }
+
+                // Simulate save for demo (remove when Supabase is ready)
+                await new Promise((resolve) => setTimeout(resolve, 500));
+
+                if (onSave) {
+                    await onSave(html);
+                }
+
+                setSaveStatus('saved');
+
+                // Reset về idle sau 2 giây
+                setTimeout(() => {
+                    setSaveStatus('idle');
+                }, 2000);
+            } catch (error) {
+                console.error('Error saving document:', error);
+                setSaveStatus('error');
+
+                setTimeout(() => {
+                    setSaveStatus('idle');
+                }, 3000);
+            }
+        },
+    [onSave]
+    );
+
+    /**
+     * Debounced save function
+     * Delay save 2 giây sau lần thay đổi cuối cùng
+     */
+    const debouncedSave = useCallback(
+        (html: string) => {
+            if (saveTimeoutRef.current) {
+                clearTimeout(saveTimeoutRef.current);
+            }
+
+            saveTimeoutRef.current = setTimeout(() => {
+                void saveContent(html);
+            }, 2000);
+        },
+        [saveContent]
+    );
 
     /**
      * Khởi tạo Tiptap editor với các extensions
@@ -66,72 +129,7 @@ export function TiptapEditor({
             setContent(html);
             debouncedSave(html);
         },
-    });
-
-    /**
-     * Debounced save function
-     * Delay save 2 giây sau lần thay đổi cuối cùng
-     */
-    const debouncedSave = useCallback(
-        (html: string) => {
-            // Clear timeout cũ
-            if (saveTimeoutRef.current) {
-                clearTimeout(saveTimeoutRef.current);
-            }
-
-            // Set timeout mới
-            saveTimeoutRef.current = setTimeout(async () => {
-                await saveContent(html);
-            }, 2000);
-        },
-        [docId]
-    );
-
-    /**
-     * Save content to Supabase
-     */
-    const saveContent = async (html: string) => {
-        try {
-            setSaveStatus('saving');
-
-            // TODO: Uncomment khi đã setup Supabase table
-            // Save to Supabase
-            // const { error } = await supabase
-            //   .from('documents')
-            //   .update({ 
-            //     content: html,
-            //     updated_at: new Date().toISOString()
-            //   })
-            //   .eq('id', docId);
-
-            // if (error) {
-            //   throw error;
-            // }
-
-            // Simulate save for demo (remove when Supabase is ready)
-            await new Promise(resolve => setTimeout(resolve, 500));
-
-            // Call onSave callback nếu có
-            if (onSave) {
-                await onSave(html);
-            }
-
-            setSaveStatus('saved');
-
-            // Reset về idle sau 2 giây
-            setTimeout(() => {
-                setSaveStatus('idle');
-            }, 2000);
-        } catch (error) {
-            console.error('Error saving document:', error);
-            setSaveStatus('error');
-
-            // Reset về idle sau 3 giây
-            setTimeout(() => {
-                setSaveStatus('idle');
-            }, 3000);
-        }
-    };
+    }, [debouncedSave, editable, initialContent, placeholder]);
 
     /**
      * Cleanup timeout khi unmount
@@ -148,10 +146,11 @@ export function TiptapEditor({
      * Update editor content khi initialContent thay đổi
      */
     useEffect(() => {
-        if (editor && initialContent !== content) {
-            editor.commands.setContent(initialContent);
-        }
-    }, [initialContent]);
+        if (!editor) return;
+        if (editor.getHTML() === initialContent) return;
+
+        editor.commands.setContent(initialContent);
+    }, [editor, initialContent]);
 
     /**
      * Render save status indicator

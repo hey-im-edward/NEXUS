@@ -1,6 +1,8 @@
 import { TaskList } from '@/components/tasks/task-list';
 import { TaskQuickAdd } from '@/components/tasks/task-quick-add';
+import { getOrCreateWorkspaceId } from '@/lib/supabase/workspace';
 import { Metadata } from 'next';
+import { redirect } from 'next/navigation';
 
 export const metadata: Metadata = {
   title: 'Today | NEXUS',
@@ -22,11 +24,13 @@ export const metadata: Metadata = {
  * - Keyboard navigation (j/k, x complete, c add)
  * - Drag to reorder
  */
-export default function TodayPage() {
-  // ⚠️ TEMPORARY: Hardcoded workspace_id
-  // TODO: Get from context/auth after workspace creation
-  const WORKSPACE_ID = 'c6be91ba-98c3-43e5-8e5e-94e389894fa6'; // ✅ Edward's workspace
-  
+export default async function TodayPage() {
+  const { user, workspaceId } = await getOrCreateWorkspaceId();
+
+  if (!user || !workspaceId) {
+    redirect('/login');
+  }
+
   return (
     <div className="mx-auto max-w-4xl space-y-6">
       {/* Header */}
@@ -44,14 +48,14 @@ export default function TodayPage() {
 
       {/* Quick Add */}
       <TaskQuickAdd
-        workspaceId={WORKSPACE_ID}
+        workspaceId={workspaceId}
         placeholder="Add a task to My Day..."
         defaultDate="today"
       />
 
       {/* Task List - Filtered by today */}
       <TaskList
-        workspaceId={WORKSPACE_ID}
+        workspaceId={workspaceId}
         filter={{
           type: 'today', // Will fetch tasks due today + overdue
         }}

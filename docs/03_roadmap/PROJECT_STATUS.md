@@ -1,42 +1,42 @@
-# 🎯 NEXUS - PROJECT STATUS & ROADMAP (Updated Nov 7, 2025)
+# 🎯 NEXUS - TRẠNG THÁI DỰ ÁN & LỘ TRÌNH (Cập nhật 13/11/2024)
 
-**Version:** 2.0.0 - Productivity OS Core  
-**Phase:** Week 0 - User Research (0/10 interviews completed)  
-**Last Major Update:** Restructured for Productivity OS focus
+**Phiên bản:** 2.0.0 - Productivity OS Core (Pivot sang Platform)
+**Giai đoạn:** Week 0 - Architecture & Design (Pivot to Platform)
+**Cập nhật lớn cuối:** Pivot chiến lược từ Task Management polish sang Platform MVP
 
 ---
 
-## 📊 **CURRENT STATUS**
+## 📊 **TRẠNG THÁI HIỆN TẠI**
 
-### **✅ COMPLETED (Week 0)**
+### **✅ ĐÃ HOÀN THÀNH (Week 0)**
 
-#### **1. Project Structure**
+#### **1. Cấu trúc Dự án**
 
-- ✅ Root directory cleaned (removed monorepo structure)
-- ✅ Frontend structure reorganized for Productivity OS
-- ✅ Created `(productivity)` route group in Next.js
-- ✅ Proper folder organization (70% Productivity, 20% Pages, 10% App Minis)
+- ✅ Root directory đã dọn dẹp (xóa monorepo structure)
+- ✅ Frontend structure tái tổ chức cho Productivity OS
+- ✅ Tạo `(productivity)` route group trong Next.js
+- ✅ Tổ chức folder hợp lý (70% Productivity, 20% Pages, 10% App Minis)
 
 #### **2. Database Schema v2**
 
-- ✅ 11 tables designed (tasks, projects, pages, time_blocks, etc.)
-- ✅ Row Level Security (RLS) policies configured
-- ✅ Advanced recurring tasks support (rrule field)
-- ✅ Migration script created: `002_productivity_core_schema.sql`
-- ⚠️ **NOT YET DEPLOYED** - Need to run in Supabase
+- ✅ 11 tables đã thiết kế (tasks, projects, pages, time_blocks, etc.)
+- ✅ Row Level Security (RLS) policies đã cấu hình
+- ✅ Hỗ trợ recurring tasks nâng cao (rrule field)
+- ✅ Migration script đã tạo: `002_productivity_core_schema.sql`
+- ✅ **ĐÃ DEPLOY** - Schema đã deploy thành công lên Supabase
 
-#### **3. Dependencies Installed**
+#### **3. Dependencies Đã Cài**
 
 - ✅ Task Management: `rrule` (recurring), `date-fns`
 - ✅ State Management: `zustand`, `immer`
-- ✅ Drag & Drop: `@dnd-kit/*` (for Kanban)
+- ✅ Drag & Drop: `@dnd-kit/*` (cho Kanban)
 - ✅ Calendar: `react-big-calendar`
 - ✅ Command Palette: `cmdk`
 - ✅ Editor: `@tiptap/extension-task-list`, `@tiptap/extension-task-item`
 - ✅ Keyboard Shortcuts: `react-hotkeys-hook`
-- ✅ Total packages: 284 (125MB node_modules)
+- ✅ Tổng packages: 284 (125MB node_modules)
 
-#### **4. Core Components Built**
+#### **4. Core Components Đã Build**
 
 ```
 frontend/
@@ -48,7 +48,7 @@ frontend/
 │
 ├── components/
 │   ├── tasks/
-│   │   ├── task-item.tsx        ✅ Single task with checkbox
+│   │   ├── task-item.tsx        ✅ Single task với checkbox
 │   │   ├── task-list.tsx        ✅ Filtered task list
 │   │   └── task-quick-add.tsx   ✅ Quick add input (Enter to add)
 │   ├── dashboard/
@@ -68,132 +68,234 @@ frontend/
     └── index.ts                 ✅ Task, Project, Page types
 ```
 
-#### **5. Technical Foundation**
+#### **5. Nền Tảng Kỹ Thuật**
 
 - ✅ TypeScript: Zero errors
 - ✅ Next.js 16.0.1 (App Router, Turbopack)
 - ✅ Supabase client/server setup
 - ✅ TailwindCSS 4 + shadcn/ui
-- ✅ Dev server running: http://localhost:3000
+- ✅ Dev server đang chạy: http://localhost:3000
 
 ---
 
-## ⚠️ **BLOCKERS & CRITICAL TASKS**
+## 🔄 **PIVOT CHIẾN LƯỢC - 13/11/2024**
 
-### **MUST DO BEFORE CODING MORE:**
+> **QUYẾT ĐỊNH:** Dừng việc "đánh bóng" Task Management. Bắt đầu xây dựng yếu tố khác biệt: **Platform (Dashboard Grid + App Builder)**.
 
-#### **1. Deploy Database Schema ⚠️ CRITICAL**
+### **Thay đổi tầm nhìn:**
+
+- ❌ **CŨ:** Task Manager tốt hơn Notion/Todoist
+- ✅ **MỚI:** Platform để build & share mini-apps (như Notion dashboard + iOS home screen)
+
+### **Thay đổi North Star Metric:**
+
+- ❌ **CŨ:** "tasks created" (giống tất cả task managers)
+- ✅ **MỚI:** "apps built and shared" (độc nhất)
+
+### **Impact lên Roadmap:**
+
+- ✅ Task Management là "đủ tốt" - DỪNG polish
+- 🚀 NEW FOCUS: Dashboard Grid, App Minis, App Builder
+- 📋 BACKLOG: Tags UI, Modal chi tiết, Delete confirmation, Keyboard shortcuts
+
+**Xem:** [`docs/03_roadmap/ROADMAP.md`](./ROADMAP.md) để hiểu chiến lược mới chi tiết
+
+---
+
+## ⚠️ **BLOCKERS & NHIỆM VỤ QUAN TRỌNG**
+
+### **PHẢI LÀM TRƯỚC KHI CODE TIẾP:**
+
+#### **1. Database Schema ✅ ĐÃ HOÀN THÀNH**
 
 ```sql
--- File: docs/04_technical/architecture/migrations/002_productivity_core_schema.sql
--- Action: Copy & paste into Supabase SQL Editor
--- Expected: Create 6 new tables (projects, tasks, recurring_instances, time_blocks, time_entries, pages)
--- Verification: Run query at end of migration script
+-- File: supabase/migrations/20251107000001_productivity_core_schema.sql
+-- Trạng thái: ✅ ĐÃ DEPLOY - Schema đã deploy thành công lên Supabase
+-- Kết quả: Đã tạo 6 tables (projects, tasks, recurring_instances, time_blocks, time_entries, pages)
+-- Deploy với: supabase db push
+-- Xác minh: Tất cả tables đã tạo và có thể truy cập
 ```
 
-**Why Critical:**
+**Trạng thái:**
 
-- Frontend code depends on these tables
-- `useTasks` hook will fail without `tasks` table
-- Cannot test task management features
+- ✅ Frontend code giờ hoạt động với database tables
+- ✅ `useTasks` hook kết nối thành công với `tasks` table
+- ✅ Task management features có thể test được
 
-#### **2. User Research (Week 0-3) ⚠️ PRIORITY**
+#### **2. Architecture & Design (Week 0) 🔥 PRIORITY CAO NHẤT**
 
-- **Status:** 0/10 interviews completed
-- **Goal:** Validate Productivity OS priorities
-- **Questions:**
-  - Do SMEs need advanced recurring tasks? (every 2 days, last Friday)
-  - Is Kanban board essential or can start with list view?
-  - Calendar time blocking vs simple due dates?
-- **File:** `docs/05_research/interview-script.md`
+**Trạng thái:** Đang trong Week 0 (13-20/11)
 
-**Why Important:**
+**Mục tiêu:** Quyết định kiến trúc App Mini system trước khi code
 
-- Code structure assumes 70% Productivity OS priority
-- User feedback may change this split
-- Don't build features users don't need
+**Nhiệm vụ:**
 
-#### **3. Create Workspace & Test Data**
+- [ ] **Research Libraries** (1-2 ngày)
+  - `react-grid-layout` (drag-drop grid)
+  - `Sandpack` hoặc `@monaco-editor/react` (code editor)
+  - iframe sandboxing strategies
+  - So sánh: Client-side vs Server-side execution
+
+- [ ] **Viết ADR-001** (1 ngày)
+  - File: `docs/04_technical/architecture/decisions/ADR-001-app-mini-system.md`
+  - Nội dung: Context, Decision, Consequences, Alternatives
+
+- [ ] **Dashboard Grid Wireframes** (2-3 ngày)
+  - Sketch trên giấy: Layout, AppMiniCard sizes, States
+  - Digital wireframes: Figma/Excalidraw (3 screens)
+  - Export: `UX-UI/wireframes/dashboard-grid.png`
+
+**Tại sao quan trọng:**
+
+- Quyết định sai kiến trúc → Phải refactor toàn bộ sau này
+- Security risks cao (App Minis chạy user code)
+- Wireframes giúp code đúng ngay từ đầu
+
+**File:** [`docs/01_status/THIS_WEEK.md`](../01_status/THIS_WEEK.md) - Chi tiết Week 0 deliverables
+
+#### **3. Tạo Workspace & Test Data ✅ DONE**
 
 ```sql
--- After deploying schema, run this:
+-- Đã chạy để tạo workspace:
 INSERT INTO public.workspaces (name, slug, owner_id)
 VALUES (
   'My Workspace',
   'my-workspace',
   (SELECT auth.uid())
 )
-RETURNING id;  -- Save this workspace_id
+RETURNING id;  -- workspace_id đã lưu
 ```
 
-Then update frontend to use workspace_id (see "Next Steps" below).
+Workspace đã tạo và frontend đã cập nhật để dùng `getOrCreateWorkspaceId()` helper.
 
 ---
 
-## 📅 **12-WEEK ROADMAP**
+## 📅 **LỘ TRÌNH 12 TUẦN (ĐÃ PIVOT)**
 
-### **Week 0-3: User Research** (YOU ARE HERE)
+### **Week 0 (13-20/11): Architecture & Design** ⬅️ **BẠN Ở ĐÂY**
 
-- [x] Project setup & structure
-- [x] Database schema designed
-- [x] Core components scaffolded
-- [ ] **10 SME interviews**
-- [ ] Validate priorities (70/20/10 split)
-- [ ] Identify critical pain points
+- [x] Pivot decision: Dừng Task Polish, focus Platform
+- [x] Update ROADMAP.md, FEATURES.md, AI_PROMPTS.md
+- [ ] Research: react-grid-layout, Sandpack, iframe security
+- [ ] Write ADR-001: App Mini System Architecture
+- [ ] Create wireframes: Dashboard Grid (3 screens)
+- [ ] (Optional) Technical spike: Test react-grid-layout prototype
 
-### **Week 4-7: POC (Proof of Concept)**
+**Deliverables:** ADR-001, Wireframes, Technical spike report (optional)
 
-**Goal:** Working task management + Kanban + Pages
+---
+
+### **Week 1 (21-27/11): Dashboard Infrastructure**
+
+**Mục tiêu:** Build Dashboard Grid component functional
 
 **Deliverables:**
 
-- [ ] Task CRUD (create, read, update, delete)
-- [ ] Filters (today, inbox, upcoming)
-- [ ] Kanban board (`/projects/[id]/board`)
-- [ ] Keyboard shortcuts (j/k navigate, x complete)
-- [ ] Simple Pages editor (Tiptap integration)
+- [ ] Component: `DashboardGrid.tsx` (drag-drop grid using react-grid-layout)
+- [ ] Component: `AppMiniCard.tsx` (card wrapper với resize/delete)
+- [ ] Hook: `useGridLayout.ts` (persist layout to database)
+- [ ] Page: `/dashboard` route functional
+- [ ] Test: Can add/drag/resize/delete cards
 
 **Files to Create:**
 
-- `app/(productivity)/projects/[id]/page.tsx` - Project detail
-- `app/(productivity)/projects/[id]/board/page.tsx` - Kanban view
-- `app/(productivity)/pages/page.tsx` - Pages list
-- `app/(productivity)/pages/[id]/page.tsx` - Page editor
-- `components/kanban/kanban-board.tsx` - Drag-drop board
-- `lib/hooks/use-keyboard.ts` - Keyboard shortcuts
-
-### **Week 8-11: MVP**
-
-**Goal:** Add Calendar + App Minis + Polish
-
-**Deliverables:**
-
-- [ ] Calendar view with time blocking
-- [ ] Recurring tasks (rrule implementation)
-- [ ] 2-3 App Minis (CRM, Habit Tracker, Pomodoro)
-- [ ] Command palette (Ctrl+K)
-- [ ] Mobile responsive (basic)
-- [ ] Performance optimization
-
-### **Week 12: GO/NO-GO Decision**
-
-**Metrics:**
-
-- 50 signups
-- 10 active users (3+ sessions)
-- 1-2 paying users ($15/month)
-- NPS > 40
-
-**Decision:**
-
-- GO → Continue to Scale phase (Week 13+)
-- NO-GO → Pivot or shut down
+- `app/(productivity)/dashboard/page.tsx` - Dashboard page
+- `components/dashboard/DashboardGrid.tsx` - Grid container
+- `components/dashboard/AppMiniCard.tsx` - Card wrapper
+- `lib/hooks/useGridLayout.ts` - Layout state management
 
 ---
 
-## 🛠️ **TECHNICAL ARCHITECTURE**
+### **Week 2 (28/11 - 4/12): First App Minis**
 
-### **Stack Summary**
+**Mục tiêu:** Build 2 App Minis đơn giản để test hệ thống
+
+**Deliverables:**
+
+- [ ] **App Mini #1: Quick Notes** (Textarea + Save)
+- [ ] **App Mini #2: Pomodoro Timer** (25 min countdown)
+- [ ] App registry system (register new app minis)
+- [ ] Data persistence (mỗi app lưu state riêng)
+
+**Files to Create:**
+
+- `components/app-minis/QuickNotes.tsx`
+- `components/app-minis/PomodoroTimer.tsx`
+- `lib/app-registry.ts` - Register & discover apps
+
+---
+
+### **Week 3-4 (5-18/12): App Builder v0.1**
+
+**Mục tiêu:** No-code builder để users tự build mini-apps
+
+**Deliverables:**
+
+- [ ] Builder canvas (drag-drop components)
+- [ ] 3 basic components: Text Input, Button, Text Block
+- [ ] Component palette (sidebar with available components)
+- [ ] Properties panel (configure selected component)
+- [ ] Preview mode (test app before saving)
+- [ ] Save & load app definitions (JSON to database)
+
+**Files to Create:**
+
+- `app/app-builder/page.tsx` - Builder page
+- `components/app-builder/BuilderCanvas.tsx` - Drop zone
+- `components/app-builder/ComponentPalette.tsx` - Component list
+- `components/app-builder/PropertiesPanel.tsx` - Config panel
+- `lib/app-builder/component-registry.ts` - Available components
+
+---
+
+### **Week 5-8: User Validation & Feedback**
+
+**Mục tiêu:** Ship MVP, get users, gather feedback
+
+**Deliverables:**
+
+- [ ] Public beta launch (landing page + signup)
+- [ ] 10 beta users testing (invite from network)
+- [ ] Analytics: Track "apps created", "apps shared"
+- [ ] User interviews: What features needed most?
+- [ ] Bug fixes & polish based on feedback
+
+**Success Metrics:**
+
+- 50 signups
+- 10 active users (3+ sessions)
+- 5 apps created by users (not us)
+- 2 apps shared publicly
+
+---
+
+### **Week 9-12: Iteration or Pivot Decision**
+
+**Mục tiêu:** Decide GO/NO-GO based on Week 5-8 data
+
+**Scenario A - GO (Traction tốt):**
+
+- [ ] Add more builder components (Checkbox, Dropdown, etc.)
+- [ ] App marketplace (browse & install community apps)
+- [ ] Collaboration (share apps with team)
+- [ ] Pricing: Launch paid tier ($15/month for unlimited apps)
+
+**Scenario B - NO-GO (Không có traction):**
+
+- [ ] Analyze why (interviews, data)
+- [ ] Pivot hoặc shut down
+- [ ] Document learnings
+
+**GO/NO-GO Decision Criteria:**
+
+- ✅ GO nếu: 10+ active users, 1-2 paying users, NPS > 40
+- ❌ NO-GO nếu: < 5 active users, 0 paid conversions, users confused
+
+---
+
+## 🛠️ **KIẾN TRÚC KỸ THUẬT**
+
+### **Tech Stack Tổng Quan**
 
 ```yaml
 Frontend:
@@ -204,7 +306,7 @@ Frontend:
 
 State Management:
   - Zustand + Immer (optimistic updates)
-  - @tanstack/react-query (optional for later)
+  - @tanstack/react-query (optional sau)
 
 Backend:
   - Supabase (PostgreSQL + Auth + Storage)
@@ -217,19 +319,20 @@ Libraries:
   - react-big-calendar (calendar view)
   - cmdk (command palette)
   - react-hotkeys-hook (keyboard shortcuts)
+  - react-grid-layout (dashboard grid) ← MỚI cho Platform
 
 Deployment:
   - Frontend: Vercel (free tier)
   - Backend: Supabase Cloud (free tier)
-  - Cost: $0/month for first 500-1000 users
+  - Cost: $0/month cho 500-1000 users đầu
 ```
 
 ### **Database Schema v2 (11 Tables)**
 
 ```
 CORE (70% Priority - Productivity OS):
-1. tasks                  - Main task management (rrule for recurring)
-2. projects               - Project organization
+1. tasks                  - Quản lý tasks chính (rrule cho recurring)
+2. projects               - Tổ chức projects
 3. recurring_instances    - Track recurring task instances
 4. time_blocks            - Calendar time blocking
 5. time_entries           - Time tracking
@@ -237,162 +340,148 @@ CORE (70% Priority - Productivity OS):
 FLEXIBILITY (20% Priority):
 6. pages                  - Notion-like blank canvas (Tiptap JSON)
 
-FOUNDATION (Required):
+FOUNDATION (Bắt buộc):
 7. profiles               - User data (extends auth.users)
 8. workspaces             - Team/workspace management
 9. workspace_members      - Collaboration & roles
 
-EXTENSIBILITY (10% Priority):
-10. dashboards            - App mini containers
-11. app_minis             - Embedded apps (CRM, Habit, Pomodoro)
+EXTENSIBILITY (10% Priority - FOCUS MỚI):
+10. dashboards            - App mini containers (cho Platform)
+11. app_minis             - Embedded apps metadata (CRM, Habit, Pomodoro, v.v.)
 ```
 
-**Key Features:**
+**Tính năng chính:**
 
-- ✅ Advanced Recurring: `rrule` field supports "every 2 days", "last Friday of month"
-- ✅ Sub-tasks: `parent_task_id` for hierarchical tasks
-- ✅ Flexible Assignment: tasks can be in projects or inbox (`project_id = NULL`)
-- ✅ Multi-tenant: RLS policies ensure workspace-level data isolation
-- ✅ JSONB Flexibility: config/data fields for extensibility without migrations
+- ✅ Advanced Recurring: `rrule` field hỗ trợ "every 2 days", "last Friday of month"
+- ✅ Sub-tasks: `parent_task_id` cho hierarchical tasks
+- ✅ Flexible Assignment: tasks có thể ở projects hoặc inbox (`project_id = NULL`)
+- ✅ Multi-tenant: RLS policies đảm bảo workspace-level data isolation
+- ✅ JSONB Flexibility: config/data fields cho extensibility không cần migrations
 
 ---
 
-## 📝 **NEXT IMMEDIATE STEPS**
+## 📝 **CÁC BƯỚC TIẾP THEO**
 
-### **Option A: Deploy Schema & Test (30 min) - RECOMMENDED**
+### **🚀 PIVOT CHIẾN LƯỢC: Platform MVP (Week 0-4)**
 
-**Step 1: Deploy Database Schema**
+**Trạng thái:** ✅ Database đã deploy, Task Management hoạt động
+**Focus:** Architecture & Design cho Dashboard Grid + App Builder
+
+### **Week 0 (13-20/11): Architecture & Design - GIAI ĐOẠN HIỆN TẠI**
+
+**Priority 1: Architecture Decision Record**
 
 ```bash
-# 1. Open Supabase Dashboard → SQL Editor
-# 2. Copy content from: docs/04_technical/architecture/migrations/002_productivity_core_schema.sql
-# 3. Click "Run"
-# 4. Verify success with verification query at end
+# 1. Research libraries (1-2 ngày)
+- react-grid-layout (drag-drop grid)
+- Sandpack hoặc @monaco-editor/react (code editor)
+- iframe sandboxing strategies
+
+# 2. Viết ADR (1 ngày)
+- File: docs/04_technical/architecture/decisions/ADR-001-app-mini-system.md
+- Nội dung: Context, Decision, Consequences, Alternatives
+
+# 3. Review security (1 ngày)
+- Check XSS risks, infinite loops, memory leaks
 ```
 
-**Step 2: Create Test Workspace**
-
-```sql
--- Run in Supabase SQL Editor
-INSERT INTO public.workspaces (name, slug, owner_id)
-VALUES (
-  'Test Workspace',
-  'test-workspace',
-  (SELECT auth.uid())
-)
-RETURNING id;  -- ⚠️ COPY THIS WORKSPACE_ID
-```
-
-**Step 3: Update Frontend with Workspace ID**
-
-```tsx
-// frontend/app/(productivity)/today/page.tsx
-// Add this line temporarily (replace YOUR_WORKSPACE_ID):
-const TEMP_WORKSPACE_ID = 'paste-workspace-id-here';
-
-// Then pass to useTasks:
-const { tasks, loading, createTask, toggleComplete } = useTasks(TEMP_WORKSPACE_ID);
-```
-
-**Step 4: Test Task Management**
+**Priority 2: Dashboard Grid Wireframes**
 
 ```bash
-# 1. Start dev server (if not running)
-cd frontend
-npm run dev
+# 1. Sketch wireframes (1-2 ngày)
+- Dashboard layout (sidebar + grid)
+- AppMiniCard sizes (2x2, 2x4, 4x4)
+- States: Empty, Loading, Dragging
 
-# 2. Navigate to http://localhost:3000/today
-# 3. Try:
-#    - Add task with Quick Add input
-#    - Toggle checkbox to complete
-#    - Check Supabase dashboard → Table Editor → tasks table
+# 2. Digital wireframes (1-2 ngày)
+- Tool: Figma hoặc Excalidraw
+- Export to: UX-UI/wireframes/dashboard-grid.png
 ```
 
-**Step 5: If Works → Continue Development**
+**Priority 3: Technical Spike (Optional)**
 
-- Implement Kanban board
-- Add recurring tasks UI
-- Build Calendar view
+```bash
+# Test react-grid-layout với minimal prototype
+mkdir frontend/prototypes
+npm create vite@latest grid-test -- --template react-ts
+npm install react-grid-layout
+```
 
-**Step 6: If Errors → Debug**
-
-- Check browser console
-- Check Supabase logs
-- Verify workspace_id is correct
-- Verify RLS policies (user must be in workspace_members)
-
----
-
-### **Option B: Complete User Research First (Recommended for Zero-Code Experience)**
-
-**Why:** User feedback may change priorities (e.g., skip recurring tasks in MVP)
-
-**Actions:**
-
-1. ✅ Read `docs/05_research/interview-script.md`
-2. ✅ Schedule 10 interviews (5 from network, 5 from LinkedIn/Facebook groups)
-3. ✅ Document insights in `docs/05_research/interview-notes/` folder
-4. ✅ Adjust roadmap based on feedback
-5. ✅ THEN deploy schema & start coding
+**Deliverables cuối Week 0:**
+- ✅ ADR-001 hoàn thiện và đã review security
+- ✅ Dashboard Grid wireframes (3 screens)
+- ⚠️ Technical spike report (optional)
 
 ---
 
-## 📚 **DOCUMENTATION INDEX**
+### **Week 1+ (21/11+): Giai Đoạn Implementation**
 
-### **Getting Started**
+**Sau khi Week 0 hoàn thành, tiếp tục với:**
 
-- `README.md` - Quick project overview
-- `QUICKSTART.md` - Step-by-step setup (15 minutes)
-- `docs/00_start-here/README.md` - Documentation navigation
-- `docs/00_start-here/QUICKSTART_AI.md` - Daily workflow guide
-- `docs/04_technical/SETUP.md` - Development environment setup
+1. **Week 1 (21-27/11):** Build Dashboard Grid component
+2. **Week 2 (28/11-4/12):** Tạo 2 App Minis đầu tiên (Notes, Timer)
+3. **Week 3-4 (5-18/12):** Build App Builder v0.1
 
-### **Status & Progress**
+**Xem:** [`docs/03_roadmap/ROADMAP.md`](./ROADMAP.md) cho timeline chi tiết
 
-- `docs/01_status/NOW.md` - Current status snapshot
-- `docs/01_status/FEATURES.md` - Feature implementation checklist
-- `docs/01_status/BUGS.md` - Known bugs and issues
-- `docs/01_status/UI_UX.md` - UI component status
+---
 
-### **Architecture**
+## 📚 **CHỈ MỤC TÀI LIỆU**
 
-- `docs/04_technical/architecture/database-schema-v2-productivity.sql` - Full schema (for reference)
-- `docs/04_technical/architecture/migrations/002_productivity_core_schema.sql` - **Deploy this first**
-- `docs/04_technical/architecture/decisions.md` - Tech stack rationale
-- `docs/04_technical/TESTING_STRATEGY.md` - Testing philosophy and practices
+### **Bắt Đầu**
 
-### **Roadmap & Planning**
+- `README.md` - Tổng quan dự án nhanh
+- `QUICKSTART.md` - Setup từng bước (15 phút)
+- `docs/00_start-here/README.md` - Điều hướng tài liệu
+- `docs/00_start-here/QUICKSTART_AI.md` - Hướng dẫn workflow hàng ngày
+- `docs/04_technical/SETUP.md` - Setup môi trường development
 
-- `docs/03_roadmap/ROADMAP.md` - Detailed 12-week roadmap
-- `docs/03_roadmap/PROJECT_STATUS.md` - This file (master documentation)
-- `docs/03_roadmap/HISTORY.md` - Project timeline and decisions
-- `docs/03_roadmap/IDEAS.md` - Feature ideas backlog
+### **Trạng Thái & Tiến Độ**
+
+- `docs/01_status/THIS_WEEK.md` - Focus của tuần hiện tại và priorities
+- `docs/01_status/FEATURES.md` - Checklist triển khai features
+- `docs/01_status/BUGS.md` - Bugs đã biết và issues
+- `docs/01_status/UI_UX.md` - Trạng thái UI components
+
+### **Kiến Trúc**
+
+- `docs/04_technical/architecture/database-schema-v2-productivity.sql` - Full schema (tham khảo)
+- `supabase/migrations/` - **Database migrations (deploy với `supabase db push`)**
+- `docs/04_technical/architecture/decisions.md` - Lý do chọn tech stack
+- `docs/04_technical/TESTING_STRATEGY.md` - Triết lý và practices testing
+
+### **Lộ Trình & Planning**
+
+- `docs/03_roadmap/ROADMAP.md` - Lộ trình 12 tuần chi tiết
+- `docs/03_roadmap/PROJECT_STATUS.md` - File này (tài liệu master)
+- `docs/03_roadmap/HISTORY.md` - Timeline và quyết định dự án
+- `docs/03_roadmap/IDEAS.md` - Backlog ý tưởng features
 
 ### **AI Development**
 
-- `docs/02_ai-prompts/AI_PROMPTS.md` - AI prompts library
-- `docs/02_ai-prompts/COMPLETED.md` - Completed prompts log
-- `docs/02_ai-prompts/templates/` - Prompt templates
+- `docs/02_ai-prompts/AI_PROMPTS.md` - Thư viện AI prompts
+- `docs/02_ai-prompts/COMPLETED.md` - Log prompts đã hoàn thành
+- `docs/02_ai-prompts/templates/` - Template prompts
 
 ### **User Research**
 
-- `docs/05_research/interview-script.md` - Interview questions
-- `docs/05_research/user-personas.md` - Target user profiles
-- `docs/05_research/success-metrics.md` - KPIs to track
-- `docs/05_research/interview-notes/` - Interview insights folder
+- `docs/05_research/interview-script.md` - Câu hỏi phỏng vấn
+- `docs/05_research/user-personas.md` - Hồ sơ users mục tiêu
+- `docs/05_research/success-metrics.md` - KPIs để track
+- `docs/05_research/interview-notes/` - Folder insights phỏng vấn
 
 ### **Knowledge Base**
 
-- `BRAIN_DUMP.md` - Complete knowledge repository (ADRs, bugs, ideas, patterns)
+- `BRAIN_DUMP.md` - Repository kiến thức hoàn chỉnh (ADRs, bugs, ideas, patterns)
 
 ### **AI Assistance**
 
-- `docs/AI_PROMPTS.md` - Best practices for working with AI
-- `.git-commit-template.md` - Git commit message template
+- `docs/AI_PROMPTS.md` - Best practices làm việc với AI
+- `.git-commit-template.md` - Template commit message Git
 
 ---
 
-## 🚨 **KNOWN ISSUES**
+## 🚨 **CÁC VẤN ĐỀ ĐÃ BIẾT**
 
 ### **1. Middleware Deprecation Warning**
 
@@ -400,98 +489,113 @@ npm run dev
 ⚠ The "middleware" file convention is deprecated. Please use "proxy" instead.
 ```
 
-**Impact:** Low (just a warning, app works fine)  
-**Fix:** Update to Next.js 16 proxy pattern (Week 5)  
+**Impact:** Thấp (chỉ là warning, app vẫn hoạt động tốt)
+**Fix:** Cập nhật lên Next.js 16 proxy pattern (Week 5)
 **File:** `frontend/middleware.ts`
 
 ### **2. Missing Checkbox Radix Dependency**
 
-**Status:** FIXED (installed @radix-ui/react-checkbox)  
+**Trạng thái:** FIXED (đã cài @radix-ui/react-checkbox)
 **Component:** `frontend/components/ui/checkbox.tsx`
 
-### **3. Database Schema Not Deployed**
+### **3. Database Schema Deployment**
 
-**Status:** BLOCKED - User must deploy manually  
-**Action:** Run `002_productivity_core_schema.sql` in Supabase  
-**Impact:** HIGH - Frontend won't work without these tables
+**Trạng thái:** ✅ ĐÃ DEPLOY - Schema đã deploy thành công
+**Action:** Hoàn thành - Tất cả tables đã tạo trong Supabase
+**Impact:** ĐÃ GIẢI QUYẾT - Frontend giờ hoạt động với database tables
 
 ---
 
-## 💡 **TIPS FOR STAYING ON TRACK**
+## 💡 **MẸO ĐỂ Ở ĐÚNG HƯỚNG**
 
-### **Use Documentation**
+### **Sử Dụng Tài Liệu**
 
-- **Before coding:** Read relevant docs (e.g., TIPTAP_ARCHITECTURE before editing editor)
-- **After major changes:** Update corresponding doc (e.g., update ROADMAP_CHECKLIST)
-- **When stuck:** Check AI_PROMPTS.md for how to ask AI for help
+- **Trước khi code:** Đọc docs liên quan (vd: TIPTAP_ARCHITECTURE trước khi sửa editor)
+- **Sau thay đổi lớn:** Cập nhật doc tương ứng (vd: update ROADMAP_CHECKLIST)
+- **Khi bí:** Check AI_PROMPTS.md để biết cách hỏi AI
 
 ### **Follow Git Workflow**
 
-- **Always commit before big changes:** `git commit -m "feat: description"`
-- **Use descriptive messages:** Follow `.git-commit-template.md`
-- **Create branches:** `feature/kanban-board`, `fix/task-list-error`
+- **Luôn commit trước thay đổi lớn:** `git commit -m "feat: description"`
+- **Dùng messages mô tả:** Follow `.git-commit-template.md`
+- **Tạo branches:** `feature/kanban-board`, `fix/task-list-error`
 
-### **Prioritize Ruthlessly**
+### **Ưu Tiên Tuyệt Đối**
 
 - **70% Productivity Core:** Tasks, Kanban, Calendar
 - **20% Pages:** Tiptap editor integration
-- **10% App Minis:** Only after core works
+- **10% App Minis:** Chỉ sau khi core hoạt động
 
 ### **User Feedback > Assumptions**
 
-- **Interview 10 SMEs** before building advanced features
-- **Test with 5 users** before adding new features
+- **Phỏng vấn 10 SMEs** trước khi build advanced features
+- **Test với 5 users** trước khi thêm features mới
 - **Track metrics:** Signups, Active users, Task completion rate
 
 ---
 
-## 📞 **SUPPORT & RESOURCES**
+## 📞 **HỖ TRỢ & TÀI NGUYÊN**
 
-### **When You Need Help:**
+### **Khi Bạn Cần Giúp:**
 
-1. **Check docs first:** `docs/` folder has 20+ guides
-2. **Ask AI with context:** Provide file paths, error messages
-3. **Review commit history:** `git log --oneline` to see what changed
+1. **Check docs trước:** `docs/` folder có 20+ guides
+2. **Hỏi AI với context:** Cung cấp file paths, error messages
+3. **Review commit history:** `git log --oneline` để xem thay đổi gì
 
-### **External Resources:**
+### **Tài Nguyên Bên Ngoài:**
 
 - **Supabase Docs:** https://supabase.com/docs
 - **Next.js 16 Docs:** https://nextjs.org/docs
 - **Zustand Guide:** https://zustand-demo.pmnd.rs/
 - **rrule Library:** https://github.com/jakubroztocil/rrule
 - **Tiptap Docs:** https://tiptap.dev/docs
+- **react-grid-layout:** https://github.com/react-grid-layout/react-grid-layout ← MỚI
 
 ---
 
-## ✅ **SUCCESS CRITERIA**
+## ✅ **TIÊU CHÍ THÀNH CÔNG**
 
-### **Week 0-3 (User Research):**
+### **Week 0 (Architecture & Design):**
 
-- [x] Project structure ready
-- [ ] 10 SME interviews completed
-- [ ] Validated priorities (70/20/10)
-- [ ] Database schema deployed
-- [ ] Basic task CRUD works
+- [x] Pivot decision documented ✅
+- [ ] ADR-001 hoàn thiện và đã review security
+- [ ] Dashboard Grid wireframes rõ ràng (3 screens)
+- [ ] Hiểu rõ trade-offs của approach đã chọn
+- [ ] Sẵn sàng để code Dashboard Grid vào Week 1
 
-### **Week 4-7 (POC):**
+### **Week 1 (Dashboard Infrastructure):**
 
-- [ ] Can add/complete/delete tasks
-- [ ] Kanban board drag-drop works
-- [ ] Keyboard shortcuts functional
-- [ ] 5 users testing POC
-- [ ] < 2 sec page load time
+- [ ] Component `DashboardGrid.tsx` functional
+- [ ] Component `AppMiniCard.tsx` với resize/delete
+- [ ] Hook `useGridLayout.ts` persist layout
+- [ ] Page `/dashboard` route functional
+- [ ] Test: Có thể add/drag/resize/delete cards
 
-### **Week 8-11 (MVP):**
+### **Week 2 (First App Minis):**
 
-- [ ] Calendar view with time blocking
-- [ ] Recurring tasks work (rrule)
-- [ ] 2-3 App Minis functional
-- [ ] Mobile responsive
+- [ ] Quick Notes app hoạt động
+- [ ] Pomodoro Timer hoạt động
+- [ ] App registry system functional
+- [ ] Data persistence cho mỗi app
+
+### **Week 3-4 (App Builder v0.1):**
+
+- [ ] Builder canvas với drag-drop
+- [ ] 3 basic components (Input, Button, Text)
+- [ ] Properties panel để config
+- [ ] Preview mode
+- [ ] Save & load app definitions
+
+### **Week 5-8 (User Validation):**
+
 - [ ] 50 signups
+- [ ] 10 active users (3+ sessions)
+- [ ] 5 apps created bởi users
+- [ ] 2 apps shared publicly
 
-### **Week 12 (GO/NO-GO):**
+### **Week 9-12 (GO/NO-GO):**
 
-- [ ] 10 active users (3+ sessions each)
+- [ ] 10 active users (3+ sessions mỗi người)
 - [ ] 1-2 paying users ($15/month)
 - [ ] NPS > 40
 - [ ] < 500ms API response time
@@ -499,7 +603,7 @@ npm run dev
 
 ---
 
-**Last Updated:** November 7, 2025  
-**Version:** 2.0.0  
-**Status:** Week 0 - User Research Phase  
-**Next Milestone:** Deploy schema + 10 interviews
+**Cập nhật lần cuối:** 13 tháng 11, 2024
+**Phiên bản:** 2.0.0 (Pivot to Platform)
+**Trạng thái:** Week 0 - Architecture & Design Phase
+**Milestone tiếp theo:** ADR-001 + Wireframes + Technical Spike (20/11)

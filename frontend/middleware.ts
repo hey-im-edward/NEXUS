@@ -1,4 +1,4 @@
-import { createClient } from '@/lib/supabase/server'
+import { createServerClient } from '@supabase/ssr'
 import type { NextRequest } from 'next/server'
 import { NextResponse } from 'next/server'
 
@@ -16,6 +16,7 @@ const authRoutes = ['/login', '/signup']
 
 export async function middleware(request: NextRequest) {
     const { pathname } = request.nextUrl
+    const response = NextResponse.next()
 
     // Check if the current route is protected
     const isProtectedRoute = protectedRoutes.some(route =>
@@ -26,7 +27,23 @@ export async function middleware(request: NextRequest) {
     )
 
     if (isProtectedRoute || isAuthRoute) {
-        const supabase = await createClient()
+        const supabase = createServerClient(
+            process.env.NEXT_PUBLIC_SUPABASE_URL!,
+            process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+            {
+                cookies: {
+                    getAll() {
+                        return request.cookies.getAll()
+                    },
+                    setAll(cookiesToSet) {
+                        cookiesToSet.forEach(({ name, value, options }) => {
+                            response.cookies.set(name, value, options)
+                        })
+                    },
+                },
+            }
+        )
+
         const { data: { user } } = await supabase.auth.getUser()
 
         // Redirect to login if accessing protected route without authentication
@@ -42,7 +59,7 @@ export async function middleware(request: NextRequest) {
         }
     }
 
-    return NextResponse.next()
+    return response
 }
 
 export const config = {

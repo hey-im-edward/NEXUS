@@ -44,7 +44,7 @@ export function TaskList({
     if (filter) {
       setFilter(filter);
     }
-  }, [filter?.type, filter?.projectId, filter?.searchQuery]); // Only re-run if filter changes
+  }, [filter, setFilter]);
   
   const tasks = getFilteredTasks();
   

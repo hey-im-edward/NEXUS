@@ -508,11 +508,14 @@ Có ý tưởng mới? Thêm vào đây:
 - **Roadmap:** [ROADMAP.md](./ROADMAP.md)
 - **Features:** [FEATURES.md](../01_status/FEATURES.md)
 - **User Research:** [../05_research/](../05_research/)
+- **Source:** Ideas được tổng hợp từ [BRAIN_DUMP_from_initial_chat.md](../archive/conversations/BRAIN_DUMP_from_initial_chat.md)
 
 ---
 
 **Last Updated:** November 9, 2025  
 **Next Update:** After each user interview or major brainstorming session
+
+**Note:** Các ý tưởng trong file này được tích hợp từ Brain Dump và bổ sung thêm chi tiết, phân tích, và trạng thái cập nhật.
 
 ---
 

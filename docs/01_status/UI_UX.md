@@ -2,15 +2,15 @@
 
 > **Mục đích:** Đánh giá UI/UX của từng page/component - Đẹp chưa? Hoàn thiện chưa?
 
-**Cập nhật:** 8 tháng 11, 2025
+**Cập nhật:** 13 tháng 11, 2024
 
 ---
 
 ## 📊 **TỔNG QUAN**
 
 ```
-✨ Polished:      2 pages    (20%)
-⚠️ Functional:    6 pages    (60%)
+✨ Polished:      3 pages    (30%)
+⚠️ Functional:    5 pages    (50%)
 ❌ Not Started:   2 pages    (20%)
 ```
 
@@ -22,7 +22,7 @@
 
 ---
 
-## ✨ **POLISHED (2)**
+## ✨ **POLISHED (3)**
 
 ### **/today - My Day Page**
 
@@ -51,7 +51,27 @@
 
 ---
 
-## ⚠️ **FUNCTIONAL (6)**
+### **Task Item Component**
+
+- **Status:** ✨ **Polished 95%** ✅
+- **UI:** Checkbox + title + priority badge + due date
+- **UX:** Click checkbox works, inline edit, priority selector
+- **Features:**
+  - ✅ Inline edit (double-click để edit)
+  - ✅ **Priority badge với dropdown (🔴🟠🟡🔵⚪) - POLISHED**
+  - ✅ Due date display với overdue indicator
+  - ✅ Tags display (placeholder)
+  - ✅ Hover effects
+  - ✅ Optimistic UI updates
+  - ✅ Network timeout detection
+  - ✅ Keyboard navigation
+- **Thiếu:**
+  - Tags UI để add/remove tags (moved to Backlog)
+  - Task detail modal (moved to Backlog)
+
+---
+
+## ⚠️ **FUNCTIONAL (5)**
 
 ### **/inbox - Inbox Page**
 
@@ -74,19 +94,6 @@
   - Project card design (thêm icon, color)
   - Create project modal
   - Empty state
-
----
-
-### **Task Item Component**
-
-- **Status:** ⚠️ Functional 70%
-- **UI:** Checkbox + title, đơn giản
-- **UX:** Click checkbox works, no lag
-- **Cần cải thiện:**
-  - Priority badge UI
-  - Tags display
-  - Due date display
-  - Hover effects
 
 ---
 
@@ -128,17 +135,19 @@
 
 ## ❌ **NOT STARTED (2)**
 
-### **/calendar - Calendar View**
+### **/dashboard - Dashboard Grid**
 
-- **Status:** ❌ Not Started
-- **Plan:** Week 1-2
+- **Status:** ❌ Not Started (Tuần 1)
+- **Plan:** Week 1 (21-27/11) - Dashboard Grid + AppMiniCard
+- **Note:** ĐÂY LÀ PRIORITY MỚI sau pivot
 
 ---
 
-### **/pages/[id] - Page Editor**
+### **/app-builder - App Builder**
 
-- **Status:** ❌ Not Started
-- **Plan:** Week 2-3
+- **Status:** ❌ Not Started (Tuần 3-4)
+- **Plan:** Week 3-4 (5-18/12) - App Builder v0.1
+- **Note:** CORE FEATURE sau pivot
 
 ---
 
@@ -176,6 +185,7 @@ p-4 (1rem), m-6 (1.5rem), gap-2 (0.5rem)
 - ✅ Input
 - ✅ Checkbox
 - ✅ Dialog (Modal)
+- ✅ Popover (cho Priority selector)
 - ⚠️ Dropdown Menu (cần style lại)
 - ⚠️ Calendar (cần customize)
 - ❌ Combobox (chưa dùng)
@@ -199,12 +209,12 @@ p-4 (1rem), m-6 (1.5rem), gap-2 (0.5rem)
 ### **Tablet (768px)**
 
 - ❌ Chưa test
-- **Plan:** Week 5
+- **Plan:** Post-MVP (sau Tuần 12)
 
 ### **Mobile (375px)**
 
 - ❌ Chưa optimize
-- **Plan:** Week 5 (Priority HIGH)
+- **Plan:** Post-MVP (sau Tuần 12)
 
 ---
 
@@ -240,11 +250,11 @@ Task add:       0.3s  (✅ Good - optimistic update)
 1. **Kanban drag ghost offset** - Ghost card không align đúng khi drag
 
    - Priority: MEDIUM
-   - Plan: Week 1
+   - Plan: Backlog (sau Tuần 8)
 
 2. **Task checkbox lag on slow connection** - Checkbox không toggle ngay nếu network chậm
    - Priority: MEDIUM
-   - Plan: Week 1 (optimistic update cần cải thiện)
+   - Plan: Backlog (đã có optimistic update)
 
 ### **Low (5):**
 
@@ -254,26 +264,37 @@ Task add:       0.3s  (✅ Good - optimistic update)
 4. Sidebar active state color nhạt
 5. Header không có shadow khi scroll
 
-**Decision:** Accept LOW bugs cho POC ✅
+**Decision:** Accept LOW bugs cho POC ✅ - Focus on Platform MVP
 
 ---
 
 ## 🎯 **IMPROVEMENT ROADMAP**
 
-### **Week 1 (Nov 14-20):**
+### **Week 0 (13-20/11): Architecture & Design**
 
-- [ ] Add priority badges UI (Prompt 1.2)
-- [ ] Add tags display (Prompt 1.3)
-- [ ] Polish task detail modal (Prompt 1.4)
-- [ ] Improve loading states
+- [x] Priority badges UI (Prompt 1.2) ✅ POLISHED
+- [ ] Dashboard Grid wireframe
+- [ ] App Mini architecture decision
 
-### **Week 2 (Nov 21-27):**
+### **Week 1 (21-27/11): Dashboard Infrastructure**
 
-- [ ] Calendar UI polish
-- [ ] Command palette UI
-- [ ] Improve sidebar design
+- [ ] Dashboard Grid component
+- [ ] AppMiniCard wrapper
+- [ ] Grid layout persistence
 
-### **Week 3+:**
+### **Week 2 (28/11 - 4/12): First App Minis**
+
+- [ ] Quick Notes app UI
+- [ ] Pomodoro Timer UI
+- [ ] App registry UI
+
+### **Week 3-4 (5-18/12): App Builder**
+
+- [ ] Builder canvas UI
+- [ ] Component palette UI
+- [ ] Properties panel UI
+
+### **Post-MVP (After Week 12):**
 
 - [ ] Empty states với illustrations
 - [ ] Loading skeletons
@@ -288,15 +309,17 @@ Task add:       0.3s  (✅ Good - optimistic update)
 
 - Basic task list, no styling
 
-### **After (Nov 8):**
+### **After (Nov 9):**
 
-- Polished /today page
-- Working Kanban board
+- ✨ Polished /today page
+- ✨ Working Kanban board
+- ✨ Task item với priority badges
 
-### **Target (End of Week 0):**
+### **Target (End of Week 4):**
 
-- Task management 80% polished
-- All features have smooth UI
+- ✨ Dashboard Grid functional
+- ✨ 2 App Minis working
+- ✨ All Platform MVP features polished
 
 ---
 
@@ -305,15 +328,28 @@ Task add:       0.3s  (✅ Good - optimistic update)
 ### **Inspiration:**
 
 - **Linear:** Clean, minimal, keyboard-first
-- **Height:** Task management polish
-- **Notion:** Flexible pages
-- **Todoist:** Quick add, smart lists
+- **Notion:** Flexible dashboard + pages
+- **iOS Home Screen:** App card grid layout
+- **Airtable:** Drag-drop grid system
 
 ### **Figma (If needed):**
 
-- (TODO: Create Figma mockups nếu cần)
+- (TODO: Create Figma mockups cho Dashboard Grid nếu cần)
 
 ---
 
-**Last Updated:** November 8, 2025  
-**Next Update:** November 11, 2025 (End of Week 0)
+## 🔄 **STRATEGIC PIVOT NOTE**
+
+**Ngày 13/11/2024:** Dự án pivot từ Task Management polish sang Platform strategy.
+
+**UI/UX Impact:**
+- ✅ Task Management UI đã "đủ tốt" - STOP polishing
+- 🚀 NEW FOCUS: Dashboard Grid, App Minis, App Builder UI
+- 📋 BACKLOG: Tags, Modal, Delete, Shortcuts UI
+
+**Xem:** [ROADMAP.md](../03_roadmap/ROADMAP.md) để hiểu chiến lược mới
+
+---
+
+**Cập nhật lần cuối:** 13 tháng 11, 2024
+**Cập nhật tiếp theo:** 20 tháng 11, 2024 (End of Week 0 - Architecture phase)

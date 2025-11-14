@@ -13,6 +13,10 @@
 NEXUS/
 ├── 📁 docs/                      # ⭐ TẤT CẢ DOCUMENTATION
 ├── 📁 frontend/                  # ⭐ TẤT CẢ CODE
+├── 📁 supabase/                  # ⭐ DATABASE & MIGRATIONS
+│   ├── config.toml              # Supabase CLI config
+│   ├── migrations/               # Database migrations
+│   └── seed.sql                  # Seed data
 ├── 📄 README.md                  # Trang chủ dự án
 ├── 📄 QUICKSTART.md              # Setup 15 phút
 ├── 📄 THIS_WEEK.md               # Focus tuần này
@@ -63,9 +67,14 @@ docs/
 │   ├── DEPLOY.md                 # Deploy database
 │   └── architecture/
 │       ├── decisions.md          # Quyết định kỹ thuật
-│       ├── database-schema-v2-productivity.sql
-│       └── migrations/
-│           └── 002_productivity_core_schema.sql
+│       └── database-schema-v2-productivity.sql
+│
+├── 📁 supabase/                  # 💾 DATABASE
+│   ├── config.toml              # Supabase CLI configuration
+│   ├── migrations/               # Database migrations (timestamp-based)
+│   │   ├── 20251107000000_add_documents_table.sql
+│   │   └── 20251107000001_productivity_core_schema.sql
+│   └── seed.sql                  # Seed data for local dev
 │
 ├── 📁 05_research/               # 📚 USER RESEARCH
 │   ├── interview-script.md       # Script phỏng vấn
@@ -191,6 +200,80 @@ docs/
 - ✅ File `_OLD` → vào `old-versions/`
 - ✅ Fix tạm thời → vào `temp-fixes/`
 - ✅ Chat history → vào `conversations/`
+
+---
+
+## 💾 **SUPABASE/ - DATABASE (Chi tiết)**
+
+```
+supabase/
+│
+├── 📄 config.toml                 # Supabase CLI configuration
+│   └── Project settings, ports, auth config
+│
+├── 📁 migrations/                 # Database migrations
+│   ├── 20251107000000_add_documents_table.sql
+│   └── 20251107000001_productivity_core_schema.sql
+│   └── ...                       # New migrations (timestamp-based)
+│
+└── 📄 seed.sql                    # Seed data for local development
+```
+
+### **📖 GIẢI THÍCH SUPABASE STRUCTURE:**
+
+#### **config.toml - Supabase CLI Config**
+
+**Mục đích:** Cấu hình cho Supabase CLI khi chạy local development.
+
+**Khi nào dùng:**
+- ✅ Chạy `supabase start` (local development)
+- ✅ Link project với `supabase link`
+- ✅ Customize ports, auth settings
+
+**Quan trọng:**
+- File này được commit vào git
+- Không chứa secrets (dùng environment variables)
+
+#### **migrations/ - Database Migrations**
+
+**Mục đích:** Tất cả database schema changes được version control.
+
+**Naming convention:**
+- Format: `YYYYMMDDHHMMSS_description.sql`
+- Example: `20251107000000_add_documents_table.sql`
+- Supabase CLI tự động sort theo timestamp
+
+**Workflow:**
+```bash
+# Create new migration
+supabase migration new add_feature_name
+
+# Deploy to cloud
+supabase db push
+
+# Test locally
+supabase db reset
+```
+
+**Quy tắc:**
+- ✅ Mỗi migration = 1 file
+- ✅ Migrations chạy theo thứ tự timestamp
+- ✅ Không edit migrations đã deploy (tạo migration mới)
+- ✅ Test migrations locally trước khi push
+
+#### **seed.sql - Seed Data**
+
+**Mục đích:** Dữ liệu mẫu cho local development.
+
+**Khi nào dùng:**
+- ✅ Test với sample data
+- ✅ Demo cho team members
+- ✅ Development workflow
+
+**Chạy:**
+```bash
+supabase db reset  # Runs migrations + seed.sql
+```
 
 ---
 
@@ -399,6 +482,9 @@ Cả 2 dùng chung layout.tsx (sidebar + header)
 | **Edit Kanban board**       | `frontend/components/kanban/kanban-board.tsx`                        |
 | **Add Zustand state**       | `frontend/lib/stores/tasks.ts`                                       |
 | **Database schema**         | `docs/04_technical/architecture/database-schema-v2-productivity.sql` |
+| **Create migration**        | `supabase/migrations/` (use `supabase migration new`)                |
+| **Deploy migrations**       | Run `supabase db push` from root                                     |
+| **Local database**          | Run `supabase start` (requires Docker)                              |
 
 ---
 

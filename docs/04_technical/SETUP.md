@@ -42,12 +42,31 @@
 
 ### 1.3 Setup Database Schema
 
+**Option A: Using Supabase CLI (Recommended)**
+
+```bash
+# Install Supabase CLI (if not already installed)
+npm install -g supabase
+
+# Login to Supabase
+supabase login
+
+# Link to your project (get project-ref from Supabase dashboard → Settings → General)
+supabase link --project-ref YOUR-PROJECT-REF
+
+# Push migrations to cloud database
+supabase db push
+```
+
+**Option B: Manual SQL (Fallback)**
+
 1. In Supabase dashboard, click **SQL Editor** (left sidebar)
 2. Click "New query"
-3. Open file: `docs/architecture/database-schema.sql` in VS Code
-4. Copy ENTIRE content
+3. Open migration files in `supabase/migrations/` in VS Code
+4. Copy content from each migration file (in order: 20251107000000, then 20251107000001)
 5. Paste into Supabase SQL Editor
-6. Click "Run" (or Ctrl+Enter) Nó trả kết quả lỗi rồi Error: Failed to run sql query: 42P07: relation "profiles" already exits
+6. Click "Run" (or Ctrl+Enter)
+   - **Note:** Nếu gặp lỗi "relation already exists", bỏ qua bước này (tables đã được tạo rồi)
 7. Should see "Success. No rows returned"
 
 ### 1.4 Enable Authentication
@@ -227,26 +246,35 @@ npm run lint
 
 ## Step 6: Supabase Local Development (Optional)
 
-For advanced users who want to work offline:
+For advanced users who want to work offline with local database:
 
 ```bash
-# Install Supabase CLI
+# Install Supabase CLI (if not already installed)
 npm install -g supabase
 
-# Login
-supabase login
-
-# Link to your project
-supabase link --project-ref YOUR-PROJECT-ID
-
-# Pull database schema
-supabase db pull
-
-# Start local Supabase (Docker required)
+# Start local Supabase (requires Docker)
 supabase start
+
+# This will:
+# - Start local PostgreSQL database
+# - Run all migrations from supabase/migrations/
+# - Start Supabase Studio at http://localhost:54323
+# - Provide local connection strings
+
+# To stop local Supabase:
+supabase stop
+
+# To reset local database (run all migrations again):
+supabase db reset
 ```
 
-**For POC/MVP: Skip this, use cloud Supabase**
+**Local Development Benefits:**
+- Test migrations offline
+- No cloud costs during development
+- Faster iteration
+- Can test rollbacks safely
+
+**For POC/MVP:** You can skip this and use cloud Supabase directly. Local development is optional but recommended for production workflows.
 
 ---
 

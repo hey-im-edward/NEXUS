@@ -913,9 +913,12 @@ git mv docs/AI_PROMPTS.md docs/02_ai-prompts/AI_PROMPTS.md
 - `docs/04_technical/TROUBLESHOOTING_LOG.md` - Bug fixes và learnings
 - `docs/02_ai-prompts/AI_PRINCIPLES.md` - Development principles
 - `docs/00_start-here/TECH_STACK.md` - Current technology stack
+- `docs/archive/conversations/BRAIN_DUMP_from_initial_chat.md` - Source document với các quyết định ban đầu
 
 ---
 
 **Last Updated:** November 9, 2025  
 **Next Review:** Week 4 (POC complete) - Review all decisions, document any pivots  
 **Total ADRs:** 10
+
+**Note:** Các ADRs trong file này được tổng hợp và mở rộng từ Brain Dump. ADR-009 (rrule) và ADR-010 (Documentation Structure) được thêm sau để hoàn thiện bộ quyết định kiến trúc.

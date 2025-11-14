@@ -39,6 +39,10 @@ yarn-error.log*
 postgres_data/
 redis_data/
 
+# Supabase
+supabase/.temp/
+supabase/.branches/
+
 # Misc
 .cache/
 tmp/

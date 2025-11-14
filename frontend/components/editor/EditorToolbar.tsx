@@ -12,11 +12,38 @@ import {
     List,
     ListOrdered
 } from 'lucide-react';
+import type { ReactNode } from 'react';
 
 /**
  * Toolbar component cho Tiptap Editor
  * Cung cấp các nút format text: Bold, Italic, Headings, Lists, Link
  */
+type ToolbarButtonProps = {
+    onClick: () => void;
+    isActive?: boolean;
+    title: string;
+    children: ReactNode;
+};
+
+function ToolbarButton({ onClick, isActive = false, title, children }: ToolbarButtonProps) {
+    return (
+        <Button
+            type="button"
+            variant="ghost"
+            size="sm"
+            onClick={onClick}
+            className={`h-8 w-8 p-0 transition-all ${
+                isActive
+                    ? 'bg-slate-900 text-white hover:bg-slate-800'
+                    : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
+            }`}
+            title={title}
+        >
+            {children}
+        </Button>
+    );
+}
+
 export function EditorToolbar({ editor }: EditorToolbarProps) {
     if (!editor) {
         return null;
@@ -48,35 +75,6 @@ export function EditorToolbar({ editor }: EditorToolbarProps) {
             .setLink({ href: url })
             .run();
     };
-
-    /**
-     * Button component với styling chung
-     */
-    const ToolbarButton = ({
-        onClick,
-        isActive = false,
-        children,
-        title,
-    }: {
-        onClick: () => void;
-        isActive?: boolean;
-        children: React.ReactNode;
-        title: string;
-    }) => (
-        <Button
-            type="button"
-            variant="ghost"
-            size="sm"
-            onClick={onClick}
-            className={`h-8 w-8 p-0 transition-all ${isActive
-                    ? 'bg-slate-900 text-white hover:bg-slate-800'
-                    : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
-                }`}
-            title={title}
-        >
-            {children}
-        </Button>
-    );
 
     return (
         <div className="sticky top-0 z-10 flex items-center gap-1 border-b border-slate-200 bg-white px-4 py-2.5 shadow-sm">

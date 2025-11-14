@@ -220,18 +220,13 @@ npm run build
 
 ---
 
-## 📊 Current Status
+## 📊 Trạng Thái Dự Án
 
-**For detailed project status, see:** [`../docs/01_status/NOW.md`](../docs/01_status/NOW.md)
+**Xem chi tiết:** [`../docs/01_status/THIS_WEEK.md`](../docs/01_status/THIS_WEEK.md)
 
-**Quick summary:**
-
-- ✅ Database v2 deployed (Nov 7, 2025)
-- ✅ Task CRUD working
-- ✅ Kanban Board 100% complete (Nov 8, 2025)
-- 🔄 Task Management Polish in progress (Week 0)
+**Giai đoạn hiện tại:** Week 0 - Architecture & Design (Pivot to Platform)
 
 ---
 
-**Last Updated:** November 9, 2025  
-**Version:** 2.0.0 - Productivity OS Core
+**Cập nhật lần cuối:** 13 tháng 11, 2024
+**Phiên bản:** 2.0.0 - Productivity Platform (Pivot to Platform)

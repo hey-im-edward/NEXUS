@@ -11,9 +11,9 @@
 ```
 🔴 Critical:   0 bugs
 🟡 Medium:     0 bugs
-🟢 Low:        3 bugs (Acceptable cho POC)
+🟢 Low:        2 bugs (Acceptable cho POC)
 ───────────────────────
-   Total:      3 bugs
+   Total:      2 bugs (1 fixed)
 ```
 
 ---
@@ -30,44 +30,29 @@ _Không có bugs medium - Tốt! ✅_
 
 ---
 
-## 🟢 **LOW (3 - Acceptable cho POC)**
+## 🟢 **LOW (2 - Acceptable cho POC)**
 
-### **Bug #1: Hardcoded workspace_id**
+### **Bug #1: Hardcoded workspace_id** ✅ FIXED
 
 **Mô tả:**  
 Workspace ID được hardcode trong code thay vì lấy từ user context.
 
-**File:**  
-`frontend/app/(productivity)/today/page.tsx` - Dòng 15
+**Fixed Date:** Nov 9, 2025
 
-**Code:**
+**Solution:**  
+Đã implement `getOrCreateWorkspaceId()` helper trong `lib/supabase/workspace.ts`:
+- Tự động lấy workspace từ user
+- Tự động tạo workspace nếu chưa có
+- Sử dụng trong tất cả productivity pages
 
-```typescript
-const WORKSPACE_ID = 'c6be91ba-98c3-43e5-8e5e-94e389894fa6'; // ⚠️ Hardcoded
-```
+**Files Updated:**
+- `frontend/lib/supabase/workspace.ts` ✅ (NEW - Helper function)
+- `frontend/app/(productivity)/today/page.tsx` ✅ (Updated)
+- `frontend/app/(productivity)/inbox/page.tsx` ✅ (Updated)
+- `frontend/app/(productivity)/projects/[id]/board/page.tsx` ✅ (Updated)
+- `frontend/app/kanban-demo/page.tsx` ✅ (Updated)
 
-**Impact:**
-
-- ⚠️ Mọi user đều thấy chung workspace
-- ⚠️ Không thể có multi-user
-
-**Priority:** LOW (OK cho POC, fix khi có real users)
-
-**Plan to Fix:**
-
-```typescript
-// Solution: Dùng user context
-const { workspace_id } = useUser();
-
-// Hoặc: Get từ Supabase
-const { data } = await supabase
-  .from('workspace_members')
-  .select('workspace_id')
-  .eq('user_id', user.id)
-  .single();
-```
-
-**Timeline:** Week 2-3 (khi implement multi-workspace)
+**Status:** ✅ FIXED - Không còn hardcode, tự động tạo workspace
 
 ---
 
@@ -236,8 +221,6 @@ Nếu phát hiện bug mới, thêm vào đây theo format:
 
 **Timeline:** [Week X]
 
-```
-
 ---
 
 ## 🎯 **BUG FIX PRIORITY**
@@ -288,4 +271,3 @@ End of Week 4: 0 bugs total (polish phase)
 
 **Last Updated:** November 8, 2025
 **Next Review:** November 11, 2025 (End of Week 0)
-```

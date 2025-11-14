@@ -1,83 +1,101 @@
 {
-    // Editor Settings
-    "editor.fontSize": 14,
-    "editor.lineHeight": 22,
-    "editor.formatOnSave": true,
-    "editor.codeActionsOnSave": {
-      "source.fixAll.eslint": "explicit",
-      "source.organizeImports": "explicit"
-    },
-    "editor.snippetSuggestions": "top",
-    "editor.suggestSelection": "first",
-    
-    // TypeScript Settings
-    "typescript.preferences.importModuleSpecifier": "relative",
-    "typescript.updateImportsOnFileMove.enabled": "always",
-    "typescript.suggest.autoImports": true,
-    "typescript.tsdk": "node_modules/typescript/lib",
-    
-    // Cursor AI Settings
-    "cursor.aiProvider": "claude-3.5-sonnet",
-    "cursor.contextLines": 50,  // Số dòng context gửi cho AI
-    "cursor.includeComments": true,
-    "cursor.includeImports": false,  // Tiết kiệm tokens
-    "cursor.maxTokens": 4000,
-    "cursor.temperature": 0.7,  // Cân bằng giữa creativity và accuracy
-    
-    // Files Settings
-    "files.exclude": {
-      "**/.git": true,
-      "**/.DS_Store": true,
-      "**/node_modules": true,
-      "**/dist": true,
-      "**/.next": true
-    },
-    "files.watcherExclude": {
-      "**/node_modules/**": true,
-      "**/dist/**": true,
-      "**/.next/**": true
-    },
-    
-    // Search Settings (Quan trọng cho performance)
-    "search.exclude": {
-      "**/node_modules": true,
-      "**/dist": true,
-      "**/.next": true,
-      "**/coverage": true
-    },
-    
-    // Git Settings
-    "git.autofetch": true,
-    "git.confirmSync": false,
-    "git.enableSmartCommit": true,
-    
-    // Terminal Settings
-    "terminal.integrated.defaultProfile.windows": "Git Bash",
-    "terminal.integrated.defaultProfile.osx": "zsh",
-    "terminal.integrated.fontSize": 13,
-    
-    // Extension Specific Settings
-    "eslint.validate": [
-      "javascript",
-      "javascriptreact",
-      "typescript",
-      "typescriptreact"
-    ],
-    "prettier.singleQuote": true,
-    "prettier.trailingComma": "es5",
-    "prettier.printWidth": 100,
-    "tailwindCSS.includeLanguages": {
-      "typescript": "javascript",
-      "typescriptreact": "javascript"
-    },
-    
-    // Performance Optimizations
-    "extensions.experimental.affinity": {
-      "vscodevim.vim": 1  // Nếu dùng Vim mode
-    },
-    "typescript.disableAutomaticTypeAcquisition": true,
-    "npm.fetchOnlinePackageInfo": false,
-    
-    // Workspace Trust
-    "security.workspace.trust.enabled": false
-  }
+  // Editor Settings
+  "editor.fontSize": 14,
+  "editor.lineHeight": 22,
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit",
+    "source.organizeImports": "explicit"
+  },
+  "editor.snippetSuggestions": "top",
+  "editor.suggestSelection": "first",
+  // TypeScript Settings
+  "typescript.preferences.importModuleSpecifier": "relative",
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "typescript.suggest.autoImports": true,
+  "typescript.tsdk": "node_modules/typescript/lib",
+  // Cursor AI Settings
+  "cursor.aiProvider": "claude-3.5-sonnet",
+  "cursor.contextLines": 50, // Số dòng context gửi cho AI
+  "cursor.includeComments": true,
+  "cursor.includeImports": false, // Tiết kiệm tokens
+  "cursor.maxTokens": 4000,
+  "cursor.temperature": 0.7, // Cân bằng giữa creativity và accuracy
+  // Files Settings
+  "files.exclude": {
+    "**/.git": true,
+    "**/.DS_Store": true,
+    "**/node_modules": true,
+    "**/dist": true,
+    "**/.next": true
+  },
+  "files.watcherExclude": {
+    "**/node_modules/**": true,
+    "**/dist/**": true,
+    "**/.next/**": true
+  },
+  // Search Settings (Quan trọng cho performance)
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/dist": true,
+    "**/.next": true,
+    "**/coverage": true
+  },
+  // Git Settings
+  "git.autofetch": true,
+  "git.confirmSync": false,
+  "git.enableSmartCommit": true,
+  // Terminal Settings
+  "terminal.integrated.defaultProfile.windows": "Git Bash",
+  "terminal.integrated.defaultProfile.osx": "zsh",
+  "terminal.integrated.fontSize": 13,
+  // Hỗ trợ IME cho tiếng Việt - giữ focus trong terminal khi gõ
+  "terminal.integrated.enablePersistentSessions": true,
+  "terminal.integrated.localEchoEnabled": "off", // Tắt để tránh conflict với IME
+  "terminal.integrated.unicodeVersion": "11",
+  // Windows specific - THỬ TẮT ConPTY để xem có fix được IME không
+  // Nếu vẫn bị, đổi lại thành true
+  "terminal.integrated.windowsEnableConpty": false, // Thử tắt ConPTY - có thể fix IME
+  "terminal.integrated.enableMultiLinePasteWarning": false,
+  // Giữ focus trong terminal khi đang gõ
+  "terminal.integrated.allowWorkspaceConfiguration": true,
+  // IME Settings - xử lý tiếng Việt đúng cách
+  "terminal.integrated.enableImages": false,
+  "terminal.integrated.smoothScrolling": false,
+  // Tắt các tính năng có thể can thiệp với IME
+  "terminal.integrated.suggest.enabled": false,
+  // Cấu hình IME composition - quan trọng cho tiếng Việt
+  "editor.acceptSuggestionOnCommitCharacter": false,
+  "editor.acceptSuggestionOnEnter": "off",
+  // Extension Specific Settings
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+  ],
+  "prettier.singleQuote": true,
+  "prettier.trailingComma": "es5",
+  "prettier.printWidth": 100,
+  "tailwindCSS.includeLanguages": {
+    "typescript": "javascript",
+    "typescriptreact": "javascript"
+  },
+  // Performance Optimizations
+  "extensions.experimental.affinity": {
+    "vscodevim.vim": 1 // Nếu dùng Vim mode
+  },
+  "typescript.disableAutomaticTypeAcquisition": true,
+  "npm.fetchOnlinePackageInfo": false,
+  // Workspace Trust
+  "security.workspace.trust.enabled": false,
+  // Spell Checker Settings - Tắt spell check cho docs (có nội dung tiếng Việt)
+  "cSpell.enabled": true,
+  "cSpell.ignorePaths": [
+    "**/docs/**", // Bỏ qua tất cả file trong docs (chứa tiếng Việt)
+    "**/node_modules/**",
+    "**/.next/**",
+    "**/dist/**"
+  ],
+  "claudeCode.useTerminal": false
+}

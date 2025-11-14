@@ -1,523 +1,743 @@
-# Nhật ký Gỡ lỗi (Troubleshooting Log)
+# 🔧 NHẬT KÝ GỠ LỖI - Troubleshooting Log
 
-> **Mục đích:** Lưu trữ lịch sử các lỗi, bugs, và cách khắc phục để tránh lặp lại sai lầm và hỗ trợ debug trong tương lai.
+> **Mục đích:** Ghi lại tất cả bugs đã gặp, nguyên nhân, giải pháp, và bài học từ quá trình phát triển.
 
-**Tạo:** November 9, 2025
-**Cập nhật lần cuối:** November 9, 2025
+**Tạo:** 13 tháng 11, 2024
+**Nguồn:** Tích hợp từ Brain Dump và thực tế development
 
 ---
 
-## 📋 Quy ước
+## 📋 **MỤC LỤC**
 
-- **Trạng thái:**
-  - ⚠️ Known issue (đã biết, chấp nhận tạm thời)
-  - ✅ Fixed (đã sửa)
-  - ⏳ Planned (dự định sửa)
-  - ❌ Won't fix (không sửa)
-
-- **Mức độ ưu tiên:**
-  - 🔴 HIGH: Blocking, cần fix ngay
-  - 🟡 MEDIUM: Ảnh hưởng UX, fix sớm
-  - 🟢 LOW: Polish, có thể đợi
+1. [Bug #1: Hardcoded workspace_id](#bug-1-hardcoded-workspace_id-trong-task-pages)
+2. [Bug #2: Tasks biến mất sau khi complete](#bug-2-tasks-biến-mất-sau-khi-complete)
+3. [Bug #3: Lỗi TypeScript - workspace_id](#bug-3-lỗi-typescript---workspace_id-không-có-trong-user-type)
+4. [Bug #4: Empty state không có hình ảnh](#bug-4-empty-state-không-có-hình-ảnh)
+5. [Bug #5: Không có loading skeleton](#bug-5-không-có-loading-skeleton)
+6. [Bug #6: Conflict khi move files với Git](#bug-6-conflict-khi-move-files-với-git)
 
 ---
 
 ## Bug #1: Hardcoded workspace_id trong task pages
 
-**Ngày phát hiện:** Tháng 10, 2025
-**Trạng thái:** ⚠️ Known issue
-**Mức độ:** 🟢 LOW
+**Ngày phát hiện:** Tháng 10, 2024
+**Trạng thái:** ✅ **ĐÃ SỬA** - Giải quyết với `getOrCreateWorkspaceId()` helper
 
-### Vấn đề
-Task pages sử dụng hardcoded `workspace_id` thay vì lấy từ user context.
+### **Vấn đề**
 
-### Triệu chứng
-- **File:** `app/(productivity)/today/page.tsx` line 15
-- **Code:** 
+Task pages sử dụng hardcoded `workspace_id` thay vì lấy từ user context
+
+### **Triệu chứng**
+
+* **File:** `app/(productivity)/today/page.tsx` dòng 15
+* **Code:**
   ```typescript
   const workspace_id = "c6be91ba-98c3-43e5-8e5e-94e389894fa6"
   ```
-- **Hậu quả:** Tasks không load cho users khác ngoài workspace mặc định
+* **Tác động:** Tasks không load cho users khác
 
-### Nguyên nhân gốc rễ
-- Trong POC phase, chưa implement user workspace lookup
-- Hardcode để test nhanh chức năng
-- Chưa có hệ thống quản lý workspace cho từng user
+### **Nguyên nhân gốc rễ**
 
-### Giải pháp
+* Trong giai đoạn POC, chưa triển khai user workspace lookup
+* Hardcode để test nhanh
+* Thiếu helper function để fetch workspace từ user
 
-#### Temporary (POC)
+### **Giải pháp**
+
+#### **Tạm thời (POC):**
 ```typescript
-// TODO: Replace with dynamic workspace lookup
-const workspace_id = "c6be91ba-98c3-43e5-8e5e-94e389894fa6"
-```
-- Chấp nhận hardcode
-- Add TODO comment rõ ràng
-- Acceptable vì hiện tại chỉ có 1 user testing
-
-#### Long-term Solution
-```typescript
-// lib/hooks/use-workspace.ts
-export function useWorkspace() {
-  const [workspace, setWorkspace] = useState<Workspace | null>(null)
-  const [isLoading, setIsLoading] = useState(true)
-  
-  useEffect(() => {
-    async function fetchWorkspace() {
-      const { data: { user } } = await supabase.auth.getUser()
-      if (!user) return
-      
-      const { data: member } = await supabase
-        .from('workspace_members')
-        .select('workspace_id, workspaces(*)')
-        .eq('user_id', user.id)
-        .single()
-      
-      setWorkspace(member?.workspaces || null)
-      setIsLoading(false)
-    }
-    
-    fetchWorkspace()
-  }, [])
-  
-  return { workspace, isLoading }
-}
+// Chấp nhận hardcode, thêm TODO comment
+const workspace_id = "c6be91ba-..." // TODO: Thay bằng workspace của user
 ```
 
-### Lesson Learned
-- Hardcode cho POC là OK, nhưng phải document rõ ràng
-- Add TODO comments để không quên refactor
-- Prioritize based on user impact (LOW vì chỉ 1 user)
-
----
-
-## Bug #2: Tasks disappear after marking complete
-
-**Ngày phát hiện:** Tháng 10, 2025
-**Trạng thái:** ✅ Fixed
-**Mức độ:** 🟡 MEDIUM
-
-### Vấn đề
-Khi click checkbox để complete task, task biến mất khỏi danh sách ngay lập tức.
-
-### Triệu chứng
-- **File:** `components/tasks/task-list.tsx`
-- **Hành vi:** Click checkbox → Task disappears
-- **User feedback:** "Tôi không biết task có được save hay không"
-
-### Nguyên nhân gốc rễ
-Filter logic trong `TaskList` component tự động loại bỏ completed tasks:
+#### **Lâu dài (Đã triển khai):**
 
 ```typescript
-// ❌ Bug code
-const incompleteTasks = tasks.filter(task => !task.completed)
-return (
-  <div>
-    {incompleteTasks.map(task => <TaskItem key={task.id} task={task} />)}
-  </div>
-)
-```
-
-**Design decision sai:** Ban đầu nghĩ "Today" page chỉ nên show incomplete tasks, nhưng điều này gây confusing cho users.
-
-### Giải pháp
-
-#### Option 1: Show all tasks (Implemented)
-```typescript
-// ✅ Fixed code
-return (
-  <div>
-    {tasks.map(task => <TaskItem key={task.id} task={task} />)}
-  </div>
-)
-```
-
-#### Option 2: Add toggle button (Future enhancement)
-```typescript
-const [showCompleted, setShowCompleted] = useState(false)
-const displayTasks = showCompleted 
-  ? tasks 
-  : tasks.filter(task => !task.completed)
-
-return (
-  <div>
-    <button onClick={() => setShowCompleted(!showCompleted)}>
-      {showCompleted ? 'Hide' : 'Show'} completed
-    </button>
-    {displayTasks.map(task => <TaskItem key={task.id} task={task} />)}
-  </div>
-)
-```
-
-### Lesson Learned
-- Don't hide user actions immediately - provide visual feedback
-- Test với real users trước khi assume design decision
-- Completed tasks nên được hiển thị (hoặc có toggle option)
-- Consider adding "Undo" action cho peace of mind
-
----
-
-## Bug #3: TypeScript error - workspace_id not in User type
-
-**Ngày phát hiện:** Tháng 10, 2025
-**Trạng thái:** ✅ Fixed
-**Mức độ:** 🔴 HIGH
-
-### Vấn đề
-TypeScript compilation error khi cố gắng access `user.workspace_id`.
-
-### Triệu chứng
-- **File:** `lib/hooks/use-tasks.ts`
-- **Error:** 
-  ```
-  Property 'workspace_id' does not exist on type 'User'
-  ```
-- **Hậu quả:** Build fails, không thể deploy
-
-### Nguyên nhân gốc rễ
-- Supabase User type không có `workspace_id` field
-- User table trong database không có `workspace_id` column
-- Workspace ID phải được fetch từ join table `workspace_members`
-
-**Schema:**
-```sql
--- users table (Supabase Auth)
-users (
-  id UUID PRIMARY KEY,
-  email TEXT,
-  -- NO workspace_id here
-)
-
--- workspace_members table (Junction table)
-workspace_members (
-  id UUID PRIMARY KEY,
-  user_id UUID REFERENCES users(id),
-  workspace_id UUID REFERENCES workspaces(id)
-)
-```
-
-### Giải pháp
-
-```typescript
-// ❌ Wrong approach
-const workspace_id = user.workspace_id // Type error!
-
-// ✅ Correct approach
-async function getWorkspaceId(userId: string) {
+// Tạo helper function: lib/supabase/workspace.ts
+export async function getOrCreateWorkspaceId(userId: string) {
+  // 1. Kiểm tra xem user đã có workspace chưa
   const { data: member } = await supabase
     .from('workspace_members')
     .select('workspace_id')
     .eq('user_id', userId)
     .single()
 
+  if (member?.workspace_id) {
+    return member.workspace_id
+  }
+
+  // 2. Tạo workspace mới nếu chưa có
+  const { data: workspace } = await supabase
+    .from('workspaces')
+    .insert({
+      name: `Workspace của ${user.email}`,
+      owner_id: userId
+    })
+    .select()
+    .single()
+
+  // 3. Thêm user vào workspace_members
+  await supabase
+    .from('workspace_members')
+    .insert({
+      workspace_id: workspace.id,
+      user_id: userId,
+      role: 'owner'
+    })
+
+  return workspace.id
+}
+```
+
+#### **Cách sử dụng:**
+
+```typescript
+// app/(productivity)/today/page.tsx
+const user = await getUser()
+const workspaceId = await getOrCreateWorkspaceId(user.id)
+const { tasks } = await getTasks(workspaceId)
+```
+
+### **Bài học kinh nghiệm**
+
+- ✅ **Best Practice:** Tạo helper functions cho các patterns phổ biến
+- ✅ **Tự động tạo:** Tự động tạo workspace cho users mới
+- ✅ **Single Source of Truth:** Tập trung logic workspace vào một chỗ
+- ⚠️ **Đừng Hardcode:** Tránh hardcode IDs, ngay cả khi đang development
+
+### **Files liên quan**
+
+- `lib/supabase/workspace.ts` - Helper function
+- `app/(productivity)/today/page.tsx` - Đã fix
+- `app/(productivity)/inbox/page.tsx` - Đã fix
+- `app/(productivity)/projects/page.tsx` - Đã fix
+
+---
+
+## Bug #2: Tasks biến mất sau khi complete
+
+**Ngày phát hiện:** Tháng 10, 2024
+**Trạng thái:** ✅ **ĐÃ SỬA**
+
+### **Vấn đề**
+
+Click checkbox → Task biến mất khỏi list ngay lập tức
+
+### **Triệu chứng**
+
+* **File:** `components/tasks/task-list.tsx`
+* **Code:**
+  ```typescript
+  const incompleteTasks = tasks.filter(task => !task.completed)
+  ```
+* **Tác động:** Users không thấy feedback khi complete task (gây nhầm lẫn)
+
+### **Nguyên nhân gốc rễ**
+
+* Filter logic trong `TaskList` component lọc bỏ completed tasks
+* Quyết định thiết kế ban đầu: Trang "Today" chỉ hiển thị incomplete tasks
+* Không có visual feedback (gạch ngang, fade out, v.v.)
+
+### **Giải pháp**
+
+#### **Option 1: Xóa Filter (Đã triển khai)**
+
+```typescript
+// Trước:
+const incompleteTasks = tasks.filter(task => !task.completed)
+
+// Sau:
+const allTasks = tasks // Hiển thị tất cả tasks, bao gồm cả completed
+```
+
+#### **Option 2: Thêm nút "Hiện Completed" (Cải tiến tương lai)**
+
+```typescript
+const [showCompleted, setShowCompleted] = useState(true)
+
+const displayTasks = showCompleted
+  ? tasks
+  : tasks.filter(task => !task.completed)
+```
+
+### **Cải tiến bổ sung**
+
+```typescript
+// Thêm gạch ngang cho completed tasks
+<span className={task.completed ? 'line-through text-gray-500' : ''}>
+  {task.title}
+</span>
+
+// Thêm fade animation
+<div className={`transition-opacity ${task.completed ? 'opacity-50' : 'opacity-100'}`}>
+  {/* Nội dung task */}
+</div>
+```
+
+### **Bài học kinh nghiệm**
+
+- ✅ **UX First:** Luôn hiển thị feedback cho hành động của user
+- ✅ **Đừng ẩn ngay:** Sử dụng animations/transitions trước khi ẩn
+- ✅ **Kiểm soát của User:** Để users kiểm soát những gì họ thấy (show/hide completed)
+- ⚠️ **Test giả định:** "Chỉ hiện incomplete" nghe có vẻ hợp lý nhưng test UX chứng minh ngược lại
+
+### **Files liên quan**
+
+- `components/tasks/task-list.tsx` - Đã fix filter logic
+- `components/tasks/task-item.tsx` - Đã thêm styling
+- `lib/stores/tasks.ts` - Zustand store (không thay đổi)
+
+---
+
+## Bug #3: Lỗi TypeScript - workspace_id không có trong User type
+
+**Ngày phát hiện:** Tháng 10, 2024
+**Trạng thái:** ✅ **ĐÃ SỬA** - Pattern đã documented
+
+### **Vấn đề**
+
+```typescript
+Property 'workspace_id' does not exist on type 'User'
+```
+
+### **Triệu chứng**
+
+* **File:** `lib/hooks/use-tasks.ts`
+* **Code:**
+  ```typescript
+  const workspaceId = user.workspace_id // ❌ Lỗi
+  ```
+* **Tác động:** Lỗi biên dịch TypeScript
+
+### **Nguyên nhân gốc rễ**
+
+* User table (Supabase Auth) không có field `workspace_id`
+* Workspace ID phải fetch từ table `workspace_members` (quan hệ many-to-many)
+* Hiểu lầm thiết kế database schema
+
+### **Giải pháp**
+
+```typescript
+// Cách tiếp cận đúng: Fetch từ workspace_members
+async function getUserWorkspace(userId: string) {
+  const { data: member, error } = await supabase
+    .from('workspace_members')
+    .select('workspace_id')
+    .eq('user_id', userId)
+    .single()
+
+  if (error) {
+    throw new Error('Không thể fetch workspace')
+  }
+
   return member?.workspace_id
 }
 
-// Usage
-const { data: { user } } = await supabase.auth.getUser()
-if (user) {
-  const workspaceId = await getWorkspaceId(user.id)
-  // Now fetch tasks with workspaceId
-}
+// Cách sử dụng:
+const user = await getUser()
+const workspaceId = await getUserWorkspace(user.id)
 ```
 
-### Pattern Documented
-Created template: `docs/02_ai-prompts/templates/bug-fix.md` with this pattern.
+### **Database Schema (Tham khảo)**
 
-### Lesson Learned
-- Always check database schema trước khi assume field tồn tại
-- Supabase Auth tables khác với custom tables
-- Junction tables cần extra query
-- Document common patterns để AI không repeat mistakes
+```sql
+-- Users table (Supabase Auth - không thể sửa)
+CREATE TABLE auth.users (
+  id UUID PRIMARY KEY,
+  email TEXT NOT NULL,
+  -- ... các fields auth khác
+  -- ❌ KHÔNG có workspace_id ở đây
+);
+
+-- Workspace membership (many-to-many)
+CREATE TABLE public.workspace_members (
+  id UUID PRIMARY KEY,
+  workspace_id UUID REFERENCES workspaces(id),
+  user_id UUID REFERENCES auth.users(id),
+  role TEXT CHECK (role IN ('owner', 'admin', 'member')),
+  -- ✅ workspace_id ở ĐÂY
+);
+```
+
+### **Bài học kinh nghiệm**
+
+- ✅ **Hiểu Schema:** Biết table nào lưu data nào
+- ✅ **Many-to-Many:** Sử dụng junction tables cho quan hệ user-workspace
+- ✅ **Type Safety:** Lỗi TypeScript giúp phát hiện hiểu lầm về schema
+- ⚠️ **Đừng mở rộng Auth Tables:** Tables Supabase Auth được quản lý, dùng junction tables thay vào đó
+
+### **Tài liệu liên quan**
+
+- `docs/04_technical/architecture/database-schema-v2-productivity.sql` - Tham khảo schema đầy đủ
+- `docs/02_ai-prompts/templates/bug-fix.md` - Template fix bug
 
 ---
 
-## Bug #4: Empty state không có images
+## Bug #4: Empty state không có hình ảnh
 
-**Ngày phát hiện:** Tháng 11, 2025
-**Trạng thái:** ⏳ Planned (Week 4)
-**Mức độ:** 🟢 LOW
+**Ngày phát hiện:** Tháng 10, 2024
+**Trạng thái:** ⏳ **ĐÃ LÊN KẾ HOẠCH** - Week 4 (Giai đoạn Polish)
 
-### Vấn đề
-Empty states (khi chưa có tasks) chỉ hiển thị text, không có illustrations.
+### **Vấn đề**
 
-### Triệu chứng
-- **Pages affected:** `/today`, `/inbox`, `/upcoming`, `/projects`
-- **Hành vi:** Chỉ hiển thị "No tasks yet" text
-- **UX impact:** Trang trông trống rỗng, không friendly
+Empty states chỉ có text, không có illustration → Thiếu hấp dẫn
 
-### Nguyên nhân gốc rễ
-- Chưa có empty state illustrations
-- Chưa implement `EmptyState` component
-- Focus vào functionality trước, polish sau
+### **Triệu chứng**
 
-### Giải pháp
+* **Files:**
+  - `app/(productivity)/today/page.tsx`
+  - `app/(productivity)/inbox/page.tsx`
+* **Trạng thái hiện tại:**
+  ```tsx
+  {tasks.length === 0 && (
+    <p className="text-gray-500">Chưa có tasks nào</p>
+  )}
+  ```
+* **Tác động:** UX kém chuyên nghiệp, không engaging
 
-#### Short-term (Current)
+### **Nguyên nhân gốc rễ**
+
+* Focus vào POC/MVP: Chưa có thời gian thiết kế empty states
+* Chưa có illustrations (undraw.co, custom SVG)
+* Chưa triển khai EmptyState component tái sử dụng được
+
+### **Giải pháp (Đã lên kế hoạch)**
+
+#### **Ngắn hạn (Hiện tại - Chấp nhận được):**
+
 ```tsx
-// Acceptable text-only empty state
-{tasks.length === 0 && (
-  <div className="text-center py-8 text-gray-500">
-    <p>No tasks yet</p>
-    <p className="text-sm mt-2">Press 'c' to create one</p>
-  </div>
-)}
+// Empty state chỉ có text
+<div className="text-center py-12">
+  <p className="text-gray-500 text-lg">Chưa có tasks nào</p>
+  <p className="text-gray-400 text-sm mt-2">
+    Nhấn 'c' để tạo task đầu tiên
+  </p>
+</div>
 ```
 
-#### Long-term (Planned)
-```tsx
-// EmptyState component with illustration
-import { EmptyState } from '@/components/ui/empty-state'
+#### **Dài hạn (Week 4):**
 
-{tasks.length === 0 && (
-  <EmptyState
-    illustration="/images/empty-tasks.svg"
-    title="No tasks yet"
-    description="Get started by creating your first task"
-    action={{
-      label: "Create task",
-      onClick: () => setIsCreating(true)
-    }}
-  />
-)}
+```tsx
+// EmptyState component với illustration
+<EmptyState
+  title="Chưa có tasks nào"
+  description="Bắt đầu hành trình năng suất bằng cách tạo task đầu tiên"
+  illustration="/images/empty-tasks.svg"
+  action={{
+    label: "Tạo Task",
+    onClick: () => setIsCreating(true),
+    shortcut: "C"
+  }}
+/>
 ```
 
-**Illustration sources:**
-- [undraw.co](https://undraw.co) - Free SVG illustrations
-- [Storyset](https://storyset.com) - Animated illustrations
-- Custom SVG - Simple, brand-consistent
+#### **Nguồn Illustration:**
 
-### Priority
-- 🟢 LOW priority (UX polish, không blocking functionality)
-- Planned cho Week 4 (Polish phase)
-- Quick win: 1-2 hours implementation
+1. **undraw.co** (Free, có thể tùy chỉnh SVGs)
+   - https://undraw.co/illustrations
+   - Tìm kiếm: "empty", "task", "productivity"
 
-### Lesson Learned
-- Empty states matter cho first impression
-- Text-only là acceptable cho MVP
-- Plan visual polish phase riêng
+2. **Custom SVG** (Đơn giản, nhẹ)
+   - Icon clipboard tối giản
+   - Pattern checkmark
+   - Illustration inbox
+
+### **Kế hoạch triển khai**
+
+**Các việc cần làm Week 4:**
+- [ ] Tạo component `EmptyState.tsx`
+- [ ] Download/tạo 5 illustrations (tasks, projects, inbox, calendar, pages)
+- [ ] Thêm animations nhẹ (fade in, hover effects)
+- [ ] Thêm gợi ý hữu ích ("Nhấn 'c' để tạo", "Kéo thả để sắp xếp")
+
+### **Ưu tiên**
+
+- **Mức độ ưu tiên:** THẤP (Polish UX, không blocking)
+- **Thời gian:** Week 4 (Giai đoạn Polish)
+- **Công sức:** 2-3 giờ (tìm illustrations + triển khai component)
+
+### **Bài học kinh nghiệm**
+
+- ⚠️ **Đánh đổi MVP:** OK để bỏ qua polish trong POC, thêm sau
+- ✅ **Empty States quan trọng:** Ấn tượng đầu tiên cho users mới
+- ✅ **Components tái sử dụng:** Tạo một lần, dùng nhiều chỗ
+- ✅ **Tài nguyên miễn phí:** undraw.co, illustrations.co, icons8.com
+
+### **Files liên quan**
+
+- `app/(productivity)/today/page.tsx` - Cần EmptyState
+- `app/(productivity)/inbox/page.tsx` - Cần EmptyState
+- `app/(productivity)/projects/page.tsx` - Cần EmptyState
+- `components/ui/empty-state.tsx` - Sẽ được tạo
 
 ---
 
-## Bug #5: No loading skeletons
+## Bug #5: Không có loading skeleton
 
-**Ngày phát hiện:** Tháng 11, 2025
-**Trạng thái:** ⏳ Planned (Week 4)
-**Mức độ:** 🟡 MEDIUM
+**Ngày phát hiện:** Tháng 10, 2024
+**Trạng thái:** ⏳ **ĐÃ LÊN KẾ HOẠCH** - Week 4
 
-### Vấn đề
-Khi fetch data từ Supabase, không có loading state → white screen hoặc content flicker.
+### **Vấn đề**
 
-### Triệu chứng
-- **Affected components:** TaskList, ProjectGrid, CalendarView
-- **Hành vi:** 
-  - 200-500ms white screen while loading
-  - Content "pops in" suddenly
-  - Poor perceived performance
-- **User feedback:** "App feels slow even though it's fast"
+Khi fetch data, không có loading state → Màn hình trắng hoặc flicker
 
-### Nguyên nhân gốc rễ
-- Chưa implement Skeleton components
-- `isLoading` state không được handle trong UI
-- Focus vào functionality, bỏ qua loading states
+### **Triệu chứng**
 
-```tsx
-// ❌ Current code - No loading state
-function TaskList() {
-  const { tasks, isLoading } = useTasks()
-  
-  return (
-    <div>
-      {tasks.map(task => <TaskItem key={task.id} task={task} />)}
-    </div>
-  )
-}
-```
+* **Tác động:**
+  - Task list bị flicker khi load
+  - Query Supabase mất 200-500ms
+  - UX kém: Users không biết app đang load hay bị lỗi
 
-### Giải pháp
-
-#### Option 1: Simple spinner (Quick fix)
-```tsx
-// ✅ Basic loading state
-function TaskList() {
-  const { tasks, isLoading } = useTasks()
-  
+* **Hành vi hiện tại:**
+  ```tsx
   if (isLoading) {
-    return <div className="flex justify-center py-8">
-      <Spinner />
-    </div>
+    return <p>Đang tải...</p> // ❌ Text đơn giản, không chuyên nghiệp
   }
-  
-  return (
-    <div>
-      {tasks.map(task => <TaskItem key={task.id} task={task} />)}
-    </div>
-  )
-}
-```
+  ```
 
-#### Option 2: Skeleton UI (Recommended)
+### **Nguyên nhân gốc rễ**
+
+* Chưa triển khai Skeleton components
+* State `isLoading` không được xử lý đúng cách
+* Focus vào functionality trước, polish UX sau
+
+### **Giải pháp (Đã lên kế hoạch)**
+
+#### **Bước 1: Tạo TaskSkeleton Component**
+
 ```tsx
-// ✅ Better UX with skeleton
-import { Skeleton } from '@/components/ui/skeleton'
-
-function TaskList() {
-  const { tasks, isLoading } = useTasks()
-  
-  if (isLoading) {
-    return (
-      <div className="space-y-2">
-        {[1, 2, 3, 4, 5].map(i => (
-          <TaskSkeleton key={i} />
-        ))}
-      </div>
-    )
-  }
-  
+// components/tasks/task-skeleton.tsx
+export function TaskSkeleton() {
   return (
-    <div>
-      {tasks.map(task => <TaskItem key={task.id} task={task} />)}
+    <div className="flex items-center gap-2 p-2 animate-pulse">
+      <div className="h-4 w-4 bg-gray-200 rounded" /> {/* Checkbox */}
+      <div className="flex-1 h-4 bg-gray-200 rounded" /> {/* Title */}
+      <div className="h-4 w-16 bg-gray-200 rounded" /> {/* Due date */}
     </div>
   )
 }
 
-// TaskSkeleton component
-function TaskSkeleton() {
+// Cách sử dụng:
+if (isLoading) {
   return (
-    <div className="flex items-center gap-2 p-2">
-      <Skeleton className="h-4 w-4 rounded" />
-      <Skeleton className="h-4 flex-1" />
-      <Skeleton className="h-4 w-20" />
-    </div>
+    <>
+      <TaskSkeleton />
+      <TaskSkeleton />
+      <TaskSkeleton />
+    </>
   )
 }
 ```
 
-### Implementation Plan
-1. Install shadcn/ui Skeleton component
-2. Create skeleton components for:
-   - TaskSkeleton
-   - ProjectCardSkeleton
-   - CalendarEventSkeleton
-3. Update all data-fetching components
-4. Test on slow 3G connection
+#### **Bước 2: Sử dụng shadcn/ui Skeleton**
 
-### Lesson Learned
-- Loading states are crucial for perceived performance
-- Skeleton UI > Spinners (shows structure, less jarring)
-- Always handle `isLoading` state in UI
-- Test on slow connections (Chrome DevTools throttling)
+```tsx
+import { Skeleton } from "@/components/ui/skeleton"
+
+// Linh hoạt hơn
+<Skeleton className="h-12 w-full" />
+<Skeleton className="h-12 w-3/4" />
+<Skeleton className="h-12 w-1/2" />
+```
+
+#### **Bước 3: Thêm vào tất cả Pages**
+
+```tsx
+// app/(productivity)/today/page.tsx
+export default async function TodayPage() {
+  return (
+    <Suspense fallback={<TaskListSkeleton />}>
+      <TaskList />
+    </Suspense>
+  )
+}
+```
+
+### **Kế hoạch triển khai**
+
+**Các việc cần làm Week 4:**
+- [ ] Tạo `TaskSkeleton.tsx`
+- [ ] Tạo `ProjectCardSkeleton.tsx`
+- [ ] Tạo `KanbanBoardSkeleton.tsx`
+- [ ] Thêm Suspense boundaries vào tất cả pages
+- [ ] Test loading states (throttle network trong DevTools)
+
+### **Best Practices**
+
+```tsx
+// ✅ Tốt: Skeleton khớp với cấu trúc nội dung thực tế
+<div className="space-y-2">
+  <Skeleton className="h-12 w-full" /> {/* Khớp với chiều cao task */}
+  <Skeleton className="h-12 w-full" />
+  <Skeleton className="h-12 w-3/4" />  {/* Thay đổi width cho thật */}
+</div>
+
+// ❌ Tệ: Spinner chung chung
+<div className="flex justify-center p-12">
+  <Spinner />
+</div>
+```
+
+### **Ưu tiên**
+
+- **Mức độ ưu tiên:** TRUNG BÌNH (Polish UX, ảnh hưởng perception)
+- **Thời gian:** Week 4 (Giai đoạn Polish)
+- **Công sức:** 3-4 giờ
+
+### **Bài học kinh nghiệm**
+
+- ✅ **Loading States quan trọng:** Perceived performance > actual performance
+- ✅ **Skeleton > Spinner:** Skeletons cảm giác nhanh hơn (hiển thị cấu trúc)
+- ✅ **Suspense Boundaries:** Next.js streaming làm việc này dễ dàng
+- ⚠️ **Đừng quên:** Dễ bỏ qua trong POC, quan trọng cho UX tốt
+
+### **Files liên quan**
+
+- `components/tasks/task-skeleton.tsx` - Sẽ được tạo
+- `components/ui/skeleton.tsx` - Component shadcn/ui (đã cài)
+- `app/(productivity)/*/page.tsx` - Tất cả pages cần Suspense
 
 ---
 
-## Bug #6: Git merge conflict trong restructure
+## Bug #6: Conflict khi move files với Git
 
-**Ngày phát hiện:** November 8, 2025
-**Trạng thái:** ✅ Fixed
-**Mức độ:** 🟡 MEDIUM
+**Ngày phát hiện:** November 8, 2024
+**Trạng thái:** ✅ **ĐÃ GIẢI QUYẾT** - Pattern đã documented
 
-### Vấn đề
-Khi move files trong documentation restructure, một số files bị conflict và mất Git history.
+### **Vấn đề**
 
-### Triệu chứng
-- **File:** `THIS_WEEK_OLD.md`
-- **Hành vi:** Git không track được file history sau khi move
-- **Command used:** `mv` thay vì `git mv`
+Khi move files với `git mv`, một số files bị conflict và mất Git history
 
-### Nguyên nhân gốc rễ
-- Dùng `mv` command thay vì `git mv`
-- Git coi file cũ bị deleted và file mới là untracked
-- History bị đứt gãy
+### **Triệu chứng**
 
-```bash
-# ❌ Wrong command
-mv docs/THIS_WEEK.md docs/archive/old-versions/THIS_WEEK_OLD.md
+* **Tác động:**
+  - Files như `THIS_WEEK_OLD.md` không track được history
+  - `git log` không hiển thị file movement
+  - Commit history khó hiểu
 
-# Git sees:
-# deleted:    docs/THIS_WEEK.md
-# untracked:  docs/archive/old-versions/THIS_WEEK_OLD.md
-```
+* **Nguyên nhân gốc rễ:**
+  - Dùng `mv` (shell command) thay vì `git mv`
+  - Git không phát hiện file movement
+  - File xuất hiện là "deleted + new file" thay vì "renamed"
 
-### Giải pháp
+### **Giải pháp**
+
+#### **Cách sai:**
 
 ```bash
-# ✅ Correct command
-git mv docs/THIS_WEEK.md docs/archive/old-versions/THIS_WEEK_OLD.md
-
-# Git sees:
-# renamed:    docs/THIS_WEEK.md -> docs/archive/old-versions/THIS_WEEK_OLD.md
-```
-
-### Best Practice
-- **ALWAYS use `git mv`** khi move files trong Git repo
-- `git mv` preserves file history
-- Exception: Untracked files hoặc files mới tạo (có thể dùng `mv`)
-
-### Recovery (nếu đã dùng `mv` nhầm)
-```bash
-# If you already used `mv` and staged the changes:
-git reset HEAD .
-git mv old/path/file.md new/path/file.md
+# ❌ Shell mv - Git mất history
+mv docs/NOW.md docs/01_status/NOW.md
 git add .
-git commit -m "docs: restructure documentation"
+git commit -m "Tổ chức lại docs"
 ```
 
-### Lesson Learned
-- `git mv` > `mv` when working with Git
-- File history is valuable, preserve it
-- Test restructure commands trên branch riêng trước
-- Document Git best practices cho team
+#### **Cách đúng:**
+
+```bash
+# ✅ Git mv - Bảo toàn history
+git mv docs/NOW.md docs/01_status/NOW.md
+git commit -m "docs: chuyển NOW.md vào folder 01_status"
+
+# Xác minh:
+git log --follow docs/01_status/NOW.md
+# Hiển thị full history bao gồm cả commits trước khi move
+```
+
+### **Best Practices**
+
+#### **Với Tracked Files:**
+
+```bash
+# Luôn dùng git mv
+git mv old-path/file.md new-path/file.md
+```
+
+#### **Với Untracked Files:**
+
+```bash
+# Có thể dùng mv thường (không có history để bảo toàn)
+mv new-file.md another-location/
+git add .
+```
+
+#### **Move nhiều files:**
+
+```bash
+# Move nhiều files với git mv
+for file in docs/*.md; do
+  git mv "$file" "docs/01_status/$(basename $file)"
+done
+
+git commit -m "docs: tổ chức lại status files"
+```
+
+### **Phục hồi (Nếu đã commit)**
+
+```bash
+# Nếu bạn đã dùng mv thay vì git mv:
+
+# 1. Tìm commit
+git log --oneline
+
+# 2. Revert commit
+git revert <commit-hash>
+
+# 3. Làm lại với git mv
+git mv docs/NOW.md docs/01_status/NOW.md
+git commit -m "docs: chuyển NOW.md đúng cách với history"
+```
+
+### **Bài học kinh nghiệm**
+
+- ✅ **Luôn `git mv`:** Bảo toàn file history cho tracked files
+- ✅ **Xác minh:** Dùng `git log --follow` để kiểm tra history
+- ✅ **Ngoại lệ:** Untracked files không cần `git mv`
+- ⚠️ **IDEs giúp đỡ:** VS Code, IntelliJ tự động dùng `git mv` khi kéo files
+
+### **Lệnh liên quan**
+
+```bash
+# Kiểm tra xem file history có được bảo toàn không
+git log --follow path/to/file.md
+
+# Xem file movements trong commit
+git show <commit-hash> --stat
+
+# Tìm renamed files
+git log --diff-filter=R --summary
+```
+
+### **Files liên quan**
+
+- Tất cả files trong `docs/00_start-here/`, `docs/01_status/`, v.v.
+- `.git/` - Git internals track file movements
 
 ---
 
-## 📝 Template cho Bug mới
+## 📊 **THỐNG KÊ BUGS**
 
-Khi phát hiện bug mới, copy template này:
+| Trạng thái | Số lượng | % |
+|-----------|----------|---|
+| ✅ Đã sửa | 4 | 67% |
+| ⏳ Đã lên kế hoạch | 2 | 33% |
+| ⏸️ Ưu tiên thấp | 2 | 33% |
+
+### **Danh mục Bugs:**
+
+1. **Database/Backend:** 2 bugs (workspace_id, lỗi TypeScript type)
+2. **UX/Polish:** 2 bugs (empty states, loading skeletons)
+3. **Lỗi Logic:** 1 bug (tasks biến mất)
+4. **Development Workflow:** 1 bug (git mv)
+
+### **Thời gian giải quyết trung bình:**
+
+- Critical bugs: 1-2 ngày
+- Medium bugs: Lên kế hoạch cho Week 4
+- Low priority: Week 8+
+
+---
+
+## 🔍 **MẸO DEBUG**
+
+### **Khi bạn gặp Bug:**
+
+1. **Tái tạo:** Bạn có thể trigger nó một cách nhất quán không?
+2. **Cô lập:** Các bước tối thiểu để tái tạo?
+3. **Tìm kiếm:** Check log này trước (có thể đã được giải quyết)
+4. **Ghi chép:** Thêm vào file này với template bên dưới
+
+### **Template Báo cáo Bug:**
 
 ```markdown
-## Bug #X: [Tên bug ngắn gọn]
+## Bug #X: [Tiêu đề]
 
-**Ngày phát hiện:** [Date]
-**Trạng thái:** [⚠️ Known / ✅ Fixed / ⏳ Planned / ❌ Won't fix]
-**Mức độ:** [🔴 HIGH / 🟡 MEDIUM / 🟢 LOW]
+**Ngày phát hiện:** [Ngày]
+**Trạng thái:** ⏳ Đang xử lý / ✅ Đã sửa / ⏸️ Ưu tiên thấp
 
-### Vấn đề
-[Mô tả vấn đề một cách ngắn gọn]
+### **Vấn đề**
+[Cái gì bị hỏng?]
 
-### Triệu chứng
-- **File:** [File path và line number]
-- **Hành vi:** [Cách bug biểu hiện]
-- **Hậu quả:** [Impact lên users/system]
+### **Triệu chứng**
+- **File:** [path/to/file.tsx]
+- **Code:** [code snippet]
+- **Tác động:** [Ảnh hưởng đến users như thế nào?]
 
-### Nguyên nhân gốc rễ
-[Tại sao bug xảy ra? Root cause analysis]
+### **Nguyên nhân gốc rễ**
+[Tại sao điều này xảy ra?]
 
-### Giải pháp
-[Code hoặc steps để fix]
+### **Giải pháp**
+[Bạn đã fix như thế nào? Code examples]
 
-### Lesson Learned
-[Bài học rút ra để tránh lặp lại]
+### **Bài học kinh nghiệm**
+- ✅ [Best practice đã học được]
+- ⚠️ [Điều cần tránh]
+
+### **Files liên quan**
+- [file1.tsx]
+- [file2.ts]
 ```
 
 ---
 
-## 📊 Thống kê
+## 🛠️ **LỆNH DEBUG THƯỜNG DÙNG**
 
-- **Tổng số bugs:** 6
-- **Đã fix:** 3 (Bug #2, #3, #6)
-- **Đang theo dõi:** 1 (Bug #1)
-- **Dự định fix:** 2 (Bug #4, #5)
-- **Won't fix:** 0
+### **Next.js:**
+
+```bash
+# Clear cache và rebuild
+rm -rf .next
+npm run build
+
+# Kiểm tra lỗi TypeScript
+npx tsc --noEmit
+
+# Logs chi tiết
+npm run dev -- --verbose
+```
+
+### **Supabase:**
+
+```bash
+# Test query trong browser console
+const { data, error } = await supabase
+  .from('tasks')
+  .select('*')
+
+console.log({ data, error })
+
+# Kiểm tra RLS policies
+SELECT * FROM pg_policies WHERE tablename = 'tasks';
+```
+
+### **Git:**
+
+```bash
+# Tìm khi nào bug được introduce
+git bisect start
+git bisect bad HEAD
+git bisect good <last-known-good-commit>
+
+# Kiểm tra file history
+git log --follow --patch path/to/file.tsx
+
+# Xem thay đổi gì
+git diff HEAD~1 path/to/file.tsx
+```
 
 ---
 
-## 🔗 Related Files
+## 🔗 **TÀI LIỆU LIÊN QUAN**
 
-- `docs/01_status/BUGS.md` - Current bugs tracking
-- `docs/02_ai-prompts/templates/bug-fix.md` - Bug fix prompt template
-- `docs/04_technical/TESTING_STRATEGY.md` - Testing strategy
-- `docs/03_roadmap/THIS_WEEK.md` - Current priorities
+- **Báo cáo Bugs:** [docs/01_status/BUGS.md](../01_status/BUGS.md) - Bugs đang hoạt động hiện tại
+- **AI Prompts:** [docs/02_ai-prompts/templates/bug-fix.md](../02_ai-prompts/templates/bug-fix.md) - Template prompt để fix bugs
+- **Kiến trúc:** [docs/04_technical/architecture/decisions.md](./architecture/decisions.md) - Quyết định kiến trúc giúp ngăn bugs
+- **Nguồn:** Tích hợp từ [BRAIN_DUMP_from_initial_chat.md](../archive/conversations/BRAIN_DUMP_from_initial_chat.md)
 
 ---
 
-**Next Update:** Khi phát hiện bug mới hoặc fix bug hiện tại
+**Cập nhật lần cuối:** 13 tháng 11, 2024
+**Tổng bugs đã ghi chép:** 6
+**Bugs đã giải quyết:** 4 (67%)
+**Review tiếp theo:** Cuối Week 0 (20/11/2024)
+
+**Lưu ý:** File này được tạo để track lịch sử bugs, giải pháp, và bài học từ quá trình phát triển. Mỗi bug mới nên được thêm vào với template ở trên.

@@ -3,7 +3,7 @@
 import { useTaskStore } from '@/lib/stores/tasks';
 import { createClient } from '@/lib/supabase/client';
 import { Task } from '@/types';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
 /**
  * useTasks Hook
@@ -22,7 +22,7 @@ import { useEffect, useState } from 'react';
  */
 
 export function useTasks(workspaceId?: string) {
-  const supabase = createClient();
+  const supabase = useMemo(() => createClient(), []);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   
@@ -37,26 +37,25 @@ export function useTasks(workspaceId?: string) {
   // Fetch tasks on mount
   useEffect(() => {
     if (!workspaceId) return;
-    
+
     async function fetchTasks() {
       try {
         setLoading(true);
-        
-        // Check if user is authenticated
+
         const { data: { user } } = await supabase.auth.getUser();
         console.log('🔐 Current user:', user?.id, user?.email);
         console.log('📦 Fetching tasks for workspace:', workspaceId);
-        
+
         const { data, error } = await supabase
           .from('tasks')
           .select('*')
           .eq('workspace_id', workspaceId)
           .order('position', { ascending: true });
-        
+
         console.log('📊 Supabase response:', { data, error });
-        
+
         if (error) throw error;
-        
+
         setTasks(data as Task[]);
       } catch (err) {
         console.error('Error fetching tasks:', err);
@@ -66,9 +65,9 @@ export function useTasks(workspaceId?: string) {
         setLoading(false);
       }
     }
-    
+
     fetchTasks();
-  }, [workspaceId]);
+  }, [supabase, workspaceId, setTasks]);
   
   // Create Task
   async function createTask(input: Partial<Task>) {

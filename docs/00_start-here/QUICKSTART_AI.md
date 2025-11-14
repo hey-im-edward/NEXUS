@@ -2,97 +2,116 @@
 
 > **Mục đích:** Trả lời câu hỏi "Hôm nay tôi code gì tiếp theo?" trong 10 giây.
 
-**Cập nhật:** 8 tháng 11, 2025
+**Cập nhật:** 13 tháng 11, 2024
 **Làm việc với AI:** ChatGPT, Claude, GitHub Copilot
 
 ---
 
 ## ⚡ TL;DR - Đọc ngay
 
-### ✅ **ĐÃ HOÀN THÀNH (Hôm nay - 9/11/2025)**
+### ✅ **ĐÃ HOÀN THÀNH (Đến 13/11/2024)**
 
-- ✅ **Database v2** - Deployed (11 tables)
+- ✅ **Database v2** - Deployed (11 bảng)
 - ✅ **Authentication** - Google OAuth working
-- ✅ **Task Management Basic** - Add, display, complete tasks
+- ✅ **Task Management Cơ Bản** - Thêm, hiển thị, hoàn thành tasks
 - ✅ **Kanban Board** - 100% hoàn thành (Prompt 1)
-- ✅ **/today page** - My Day view functional
-- ✅ **/inbox page** - Inbox view functional
-- ✅ **Edit Task Inline** - Double-click to edit (Prompt 1.1) ✅
+- ✅ **/today page** - My Day view hoạt động
+- ✅ **/inbox page** - Inbox view hoạt động
+- ✅ **Sửa Task Inline** - Double-click để edit (Prompt 1.1) ✅
 - ✅ **Set Priority UI** - Colored badges + dropdown (Prompt 1.2) ✅
 
-**Kết quả:** Ahead of schedule! 🎉 2 prompts done in 1 day!
+**Kết quả:** Ahead of schedule! 🎉
 
 ---
 
-## 🔥 **LÀM TIẾP HÔM NAY (10/11/2025)**
+## 🔄 **QUYẾT ĐỊNH CHIẾN LƯỢC: PIVOT TO PLATFORM**
 
-### **Prompt tiếp theo: 1.3 - Add Tags**
+### **Chúng ta DỪNG LẠI ĐÂY với Task Management**
 
-**File prompt:** `docs/02_ai-prompts/AI_PROMPTS.md` (Dòng 200-300)
+**Tại sao?**
+- Nguy cơ trở thành "task manager thứ 100"
+- Giá trị độc đáo của NEXUS là **Platform + App Builder + Marketplace**
+- Task management đã "đủ tốt" để support việc build apps
 
-**Yêu cầu:**
-
-- Tag input với auto-suggest từ existing tags
-- Colored pills display (#work, #personal, etc.)
-- Many-to-many relationship (task_tags table)
-- Click "x" to remove tag
-- Color generation từ tag name (consistent hash)
-
-**Thời gian ước tính:** 1-2 giờ (với AI)
-
-**Test ở đâu:** http://localhost:3000/today
-
-**Cách làm:**
-
-```bash
-1. Mở docs/02_ai-prompts/AI_PROMPTS.md
-2. Copy Prompt 1.3 (Add Tags)
-3. Paste vào ChatGPT/Claude
-4. AI generate code → Copy vào VS Code
-5. Test tại /today page
-6. Fix bugs nếu có
-7. ✅ Done → Mark completed trong docs/02_ai-prompts/COMPLETED.md
-```
+**Điều này có nghĩa là gì?**
+- ❌ KHÔNG làm Prompt 1.3-1.6 (Tags, Modal, Delete, Shortcuts) → Backlog
+- ✅ BẮT ĐẦU làm Dashboard Grid + App Builder
+- ✅ Chứng minh người dùng có thể tạo apps đơn giản mà không cần code
 
 ---
 
-## 📋 **SAU ĐÓ - TUẦN NÀY (10-11/11)**
+## 🔥 **LÀM TIẾP HÔM NAY (13-20/11)**
 
-### **Chủ nhật (10/11):**
+### **Nhiệm vụ tiếp theo: Thiết kế & Xây dựng Dashboard Grid**
 
-- [ ] **Sáng:** Prompt 1.3 - Add Tags (1-2h)
-- [ ] **Chiều:** Prompt 1.4 - Task Detail Modal (2-3h)
+**File cần đọc:** `docs/03_roadmap/ROADMAP.md` (Tuần 0-4)
 
-### **Thứ 2 (11/11):**
+**Yêu cầu Tuần Này (Tuần 0):**
 
-- [ ] **Sáng:** Prompt 1.5 - Delete Task (1-2h)
-- [ ] **Chiều:** Prompt 1.6 - Keyboard Shortcuts (2-3h)
+#### **Bước 1: Nghiên cứu & Quyết Định Kiến Trúc (1-2 ngày)**
 
-**Mục tiêu cuối tuần:** Task Management 80% polished ✨
+- 📚 Research drag-and-drop grid libraries:
+  - `react-grid-layout` (phổ biến nhất)
+  - `react-grid-system`
+  - `dnd-kit` (low-level, nhiều control hơn)
+- ✍️ Viết Architecture Decision Record (ADR)
+- 🎨 Tạo wireframe Dashboard Grid (Figma hoặc vẽ tay)
+
+#### **Bước 2: Technical Spike (1-2 ngày)**
+
+- 🧪 Build prototype tối thiểu với grid kéo thả
+- ✅ Test resize, move, lưu state
+- 📝 Document kết quả trong ADR
+
+**Deliverables cuối tuần:**
+
+- [ ] File `docs/04_technical/APP_MINI_ARCHITECTURE.md` (ADR)
+- [ ] Wireframe (Figma hoặc ảnh sketch)
+- [ ] Kết luận: Dùng library nào?
+
+**Thời gian ước tính:** 2-3 giờ nghiên cứu + 2-3 giờ prototype = 4-6 giờ
+
+**Kế hoạch rõ ràng để bắt đầu Tuần 1:**
+- Đã quyết định tech stack
+- Đã có wireframe rõ ràng
+- Đã test basic drag-and-drop
 
 ---
 
-## 🎯 **ROADMAP - 3 TUẦN TỚI**
+## 📋 **KẾ HOẠCH 4 TUẦN TỚI**
 
-### **Week 0 (Tuần này - 7-13/11):**
+### **Tuần 0 (13-20/11): Đóng Băng Chiến Lược**
 
 - [x] Kanban Board 100% ✅
-- [x] Edit Task Inline (Prompt 1.1) ✅
+- [x] Sửa Task Inline (Prompt 1.1) ✅
 - [x] Set Priority UI (Prompt 1.2) ✅
-- [ ] Task Management Polish 66%+ (4/6 prompts)
-- [ ] 3-5 User Interviews
+- [ ] Architecture Decision Record cho App Mini system
+- [ ] Wireframe Dashboard Grid
+- [ ] Technical spike: react-grid-layout
 
-### **Week 1 (14-20/11):**
+**Mục tiêu:** Quyết định kiến trúc, sẵn sàng bắt đầu code Tuần 1
 
-- [ ] Recurring Tasks (rrule integration)
-- [ ] Calendar View (Time blocking)
-- [ ] 5+ User Interviews
+### **Tuần 1 (21-27/11): Dashboard Grid & App Container**
 
-### **Week 2 (21-27/11):**
+- [ ] Component `DashboardGrid.tsx` (drag-drop, resize)
+- [ ] Component `AppMiniCard.tsx` (wrapper cho mỗi app)
+- [ ] Lưu layout vào Supabase
+- [ ] Grid responsive (mobile: xếp dọc)
 
-- [ ] Pages Integration (Tiptap rich text)
-- [ ] Command Palette (Cmd+K)
-- [ ] Mobile Responsive
+### **Tuần 2 (28/11 - 4/12): 2 Mini Apps Đơn Giản**
+
+- [ ] App Mini #1: Ghi Chú Nhanh (text input + display)
+- [ ] App Mini #2: Đồng Hồ Pomodoro (timer 25 phút)
+- [ ] Hệ thống App Registry (hard-coded list)
+- [ ] Nút "Thêm App" trên Dashboard
+
+### **Tuần 3-4 (5-18/12): App Builder v0.1**
+
+- [ ] Trang `/app-builder`
+- [ ] Component Palette (3 components: Input, Button, Text)
+- [ ] Canvas drag-and-drop
+- [ ] Lưu app definition (JSON) vào database
+- [ ] Renderer (render app từ JSON)
 
 **Xem chi tiết:** `docs/03_roadmap/ROADMAP.md`
 
@@ -103,167 +122,181 @@
 ### **Tính năng đã xong:**
 
 ```
-✅ Database (11 tables)           100%
-✅ Authentication (Google)        100%
-✅ Task CRUD Basic                100%
-✅ Kanban Board                   100%
-✅ Edit Task Inline               100% ✅
-✅ Set Priority UI                100% ← Vừa xong hôm nay!
-⚠️ Task Management Polish          50% ← Đang làm tuần này
-❌ Recurring Tasks                  0%
-❌ Calendar View                    0%
-❌ Pages (Tiptap)                   0%
+✅ Database (11 bảng)           100%
+✅ Authentication (Google)      100%
+✅ Task CRUD Cơ Bản             100%
+✅ Kanban Board                 100%
+✅ Sửa Task Inline              100%
+✅ Set Priority UI              100%
+🔄 Task Management Polish         0% ← DỪNG (Moved to Backlog)
+🚀 Dashboard Grid                 0% ← BẮT ĐẦU TUẦN NÀY
+🚀 App Builder                    0%
 ```
 
 **Xem chi tiết:** `docs/01_status/FEATURES.md`
 
 ---
 
-## 🐛 **BUGS CẦN FIX (Nếu có thời gian)**
-
-1. **Hardcoded workspace_id** (Priority: LOW)
-
-   - File: `app/(productivity)/today/page.tsx`
-   - Dòng: 15
-   - Fix: Dùng user context thay vì hardcode
-
-2. **No empty state images** (Priority: LOW)
-3. **No loading skeletons** (Priority: LOW)
-
-**Quyết định:** Chấp nhận bugs này cho POC, fix sau ✅
-
-**Xem đầy đủ:** `docs/01_status/BUGS.md`
-
----
-
 ## 💡 **WORKFLOW VỚI AI**
 
-### **Cách tôi làm việc hàng ngày:**
+### **Cách làm việc HÀNG NGÀY:**
 
 ```
 1. Mở QUICKSTART_AI.md (file này)
 2. Xem "Làm tiếp hôm nay"
-3. Mở file prompt trong docs/02_ai-prompts/
-4. Copy prompt → Paste vào AI
-5. AI generate code
-6. Test → Fix bugs
-7. ✅ Done → Update COMPLETED.md
-8. Quay lại bước 1 ngày mai
+3. Nếu có prompt cụ thể:
+   - Mở docs/02_ai-prompts/AI_PROMPTS.md
+   - Copy prompt → Paste vào AI
+4. Nếu cần nghiên cứu/thiết kế:
+   - Dùng AI để research options
+   - Tạo comparison table
+   - Viết ADR document
+5. Test → Fix bugs
+6. ✅ Done → Update docs
+7. Quay lại bước 1 ngày mai
 ```
 
 ### **Tips làm việc với AI:**
 
 ✅ **DO:**
 
-- Luôn đọc prompt đầy đủ trước khi paste
+- Chia nhỏ task lớn thành subtasks cụ thể
+- Dùng AI để research và so sánh options
+- Document quyết định (ADR) ngay sau khi quyết định
 - Test ngay sau khi AI generate code
-- Document bugs ngay khi phát hiện
-- Update COMPLETED.md sau khi xong
 
 ❌ **DON'T:**
 
-- Paste prompt mà không hiểu context
-- Generate nhiều feature cùng lúc
-- Skip testing
-- Quên update docs
+- Nhảy thẳng vào code mà chưa research
+- Bỏ qua bước thiết kế với task phức tạp
+- Quên cập nhật docs sau khi xong
 
 ---
 
 ## 📁 **FILE QUAN TRỌNG - ĐỌC THƯỜNG XUYÊN**
 
-| File                               | Mục đích              | Tần suất đọc        |
-| ---------------------------------- | --------------------- | ------------------- |
-| **QUICKSTART_AI.md** (file này)    | Làm gì hôm nay?       | Mỗi sáng ☀️         |
-| `docs/02_ai-prompts/AI_PROMPTS.md` | Prompts để code       | Mỗi ngày 📝         |
-| `THIS_WEEK.md` (root)              | Focus tuần này        | Thứ 2 hàng tuần 📅  |
-| `docs/01_status/FEATURES.md`       | Tính năng đã/chưa làm | Khi cần kiểm tra ✅ |
-| `docs/03_roadmap/ROADMAP.md`       | Kế hoạch 12 tuần      | Mỗi tuần 🗓️         |
+| File                               | Mục đích                | Tần suất đọc         |
+| ---------------------------------- | ----------------------- | -------------------- |
+| **QUICKSTART_AI.md** (file này)    | Làm gì hôm nay?         | Mỗi sáng ☀️          |
+| `docs/03_roadmap/ROADMAP.md`       | Kế hoạch 12 tuần (MỚI!) | **ĐỌC NGAY** 📖      |
+| `docs/01_status/FEATURES.md`       | Tính năng đã/chưa làm   | Khi cần kiểm tra ✅  |
+| `docs/02_ai-prompts/AI_PROMPTS.md` | Prompts để code         | Khi bắt đầu tính năng |
+
+**LƯU Ý:** ROADMAP.md đã thay đổi hoàn toàn! Đọc lại để hiểu chiến lược mới.
 
 ---
 
 ## 🆘 **GẶP VẤN ĐỀ?**
 
-### **Lỗi thường gặp:**
+### **Câu hỏi thường gặp:**
 
-**1. AI generate code lỗi syntax:**
-
-```
-→ Paste lại prompt + thêm context (file đang làm, tech stack)
-→ Hoặc: "Fix this error: [paste error message]"
-```
-
-**2. Feature không hoạt động:**
+**1. "Tôi nên bắt đầu từ đâu?"**
 
 ```
-→ Check browser console (F12)
-→ Check Supabase logs
-→ Test từng function riêng lẻ
-→ Kiểm tra network timeout (offline rollback)
+→ Đọc docs/03_roadmap/ROADMAP.md (Tuần 0)
+→ Bắt đầu với research react-grid-layout
+→ Tạo wireframe đơn giản (vẽ tay cũng OK)
 ```
 
-**3. Không biết làm gì tiếp:**
+**2. "ADR là gì?"**
 
 ```
-→ Đọc lại file này (QUICKSTART_AI.md)
-→ Check THIS_WEEK.md
-→ Xem docs/02_ai-prompts/AI_PROMPTS.md
+→ Architecture Decision Record
+→ Document giải thích TẠI SAO chọn giải pháp X thay vì Y
+→ Template: docs/04_technical/ (tạo file mới)
 ```
 
-**4. Muốn thêm feature mới không có trong prompts:**
+**3. "Tôi không biết Figma?"**
 
 ```
-→ Tạo prompt mới trong docs/02_ai-prompts/templates/
-→ Follow template có sẵn
-→ Test → Document → Update AI_PROMPTS.md
+→ Vẽ tay → Chụp ảnh → OK
+→ Hoặc dùng Excalidraw (free, đơn giản)
+→ Hoặc sketch trong code với HTML+CSS basic
+```
+
+**4. "Nếu tôi muốn làm tiếp Task Management thì sao?"**
+
+```
+→ Prompts 1.3-1.6 vẫn còn trong AI_PROMPTS.md
+→ Nhưng hãy tập trung vào Platform trước
+→ Quay lại Task Polish sau Tuần 8 (dựa vào feedback)
 ```
 
 ---
 
-## 🎉 **CHECKLIST HÀNG NGÀY**
+## 🎉 **CHECKLIST TUẦN NÀY (Tuần 0)**
 
-### **Mỗi sáng (9:00):**
+### **Nghiên cứu (Ngày 1-2):**
 
-- [x] Đọc QUICKSTART_AI.md (file này)
-- [x] Check THIS_WEEK.md (cập nhật gì mới?)
-- [x] Mở prompt cần làm tiếp
-- [x] Chuẩn bị môi trường (VS Code + AI)
+- [ ] Research react-grid-layout documentation
+- [ ] Research dnd-kit (alternative)
+- [ ] Compare pros/cons của mỗi library
+- [ ] Quyết định: Library nào sẽ dùng?
 
-### **Khi code (10:00-16:00):**
+### **Thiết kế (Ngày 3-4):**
 
-- [x] Copy prompt → Paste AI
-- [x] Generate code → Test
-- [x] Fix bugs → Commit
-- [x] Repeat
+- [ ] Sketch wireframe Dashboard Grid
+- [ ] Xác định: Mỗi card cần những props gì?
+- [ ] Xác định: Database schema cho layout
+- [ ] Viết ADR document
 
-### **Mỗi tối (18:00):**
+### **Prototype (Ngày 5-6):**
 
-- [x] Update docs/02_ai-prompts/COMPLETED.md
-- [x] Update docs/01_status/FEATURES.md (nếu xong feature)
-- [x] Commit + Push code
-- [x] Plan ngày mai (đọc prompt tiếp theo)
+- [ ] Setup react-grid-layout basic
+- [ ] Test drag cards
+- [ ] Test resize cards
+- [ ] Test save/load layout (localStorage OK)
+
+### **Kết thúc tuần:**
+
+- [ ] Commit ADR và wireframe
+- [ ] Update QUICKSTART_AI.md với kế hoạch Tuần 1
+- [ ] Sẵn sàng bắt đầu build thật Tuần 1!
 
 ---
 
 ## 🚀 **BẮT ĐẦU NGAY!**
 
-**Bước tiếp theo của bạn:**
+**Bước tiếp theo của bạn (NGAY BÂY GIỜ):**
 
-1. ✅ Mở `docs/02_ai-prompts/AI_PROMPTS.md`
-2. ✅ Tìm "Prompt 1.3 - Add Tags"
-3. ✅ Copy prompt
-4. ✅ Paste vào ChatGPT/Claude
-5. ✅ Generate code
-6. ✅ Test tại http://localhost:3000/today
-7. ✅ Celebrate! 🎉
+1. ✅ Đọc `docs/03_roadmap/ROADMAP.md` (Tuần 0-4)
+2. ✅ Mở trình duyệt → Search "react-grid-layout documentation"
+3. ✅ Đọc Getting Started guide
+4. ✅ Xem demo examples
+5. ✅ Clone một example → Chạy thử
+6. ✅ Ghi chú: Thích/Không thích gì?
+7. ✅ Lặp lại với `dnd-kit` để so sánh
+8. ✅ Viết ADR: "Tôi chọn [X] vì [Y, Z]"
 
-**Thời gian làm:** 1-2 giờ
-**Kết quả:** Task management tốt hơn 20%
+**Thời gian làm:** 2-3 giờ
+**Kết quả:** Hiểu rõ tool sẽ dùng, tự tin bắt đầu code Tuần 1
+
+---
+
+## 🎯 **TẠI SAO ĐANG LÀM VIỆC NÀY?**
+
+### **North Star Metric:**
+
+**Không phải:** "Bao nhiêu tasks người dùng tạo?"
+**Mà là:** "Bao nhiêu apps người dùng build và share?"
+
+### **Vision:**
+
+Tuần 12, chúng ta muốn:
+
+- 5+ người dùng đã tự build một app đơn giản
+- Ít nhất 1 người hỏi "Khi nào có marketplace để share?"
+- Proof rằng NEXUS là nền tảng, không phải task manager
+
+**Mọi việc bắt đầu từ Dashboard Grid!**
 
 ---
 
 **Good luck! You got this! 💪**
 
+**Nhớ:** Làm từng bước nhỏ. Hôm nay chỉ cần research + wireframe. Code đến Tuần 1.
+
 ---
 
-**Last Updated:** November 9, 2025
-**Next Update:** November 10, 2025 (sau khi xong Prompt 1.3 - Add Tags)
+**Cập nhật lần cuối:** 13 tháng 11, 2024
+**Cập nhật tiếp theo:** 20 tháng 11, 2024 (sau khi xong Tuần 0 - Architecture & Design)

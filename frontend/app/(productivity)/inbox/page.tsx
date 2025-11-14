@@ -1,7 +1,9 @@
 import { TaskList } from '@/components/tasks/task-list';
 import { TaskQuickAdd } from '@/components/tasks/task-quick-add';
+import { getOrCreateWorkspaceId } from '@/lib/supabase/workspace';
 import { Inbox } from 'lucide-react';
 import { Metadata } from 'next';
+import { redirect } from 'next/navigation';
 
 export const metadata: Metadata = {
   title: 'Inbox | NEXUS',
@@ -21,11 +23,13 @@ export const metadata: Metadata = {
  * - Quick brain dump (GTD methodology)
  * - Process later → move to projects
  */
-export default function InboxPage() {
-  // ⚠️ TEMPORARY: Hardcoded workspace_id
-  // TODO: Get from context/auth after workspace creation
-  const WORKSPACE_ID = 'c6be91ba-98c3-43e5-8e5e-94e389894fa6'; // ✅ Edward's workspace
-  
+export default async function InboxPage() {
+  const { user, workspaceId } = await getOrCreateWorkspaceId();
+
+  if (!user || !workspaceId) {
+    redirect('/login');
+  }
+
   return (
     <div className="mx-auto max-w-4xl space-y-6">
       {/* Header */}
@@ -43,13 +47,13 @@ export default function InboxPage() {
 
       {/* Quick Add */}
       <TaskQuickAdd 
-        workspaceId={WORKSPACE_ID}
+        workspaceId={workspaceId}
         placeholder="What's on your mind?" 
       />
 
       {/* Task List - Filtered by no project */}
       <TaskList
-        workspaceId={WORKSPACE_ID}
+        workspaceId={workspaceId}
         filter={{
           type: 'inbox', // project_id = NULL
         }}

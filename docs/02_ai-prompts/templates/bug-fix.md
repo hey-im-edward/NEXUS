@@ -43,7 +43,7 @@ Fix bug in NEXUS Productivity OS.
 
 [List các file liên quan]
 
-````
+```
 
 ### Code Context:
 
@@ -57,7 +57,7 @@ function TaskList() {
     fetchTasks()
   }, [fetchTasks]) // ← Bug likely here
 }
-````
+```
 
 **Error Message (if any):**
 

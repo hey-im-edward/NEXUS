@@ -35,7 +35,7 @@ If you're new to the project, start with these files in order:
 ### Database & Architecture
 
 - **`../04_technical/architecture/database-schema-v2-productivity.sql`** - Full schema reference (11 tables)
-- **`../04_technical/architecture/migrations/002_productivity_core_schema.sql`** - Deployment script
+- **`../../supabase/migrations/`** - Database migrations (deploy với `supabase db push`)
 - **`../04_technical/architecture/decisions.md`** - Tech stack decisions and rationale
 
 ### User Research
@@ -63,7 +63,7 @@ If you're new to the project, start with these files in order:
 | Write good AI prompts?                 | `../02_ai-prompts/AI_PROMPTS.md`                                            |
 | Know what to work on this week?        | `../THIS_WEEK.md`                                          |
 | Understand the database schema?        | `../04_technical/architecture/database-schema-v2-productivity.sql`         |
-| Run database migrations safely?        | `../04_technical/architecture/migrations/002_productivity_core_schema.sql` |
+| Run database migrations safely?        | `supabase/migrations/` (use `supabase db push`)                             |
 | Learn about tech decisions?            | `../04_technical/architecture/decisions.md`                                |
 | Conduct user interviews?               | `../05_research/interview-script.md`                             |
 
