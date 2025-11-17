@@ -1,15 +1,21 @@
 {
   "permissions": {
     "allow": [
+      "Bash(npx supabase db reset:*)",
+      "Bash(npx supabase db push:*)",
+      "Bash(npm run type-check:*)",
+      "Bash(npm run lint:*)",
       "Bash(tree:*)",
       "Bash(find:*)",
-      "Bash(npm run lint:*)",
       "Bash(cat \"D:\\elros\\Documents\\GitHub\\NEXUS\\README.md\")",
       "Bash(test:*)"
-    ]
+    ],
+    "deny": [],
+    "ask": []
   },
   "enableAllProjectMcpServers": true,
   "enabledMcpjsonServers": [
     "MCP_DOCKER"
   ]
 }
+

@@ -20,14 +20,14 @@
 
 **Breakdown by Phase:**
 
-| Phase | Total | Completed | In Progress | Planned |
-|-------|-------|-----------|-------------|---------|
-| **Platform MVP (Week 1-4)** | 14 | 0 | 2 | 12 |
-| **Marketplace (Week 5-6)** | 6 | 0 | 0 | 6 |
-| **Validation (Week 7-8)** | 4 | 0 | 0 | 4 |
-| **Decision (Week 9-12)** | 2 | 0 | 0 | 2 |
-| **Task Management** | 10 | 10 | 0 | 0 |
-| **Backlog** | 104 | 0 | 0 | 104 |
+| Phase                             | Total | Completed | In Progress | Planned |
+| --------------------------------- | ----- | --------- | ----------- | ------- |
+| **Platform MVP (Week 1-4)** | 14    | 0         | 2           | 12      |
+| **Marketplace (Week 5-6)**  | 6     | 0         | 0           | 6       |
+| **Validation (Week 7-8)**   | 4     | 0         | 0           | 4       |
+| **Decision (Week 9-12)**    | 2     | 0         | 0           | 2       |
+| **Task Management**         | 10    | 10        | 0           | 0       |
+| **Backlog**                 | 104   | 0         | 0           | 104     |
 
 ---
 
@@ -375,7 +375,7 @@
 
 **Week 1:**
 
-- [x] ~~PROMPT 1.1: Build DashboardGrid Component~~ (In Progress)
+- [X] ~~PROMPT 1.1: Build DashboardGrid Component~~ (In Progress)
 - [ ] PROMPT 1.2: Build AppMiniCard Wrapper
 
 **Week 2:**
@@ -521,23 +521,22 @@
 ```
 
 2. **Paste it at the top** of the "COMPLETED FEATURES" section
-
 3. **Fill in the details:**
+
    - Actual completion date
    - Time spent (track from start to finish)
    - List all files created/modified
    - Check off all success criteria
    - Add notes (learnings, issues, etc.)
-
 4. **Update Progress Summary:**
+
    - Increment "Hoàn thành" count
    - Decrement "Đang làm" or "Lên kế hoạch" count
    - Update percentage
-
 5. **Update THIS_WEEK.md:**
+
    - Check off completed task in [THIS_WEEK.md](THIS_WEEK.md)
    - Update progress bar
-
 6. **Run update script** (if available):
 
 ```bash
@@ -569,11 +568,11 @@
 
 **Current Metrics:**
 
-| Metric | Target (Week 4) | Target (Week 8) | Target (Week 12) | Current |
-|--------|-----------------|-----------------|------------------|---------|
-| Apps Created | 5 apps | 15 apps | 30 apps | 0 |
-| Avg Installs per App | 2 installs | 3 installs | 5 installs | 0 |
-| **North Star Metric** | **10** | **45** | **150** | **0** |
+| Metric                      | Target (Week 4) | Target (Week 8) | Target (Week 12) | Current     |
+| --------------------------- | --------------- | --------------- | ---------------- | ----------- |
+| Apps Created                | 5 apps          | 15 apps         | 30 apps          | 0           |
+| Avg Installs per App        | 2 installs      | 3 installs      | 5 installs       | 0           |
+| **North Star Metric** | **10**    | **45**    | **150**    | **0** |
 
 **Breakdown by Week:**
 
