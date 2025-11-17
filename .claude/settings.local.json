@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(tree:*)",
+      "Bash(find:*)",
+      "Bash(npm run lint:*)",
+      "Bash(cat \"D:\\elros\\Documents\\GitHub\\NEXUS\\README.md\")",
+      "Bash(test:*)"
+    ]
+  },
+  "enableAllProjectMcpServers": true,
+  "enabledMcpjsonServers": [
+    "MCP_DOCKER"
+  ]
+}
