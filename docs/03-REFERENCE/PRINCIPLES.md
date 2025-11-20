@@ -1,4 +1,4 @@
-# 🧭 NEXUS PRINCIPLES - Core Development Philosophy
+# 🧭 NGUYÊN TẮC NEXUS - Triết Lý Phát Triển Cốt Lõi
 
 **Nguồn chính:** [NEXUS_WHITEPAPER.md](../01-STRATEGY/NEXUS_WHITEPAPER.md)
 
@@ -8,479 +8,540 @@
 
 ---
 
-## 📖 Overview
-
-This document outlines the core principles that guide NEXUS development. These are not just guidelines - they are **decision-making frameworks** that help us stay focused on what matters.
-
-**Core Philosophy:**
-
-> "NEXUS is a Platform for building and sharing apps, NOT a task manager with extra features."
+ > [!IMPORTANT]
+> **NGUỒN CHUẨN (SOURCE OF TRUTH)** cho development principles và decision framework
+>
+> **Khi cập nhật file này:**
+>
+> 1. Cập nhật principles ở đây trước
+> 2. Nếu có major change, cập nhật `PRIMING_PROMPT.md` Section V (summary)
+> 3. KHÔNG duplicate principles chi tiết ở file khác - link về file này
 
 ---
 
-## 🎯 PRINCIPLE #1: Platform First, Task Management Second
+## 📖 Tổng Quan
 
-### The Core Belief
+Tài liệu này nêu rõ các nguyên tắc cốt lõi dẫn dắt phát triển NEXUS. Đây không chỉ là guidelines - chúng là **các framework ra quyết định** giúp ta tập trung vào những gì quan trọng.
 
-**NOT:** Build the best task manager in the world
+**Triết Lý Cốt Lõi:**
 
-**BUT:** Build a platform where users build and share apps (including task managers)
+> "NEXUS là một Platform để xây dựng và chia sẻ apps, KHÔNG phải task manager với các tính năng thêm."
 
-### What This Means
+---
 
-**DO:**
+## 🎯 NGUYÊN TẮC #1: Platform Trước, Task Management Sau
 
-- ✅ Prioritize App Builder features
-- ✅ Prioritize Marketplace features
-- ✅ Measure success by "Apps Built and Shared"
-- ✅ Keep Task Management "good enough"
+### Niềm Tin Cốt Lõi (#1)
 
-**DON'T:**
+#### KHÔNG
 
-- ❌ Add advanced task management features (tags, search, recurring, etc.)
-- ❌ Polish Task Management beyond MVP
-- ❌ Compete with Todoist/Notion on task features
-- ❌ Measure success by "Tasks Created"
+Xây dựng task manager tốt nhất thế giới
 
-### Decision Framework
+#### MÀ LÀ
 
-**When deciding on a feature, ask:**
+Xây dựng platform nơi users xây dựng và chia sẻ apps (bao gồm cả task managers)
 
-1. **Does this help users build apps?** → Prioritize
-2. **Does this help users discover/install apps?** → Prioritize
-3. **Does this improve Task Management?** → Backlog (unless critical bug)
+### Ý Nghĩa (#1)
 
-### Examples
+#### NÊN LÀM (DO)
 
-**Example 1: User requests "Tags for Tasks"**
+- ✅ Ưu tiên các tính năng App Builder
+- ✅ Ưu tiên các tính năng Marketplace
+- ✅ Đo lường thành công bằng "Apps Được Xây Dựng và Chia Sẻ"
+- ✅ Giữ Task Management ở mức "đủ tốt"
+
+#### KHÔNG NÊN (DON'T)
+
+- ❌ Thêm các tính năng task management nâng cao (tags, search, recurring, etc.)
+- ❌ Polish Task Management quá mức MVP
+- ❌ Cạnh tranh với Todoist/Notion về tính năng tasks
+- ❌ Đo lường thành công bằng "Tasks Được Tạo"
+
+### Khung Quyết Định (#1)
+
+**Khi quyết định một tính năng, hãy hỏi:**
+
+1. **Tính năng này có giúp users xây dựng apps không?** → Ưu tiên
+2. **Tính năng này có giúp users khám phá/cài đặt apps không?** → Ưu tiên
+3. **Tính năng này có cải thiện Task Management không?** → Backlog (trừ khi là critical bug)
+
+### Các Ví Dụ (#1)
+
+#### Ví dụ 1: User requests "Tags for Tasks"
 
 - ❌ **DON'T:** Build tags system for tasks
 - ✅ **DO:** Let users build a "Task Manager with Tags" app using App Builder
 
-**Example 2: User requests "App Templates"**
+#### Ví dụ 2: User requests "App Templates"
 
 - ✅ **DO:** Build app templates for App Builder
 - ✅ **DO:** Pre-seed marketplace with 10+ templates
 
-**Example 3: User requests "Keyboard Shortcuts for Tasks"**
+#### Ví dụ 3: User requests "Keyboard Shortcuts for Tasks"
 
 - ❌ **DON'T:** Add keyboard shortcuts (nice-to-have)
 - ✅ **DO:** Focus on App Builder UX (critical path)
 
 ---
 
-## 🏗️ PRINCIPLE #2: Code First Strategy
+## 🏗️ NGUYÊN TẮC #2: Chiến Lược Code Trước (Code First Strategy)
 
-### The Core Belief
+### Niềm Tin Cốt Lõi (#2)
 
-**NOT:** Design everything upfront, then code
+#### KHÔNG
 
-**BUT:** Code first, design as you go
+Thiết kế mọi thứ trước, rồi mới code
 
-### What This Means
+#### MÀ LÀ
 
-**DO:**
+Code trước, thiết kế trong quá trình làm
 
-- ✅ Start coding ASAP (Tuần 1, not Tuần 5)
-- ✅ Merge Tuần 0-4 into Tuần 1-4
-- ✅ Skip detailed design phase
-- ✅ Iterate based on real code, not mockups
+### Ý Nghĩa (#2)
 
-**DON'T:**
+#### NÊN LÀM (DO)
 
-- ❌ Spend weeks on Figma mockups
-- ❌ Over-plan before coding
-- ❌ Delay coding until "design is perfect"
+- ✅ Bắt đầu coding ASAP (Tuần 1, không phải Tuần 5)
+- ✅ Gộp Tuần 0-4 vào Tuần 1-4
+- ✅ Bỏ qua giai đoạn thiết kế chi tiết
+- ✅ Iterate dựa trên code thực tế, không phải mockups
 
-### Decision Framework
+#### KHÔNG NÊN (DON'T)
 
-**When deciding on approach, ask:**
+- ❌ Dành hàng tuần cho Figma mockups
+- ❌ Over-plan trước khi coding
+- ❌ Trì hoãn coding cho đến khi "thiết kế hoàn hảo"
 
-1. **Can I code this now?** → Code it
-2. **Do I need to design this first?** → Only if complex (e.g., multi-step flows)
-3. **Is this blocking me from coding?** → Find workaround, keep coding
+### Khung Quyết Định (#2)
 
-### Examples
+**Khi quyết định cách tiếp cận, hãy hỏi:**
 
-**Example 1: App Builder UI unclear**
+1. **Tôi có thể code ngay bây giờ không?** → Code ngay
+2. **Tôi có cần thiết kế trước không?** → Chỉ khi phức tạp (ví dụ: multi-step flows)
+3. **Điều này có đang block tôi khỏi coding không?** → Tìm workaround, tiếp tục coding
+
+### Các Ví Dụ (#2)
+
+#### Ví dụ 1: App Builder UI unclear
 
 - ❌ **DON'T:** Spend 1 week on Figma mockups
 - ✅ **DO:** Code basic UI, iterate based on usage
 
-**Example 2: Marketplace layout unclear**
+#### Ví dụ 2: Marketplace layout unclear
 
 - ❌ **DON'T:** Design all possible layouts
 - ✅ **DO:** Code grid layout, adjust based on real content
 
-**Example 3: Dashboard Grid unclear**
+#### Ví dụ 3: Dashboard Grid unclear
 
 - ✅ **DO:** Reference existing products (Notion, iOS Home Screen)
 - ✅ **DO:** Code simple version, improve later
 
 ---
 
-## 🚀 PRINCIPLE #3: Ship Fast, Iterate Later
+## 🚀 NGUYÊN TẮC #3: Ship Nhanh, Iterate Sau (Ship Fast, Iterate Later)
 
-### The Core Belief
+### Niềm Tin Cốt Lõi (#3)
 
-**NOT:** Ship perfect features slowly
+#### KHÔNG
 
-**BUT:** Ship imperfect features fast, iterate based on feedback
+Ship các tính năng hoàn hảo một cách chậm chạp
 
-### What This Means
+#### MÀ LÀ
 
-**DO:**
+Ship các tính năng chưa hoàn hảo nhanh chóng, iterate dựa trên feedback
 
-- ✅ Ship MVP features in 1-2 days
-- ✅ Get user feedback immediately
-- ✅ Iterate based on real usage
-- ✅ Fix bugs in production
+### Ý Nghĩa (#3)
 
-**DON'T:**
+#### NÊN LÀM (DO)
 
-- ❌ Perfectionism before shipping
-- ❌ Wait for all edge cases to be handled
-- ❌ Delay shipping for "polish"
+- ✅ Ship các tính năng MVP trong 1-2 ngày
+- ✅ Nhận user feedback ngay lập tức
+- ✅ Iterate dựa trên usage thực tế
+- ✅ Fix bugs trong production
 
-### Decision Framework
+#### KHÔNG NÊN (DON'T)
 
-**When deciding if feature is ready, ask:**
+- ❌ Cầu toàn trước khi shipping
+- ❌ Chờ đợi xử lý tất cả edge cases
+- ❌ Trì hoãn shipping để "polish"
 
-1. **Does it work for happy path?** → Ship it
-2. **Does it handle edge cases?** → Ship, fix later
-3. **Is it polished?** → Ship, polish later
+### Khung Quyết Định (#3)
 
-### Examples
+**Khi quyết định xem tính năng đã sẵn sàng chưa, hãy hỏi:**
 
-**Example 1: DashboardGrid has minor layout bug on mobile**
+1. **Nó có hoạt động cho happy path không?** → Ship ngay
+2. **Nó có xử lý edge cases không?** → Ship, fix sau
+3. **Nó có được polish không?** → Ship, polish sau
+
+### Các Ví Dụ (#3)
+
+#### Ví dụ 1: DashboardGrid has minor layout bug on mobile
 
 - ✅ **DO:** Ship it, fix bug in next iteration
 - ❌ **DON'T:** Hold release for perfect mobile behavior
 
-**Example 2: App Builder missing undo/redo**
+#### Ví dụ 2: App Builder missing undo/redo
 
 - ✅ **DO:** Ship without undo/redo (v0.1)
 - ✅ **DO:** Add undo/redo in v0.2 if users complain
 
-**Example 3: Marketplace missing advanced search**
+#### Ví dụ 3: Marketplace missing advanced search
 
 - ✅ **DO:** Ship with basic search
 - ✅ **DO:** Add advanced search later if needed
 
 ---
 
-## 🎨 PRINCIPLE #4: Keep It Simple, Keep It Boring
+## 🎨 NGUYÊN TẮC #4: Giữ Đơn Giản, Giữ Nhàm Chán (Keep It Simple, Keep It Boring)
 
-### The Core Belief
+### Niềm Tin Cốt Lõi (#4)
 
-**NOT:** Use latest, cutting-edge technology
+#### KHÔNG
 
-**BUT:** Use boring, proven technology
+Sử dụng công nghệ mới nhất, tiên tiến nhất
 
-### What This Means
+#### MÀ LÀ
 
-**DO:**
+Sử dụng công nghệ nhàm chán, đã được chứng minh
 
-- ✅ Use well-documented libraries (Next.js, React, Supabase)
-- ✅ Use conventional patterns (everyone does it this way)
-- ✅ Choose simplicity over cleverness
-- ✅ Choose boring over exciting
+### Ý Nghĩa (#4)
 
-**DON'T:**
+#### NÊN LÀM (DO)
 
-- ❌ Use experimental libraries (no production usage)
-- ❌ Use custom solutions (when library exists)
+- ✅ Sử dụng các libraries có tài liệu tốt (Next.js, React, Supabase)
+- ✅ Sử dụng các patterns phổ biến (mọi người đều làm vậy)
+- ✅ Chọn sự đơn giản hơn là sự thông minh
+- ✅ Chọn nhàm chán hơn là thú vị
+
+#### KHÔNG NÊN (DON'T)
+
+- ❌ Sử dụng các libraries thử nghiệm (không có production usage)
+- ❌ Sử dụng custom solutions (khi đã có library)
 - ❌ Over-engineer (YAGNI - You Aren't Gonna Need It)
-- ❌ Reinvent the wheel
+- ❌ Phát minh lại bánh xe
 
-### Decision Framework
+### Khung Quyết Định (#4)
 
-**When choosing technology, ask:**
+**Khi chọn công nghệ, hãy hỏi:**
 
-1. **Is this well-documented?** → Use it
-2. **Do millions of developers use this?** → Use it
-3. **Is this cutting-edge/experimental?** → Avoid it
-4. **Can AI generate code for this?** → Prefer it
+1. **Nó có được document tốt không?** → Sử dụng nó
+2. **Hàng triệu developers có đang dùng không?** → Sử dụng nó
+3. **Nó có phải cutting-edge/experimental không?** → Tránh nó
+4. **AI có thể generate code cho nó không?** → Ưu tiên nó
 
-### Examples
+### Các Ví Dụ (#4)
 
-**Example 1: State Management**
+#### Ví dụ 1: State Management
 
 - ✅ **DO:** Use Zustand (simple, boring, proven)
 - ❌ **DON'T:** Use MobX (less popular, steeper learning curve)
 
-**Example 2: Styling**
+#### Ví dụ 2: Styling
 
 - ✅ **DO:** Use TailwindCSS (utility-first, boring, AI-friendly)
 - ❌ **DON'T:** Use styled-components (more boilerplate)
 
-**Example 3: Backend**
+#### Ví dụ 3: Backend
 
 - ✅ **DO:** Use Supabase (BaaS, no backend code needed)
 - ❌ **DON'T:** Build custom NestJS backend (overkill for MVP)
 
+#### Ví dụ 4: App Builder Framework (Bài học rút ra)
+
+- ❌ **KHÔNG NÊN:** Sử dụng Craft.js v0.2.12 (không tương thích React 19, cập nhật lần cuối 2+ năm trước)
+- ✅ **NÊN:** Sử dụng @dnd-kit (được bảo trì tích cực, đã verify hỗ trợ React 19)
+
+**Bài học:** Luôn kiểm tra ngày cập nhật và khả năng tương thích React version của library trước khi commit. React 19 mới ra (Oct 2025), nhiều libraries chưa cập nhật. Chọn libraries có:
+
+- Cập nhật lần cuối trong vòng 6 tháng
+- Explicit React 19 support trong docs
+- Active maintenance (GitHub commits, issue responses)
+- Large user base cho community support
+
+**Kết quả:** Đầu tư vào @dnd-kit đã xứng đáng - hoạt động hoàn hảo với React 19, sử dụng thành công trong cả KanbanBoard lẫn App Builder.
+
 ---
 
-## 🔒 PRINCIPLE #5: Security First, Always
+## 🔒 NGUYÊN TẮC #5: Bảo Mật Trước Tiên, Luôn Luôn (Security First, Always)
 
-### The Core Belief
+### Niềm Tin Cốt Lõi (#5)
 
-**NOT:** Ship fast, fix security later
+#### KHÔNG
 
-**BUT:** Ship fast with security baked in
+Ship nhanh, fix security sau
 
-### What This Means
+#### MÀ LÀ
 
-**DO:**
+Ship nhanh với security đã được tích hợp sẵn
 
-- ✅ Use Row Level Security (RLS) for all tables
-- ✅ Validate all inputs (client + server)
-- ✅ Never trust user data
-- ✅ Use parameterized queries (no SQL injection)
-- ✅ Use HTTPS everywhere (automatic via Vercel)
+### Ý Nghĩa (#5)
 
-**DON'T:**
+#### NÊN LÀM (DO)
 
-- ❌ Ship without RLS policies
-- ❌ Trust client-side validation only
-- ❌ Store sensitive data in localStorage
-- ❌ Expose API keys in frontend code
+- ✅ Sử dụng Row Level Security (RLS) cho tất cả tables
+- ✅ Validate tất cả inputs (client + server)
+- ✅ Không bao giờ tin tưởng user data
+- ✅ Sử dụng parameterized queries (không SQL injection)
+- ✅ Sử dụng HTTPS mọi nơi (tự động qua Vercel)
 
-### Decision Framework
+#### KHÔNG NÊN (DON'T)
 
-**When shipping a feature, ask:**
+- ❌ Ship mà không có RLS policies
+- ❌ Chỉ tin tưởng client-side validation
+- ❌ Lưu sensitive data trong localStorage
+- ❌ Expose API keys trong frontend code
 
-1. **Does this table have RLS policies?** → Required before ship
-2. **Is user input validated?** → Required before ship
-3. **Can this be exploited?** → Fix before ship
+### Khung Quyết Định (#5)
 
-### Examples
+**Khi shipping một tính năng, hãy hỏi:**
 
-**Example 1: User Dashboard Layouts table**
+1. **Table này có RLS policies chưa?** → Bắt buộc trước khi ship
+2. **User input đã được validated chưa?** → Bắt buộc trước khi ship
+3. **Điều này có thể bị exploit không?** → Fix trước khi ship
+
+### Các Ví Dụ (#5)
+
+#### Ví dụ 1: User Dashboard Layouts table
 
 - ✅ **DO:** Add RLS policy: `auth.uid() = user_id`
 - ❌ **DON'T:** Ship without RLS (users can see others' layouts)
 
-**Example 2: App Marketplace**
+#### Ví dụ 2: App Marketplace
 
 - ✅ **DO:** Validate app definition JSON (schema validation)
 - ❌ **DON'T:** Allow arbitrary JSON (XSS risk)
 
-**Example 3: User Authentication**
+#### Ví dụ 3: User Authentication
 
 - ✅ **DO:** Use Supabase Auth (built-in security)
 - ❌ **DON'T:** Build custom auth (security nightmare)
 
 ---
 
-## 📊 PRINCIPLE #6: Measure What Matters
+## 📊 NGUYÊN TẮC #6: Đo Lường Những Gì Quan Trọng (Measure What Matters)
 
-### The Core Belief
+### Niềm Tin Cốt Lõi (#6)
 
-**NOT:** Measure vanity metrics
+#### KHÔNG
 
-**BUT:** Measure North Star Metric
+Đo lường các vanity metrics
 
-### What This Means
+#### MÀ LÀ
 
-**North Star Metric:**
+Đo lường North Star Metric
 
-> **"How many apps built and shared?"**
+### Ý Nghĩa (#6)
+
+**North Star Metric (Chỉ Số Ngôi Sao Bắc Đẩu):**
+
+> **"Bao nhiêu apps được xây dựng và chia sẻ?"**
 >
-> Formula: (Apps Built by Users) × (Average Installs per App)
+> Công thức: (Apps Được Xây Dựng bởi Users) × (Số Lượt Cài Đặt Trung Bình mỗi App)
 
-**DO:**
+#### NÊN LÀM (DO)
 
-- ✅ Track apps created
-- ✅ Track apps installed from marketplace
-- ✅ Track active users (using 3+ apps)
-- ✅ Track marketplace activity
+- ✅ Theo dõi apps được tạo ra
+- ✅ Theo dõi apps được cài đặt từ marketplace
+- ✅ Theo dõi active users (đang dùng 3+ apps)
+- ✅ Theo dõi hoạt động marketplace
 
-**DON'T:**
+#### KHÔNG NÊN (DON'T)
 
-- ❌ Track tasks created (wrong metric)
-- ❌ Track page views (vanity metric)
-- ❌ Track sign-ups only (no engagement)
+- ❌ Theo dõi tasks được tạo (sai metric)
+- ❌ Theo dõi page views (vanity metric)
+- ❌ Chỉ theo dõi sign-ups (không có engagement)
 
-### Decision Framework
+### Khung Quyết Định (#6)
 
-**When measuring success, ask:**
+**Khi đo lường thành công, hãy hỏi:**
 
-1. **Does this metric align with Platform vision?** → Track it
-2. **Does this metric measure Task Management?** → Don't prioritize
-3. **Is this a vanity metric?** → Ignore it
+1. **Metric này có align với Platform vision không?** → Theo dõi nó
+2. **Metric này có đo lường Task Management không?** → Không ưu tiên
+3. **Đây có phải vanity metric không?** → Bỏ qua nó
 
-### Examples
+### Các Ví Dụ (#6)
 
-**Example 1: User creates 100 tasks**
+#### Ví dụ 1: User creates 100 tasks
 
 - ❌ **NOT SUCCESS:** Tasks created (wrong metric)
 - ✅ **SUCCESS IF:** User built custom Task Manager app + published
 
-**Example 2: User signs up**
+#### Ví dụ 2: User signs up
 
 - ❌ **NOT SUCCESS:** Sign-up alone (no engagement)
 - ✅ **SUCCESS IF:** User installs 3+ apps, builds 1+ app
 
-**Example 3: Marketplace has 100 page views**
+#### Ví dụ 3: Marketplace has 100 page views
 
 - ❌ **NOT SUCCESS:** Page views (vanity metric)
 - ✅ **SUCCESS IF:** 50 apps installed, 10 apps published
 
 ---
 
-## 🧪 PRINCIPLE #7: Validate Early, Pivot Fast
+## 🧪 NGUYÊN TẮC #7: Validate Sớm, Pivot Nhanh (Validate Early, Pivot Fast)
 
-### The Core Belief
+### Niềm Tin Cốt Lõi (#7)
 
-**NOT:** Commit to plan, execute blindly
+#### KHÔNG
 
-**BUT:** Validate hypotheses, pivot if wrong
+Cam kết với kế hoạch, thực hiện mù quáng
 
-### What This Means
+#### MÀ LÀ
 
-**DO:**
+Validate các giả thuyết, pivot nếu sai
 
-- ✅ Set GO/NO-GO criteria (Week 9)
-- ✅ Measure metrics weekly
-- ✅ Be ready to pivot (Week 9-12)
-- ✅ Shut down gracefully if NO-GO
+### Ý Nghĩa (#7)
 
-**DON'T:**
+#### NÊN LÀM (DO)
 
-- ❌ Commit to roadmap blindly
-- ❌ Ignore negative signals
-- ❌ Continue building if users don't care
+- ✅ Đặt GO/NO-GO criteria (Tuần 9)
+- ✅ Đo lường metrics hàng tuần
+- ✅ Sẵn sàng pivot (Tuần 9-12)
+- ✅ Shutdown một cách duyên dáng nếu NO-GO
 
-### Decision Framework
+#### KHÔNG NÊN (DON'T)
 
-**At Week 9, evaluate GO/NO-GO:**
+- ❌ Cam kết với roadmap một cách mù quáng
+- ❌ Bỏ qua các tín hiệu tiêu cực
+- ❌ Tiếp tục xây dựng nếu users không quan tâm
 
-**GO Criteria (need 2 of 3):**
+### Khung Quyết Định (#7)
 
-1. ✅ **Apps Created:** 10+ users built custom apps
-2. ✅ **Marketplace Activity:** 30+ installations
-3. ✅ **Engagement:** 5+ users actively using 3+ apps
+**Tại Tuần 9, đánh giá GO/NO-GO:**
 
-**If GO:**
+**GO Criteria (Tiêu Chí Tiếp Tục) - cần 2 trong 3:**
 
-- Continue to Low-Code features (Week 10-12)
-- Prepare for public launch
+1. ✅ **Apps Created (Apps Được Tạo):** 10+ users đã xây dựng custom apps
+2. ✅ **Marketplace Activity (Hoạt Động Marketplace):** 30+ lượt cài đặt
+3. ✅ **Engagement (Tương Tác):** 5+ users đang tích cực sử dụng 3+ apps
 
-**If NO-GO:**
+**Nếu GO (Tiếp Tục):**
 
-- Analyze why (user interviews, data)
+- Tiếp tục với Low-Code features (Tuần 10-12)
+- Chuẩn bị cho public launch
+
+**Nếu NO-GO (Dừng Lại):**
+
+- Phân tích tại sao (user interviews, data)
 - Pivot options:
-  - Simplify to template marketplace (no builder)
-  - Focus on specific vertical (CRM, Finance)
-  - Shut down gracefully
+  - Đơn giản hóa thành template marketplace (không có builder)
+  - Tập trung vào vertical cụ thể (CRM, Finance)
+  - Shutdown một cách duyên dáng
 
-### Examples
+### Các Ví Dụ (#7)
 
-**Example 1: Week 8 - Only 2 users built apps**
+#### Ví dụ 1: Week 8 - Only 2 users built apps
 
 - ⚠️ **WARNING:** Not hitting target (10+ users)
 - ✅ **ACTION:** Investigate why, iterate on App Builder UX
 
-**Example 2: Week 9 - Only 1 of 3 GO criteria met**
+#### Ví dụ 2: Week 9 - Only 1 of 3 GO criteria met
 
 - ❌ **NO-GO:** Pivot or shutdown
 - ✅ **ACTION:** User interviews, analyze root cause
 
-**Example 3: Week 9 - All 3 GO criteria met**
+#### Ví dụ 3: Week 9 - All 3 GO criteria met
 
 - ✅ **GO:** Continue to Low-Code tier
 - ✅ **ACTION:** Expand beta to 100 users, prepare launch
 
 ---
 
-## 🎯 PRINCIPLE #8: Progressive Disclosure (3-Tier Builder)
+## 🎯 NGUYÊN TẮC #8: Tiết Lộ Dần Dần (Progressive Disclosure) - 3-Tier Builder
 
-### The Core Belief
+### Niềm Tin Cốt Lõi (#8)
 
-**NOT:** Expose all features upfront (overwhelm users)
+#### KHÔNG
 
-**BUT:** Progressive disclosure (reveal complexity gradually)
+Hiển thị tất cả features ngay từ đầu (làm users overwhelm)
 
-### What This Means
+#### MÀ LÀ
 
-**3-Tier Builder:**
+Tiết lộ dần dần (progressive disclosure) - lộ diện độ phức tạp từ từ
 
-**Tier 1: No-Code (Week 1-4 MVP)**
+### Ý Nghĩa (#8)
+
+**3-Tier Builder (Builder 3 Cấp Độ):**
+
+**Tier 1: No-Code (Tuần 1-4 MVP)**
 
 - 5 components (TextBlock, Button, Input, Container, List)
 - 3 actions (Append to List, Clear Input, Show/Hide)
-- NO conditional logic, NO database, NO custom styling
+- KHÔNG có conditional logic, KHÔNG có database, KHÔNG có custom styling
 
-**Tier 2: Low-Code (Week 10-12 if GO)**
+**Tier 2: Low-Code (Tuần 10-12 nếu GO)**
 
 - 15 components
 - Conditional logic (IF/THEN)
 - Database integration (Supabase tables)
 - Form validation
 
-**Tier 3: Pro-Code (Future)**
+**Tier 3: Pro-Code (Tương Lai)**
 
 - Custom React components
 - API integrations (Zapier, webhooks)
 - Custom JavaScript logic
 
-**DO:**
+#### NÊN LÀM (DO)
 
-- ✅ Start with No-Code (simplest)
-- ✅ Only add complexity if users need it
-- ✅ Hide advanced features behind "Advanced" tab
+- ✅ Bắt đầu với No-Code (đơn giản nhất)
+- ✅ Chỉ thêm độ phức tạp nếu users cần
+- ✅ Ẩn advanced features phía sau tab "Advanced"
 
-**DON'T:**
+#### KHÔNG NÊN (DON'T)
 
-- ❌ Expose all features in v0.1
-- ❌ Overwhelm users with options
+- ❌ Hiển thị tất cả features trong v0.1
+- ❌ Làm choáng ngợp users với quá nhiều options
 
-### Decision Framework
+### Khung Quyết Định (#8)
 
-**When adding a feature, ask:**
+**Khi thêm một feature, hãy hỏi:**
 
-1. **Is this needed for No-Code tier?** → Add to v0.1
-2. **Is this needed for Low-Code tier?** → Add to v0.2 (if GO)
-3. **Is this advanced/niche?** → Add to v0.3+ (future)
+1. **Feature này có cần cho No-Code tier không?** → Thêm vào v0.1
+2. **Feature này có cần cho Low-Code tier không?** → Thêm vào v0.2 (nếu GO)
+3. **Đây có phải advanced/niche không?** → Thêm vào v0.3+ (tương lai)
 
-### Examples
+### Các Ví Dụ (#8)
 
-**Example 1: User requests "Custom JavaScript in App"**
+#### Ví dụ 1: User requests "Custom JavaScript in App"
 
 - ❌ **DON'T:** Add to No-Code tier (too complex)
 - ✅ **DO:** Backlog for Tier 3 (Pro-Code)
 
-**Example 2: User requests "IF/THEN workflows"**
+#### Ví dụ 2: User requests "IF/THEN workflows"
 
 - ❌ **DON'T:** Add to No-Code tier (complexity)
 - ✅ **DO:** Add to Tier 2 (Low-Code, if GO)
 
-**Example 3: User requests "More components"**
+#### Ví dụ 3: User requests "More components"
 
 - ✅ **DO:** Add simple components to No-Code (e.g., Image)
 - ❌ **DON'T:** Add complex components (e.g., Chart) yet
 
 ---
 
-## 💬 PRINCIPLE #9: Keep It, Don't Polish It (Task Management)
+## 💬 NGUYÊN TẮC #9: Giữ Lại, Đừng Polish (Keep It, Don't Polish It) - Task Management
 
-### The Core Belief
+### Niềm Tin Cốt Lõi (#9)
 
-**NOT:** Build the best task manager
+#### KHÔNG
 
-**BUT:** Build "good enough" task manager, focus on Platform
+Xây dựng task manager tốt nhất
 
-### What This Means
+#### MÀ LÀ
 
-**KEEP (Good Enough):**
+Xây dựng task manager "đủ tốt", tập trung vào Platform
+
+### Ý Nghĩa (#9)
+
+**GIỮ LẠI (KEEP) - Đủ Tốt (Good Enough):**
 
 - ✅ CRUD for tasks (Create, Read, Update, Complete, Prioritize)
 - ✅ Kanban Board (Today, Inbox, Backlog)
 - ✅ Filters (Today, Inbox)
 - ✅ Priority levels (High, Medium, Low)
 
-**DON'T ADD (Backlog Forever):**
+**ĐỪNG THÊM (DON'T ADD) - Backlog Mãi Mãi:**
 
 - 🔄 Tags, advanced filters, search
 - 🔄 Task detail modal
@@ -491,189 +552,201 @@ This document outlines the core principles that guide NEXUS development. These a
 - 🔄 Task dependencies
 - 🔄 Time tracking
 
-### Why?
+### Tại Sao? (#9)
 
-1. **Platform features are the differentiator** (App Builder + Marketplace)
-2. **Task management is commodity** (Todoist, Notion already exist)
-3. **Time is limited** (12 weeks)
-4. **Focus on North Star Metric** ("Apps Built and Shared")
+1. **Platform features là điểm khác biệt** (App Builder + Marketplace)
+2. **Task management là commodity** (Todoist, Notion đã tồn tại)
+3. **Thời gian có hạn** (12 tuần)
+4. **Tập trung vào North Star Metric** ("Apps Được Xây Dựng và Chia Sẻ")
 
-### Message to Users
+### Thông Điệp Cho Users (#9)
 
-> "Our task manager is simple by design. Use it to track your work building apps. If you need advanced task management, continue using Todoist or Notion alongside NEXUS."
+> "Task manager của chúng tôi đơn giản theo thiết kế. Sử dụng nó để theo dõi công việc xây dựng apps của bạn. Nếu bạn cần quản lý task nâng cao, hãy tiếp tục sử dụng Todoist hoặc Notion bên cạnh NEXUS."
 
 ---
 
-## 🤖 PRINCIPLE #10: AI-First Development
+## 🤖 NGUYÊN TẮC #10: Phát Triển AI-First (AI-First Development)
 
-### The Core Belief
+### Niềm Tin Cốt Lõi (#10)
 
-**NOT:** Write all code manually
+#### KHÔNG
 
-**BUT:** Use AI to accelerate development
+Viết tất cả code thủ công
 
-### What This Means
+#### MÀ LÀ
 
-**DO:**
+Sử dụng AI để tăng tốc phát triển
 
-- ✅ Use AI-friendly tech stack (Next.js, React, Supabase)
-- ✅ Use well-documented libraries (AI has seen examples)
-- ✅ Use Claude/GPT for code generation
-- ✅ Use conventional patterns (AI knows them)
-- ✅ Write clear prompts for AI
+### Ý Nghĩa (#10)
 
-**DON'T:**
+#### NÊN LÀM (DO)
 
-- ❌ Use obscure libraries (AI hasn't seen them)
-- ❌ Use custom solutions (AI can't generate)
-- ❌ Write everything from scratch
+- ✅ Sử dụng tech stack thân thiện với AI (Next.js, React, Supabase)
+- ✅ Sử dụng các libraries có tài liệu tốt (AI đã thấy examples)
+- ✅ Sử dụng Claude/GPT cho code generation
+- ✅ Sử dụng các patterns phổ biến (AI biết chúng)
+- ✅ Viết prompts rõ ràng cho AI
 
-### Decision Framework
+#### KHÔNG NÊN (DON'T)
 
-**When choosing approach, ask:**
+- ❌ Sử dụng obscure libraries (AI chưa thấy)
+- ❌ Sử dụng custom solutions (AI không thể generate)
+- ❌ Viết mọi thứ từ đầu
 
-1. **Can AI generate this?** → Prefer it
-2. **Is this well-documented?** → AI can help
-3. **Is this custom/obscure?** → Avoid it
+### Khung Quyết Định (#10)
 
-### Examples
+**Khi chọn cách tiếp cận, hãy hỏi:**
 
-**Example 1: Building Dashboard Grid**
+1. **AI có thể generate cái này không?** → Ưu tiên nó
+2. **Cái này có được document tốt không?** → AI có thể giúp
+3. **Cái này có phải custom/obscure không?** → Tránh nó
+
+### Các Ví Dụ (#10)
+
+#### Ví dụ 1: Building Dashboard Grid
 
 - ✅ **DO:** Use `react-grid-layout` (AI knows it, 20K stars)
 - ❌ **DON'T:** Build custom grid from scratch
 
-**Example 2: Building Form Validation**
+#### Ví dụ 2: Building Form Validation
 
 - ✅ **DO:** Use React Hook Form (AI knows it)
 - ❌ **DON'T:** Build custom validation library
 
-**Example 3: Database Queries**
+#### Ví dụ 3: Database Queries
 
 - ✅ **DO:** Use Supabase SDK (AI can generate)
 - ❌ **DON'T:** Write raw SQL (error-prone)
 
 ---
 
-## 📝 PRINCIPLE #11: Document Decisions, Not Code
+## 📝 NGUYÊN TẮC #11: Document Quyết Định, Không Phải Code (Document Decisions, Not Code)
 
-### The Core Belief
+### Niềm Tin Cốt Lõi (#11)
 
-**NOT:** Write code comments for everything
+#### KHÔNG
 
-**BUT:** Document high-level decisions, not low-level code
+Viết code comments cho mọi thứ
 
-### What This Means
+#### MÀ LÀ
 
-**DO:**
+Document các quyết định cấp cao, không phải low-level code
 
-- ✅ Document WHY (decision rationale)
-- ✅ Document WHAT (feature requirements)
-- ✅ Document HOW (architecture, not code)
-- ✅ Update docs as decisions change
+### Ý Nghĩa (#11)
 
-**DON'T:**
+#### NÊN LÀM (DO)
 
-- ❌ Write code comments for obvious code
-- ❌ Document implementation details (code is self-documenting)
-- ❌ Write docs that become outdated
+- ✅ Document TẠI SAO (WHY - lý do quyết định)
+- ✅ Document CÁI GÌ (WHAT - yêu cầu feature)
+- ✅ Document NHƯ THẾ NÀO (HOW - kiến trúc, không phải code)
+- ✅ Cập nhật docs khi quyết định thay đổi
 
-### Decision Framework
+#### KHÔNG NÊN (DON'T)
 
-**When documenting, ask:**
+- ❌ Viết code comments cho code hiển nhiên
+- ❌ Document implementation details (code tự giải thích)
+- ❌ Viết docs mà sẽ trở nên outdated
 
-1. **Is this a high-level decision?** → Document it
-2. **Is this obvious from code?** → Skip it
-3. **Will future me forget why?** → Document it
+### Khung Quyết Định (#11)
 
-### Examples
+**Khi documenting, hãy hỏi:**
 
-**Example 1: Why Zustand instead of Redux?**
+1. **Đây có phải quyết định cấp cao không?** → Document nó
+2. **Điều này có hiển nhiên từ code không?** → Bỏ qua
+3. **Tương lai tôi có quên tại sao không?** → Document nó
+
+### Các Ví Dụ (#11)
+
+#### Ví dụ 1: Why Zustand instead of Redux?
 
 - ✅ **DO:** Document in [TECH_STACK.md](TECH_STACK.md)
 - **Reason:** Simpler, smaller bundle, TypeScript-first
 
-**Example 2: Why 12 columns for grid?**
+#### Ví dụ 2: Why 12 columns for grid?
 
 - ✅ **DO:** Document in [ROADMAP.md](../02-EXECUTION/ROADMAP.md)
 - **Reason:** Standard for responsive grids
 
-**Example 3: How to use Zustand?**
+#### Ví dụ 3: How to use Zustand?
 
 - ❌ **DON'T:** Write detailed usage guide
 - ✅ **DO:** Link to official docs
 
 ---
 
-## ✅ PRINCIPLE #12: Testing in Production
+## ✅ NGUYÊN TẮC #12: Testing Trong Production (Testing in Production)
 
-### The Core Belief
+### Niềm Tin Cốt Lõi (#12)
 
-**NOT:** Write unit tests for everything before shipping
+#### KHÔNG
 
-**BUT:** Ship to production, fix bugs as they appear
+Viết unit tests cho mọi thứ trước khi shipping
 
-### What This Means
+#### MÀ LÀ
 
-**DO:**
+Ship lên production, fix bugs khi chúng xuất hiện
 
-- ✅ Ship features to production quickly
+### Ý Nghĩa (#12)
+
+#### NÊN LÀM (DO)
+
+- ✅ Ship features lên production nhanh chóng
 - ✅ Monitor errors (Sentry, logs)
-- ✅ Fix critical bugs immediately
-- ✅ Iterate based on real usage
+- ✅ Fix critical bugs ngay lập tức
+- ✅ Iterate dựa trên usage thực tế
 
-**DON'T:**
+#### KHÔNG NÊN (DON'T)
 
-- ❌ Write unit tests for MVP (overkill)
-- ❌ Write E2E tests before v1.0 (slow iteration)
-- ❌ Hold releases for 100% test coverage
+- ❌ Viết unit tests cho MVP (overkill)
+- ❌ Viết E2E tests trước v1.0 (iteration chậm)
+- ❌ Hold releases để có 100% test coverage
 
-### Decision Framework
+### Khung Quyết Định (#12)
 
-**When deciding on testing strategy, ask:**
+**Khi quyết định testing strategy, hãy hỏi:**
 
-1. **Is this a critical path?** → Test manually, ship
-2. **Is this a nice-to-have?** → Ship, fix if breaks
-3. **Is this v1.0+?** → Consider automated tests
+1. **Đây có phải critical path không?** → Test thủ công, ship
+2. **Đây có phải nice-to-have không?** → Ship, fix nếu break
+3. **Đây có phải v1.0+ không?** → Cân nhắc automated tests
 
-### Examples
+### Các Ví Dụ (#12)
 
-**Example 1: Dashboard Grid**
+#### Ví dụ 1: Dashboard Grid
 
 - ✅ **DO:** Test manually, ship to production
 - ❌ **DON'T:** Write unit tests for drag-drop logic
 
-**Example 2: App Builder**
+#### Ví dụ 2: App Builder
 
 - ✅ **DO:** Test manually, ship to beta users
 - ❌ **DON'T:** Write E2E tests before v1.0
 
-**Example 3: Payment Flow (Future)**
+#### Ví dụ 3: Payment Flow (Future)
 
 - ✅ **DO:** Write tests (critical, high-risk)
 - ✅ **DO:** Test in staging before production
 
 ---
 
-## 🚦 Decision Framework Summary
+## 🚦 Tóm Tắt Framework Ra Quyết Định (Decision Framework Summary)
 
-**When making ANY decision, ask these questions in order:**
+**Khi đưa ra BẤT KỲ quyết định nào, hãy hỏi các câu hỏi sau theo thứ tự:**
 
-1. **Does this align with Platform First principle?** (Principle #1)
-2. **Can I code this now?** (Principle #2)
-3. **Can I ship this fast?** (Principle #3)
-4. **Is this simple and boring?** (Principle #4)
-5. **Is this secure?** (Principle #5)
-6. **Does this move North Star Metric?** (Principle #6)
-7. **Can I validate this early?** (Principle #7)
+1. **Điều này có align với nguyên tắc Platform First không?** (Nguyên Tắc #1)
+2. **Tôi có thể code điều này ngay bây giờ không?** (Nguyên Tắc #2)
+3. **Tôi có thể ship điều này nhanh không?** (Nguyên Tắc #3)
+4. **Điều này có đơn giản và nhàm chán không?** (Nguyên Tắc #4)
+5. **Điều này có an toàn không?** (Nguyên Tắc #5)
+6. **Điều này có di chuyển North Star Metric không?** (Nguyên Tắc #6)
+7. **Tôi có thể validate điều này sớm không?** (Nguyên Tắc #7)
 
-**If YES to most → DO IT**
+**Nếu CÓ với hầu hết → LÀM NÓ**
 
-**If NO to most → DON'T DO IT (or backlog)**
+**Nếu KHÔNG với hầu hết → ĐỪNG LÀM (hoặc backlog)**
 
 ---
 
-## 📚 Related Documents
+## 📚 Tài Liệu Liên Quan
 
 - **Strategy:** [NEXUS_WHITEPAPER.md](../01-STRATEGY/NEXUS_WHITEPAPER.md)
 - **Execution:** [ROADMAP.md](../02-EXECUTION/ROADMAP.md)
@@ -685,24 +758,24 @@ This document outlines the core principles that guide NEXUS development. These a
 
 ---
 
-## 🎯 TL;DR - The 12 Principles
+## 🎯 TL;DR - 12 Nguyên Tắc
 
-1. **Platform First, Task Management Second** - Build a platform, not a task manager
-2. **Code First Strategy** - Code now, design later
-3. **Ship Fast, Iterate Later** - Imperfect fast > perfect slow
-4. **Keep It Simple, Keep It Boring** - Proven tech > cutting-edge
-5. **Security First, Always** - RLS, validation, no shortcuts
-6. **Measure What Matters** - North Star Metric only
-7. **Validate Early, Pivot Fast** - GO/NO-GO at Week 9
-8. **Progressive Disclosure** - 3-tier builder (No-Code → Low-Code → Pro-Code)
-9. **Keep It, Don't Polish It** - Task management stays "good enough"
-10. **AI-First Development** - Use AI to accelerate
-11. **Document Decisions, Not Code** - WHY, not HOW
-12. **Testing in Production** - Ship fast, fix bugs in prod
+1. **Platform Trước, Task Management Sau** - Xây dựng platform, không phải task manager
+2. **Chiến Lược Code Trước** - Code ngay, thiết kế sau
+3. **Ship Nhanh, Iterate Sau** - Không hoàn hảo nhưng nhanh > hoàn hảo nhưng chậm
+4. **Giữ Đơn Giản, Giữ Nhàm Chán** - Công nghệ đã chứng minh > cutting-edge
+5. **Bảo Mật Trước Tiên, Luôn Luôn** - RLS, validation, không shortcuts
+6. **Đo Lường Những Gì Quan Trọng** - Chỉ North Star Metric
+7. **Validate Sớm, Pivot Nhanh** - GO/NO-GO tại Tuần 9
+8. **Tiết Lộ Dần Dần** - Builder 3 cấp (No-Code → Low-Code → Pro-Code)
+9. **Giữ Lại, Đừng Polish** - Task management giữ ở mức "đủ tốt"
+10. **Phát Triển AI-First** - Sử dụng AI để tăng tốc
+11. **Document Quyết Định, Không Phải Code** - TẠI SAO (WHY), không phải NHƯ THẾ NÀO (HOW)
+12. **Testing Trong Production** - Ship nhanh, fix bugs trong prod
 
 ---
 
-**Remember:** These principles are decision-making frameworks. When in doubt, refer back to them.
+**Ghi Nhớ (Remember):** Các nguyên tắc này là frameworks ra quyết định. Khi nghi ngờ, hãy quay lại với chúng.
 
 **Cập nhật lần cuối:** 17 tháng 11, 2025
 
@@ -712,4 +785,4 @@ This document outlines the core principles that guide NEXUS development. These a
 
 ---
 
-**"Build a platform, not a product. Ship fast, iterate fast. Measure what matters."**
+**"Xây dựng một platform, không phải một product. Ship nhanh, iterate nhanh. Đo lường những gì quan trọng."**

@@ -1,4 +1,4 @@
-# 🏗️ NEXUS TECH STACK - Complete Technical Reference
+# 🏭 TECH STACK NEXUS - Tài Liệu Kỹ Thuật Toàn Diện
 
 **Nguồn chính:** [NEXUS_WHITEPAPER.md](../01-STRATEGY/NEXUS_WHITEPAPER.md) (Phần 4.1)
 
@@ -8,7 +8,25 @@
 
 ---
 
-## 📊 Stack Overview at a Glance
+ > [!IMPORTANT]
+> **📌 NGUỒN CHUẨN DUY NHẤT (SOURCE OF TRUTH)** cho mọi quyết định kỹ thuật
+>
+> **Sau khi cập nhật file này:**
+>
+> 1. Copy section "Stack Overview at a Glance" (lines 11-55 bên dưới)
+> 2. Paste vào `AI_PROMPTS.md` → Section "📚 TECH STACK - Tham Khảo Nhanh"
+> 3. Cập nhật timestamp trong `AI_PROMPTS.md`
+> 4. Review để đảm bảo YAML syntax đúng (spaces, không tabs)
+>
+> **Files cần sync thủ công:**
+>
+> - `AI_PROMPTS.md` (section "TECH STACK - Tham Khảo Nhanh")
+>
+> **Frequency:** Chỉ khi có major tech stack changes (~1 lần/tháng)
+
+---
+
+## 📊 Tổng Quan Nhanh Về Stack
 
 ```yaml
 Frontend Framework:
@@ -31,9 +49,9 @@ State Management:
   Form State: React Hook Form v7
 
 Specialized Libraries:
-  Dashboard Grid: react-grid-layout v1.5.2 (767+ projects using)
-  App Builder: Craft.js (MIT, $11K+ Open Collective funding)
-  Drag & Drop: @dnd-kit v6 (accessibility-first)
+  Dashboard Grid: react-grid-layout v1.5.0 (verified working)
+  App Builder: @dnd-kit v6.3.1 + Zustand (React 19 compatible)
+  Drag & Drop: @dnd-kit v6.3.1 + @dnd-kit/sortable v10.0.0
   Rich Text: Tiptap v2 (ProseMirror wrapper)
   Dates: date-fns v3 (tree-shakeable)
   Recurrence: rrule v2 (RFC-5545 compliant)
@@ -56,63 +74,63 @@ Cost (Estimated):
 
 ---
 
-## 🎯 Why This Stack? (Strategic Rationale)
+## 🎯 Tại Sao Tech Stack Này? (Why This Stack? - Strategic Rationale)
 
-### 1. AI-First Development
+### 1. Phát Triển AI-First (AI-First Development)
 
-**All technologies chosen are AI-friendly:**
+**Tất cả công nghệ được chọn đều thân thiện với AI:**
 
-- ✅ **Well-documented:** Next.js, React, Supabase have extensive docs
-- ✅ **Large training data:** Claude/GPT have seen millions of examples
-- ✅ **Clear patterns:** Conventional file structure, established best practices
-- ✅ **TypeScript:** Self-documenting, AI can infer types and catch errors
+- ✅ **Well-documented (Tài liệu tốt):** Next.js, React, Supabase có extensive docs
+- ✅ **Large training data (Dữ liệu training lớn):** Claude/GPT đã thấy hàng triệu examples
+- ✅ **Clear patterns (Patterns rõ ràng):** Conventional file structure, established best practices
+- ✅ **TypeScript:** Self-documenting, AI có thể infer types và catch errors
 
-### 2. Speed of Development
+### 2. Tốc Độ Phát Triển (Speed of Development)
 
-**Focus: Ship fast, iterate fast**
+**Tập trung: Ship nhanh, iterate nhanh**
 
-- ✅ **No backend code:** Supabase auto-generates REST API + real-time subscriptions
-- ✅ **Copy-paste UI:** shadcn/ui means no npm dependency hell
-- ✅ **Utility-first CSS:** TailwindCSS = no separate CSS files
-- ✅ **Batteries included:** Next.js = routing + SSR + API routes in one
+- ✅ **No backend code (Không code backend):** Supabase auto-generates REST API + real-time subscriptions
+- ✅ **Copy-paste UI:** shadcn/ui = không npm dependency hell
+- ✅ **Utility-first CSS:** TailwindCSS = không cần separate CSS files
+- ✅ **Batteries included (Đầy đủ tính năng):** Next.js = routing + SSR + API routes trong một
 
-### 3. Cost Efficiency
+### 3. Hiệu Quả Chi Phí (Cost Efficiency)
 
-**Optimize for $0 hosting in MVP phase:**
+**Tối ưu cho $0 hosting trong MVP phase:**
 
-| Service | Free Tier | Sufficient for |
-|---------|-----------|----------------|
-| Vercel | 100GB bandwidth, unlimited deploys | 1,000+ users |
-| Supabase | 500MB DB, 50K MAU | 1,000+ users |
-| Total | **$0/month** | First 1,000 users |
+| Service  | Free Tier                          | Sufficient for    |
+| -------- | ---------------------------------- | ----------------- |
+| Vercel   | 100GB bandwidth, unlimited deploys | 1,000+ users      |
+| Supabase | 500MB DB, 50K MAU                  | 1,000+ users      |
+| Total    | **$0/month**                 | First 1,000 users |
 
-### 4. Scale Path
+### 4. Lộ Trình Mở Rộng (Scale Path)
 
-**Clear upgrade path when needed:**
+**Clear upgrade path (Lộ trình nâng cấp rõ ràng) khi cần:**
 
 - Vercel Free → Vercel Pro ($20/month): More bandwidth, priority support
 - Supabase Free → Supabase Pro ($25/month): 8GB DB, unlimited MAU
-- Add Cloudflare CDN ($0): Reduce Vercel bandwidth usage
-- Add Redis (Upstash $0-10): Cache layer if needed
+- Add Cloudflare CDN ($0): Giảm Vercel bandwidth usage
+- Add Redis (Upstash $0-10): Cache layer nếu cần
 
 ---
 
-## 🎨 FRONTEND STACK (Detailed)
+## 🎨 FRONTEND STACK (Chi Tiết)
 
 ### Next.js 16.0.1
 
 **Release Date:** October 21, 2025
 
-**Why Next.js 16 specifically:**
+**Tại sao chọn Next.js 16 cụ thể (Why Next.js 16 specifically):**
 
 - ✅ **Turbopack Stable:** 2-5x faster builds, 10x faster Fast Refresh
-- ✅ **Cache Components:** New "use cache" directive for granular caching
-- ✅ **proxy.ts:** Replaces middleware.ts for cleaner request handling
-- ✅ **React 19.2 Integration:** Full support for Server Components
+- ✅ **Cache Components:** New "use cache" directive cho granular caching
+- ✅ **proxy.ts:** Thay thế middleware.ts cho cleaner request handling
+- ✅ **React 19.2 Integration:** Full support cho Server Components
 - ✅ **App Router Maturity:** File-based routing, nested layouts, loading states
 - ✅ **Next.js DevTools MCP:** AI debugging support (experimental)
 
-**Key Features Used:**
+**Các Tính Năng Chính Được Sử Dụng (Key Features Used):**
 
 ```typescript
 // App Router structure
@@ -130,20 +148,20 @@ app/
 └── error.tsx                 // Error boundary
 ```
 
-**Server Components Strategy:**
+**Chiến Lược Server Components (Server Components Strategy):**
 
-- ✅ **Default to Server:** Fetch data on server, reduce client JS
-- ✅ **Client when needed:** Use "use client" for interactive components
-- ✅ **Streaming:** Use Suspense for progressive rendering
+- ✅ **Default to Server (Mặc định Server):** Fetch data trên server, giảm client JS
+- ✅ **Client when needed (Client khi cần):** Use "use client" cho interactive components
+- ✅ **Streaming:** Use Suspense cho progressive rendering
 
-**Performance Optimizations:**
+**Tối Ưu Hiệu Suất (Performance Optimizations):**
 
 - Image optimization (next/image)
 - Font optimization (next/font)
-- Route prefetching (automatic)
-- Static generation where possible
+- Route prefetching (tự động - automatic)
+- Static generation nơi có thể
 
-**Documentation:** [nextjs.org/docs](https://nextjs.org/docs)
+**Tài liệu:** [nextjs.org/docs](https://nextjs.org/docs)
 
 ---
 
@@ -151,16 +169,16 @@ app/
 
 **Release Date:** October 2025
 
-**Why React 19.2 specifically:**
+**Tại sao chọn React 19.2 cụ thể (Why React 19.2 specifically):**
 
-- ✅ **Concurrent Rendering Default:** Automatic, no opt-in needed
+- ✅ **Concurrent Rendering Default:** Tự động (Automatic), không cần opt-in
 - ✅ **React Server Components:** Stable, production-ready
-- ✅ **useTransition:** Built-in for non-blocking updates
+- ✅ **useTransition:** Built-in cho non-blocking updates
 - ✅ **useDeferredValue:** Defer expensive renders
 - ✅ **Automatic Batching:** Optimized state updates
 - ✅ **Improved Resource Allocation:** Better memory management
 
-**Key Hooks Used:**
+**Các Hooks Chính Được Sử Dụng (Key Hooks Used):**
 
 ```typescript
 // Concurrent features
@@ -190,20 +208,20 @@ function AppBuilder() {
 }
 ```
 
-**Documentation:** [react.dev](https://react.dev/)
+**Tài liệu:** [react.dev](https://react.dev/)
 
 ---
 
 ### TypeScript 5.6 (Strict Mode)
 
-**Why TypeScript:**
+**Tại sao chọn TypeScript (Why TypeScript):**
 
-- ✅ **Type Safety:** Catch bugs at compile time, not runtime
-- ✅ **Better DX:** IntelliSense, autocomplete, inline docs
-- ✅ **AI-Assisted Refactoring:** AI can safely refactor typed code
-- ✅ **Self-Documenting:** Types serve as inline documentation
+- ✅ **Type Safety (An toàn kiểu):** Catch bugs tại compile time, không phải runtime
+- ✅ **Better DX (Trải nghiệm dev tốt hơn):** IntelliSense, autocomplete, inline docs
+- ✅ **AI-Assisted Refactoring (Refactor hỗ trợ AI):** AI có thể refactor typed code an toàn
+- ✅ **Self-Documenting (Tự ghi chép):** Types đóng vai trò như inline documentation
 
-**Strict Mode Config:**
+**Cấu Hình Strict Mode (Strict Mode Config):**
 
 ```json
 {
@@ -238,7 +256,7 @@ type ApiResponse<T> =
   | { success: false; error: string }
 ```
 
-**Documentation:** [typescriptlang.org/docs](https://www.typescriptlang.org/docs/)
+**Tài liệu:** [typescriptlang.org/docs](https://www.typescriptlang.org/docs/)
 
 ---
 
@@ -286,7 +304,7 @@ module.exports = {
 <div className="p-4 md:p-6 lg:p-8">
 ```
 
-**Documentation:** [tailwindcss.com/docs](https://tailwindcss.com/docs)
+**Tài liệu:** [tailwindcss.com/docs](https://tailwindcss.com/docs)
 
 ---
 
@@ -325,18 +343,18 @@ export const Button = ({ variant = 'default', ...props }) => {
 }
 ```
 
-**Documentation:** [ui.shadcn.com](https://ui.shadcn.com/)
+**Tài liệu:** [ui.shadcn.com](https://ui.shadcn.com/)
 
 ---
 
-## 💾 BACKEND & DATABASE (Detailed)
+## 💾 BACKEND & DATABASE (Chi Tiết)
 
 ### Supabase (PostgreSQL 15.6)
 
-**Why Supabase:**
+**Tại Sao Supabase:**
 
 - ✅ **PostgreSQL + Auth + Storage + Real-time** in one platform
-- ✅ **Auto-generated REST API:** No backend code needed
+- ✅ **Auto-generated REST API (Tự động tạo API):** Không cần viết backend code
 - ✅ **Row Level Security (RLS):** Built-in multi-tenancy
 - ✅ **Real-time Subscriptions:** WebSocket support via PostgreSQL triggers
 - ✅ **Free Tier:** 500MB DB, 50K MAU, 1GB storage
@@ -390,7 +408,7 @@ const { data, error } = await supabase
   .subscribe()
 ```
 
-**Documentation:** [supabase.com/docs](https://supabase.com/docs)
+**Tài liệu:** [supabase.com/docs](https://supabase.com/docs)
 
 ---
 
@@ -514,7 +532,7 @@ const addTask = useStore(state => state.addTask)
 addTask({ title: 'New task', priority: 'high' })
 ```
 
-**Documentation:** [zustand-demo.pmnd.rs](https://zustand-demo.pmnd.rs/)
+**Tài liệu:** [zustand-demo.pmnd.rs](https://zustand-demo.pmnd.rs/)
 
 ---
 
@@ -579,7 +597,7 @@ const mutation = useMutation({
 })
 ```
 
-**Documentation:** [tanstack.com/query](https://tanstack.com/query)
+**Tài liệu:** [tanstack.com/query](https://tanstack.com/query)
 
 ---
 
@@ -628,7 +646,7 @@ function DashboardGrid() {
 }
 ```
 
-**Features Used:**
+**Tính năng Used:**
 
 - Drag & drop cards
 - Resize cards (min: 3x3, max: 12x8 grid units)
@@ -636,89 +654,277 @@ function DashboardGrid() {
 - Auto-packing algorithm
 - Save layout to Supabase
 
-**Bundle Size:** ~80KB gzipped
+**Kích thước bundle:** ~80KB gzipped
 
-**Documentation:** [github.com/react-grid-layout/react-grid-layout](https://github.com/react-grid-layout/react-grid-layout)
+**Tài liệu:** [github.com/react-grid-layout/react-grid-layout](https://github.com/react-grid-layout/react-grid-layout)
 
 ---
 
-### Craft.js (App Builder Framework)
+### @dnd-kit App Builder (Tương thích React 19)
 
-**Why Craft.js:**
+**Tại sao chọn @dnd-kit cho App Builder:**
 
-- ✅ **React-First:** Built for React, TypeScript support
-- ✅ **MIT License:** Free, open-source
-- ✅ **$11K+ Raised:** Active community on Open Collective
-- ✅ **Visual Editor:** Drag-drop components to canvas
-- ✅ **Component Tree:** Hierarchical structure
-- ✅ **Undo/Redo:** Built-in history
-- ✅ **JSON Serialization:** Save/load app definitions
+- ✅ **Tương thích React 19.2.0:** Đã verify hoạt động tốt với React mới nhất
+- ✅ **Accessibility-First (Ưu tiên khả năng truy cập):** Hỗ trợ điều hướng bàn phím, screen reader (WCAG 2.1 AA)
+- ✅ **Touch Support (Hỗ trợ cảm ứng):** Hoạt động trên mobile/tablet
+- ✅ **GPU-Accelerated (Tăng tốc GPU):** Animations mượt mà 60fps
+- ✅ **Active Maintenance (Đang được bảo trì):** Cập nhật lần cuối tháng 11, 2025
+- ✅ **Battle-Tested (Đã kiểm chứng thực tế):** Sử dụng trong KanbanBoard + App Builder
 
-**Use Case:** No-Code App Builder (3-Tier Progressive Disclosure)
+**Trường hợp sử dụng (Trường hợp sử dụng):** No-Code App Builder (thay thế Craft.js)
 
-**Implementation:**
+**Migration Note (Ghi chú về di chuyển công nghệ):**
+
+> 🚨 **Quan trọng:** Ban đầu dự định sử dụng Craft.js (v0.2.12) cho App Builder, nhưng phát hiện vấn đề incompatibility (không tương thích) với React 19.2.0 trong quá trình implement (triển khai) PROMPT 1.4 (19/11/2025). Craft.js drag events (sự kiện kéo thả) không fire (kích hoạt) do breaking changes (thay đổi không tương thích ngược) trong React 19 (ref callback timing, event handler attachment). Đã migrate (di chuyển) sang @dnd-kit + manual Zustand store (~600 dòng code).
+> **Trade-off (Đánh đổi):** Nhiều code hơn nhưng đổi lại được React 19 compatibility và hiểu rõ hơn về architecture. Sẽ reconsider (xem xét lại) Craft.js khi có phiên bản tương thích React 19.
+
+**Packages Sử dụng:**
+
+```json
+{
+  "@dnd-kit/core": "^6.3.1",
+  "@dnd-kit/sortable": "^10.0.0",
+  "@dnd-kit/utilities": "^3.2.2",
+  "zustand": "^5.0.2"
+}
+```
+
+**Kiến trúc (Architecture):**
+
+**1. Zustand Store (lib/stores/editor.ts - 334 lines):**
 
 ```typescript
-import { Editor, Frame, Element } from '@craftjs/core'
-import { TextBlock, Button, TextInput, Container, SimpleList } from './components'
+import { create } from 'zustand'
 
-function AppBuilder() {
+interface Component {
+  id: string
+  type: 'TextBlock' | 'Button' | 'Container'
+  props: Record<string, unknown>
+  children?: string[]
+  parent?: string
+}
+
+interface EditorState {
+  components: Record<string, Component>
+  canvasOrder: string[] // Root-level component IDs
+  selectedId: string | null
+  history: EditorSnapshot[]
+  historyIndex: number
+  
+  addComponent: (component: Component) => void
+  updateComponent: (id: string, updates: Partial<Component>) => void
+  deleteComponent: (id: string) => void
+  moveComponent: (id: string, newIndex: number, newParent?: string) => void
+  undo: () => void
+  redo: () => void
+  clear: () => void
+}
+
+const useEditorStore = create<EditorState>((set, get) => ({
+  components: {},
+  canvasOrder: [],
+  // ... implementation (~334 lines total)
+}))
+```
+
+**2. DndContext Setup (app/app-builder/page.tsx):**
+
+```typescript
+import { DndContext, DragOverlay, PointerSensor, useSensor, useSensors } from '@dnd-kit/core'
+
+function AppBuilderPage() {
+  const sensors = useSensors(
+    useSensor(PointerSensor, {
+      activationConstraint: { distance: 8 } // Prevent accidental drags
+    })
+  )
+  
+  const [activeType, setActiveType] = useState<string | null>(null)
+  
+  const handleDragStart = (event) => {
+    setActiveType(event.active.data.current?.type || null)
+  }
+  
+  const handleDragEnd = (event) => {
+    // Logic to add/move components
+    setActiveType(null)
+  }
+  
   return (
-    <Editor resolver={{ TextBlock, Button, TextInput, Container, SimpleList }}>
-      <Frame>
-        <Element is={Container} canvas>
-          {/* User drops components here */}
-        </Element>
-      </Frame>
-    </Editor>
+    <DndContext sensors={sensors} onDragStart={handleDragStart} onDragEnd={handleDragEnd}>
+      <Toolbar />
+      <div className="flex-1 flex">
+        <ComponentPalette />  {/* useDraggable */}
+        <Canvas />             {/* SortableContext */}
+        <PropertiesPanel />
+      </div>
+      <DragOverlay>
+        {activeType ? <ComponentPreview type={activeType} /> : null}
+      </DragOverlay>
+    </DndContext>
   )
 }
 ```
 
-**Component Definition:**
+**3. Canvas with SortableContext (components/app-builder/Canvas.tsx):**
 
 ```typescript
-// components/TextBlock.tsx
-import { useNode } from '@craftjs/core'
+import { useDroppable } from '@dnd-kit/core'
+import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable'
 
-export const TextBlock = ({ text, fontSize, color }) => {
-  const { connectors: { connect, drag } } = useNode()
-
+function Canvas() {
+  const { components, canvasOrder } = useEditorStore()
+  const rootComponents = canvasOrder.map(id => components[id])
+  
+  const { setNodeRef: setEmptyRef } = useDroppable({ id: 'canvas-empty' })
+  
   return (
-    <div ref={ref => connect(drag(ref))} style={{ fontSize, color }}>
-      {text}
+    <div className="canvas">
+      <SortableContext id="canvas-root" items={rootComponents.map(c => c.id)} strategy={verticalListSortingStrategy}>
+        {rootComponents.map(component => (
+          <RenderedComponent key={component.id} componentId={component.id} />
+        ))}
+      </SortableContext>
+    
+      {rootComponents.length === 0 && (
+        <div ref={setEmptyRef} id="canvas-empty">
+          Drop components here to get started
+        </div>
+      )}
+    </div>
+  )
+}
+```
+
+**4. Sortable Components (components/app-builder/RenderedComponent.tsx):**
+
+```typescript
+import { useSortable } from '@dnd-kit/sortable'
+import { CSS } from '@dnd-kit/utilities'
+
+function RenderedComponent({ componentId }) {
+  const component = useEditorStore(state => state.components[componentId])
+  const selectComponent = useEditorStore(state => state.selectComponent)
+  
+  const {
+    setNodeRef,
+    setActivatorNodeRef,
+    transform,
+    transition,
+    isDragging
+  } = useSortable({
+    id: componentId,
+    data: {
+      type: component.type,
+      parentId: component.parent
+    }
+  })
+  
+  const style = {
+    transform: CSS.Translate.toString(transform),
+    transition,
+    opacity: isDragging ? 0.5 : 1
+  }
+  
+  // Nested SortableContext for Container children
+  if (component.type === 'Container' && component.children?.length > 0) {
+    return (
+      <div ref={setNodeRef} style={style}>
+        <div ref={setActivatorNodeRef}>Drag handle</div>
+        <SortableContext items={component.children}>
+          {component.children.map(childId => (
+            <RenderedComponent key={childId} componentId={childId} />
+          ))}
+        </SortableContext>
+      </div>
+    )
+  }
+  
+  return (
+    <div ref={setNodeRef} style={style} onClick={() => selectComponent(componentId)}>
+      {/* Render component based on type */}
+    </div>
+  )
+}
+```
+
+**5. Component Palette (components/app-builder/ComponentPalette.tsx):**
+
+```typescript
+import { useDraggable } from '@dnd-kit/core'
+
+function ComponentPalette() {
+  const componentTypes = ['TextBlock', 'Button', 'Container']
+  
+  return (
+    <div className="palette">
+      {componentTypes.map(type => (
+        <DraggableComponent key={type} type={type} />
+      ))}
     </div>
   )
 }
 
-TextBlock.craft = {
-  props: {
-    text: 'Default text',
-    fontSize: '16px',
-    color: '#000',
-  },
-  related: {
-    settings: TextBlockSettings, // Properties panel
-  },
+function DraggableComponent({ type }) {
+  const { attributes, listeners, setNodeRef, isDragging } = useDraggable({
+    id: `palette-${type}`,
+    data: { type }
+  })
+  
+  return (
+    <div
+      ref={setNodeRef}
+      {...attributes}
+      {...listeners}
+      className={isDragging ? 'dragging' : ''}
+    >
+      {type}
+    </div>
+  )
 }
 ```
 
-**Save/Load:**
+**Tính năng đã triển khai:**
 
-```typescript
-// Save app definition
-const { query } = useEditor()
-const json = query.serialize()
-await supabase.from('app_minis').insert({ app_definition: json })
+- ✅ Kéo từ palette vào canvas
+- ✅ Sắp xếp lại thứ tự (root + nested)
+- ✅ Quản lý cây component (quan hệ parent/child)
+- ✅ Hệ thống Undo/Redo (history array + historyIndex)
+- ✅ Properties panel (chỉnh sửa props của component)
+- ✅ Xóa component (đệ quy cho Container children)
+- ✅ 3 component cơ bản: TextBlock, Button, Container
 
-// Load app definition
-const json = lzstring.decompress(app.app_definition)
-editor.actions.deserialize(json)
+**Files đã tạo (PROMPT 1.4):**
+
+```text
+frontend/app/app-builder/page.tsx (142 lines)
+frontend/components/app-builder/Canvas.tsx (67 lines)
+frontend/components/app-builder/RenderedComponent.tsx (157 lines)
+frontend/components/app-builder/ComponentPalette.tsx (91 lines)
+frontend/components/app-builder/PropertiesPanel.tsx (164 lines)
+frontend/components/app-builder/Toolbar.tsx (98 lines)
+frontend/lib/stores/editor.ts (334 lines) - Zustand store
+frontend/components/app-builder/DndKitDiagnostic.tsx
 ```
 
-**Bundle Size:** ~50KB gzipped
+**Kích thước bundle:** ~65KB total (@dnd-kit ~60KB + Zustand ~5KB)
 
-**Documentation:** [craft.js.org](https://craft.js.org/)
+**So sánh với Craft.js:**
+
+| Tiêu chí                  | @dnd-kit + Zustand                    | Craft.js                    |
+| --------------------------- | ------------------------------------- | --------------------------- |
+| **Hỗ trợ React 19** | ✅ Có (đã verify)                  | ❌ Không (v0.2.12)         |
+| **Code cần viết**   | ~600 dòng (manual)                   | ~200 dòng (hooks)          |
+| **Bundle Size**       | ~65KB                                 | ~50KB                       |
+| **Độ khó học**    | Trung bình (kiểm soát nhiều hơn) | Thấp (đã abstracted)     |
+| **Tính linh hoạt**  | Cao (manual tree)                     | Trung bình (Frame/Element) |
+| **Cộng đồng**      | 10K+ stars                            | 7K+ stars                   |
+
+**Cân nhắc tương lai:**
+
+> Khi Craft.js phát hành phiên bản tương thích React 19, sẽ đánh giá việc migrate ngược lại để tận dụng các tính năng built-in (Frame/Element abstractions, built-in undo/redo, JSON serialization helpers). Hiện tại, @dnd-kit + Zustand cung cấp React 19 compatibility đã được chứng minh và kiểm soát architecture đầy đủ.
+
+**Tài liệu:** [docs.dndkit.com](https://docs.dndkit.com/)
 
 ---
 
@@ -729,7 +935,7 @@ editor.actions.deserialize(json)
 - ✅ **Accessibility-First:** Keyboard navigation, screen reader support
 - ✅ **Touch Support:** Mobile-friendly
 - ✅ **Flexible:** Works with any component
-- ✅ **Performance:** GPU-accelerated animations
+- ✅ **Hiệu suất:** GPU-accelerated animations
 
 **Use Cases:**
 
@@ -756,9 +962,9 @@ function KanbanBoard() {
 }
 ```
 
-**Bundle Size:** ~60KB gzipped
+**Kích thước bundle:** ~60KB gzipped
 
-**Documentation:** [docs.dndkit.com](https://docs.dndkit.com/)
+**Tài liệu:** [docs.dndkit.com](https://docs.dndkit.com/)
 
 ---
 
@@ -793,9 +999,9 @@ function RichTextEditor() {
 }
 ```
 
-**Bundle Size:** ~100KB gzipped
+**Kích thước bundle:** ~100KB gzipped
 
-**Documentation:** [tiptap.dev](https://tiptap.dev/)
+**Tài liệu:** [tiptap.dev](https://tiptap.dev/)
 
 ---
 
@@ -828,9 +1034,9 @@ isToday(task.dueDate) // true/false
 const nextWeek = addDays(new Date(), 7)
 ```
 
-**Bundle Size:** ~10KB gzipped (only functions used)
+**Kích thước bundle:** ~10KB gzipped (only functions used)
 
-**Documentation:** [date-fns.org](https://date-fns.org/)
+**Tài liệu:** [date-fns.org](https://date-fns.org/)
 
 ---
 
@@ -862,13 +1068,13 @@ rule.all() // Get all occurrences
 rule.between(start, end) // Get occurrences in range
 ```
 
-**Bundle Size:** ~30KB gzipped
+**Kích thước bundle:** ~30KB gzipped
 
-**Documentation:** [github.com/jakubroztocil/rrule](https://github.com/jakubroztocil/rrule)
+**Tài liệu:** [github.com/jakubroztocil/rrule](https://github.com/jakubroztocil/rrule)
 
 ---
 
-## 🚀 DEPLOYMENT & INFRASTRUCTURE (Detailed)
+## 🚀 DEPLOYMENT & INFRASTRUCTURE (Chi Tiết)
 
 ### Vercel (Frontend Hosting)
 
@@ -913,7 +1119,7 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=xxx
 - MVP: $0/month (Free tier)
 - Scale: $20/month (Pro tier, if needed)
 
-**Documentation:** [vercel.com/docs](https://vercel.com/docs)
+**Tài liệu:** [vercel.com/docs](https://vercel.com/docs)
 
 ---
 
@@ -931,11 +1137,11 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=xxx
 
 **Upgrade Path:**
 
-| Plan | Price | Database | Storage | MAU |
-|------|-------|----------|---------|-----|
-| Free | $0 | 500MB | 1GB | 50K |
-| Pro | $25 | 8GB | 100GB | Unlimited |
-| Team | $599 | 100GB | 500GB | Unlimited |
+| Plan | Price | Database | Storage | MAU       |
+| ---- | ----- | -------- | ------- | --------- |
+| Free | $0    | 500MB    | 1GB     | 50K       |
+| Pro  | $25   | 8GB      | 100GB   | Unlimited |
+| Team | $599  | 100GB    | 500GB   | Unlimited |
 
 **When to Upgrade:**
 
@@ -949,7 +1155,7 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=xxx
 - Point-in-time recovery (Pro tier)
 - Manual exports (Free tier, via `pg_dump`)
 
-**Documentation:** [supabase.com/docs](https://supabase.com/docs)
+**Tài liệu:** [supabase.com/docs](https://supabase.com/docs)
 
 ---
 
@@ -1031,7 +1237,7 @@ npx @sentry/wizard@latest -i nextjs
 - Free: 5K errors/month
 - Team: $26/month (50K errors)
 
-**Documentation:** [docs.sentry.io](https://docs.sentry.io/)
+**Tài liệu:** [docs.sentry.io](https://docs.sentry.io/)
 
 ---
 
@@ -1107,7 +1313,7 @@ TOTAL:                       $101/month
 
 ## 🎯 TECH STACK DECISIONS (FAQs)
 
-### Why not Vite instead of Next.js?
+### Tại Sao Chọn not Vite instead of Next.js?
 
 **Next.js wins because:**
 
@@ -1120,7 +1326,7 @@ TOTAL:                       $101/month
 
 ---
 
-### Why not Redux instead of Zustand?
+### Tại Sao Chọn not Redux instead of Zustand?
 
 **Zustand wins because:**
 
@@ -1133,7 +1339,7 @@ TOTAL:                       $101/month
 
 ---
 
-### Why not build backend with NestJS/Express?
+### Tại Sao Chọn not build backend with NestJS/Express?
 
 **Supabase wins because:**
 
@@ -1147,7 +1353,7 @@ TOTAL:                       $101/month
 
 ---
 
-### Why not MongoDB instead of PostgreSQL?
+### Tại Sao Chọn not MongoDB instead of PostgreSQL?
 
 **PostgreSQL wins because:**
 
@@ -1161,7 +1367,7 @@ TOTAL:                       $101/month
 
 ---
 
-### Why not Firebase instead of Supabase?
+### Tại Sao Chọn not Firebase instead of Supabase?
 
 **Supabase wins because:**
 
@@ -1242,11 +1448,11 @@ TOTAL:                       $101/month
 
 ## 🚦 Version History
 
-| Version | Date | Changes |
-|---------|------|---------|
-| v3.0 | 2025-11-17 | Complete rewrite for Code First strategy |
-| v2.0 | 2025-10-15 | Added Craft.js, react-grid-layout details |
-| v1.0 | 2025-09-01 | Initial tech stack selection |
+| Version | Date       | Changes                                   |
+| ------- | ---------- | ----------------------------------------- |
+| v3.0    | 2025-11-17 | Complete rewrite for Code First strategy  |
+| v2.0    | 2025-10-15 | Added Craft.js, react-grid-layout details |
+| v1.0    | 2025-09-01 | Initial tech stack selection              |
 
 ---
 

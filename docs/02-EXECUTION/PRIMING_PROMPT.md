@@ -97,6 +97,41 @@ Giống như:
   - App Minis (micro-apps trên dashboard)
   - Marketplace (share & discover)
 
+### Week 1 Achievements (Đã hoàn thành 19/11/2025)
+
+✅ **PROMPT 1.1:** DashboardGrid Component
+
+- React-grid-layout v1.5.0 integrated
+- Drag-drop functionality working
+- Layout persistence to Supabase
+- Responsive mobile support (12/8/1 cols)
+
+✅ **PROMPT 1.2:** AppMiniCard Wrapper
+
+- Drag handle implemented
+- Close button with confirmation
+- Auto-save on layout change
+
+✅ **PROMPT 1.3:** 3 App Minis Built
+
+- QuickNotesApp (localStorage, 76 lines)
+- PomodoroApp (25-min timer, notifications, 92 lines)
+- TodayTasksApp (Supabase real-time, 108 lines)
+
+✅ **PROMPT 1.4:** @dnd-kit Framework Setup (Migrated from Craft.js)
+
+- Editor page created (`/app-builder`)
+- Canvas, Palette, Properties Panel, Toolbar
+- Zustand store với component tree (334 lines)
+- Undo/Redo system
+- 3 basic components: TextBlock, Button, Container
+- **Note:** Craft.js → @dnd-kit migration do React 19 incompatibility
+
+**Current State (20/11/2025):**
+
+🟢 **HOÀN THÀNH:** Week 1 Platform Foundation (PROMPT 1.1-1.4)
+⏭️ **TIẾP THEO:** PROMPT 1.5 - Build 5 Builder Components (TextBlock, Button, TextInput, Container, SimpleList)
+
 ---
 
 ## II. MÔ HÌNH SẢN PHẨM - 3 TRỤ CỘT
@@ -153,15 +188,18 @@ Giống như:
 
 #### 🎨 Level 1: No-Code Builder (Tuần 1-4 - MVP)
 
-**Target:** Người không biết code, casual users
+**Đối tượng:** Người không biết code, casual users
 
-**Technology:** Craft.js framework
+**Công nghệ:** @dnd-kit + Zustand
 
-- MIT licensed
-- React-based drag-and-drop editor
-- Serializes to JSON (easy storage)
-- Modular approach
-- Community support ($11K+ raised on Open Collective)
+- ✅ React 19.2.0 compatible
+- Drag-and-drop với @dnd-kit (v6.3.1)
+- Component tree management với Zustand
+- Undo/Redo system (history array)
+- JSON serialization for storage
+
+**Migration Note:**
+> Originally planned to use Craft.js, but discovered incompatibility with React 19.2.0 during implementation (drag events không fire). Migrated to @dnd-kit + manual Zustand store (~600 lines). Trade-off: More code to write, but full React 19 compatibility and better understanding of the architecture.
 
 **Available Components (5 basic):**
 
@@ -207,7 +245,7 @@ Giống như:
 
 #### ⚙️ Level 2: Low-Code Builder (Tuần 9-12 - Post-validation)
 
-**Target:** Power users, small business owners
+**Đối tượng:** Power users, small business owners
 
 **New Capabilities:**
 
@@ -221,7 +259,7 @@ Giống như:
 
 #### 💻 Level 3: God Mode (Post-MVP - Year 2)
 
-**Target:** Professional developers, development teams
+**Đối tượng:** Professional developers, development teams
 
 **Full Developer Capabilities:**
 
@@ -306,7 +344,7 @@ Thị trường bị phân mảnh thành 3 thái cực, không ai giải quyết
 
 **Market Size:**
 
-- Global productivity software: **$50B** (2024)
+- Global productivity software: **$50B** (2025)
 - No-code/Low-code: **$13B** (growing 23% YoY)
 - **NEXUS TAM:** ~$5-8B (conservative)
 
@@ -343,7 +381,7 @@ Thị trường bị phân mảnh thành 3 thái cực, không ai giải quyết
 - 1 person + AI ≈ 5-7 person team
 - Code generation, documentation, testing
 
-### 📅 Quyết Định Pivot (13/11/2024)
+### 📅 Quyết Định Pivot (13 tháng 11, 2025)
 
 **Decision:**
 
@@ -427,11 +465,20 @@ Thị trường bị phân mảnh thành 3 thái cực, không ai giải quyết
 
 **App Builder:**
 
-- **Craft.js**
-  - React drag-and-drop framework
-  - JSON serialization
-  - MIT licensed
-  - Community support ($11K+ raised)
+- **@dnd-kit v6.3.1** (Primary DnD library)
+  - React 19.2.0 compatible
+  - Accessibility-first (keyboard nav, screen readers)
+  - Touch support (mobile-friendly)
+  - GPU-accelerated animations
+  - Used in: KanbanBoard, App Builder
+  
+- **@dnd-kit/sortable v10.0.0** (Sortable lists)
+  - Vertical/horizontal sortable contexts
+  - Used for Canvas root + nested Containers
+  - Auto-insertion index calculation
+
+**Note on Craft.js:**
+> Craft.js is an excellent framework for page builders, but the current version (v0.2.12) is not compatible with React 19 (drag events don't fire due to React 19 breaking changes). When Craft.js releases a React 19-compatible version, will reconsider migration to leverage built-in features (Frame/Element abstractions, undo/redo, serialization). For now, @dnd-kit + Zustand manual implementation provides full control and React 19 compatibility.
 
 **Other:**
 
@@ -750,24 +797,39 @@ Thị trường bị phân mảnh thành 3 thái cực, không ai giải quyết
 
 ---
 
-## 📚 TÀI LIỆU THAM KHẢO
+## 📚 CẤU TRÚC TÀI LIỆU (Documentation Hierarchy)
 
-### Chiến Lược & Kế Hoạch
+### Level 0 - Fundamentals (Quick Start)
 
-- **Whitepaper đầy đủ:** [NEXUS_WHITEPAPER.md](../01-STRATEGY/NEXUS_WHITEPAPER.md)
-- **Lộ trình 12 tuần:** [ROADMAP.md](./ROADMAP.md)
-- **AI Prompts:** [AI_PROMPTS.md](./AI_PROMPTS.md)
+- **[PRIMING_PROMPT.md](./PRIMING_PROMPT.md)** ← Snapshot tổng hợp (file này)
+- **[PRINCIPLES.md](../03-REFERENCE/PRINCIPLES.md)** ← **NGUỒN CHUẨN** cho decision framework
+  - Section V bên dưới là summary của PRINCIPLES.md
 
-### Kỹ Thuật
+### Level 1 - Strategic (Vision & Strategy)
 
-- **Tech Stack chi tiết:** [TECH_STACK.md](../03-REFERENCE/TECH_STACK.md)
-- **Nguyên tắc phát triển:** [PRINCIPLES.md](../03-REFERENCE/PRINCIPLES.md)
+- **[NEXUS_WHITEPAPER.md](../01-STRATEGY/NEXUS_WHITEPAPER.md)** ← Whitepaper đầy đủ
 
-### Trạng Thái
+### Level 2 - Execution (Hành Động)
 
-- **Tuần này:** [status/THIS_WEEK.md](./status/THIS_WEEK.md)
-- **Features log:** [status/FEATURES.md](./status/FEATURES.md)
-- **Bugs log:** [status/BUGS.md](./status/BUGS.md)
+- **[ROADMAP.md](./ROADMAP.md)** ← Timeline focus
+- **[AI_PROMPTS.md](./AI_PROMPTS.md)** ← **STANDALONE** prompts (manual sync tech stack)
+
+### Level 3 - Reference (Chi Tiết Kỹ Thuật)
+
+- **[TECH_STACK.md](../03-REFERENCE/TECH_STACK.md)** ← **NGUỒN CHUẨN** cho tech decisions
+
+### Level 4 - Historical Logs (Theo Dõi)
+
+- **[FEATURES.md](./status/FEATURES.md)** ← Feature changelog (append-only)
+- **[BUGS.md](./status/BUGS.md)** ← Bug history (append-only)
+- **[THIS_WEEK.md](./status/THIS_WEEK.md)** ← Tuần hiện tại
+
+ > [!NOTE]
+> **CÁC NGUỒN CHUẨN (SOURCE OF TRUTH):**
+>
+> - Tech Stack: TECH_STACK.md
+> - Principles: PRINCIPLES.md
+> - Strategy: NEXUS_WHITEPAPER.md
 
 ---
 

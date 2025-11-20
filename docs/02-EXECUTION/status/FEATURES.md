@@ -4,25 +4,25 @@
 
 **Cập nhật:** 17 tháng 11, 2025
 
-**Mục đích:** Changelog for all completed features, newest first
+**Mục đích:** Nhật ký thay đổi cho tất cả tính năng đã hoàn thành, mới nhất trước
 
 ---
 
 ## 📊 PROGRESS SUMMARY
 
 ```text
-✅ Hoàn thành:      10 features (7%)
-🚀 Đang làm:         2 features (1%)
-📋 Lên kế hoạch:   128 features (92%)
+✅ Hoàn thành:      14 features (10%)
+🚀 Đang làm:         0 features (0%)
+📋 Lên kế hoạch:   126 features (90%)
 ────────────────────────────────────
    Tổng:            140 features
 ```
 
-**Breakdown by Phase:**
+**Phân Chia Theo Giai Đoạn:**
 
-| Phase                             | Total | Completed | In Progress | Planned |
+| Giai Đoạn (Phase)                 | Tổng (Total) | Hoàn Thành (Completed) | Đang Làm (In Progress) | Lên Kế Hoạch (Planned) |
 | --------------------------------- | ----- | --------- | ----------- | ------- |
-| **Platform MVP (Week 1-4)** | 14    | 0         | 2           | 12      |
+| **Platform MVP (Week 1-4)** | 14    | 4         | 0           | 10      |
 | **Marketplace (Week 5-6)**  | 6     | 0         | 0           | 6       |
 | **Validation (Week 7-8)**   | 4     | 0         | 0           | 4       |
 | **Decision (Week 9-12)**    | 2     | 0         | 0           | 2       |
@@ -31,44 +31,176 @@
 
 ---
 
-## ✅ COMPLETED FEATURES (Newest First)
+## ✅ TÍNH NĂNG ĐÃ HOÀN THÀNH (Completed Features - Newest First)
 
-**Format:**
+**Định Dạng (Format):**
 
 ```markdown
 ## ✅ [Prompt X.Y - Feature Name]
 
-**Completed:** YYYY-MM-DD
-**Prompt:** [PROMPT X.Y](../AI_PROMPTS.md#prompt-xy-feature-name)
-**Time Spent:** X hours
+**Ngày hoàn thành (Completed):** YYYY-MM-DD
+**Prompt tham khảo (Reference Prompt):** [PROMPT X.Y](../AI_PROMPTS.md#prompt-xy-feature-name)
+**Thời gian thực tế (Time Spent):** X hours
 
-**Files Modified:**
+**Các file đã tạo/sửa (Files Modified):**
 - [path/to/file.tsx](../../path/to/file.tsx)
 
-**Success Criteria Met:**
+**Các tiêu chí thành công (Success Criteria Met):**
 - ✅ Criterion 1
 - ✅ Criterion 2
 
-**Notes:**
+**Lưu ý (Notes):**
 - Additional context, learnings, or issues encountered
 ```
 
 ---
 
+### Feature #14: PROMPT 1.4 - App Builder Framework (@dnd-kit)
+
+**Ngày hoàn thành:** 2025-11-19
+
+**Prompt tham khảo:** [PROMPT 1.4](../AI_PROMPTS.md#prompt-14-setup-craftjs-framework)
+
+**Thời gian thực tế:** ~21 giờ (bao gồm điều tra Craft.js + migration)
+
+**Công nghệ sử dụng:** @dnd-kit v6.3.1 + Zustand (KHÔNG PHẢI Craft.js)
+
+**Các file đã tạo:**
+
+- `app/app-builder/page.tsx` (142 lines) - DndContext setup
+- `components/app-builder/Canvas.tsx` (67 lines) - SortableContext
+- `components/app-builder/RenderedComponent.tsx` (157 lines) - useSortable
+- `components/app-builder/ComponentPalette.tsx` (91 lines) - useDraggable
+- `components/app-builder/PropertiesPanel.tsx` (164 lines) - Props editor
+- `components/app-builder/Toolbar.tsx` (98 lines) - Undo/Redo/Save/Preview
+- `lib/stores/editor.ts` (334 lines) - Zustand store với component tree + history
+
+**Các tiêu chí thành công:**
+
+- ✅ Trang Editor load không lỗi
+- ✅ Có thể kéo component từ palette vào canvas
+- ✅ Có thể kéo component hiện tại đến vị trí mới (Sortable)
+- ✅ Canvas render đúng (empty state + component tree)
+- ✅ Quản lý state hoạt động (Zustand store, select/deselect)
+- ✅ Undo/redo hoạt động (history array, historyIndex)
+- ✅ Properties panel cập nhật components (real-time)
+- ✅ Cây component (parent/child cho Container)
+- ✅ Xóa loại bỏ component (đệ quy cho children)
+
+**Lưu ý:**
+
+- **Di chuyển công nghệ (Technology Migration):** Craft.js → @dnd-kit do React 19 incompatibility
+- Craft.js v0.2.12 drag events không fire trong React 19
+- Thời gian thêm cho điều tra (4h) + migration (2h) + cleanup (1h)
+- Tổng: 21 giờ vs ước tính 8 giờ
+- Kết quả: Architecture rõ ràng hơn, hoàn toàn tương thích React 19
+
+---
+
+### Feature #13: PROMPT 1.3 - 3 App Minis
+
+**Ngày hoàn thành:** 2025-11-19
+
+**Prompt tham khảo:** [PROMPT 1.3](../AI_PROMPTS.md#prompt-13-build-3-app-minis)
+
+**Thời gian thực tế:** ~6 giờ
+
+**Các file đã tạo:**
+
+- `components/app-minis/QuickNotesApp.tsx` (76 lines)
+- `components/app-minis/PomodoroApp.tsx` (92 lines)
+- `components/app-minis/TodayTasksApp.tsx` (108 lines)
+- `components/app-minis/index.ts`
+- `hooks/useDebounce.ts`
+
+**Các tiêu chí thành công:**
+
+- ✅ QuickNotesApp: localStorage persistence, auto-save (500ms debounce), character count, clear button
+- ✅ PomodoroApp: 25-min timer, Start/Pause/Reset, browser notifications, auto-switch work/break
+- ✅ TodayTasksApp: Supabase real-time subscription, filter by today, checkbox toggle
+- ✅ Tất cả apps responsive, hoạt động trên mobile
+- ✅ Nhiều instances không conflict
+
+**Lưu ý:**
+
+- PomodoroApp sử dụng WORK_TIME = 5s (cho tiện kiểm tra, nên là 25*60 trong production)
+- TodayTasksApp real-time hoạt động qua Supabase channels
+
+---
+
+### Feature #12: PROMPT 1.2 - AppMiniCard Wrapper
+
+**Ngày hoàn thành:** 2025-11-19
+
+**Prompt tham khảo:** [PROMPT 1.2](../AI_PROMPTS.md#prompt-12-build-appminicard-wrapper)
+
+**Thời gian thực tế:** ~3 giờ
+
+**Các file đã tạo:**
+
+- `components/dashboard/AppMiniCardHeader.tsx` (2992 bytes)
+
+**Các tiêu chí thành công:**
+
+- ✅ Header nhất quán across all apps
+- ✅ Drag handle hiển thị on desktop (`data-drag-handle`)
+- ✅ Close button với confirm dialog (AlertDialog)
+- ✅ Content area scrollable nếu overflow
+- ✅ Hover interactions mượt mà
+
+**Lưu ý:**
+
+- Sử dụng shadcn/ui AlertDialog for confirmation
+- Drag handle tích hợp với react-grid-layout
+
+---
+
+### Feature #11: PROMPT 1.1 - DashboardGrid Component
+
+**Ngày hoàn thành:** 2025-11-19
+
+**Prompt tham khảo:** [PROMPT 1.1](../AI_PROMPTS.md#prompt-11-build-dashboardgrid-component)
+
+**Thời gian thực tế:** ~5 giờ
+
+**Các file đã tạo:**
+
+- `app/dashboard/page.tsx` (16 lines) - Server component với auth
+- `components/dashboard/DashboardGrid.tsx` (235 lines) - Grid implementation
+- `lib/supabase/dashboard-layouts.ts` - CRUD functions
+- `hooks/useDashboardLayout.ts` - TanStack Query hook
+
+**Các tiêu chí thành công:**
+
+- ✅ Người dùng có thể drag & drop cards
+- ✅ Người dùng có thể resize cards (min: 3x3, max: 12x8)
+- ✅ Layout lưu trữ qua các sessions (Supabase)
+- ✅ Responsive: Desktop 12 cols, Tablet 8 cols, Mobile 1 col
+- ✅ Không lỗi trên mobile (touch events hoạt động với react-grid-layout)
+- ✅ Performance: <1s load time, smooth animations
+
+**Lưu ý:**
+
+- Sử dụng react-grid-layout v1.5.0 (package.json shows ^1.5.0)
+- Breakpoints: lg=1024px (12 cols), md=768px (8 cols), sm=0 (1 col)
+- Auto-save với debounce via useDashboardLayout hook
+
+---
+
 ### Feature #10: Set Task Priority
 
-**Completed:** 2024-11-09
+**Completed:** 2025-11-09
 
-**Prompt:** Pre-Platform (Task Management MVP)
+**Prompt tham khảo:** Pre-Platform (Task Management MVP)
 
-**Time Spent:** ~3 hours
+**Thời gian thực tế (Time Spent):** ~3 giờ
 
-**Files Modified:**
+**Các file đã sửa (Files Modified):**
 
 - `frontend/components/tasks/TaskPrioritySelect.tsx`
 - `frontend/components/tasks/TaskPriorityBadge.tsx`
 
-**Success Criteria Met:**
+**Các tiêu chí thành công (Success Criteria Met):**
 
 - ✅ Users can click priority badge to open dropdown
 - ✅ Dropdown shows 5 priority options (Urgent/High/Medium/Low/None)
@@ -77,27 +209,27 @@
 - ✅ Network timeout detection (5s)
 - ✅ Keyboard navigation (↑↓ arrows, Enter, ESC)
 
-**Notes:**
+**Lưu ý (Notes):**
 
-- Used shadcn/ui Popover component
-- Implemented focus management for accessibility
+- Sử dụng shadcn/ui Popover component
+- Triển khai focus management cho accessibility
 
 ---
 
 ### Feature #9: Inline Task Editing
 
-**Completed:** 2024-11-09
+**Completed:** 2025-11-09
 
-**Prompt:** Pre-Platform (Task Management MVP)
+**Prompt tham khảo:** Pre-Platform (Task Management MVP)
 
-**Time Spent:** ~4 hours
+**Thời gian thực tế (Time Spent):** ~4 giờ
 
-**Files Modified:**
+**Các file đã sửa (Files Modified):**
 
 - `frontend/components/tasks/TaskItem.tsx`
 - `frontend/hooks/useInlineEdit.ts`
 
-**Success Criteria Met:**
+**Các tiêu chí thành công (Success Criteria Met):**
 
 - ✅ Double-click task title to edit
 - ✅ Enter/Blur to save
@@ -108,270 +240,270 @@
 - ✅ Error rollback
 - ✅ Reusable hook for future inline edits
 
-**Notes:**
+**Lưu ý (Notes):**
 
-- Created reusable `useInlineEdit` hook
-- Can be reused for project names, etc.
+- Tạo reusable `useInlineEdit` hook
+- Có thể tái sử dụng cho project names, etc.
 
 ---
 
 ### Feature #8: Kanban Board
 
-**Completed:** 2024-11-08
+**Completed:** 2025-11-08
 
-**Prompt:** Pre-Platform (Task Management MVP)
+**Prompt tham khảo:** Pre-Platform (Task Management MVP)
 
-**Time Spent:** ~8 hours
+**Thời gian thực tế (Time Spent):** ~8 giờ
 
-**Files Modified:**
+**Các file đã sửa (Files Modified):**
 
 - `frontend/app/projects/[id]/kanban/page.tsx`
 - `frontend/components/kanban/KanbanBoard.tsx`
 - `frontend/components/kanban/KanbanColumn.tsx`
 - `frontend/components/kanban/KanbanCard.tsx`
 
-**Success Criteria Met:**
+**Các tiêu chí thành công (Success Criteria Met):**
 
 - ✅ Drag & drop tasks between columns (TODO/IN PROGRESS/DONE)
 - ✅ Real-time updates
 - ✅ Persist column changes to database
 
-**Notes:**
+**Lưu ý (Notes):**
 
-- Used `@dnd-kit` library for drag-drop
-- 3 columns: TODO, IN PROGRESS, DONE
+- Sử dụng `@dnd-kit` library cho drag-drop
+- 3 cột: TODO, IN PROGRESS, DONE
 
 ---
 
 ### Feature #7: Projects List Page
 
-**Completed:** 2024-11-07
+**Completed:** 2025-11-07
 
-**Prompt:** Pre-Platform (Task Management MVP)
+**Prompt tham khảo:** Pre-Platform (Task Management MVP)
 
-**Time Spent:** ~2 hours
+**Thời gian thực tế (Time Spent):** ~2 giờ
 
-**Files Modified:**
+**Các file đã sửa (Files Modified):**
 
 - `frontend/app/projects/page.tsx`
 
-**Success Criteria Met:**
+**Các tiêu chí thành công (Success Criteria Met):**
 
 - ✅ Display list of projects
 - ✅ Link to project detail pages
 
-**Notes:**
+**Lưu ý (Notes):**
 
-- Basic project list view
+- Giao diện danh sách project cơ bản (Basic project list view)
 
 ---
 
-### Feature #6: Filter Tasks (Today/Inbox)
+### Feature #6: Lọc Tasks (Filter Tasks - Today/Inbox)
 
-**Completed:** 2024-11-07
+**Completed:** 2025-11-07
 
-**Prompt:** Pre-Platform (Task Management MVP)
+**Prompt tham khảo:** Pre-Platform (Task Management MVP)
 
-**Time Spent:** ~2 hours
+**Thời gian thực tế (Time Spent):** ~2 giờ
 
-**Files Modified:**
+**Các file đã sửa (Files Modified):**
 
 - `frontend/app/today/page.tsx`
 - `frontend/app/inbox/page.tsx`
 
-**Success Criteria Met:**
+**Các tiêu chí thành công (Success Criteria Met):**
 
 - ✅ `/today` route shows tasks due today
 - ✅ `/inbox` route shows all tasks
 
-**Notes:**
+**Lưu ý (Notes):**
 
-- Basic filtering by due date
+- Lọc cơ bản theo due date (Basic filtering by due date)
 
 ---
 
-### Feature #5: Toggle Task Completion
+### Feature #5: Chuyển Đổi Task Completion (Toggle Task Completion)
 
-**Completed:** 2024-11-07
+**Completed:** 2025-11-07
 
-**Prompt:** Pre-Platform (Task Management MVP)
+**Prompt tham khảo:** Pre-Platform (Task Management MVP)
 
-**Time Spent:** ~1 hour
+**Thời gian thực tế (Time Spent):** ~1 giờ
 
-**Files Modified:**
+**Các file đã sửa (Files Modified):**
 
 - `frontend/components/tasks/TaskItem.tsx`
 
-**Success Criteria Met:**
+**Các tiêu chí thành công (Success Criteria Met):**
 
 - ✅ Click checkbox to mark done/todo
 - ✅ Optimistic UI updates
 
-**Notes:**
+**Lưu ý (Notes):**
 
-- Simple checkbox toggle
+- Checkbox toggle đơn giản (Simple checkbox toggle)
 
 ---
 
-### Feature #4: Display Tasks (List View)
+### Feature #4: Hiển Thị Tasks (Display Tasks - List View)
 
-**Completed:** 2024-11-07
+**Completed:** 2025-11-07
 
-**Prompt:** Pre-Platform (Task Management MVP)
+**Prompt tham khảo:** Pre-Platform (Task Management MVP)
 
-**Time Spent:** ~2 hours
+**Thời gian thực tế (Time Spent):** ~2 giờ
 
-**Files Modified:**
+**Các file đã sửa (Files Modified):**
 
 - `frontend/components/tasks/TaskList.tsx`
 - `frontend/components/tasks/TaskItem.tsx`
 
-**Success Criteria Met:**
+**Các tiêu chí thành công (Success Criteria Met):**
 
 - ✅ Display list of tasks
 - ✅ Show task title, priority, due date
 
-**Notes:**
+**Lưu ý (Notes):**
 
-- Basic task list component
+- Component danh sách task cơ bản (Basic task list component)
 
 ---
 
-### Feature #3: Quick Add Task
+### Feature #3: Thêm Task Nhanh (Quick Add Task)
 
-**Completed:** 2024-11-07
+**Completed:** 2025-11-07
 
-**Prompt:** Pre-Platform (Task Management MVP)
+**Prompt tham khảo:** Pre-Platform (Task Management MVP)
 
-**Time Spent:** ~1 hour
+**Thời gian thực tế (Time Spent):** ~1 giờ
 
-**Files Modified:**
+**Các file đã sửa (Files Modified):**
 
 - `frontend/components/tasks/TaskQuickAdd.tsx`
 
-**Success Criteria Met:**
+**Các tiêu chí thành công (Success Criteria Met):**
 
 - ✅ Text input for quick task entry
 - ✅ Press Enter to add task
 
-**Notes:**
+**Lưu ý (Notes):**
 
-- Simple quick add input
+- Input thêm nhanh đơn giản (Simple quick add input)
 
 ---
 
-### Feature #2: Google OAuth Authentication
+### Feature #2: Xác Thực Google OAuth (Google OAuth Authentication)
 
-**Completed:** 2024-11-07
+**Completed:** 2025-11-07
 
-**Prompt:** Pre-Platform (Task Management MVP)
+**Prompt tham khảo:** Pre-Platform (Task Management MVP)
 
-**Time Spent:** ~3 hours
+**Thời gian thực tế (Time Spent):** ~3 giờ
 
-**Files Modified:**
+**Các file đã sửa (Files Modified):**
 
 - `frontend/app/login/page.tsx`
 - Supabase Auth configuration
 
-**Success Criteria Met:**
+**Các tiêu chí thành công (Success Criteria Met):**
 
 - ✅ Users can sign in with Google
 - ✅ Supabase Auth integration
 
-**Notes:**
+**Lưu ý (Notes):**
 
-- Used Supabase Auth (Google OAuth provider)
+- Sử dụng Supabase Auth (Google OAuth provider)
 
 ---
 
-### Feature #1: Database Schema v2 (Task Management)
+### Feature #1: Schema Database v2 (Database Schema v2 - Task Management)
 
-**Completed:** 2024-11-07
+**Completed:** 2025-11-07
 
-**Prompt:** Pre-Platform (Task Management MVP)
+**Prompt tham khảo:** Pre-Platform (Task Management MVP)
 
-**Time Spent:** ~4 hours
+**Thời gian thực tế (Time Spent):** ~4 giờ
 
-**Files Modified:**
+**Các file đã sửa (Files Modified):**
 
 - `backend/supabase/migrations/001_task_management_schema.sql`
 
-**Success Criteria Met:**
+**Các tiêu chí thành công (Success Criteria Met):**
 
 - ✅ 11 tables created (tasks, projects, kanban_columns, etc.)
 - ✅ RLS policies for all tables
 
-**Notes:**
+**Lưu ý (Notes):**
 
-- Initial database schema for Task Management
-- Schema location: `docs/04_technical/architecture/database-schema-v2-productivity.sql`
+- Database schema ban đầu cho Task Management (Initial database schema)
+- Vị trí schema (Schema location): `docs/04_technical/architecture/database-schema-v2-productivity.sql`
 
 ---
 
-## 🚀 IN PROGRESS (Current Sprint)
+## 🚀 ĐANG LÀM (In Progress - Current Sprint)
 
 ### PROMPT 1.1: Build DashboardGrid Component
 
-**Status:** 🟡 In Progress
+**Trạng thái (Status):** 🟡 Đang Làm (In Progress)
 
-**Started:** 2024-11-17
+**Ngày bắt đầu (Started):** 2025-11-17
 
-**Estimated Time:** 4-6 hours
+**Thời gian ước tính (Estimated Time):** 4-6 giờ
 
-**Assigned To:** [Your Name]
+**Được giao cho (Assigned To):** [Your Name]
 
-**Reference:** [PROMPT 1.1](../AI_PROMPTS.md#prompt-11-build-dashboardgrid-component)
+**Tham khảo (Reference):** [PROMPT 1.1](../AI_PROMPTS.md#prompt-11-build-dashboardgrid-component)
 
-**Files to Create:**
+**Các file cần tạo (Files to Create):**
 
 - `frontend/app/dashboard/page.tsx`
 - `frontend/components/dashboard/DashboardGrid.tsx`
 - `backend/supabase/migrations/003_dashboard_layouts.sql`
 
-**Success Criteria:**
+**Tiêu chí thành công (Success Criteria):**
 
 - [ ] Setup `react-grid-layout` v1.5.2
-- [ ] Drag & drop cards functional
-- [ ] Layout persists across page reloads
-- [ ] Responsive on mobile (stack vertically)
+- [ ] Drag & drop cards hoạt động (functional)
+- [ ] Layout lưu trữ qua các lần reload trang (persists across page reloads)
+- [ ] Responsive trên mobile (stack vertically)
 
-**Notes:**
+**Lưu ý (Notes):**
 
-- Started Monday 17/11
-- Using `react-grid-layout` v1.5.2
+- Bắt đầu thứ 2 ngày 17/11 (Started Monday 17/11)
+- Sử dụng `react-grid-layout` v1.5.2
 
 ---
 
 ### PROMPT 1.2: Build AppMiniCard Wrapper
 
-**Status:** 🔴 Not Started
+**Trạng thái (Status):** 🔴 Chưa Bắt Đầu (Not Started)
 
-**Estimated Time:** 2-3 hours
+**Thời gian ước tính (Estimated Time):** 2-3 giờ
 
-**Reference:** [PROMPT 1.2](../AI_PROMPTS.md#prompt-12-build-appminicard-wrapper)
+**Tham khảo (Reference):** [PROMPT 1.2](../AI_PROMPTS.md#prompt-12-build-appminicard-wrapper)
 
-**Files to Create:**
+**Các file cần tạo (Files to Create):**
 
 - `frontend/components/dashboard/AppMiniCard.tsx`
 - `frontend/lib/dashboard-helpers.ts`
 
-**Success Criteria:**
+**Tiêu chí thành công (Success Criteria):**
 
-- [ ] Resize handles functional
-- [ ] Close button works
-- [ ] Auto-save layout on change
+- [ ] Resize handles hoạt động (functional)
+- [ ] Nút Close hoạt động (works)
+- [ ] Auto-save layout khi có thay đổi (on change)
 
-**Notes:**
+**Lưu ý (Notes):**
 
-- Depends on PROMPT 1.1 completion
+- Phụ thuộc vào hoàn thành PROMPT 1.1 (Depends on PROMPT 1.1 completion)
 
 ---
 
-## 📋 PLANNED FEATURES (By Phase)
+## 📋 TÍNH NĂNG LÊN KẾ HOẠCH (Planned Features - By Phase)
 
 ### PHASE 1: Platform MVP (Week 1-4)
 
-**Total:** 14 features | **Completed:** 0 | **In Progress:** 2 | **Planned:** 12
+**Tổng (Total):** 14 features | **Hoàn thành (Completed):** 0 | **Đang làm (In Progress):** 2 | **Lên kế hoạch (Planned):** 12
 
 **Week 1:**
 
@@ -394,7 +526,7 @@
 
 ### PHASE 2: Marketplace Foundation (Week 5-6)
 
-**Total:** 6 features | **Completed:** 0 | **Planned:** 6
+**Tổng (Total):** 6 features | **Hoàn thành (Completed):** 0 | **Lên kế hoạch (Planned):** 6
 
 **Week 5:**
 
@@ -411,7 +543,7 @@
 
 ### PHASE 3: Validation with Beta Users (Week 7-8)
 
-**Total:** 4 features | **Completed:** 0 | **Planned:** 4
+**Tổng (Total):** 4 features | **Hoàn thành (Completed):** 0 | **Lên kế hoạch (Planned):** 4
 
 **Week 7:**
 
@@ -431,7 +563,7 @@
 
 ### PHASE 4: Decision Point (Week 9-12)
 
-**Total:** 2 features | **Completed:** 0 | **Planned:** 2
+**Tổng (Total):** 2 features | **Hoàn thành (Completed):** 0 | **Lên kế hoạch (Planned):** 2
 
 **Week 9:**
 
@@ -449,64 +581,64 @@
 
 ---
 
-### BACKLOG: Task Management Polish
+### BACKLOG: Hoàn Thiện Task Management (Task Management Polish)
 
-**Total:** 104 features | **Status:** Backlog (Low Priority)
+**Tổng (Total):** 104 features | **Trạng thái (Status):** Backlog (Ưu tiên thấp - Low Priority)
 
-**Strategy:** "Keep It, Don't Polish It"
+**Chiến lược (Strategy):** "Giữ Lại, Không Hoàn Thiện" ("Keep It, Don't Polish It")
 
-**Rationale:** Task Management is "good enough". Focus on Platform features (App Builder + Marketplace).
+**Lý do (Rationale):** Task Management "đủ tốt" ("good enough"). Tập trung vào tính năng Platform (App Builder + Marketplace).
 
-**Features (Will reconsider after Week 8 validation):**
+**Tính năng (Features - Sẽ xem xét lại sau tuần 8 validation):**
 
-1. **Tags for Tasks**
+1. **Tags cho Tasks (Tags for Tasks)**
    - Multi-select tags (Work, Personal, Urgent)
-   - Estimated: 1-2 hours
-2. **Task Detail Modal**
+   - Ước tính (Estimated): 1-2 giờ
+2. **Modal Chi Tiết Task (Task Detail Modal)**
    - Description, subtasks, comments
-   - Estimated: 2-3 hours
-3. **Delete Task**
+   - Ước tính (Estimated): 2-3 giờ
+3. **Xóa Task (Delete Task)**
    - Soft delete (set deleted_at)
-   - Estimated: 1 hour
-4. **Keyboard Shortcuts**
+   - Ước tính (Estimated): 1 giờ
+4. **Phím Tắt (Keyboard Shortcuts)**
    - `A` = Add task, `E` = Edit, `Del` = Delete
-   - Estimated: 2-3 hours
-5. **Recurring Tasks**
+   - Ước tính (Estimated): 2-3 giờ
+5. **Tasks Lặp Lại (Recurring Tasks)**
    - Daily, weekly, monthly (using rrule)
-   - Estimated: 3-4 hours
-6. **Calendar View**
-   - Month view with tasks
-   - Estimated: 4-6 hours
-7. **Rich Text Editor for Task Description**
-   - Tiptap editor for markdown
-   - Estimated: 4-6 hours
+   - Ước tính (Estimated): 3-4 giờ
+6. **Chế Độ Xem Lịch (Calendar View)**
+   - Month view với tasks
+   - Ước tính (Estimated): 4-6 giờ
+7. **Rich Text Editor cho Task Description**
+   - Tiptap editor cho markdown
+   - Ước tính (Estimated): 4-6 giờ
 8. **Command Palette (Cmd+K)**
-   - Quick search and actions
-   - Estimated: 3-4 hours
-9. **Advanced Filters**
-   - Filter by priority, project, tags
-   - Estimated: 2-3 hours
-10. **Task Templates**
-    - Pre-defined task lists
-    - Estimated: 2-3 hours
+   - Tìm kiếm nhanh và actions (Quick search and actions)
+   - Ước tính (Estimated): 3-4 giờ
+9. **Bộ Lọc Nâng Cao (Advanced Filters)**
+   - Lọc theo priority, project, tags (Filter by priority, project, tags)
+   - Ước tính (Estimated): 2-3 giờ
+10. **Templates cho Task (Task Templates)**
+    - Danh sách task định nghĩa sẵn (Pre-defined task lists)
+    - Ước tính (Estimated): 2-3 giờ
 
-**Total Backlog Features:** 104 (including UI polish, mobile app, etc.)
+**Tổng Tính Năng Backlog (Total Backlog Features):** 104 (bao gồm UI polish, mobile app, etc.)
 
-**Backlog Link:** See full backlog in [ROADMAP.md](../ROADMAP.md#task-management-strategy-keep-it-dont-polish-it)
+**Link Backlog:** Xem backlog đầy đủ trong [ROADMAP.md](../ROADMAP.md#task-management-strategy-keep-it-dont-polish-it)
 
 ---
 
-## 📝 HOW TO UPDATE THIS FILE
+## 📝 CÁCH CẬP NHẬT FILE NÀY (How to Update This File)
 
-**After completing a Prompt:**
+**Sau khi hoàn thành một Prompt (After completing a Prompt):**
 
-1. **Copy the template below:**
+1. **Copy template dưới đây (Copy the template below):**
 
 ```markdown
 ## ✅ [Prompt X.Y - Feature Name]
 
 **Completed:** YYYY-MM-DD
-**Prompt:** [PROMPT X.Y](../AI_PROMPTS.md#prompt-xy-feature-name)
+**Prompt tham khảo:** [PROMPT X.Y](../AI_PROMPTS.md#prompt-xy-feature-name)
 **Time Spent:** X hours
 
 **Files Modified:**
@@ -520,24 +652,27 @@
 - Additional context, learnings, or issues encountered
 ```
 
-2. **Paste it at the top** of the "COMPLETED FEATURES" section
-3. **Fill in the details:**
+1. **Paste ở đầu (at the top)** của section "COMPLETED FEATURES"
+2. **Điền chi tiết (Fill in the details):**
 
-   - Actual completion date
-   - Time spent (track from start to finish)
-   - List all files created/modified
-   - Check off all success criteria
-   - Add notes (learnings, issues, etc.)
-4. **Update Progress Summary:**
+   - Ngày hoàn thành thực tế (Actual completion date)
+   - Thời gian đã dùng (Time spent - track from start to finish)
+   - List tất cả files đã tạo/sửa (List all files created/modified)
+   - Check off tất cả success criteria
+   - Thêm notes (learnings, issues, etc.)
 
-   - Increment "Hoàn thành" count
-   - Decrement "Đang làm" or "Lên kế hoạch" count
-   - Update percentage
-5. **Update THIS_WEEK.md:**
+3. **Cập nhật Progress Summary:**
 
-   - Check off completed task in [THIS_WEEK.md](THIS_WEEK.md)
-   - Update progress bar
-6. **Run update script** (if available):
+   - Tăng (Increment) số "Hoàn thành" count
+   - Giảm (Decrement) số "Đang làm" hoặc "Lên kế hoạch" count
+   - Cập nhật percentage
+
+4. **Cập nhật THIS_WEEK.md:**
+
+   - Check off completed task trong [THIS_WEEK.md](THIS_WEEK.md)
+   - Cập nhật progress bar
+
+5. **Chạy update script (Run update script)** (nếu có - if available):
 
 ```bash
 # Bash
@@ -549,7 +684,7 @@
 
 ---
 
-## 🔗 QUICK LINKS
+## 🔗 LINKS NHANH (Quick Links)
 
 - [AI_PROMPTS.md](../AI_PROMPTS.md) - All prompts for 12-week roadmap
 - [ROADMAP.md](../ROADMAP.md) - 12-week Code First roadmap
@@ -560,25 +695,25 @@
 
 ---
 
-## 📊 METRICS (North Star)
+## 📊 CHỈ SỐ (Metrics - North Star)
 
-**North Star Metric:** Apps Built and Shared
+**Chỉ Số North Star (North Star Metric):** Apps Được Xây Dựng và Chia Sẻ (Apps Built and Shared)
 
-**Formula:** (Apps Built by Users) × (Average Installs per App)
+**Công thức (Formula):** (Apps Được Users Xây Dựng) × (Số Lượt Cài Đặt Trung Bình Mỗi App)
 
-**Current Metrics:**
+**Chỉ Số Hiện Tại (Current Metrics):**
 
-| Metric                      | Target (Week 4) | Target (Week 8) | Target (Week 12) | Current     |
+| Chỉ Số (Metric)             | Mục tiêu Tuần 4 (Target Week 4) | Mục tiêu Tuần 8 (Target Week 8) | Mục tiêu Tuần 12 (Target Week 12) | Hiện tại (Current) |
 | --------------------------- | --------------- | --------------- | ---------------- | ----------- |
-| Apps Created                | 5 apps          | 15 apps         | 30 apps          | 0           |
-| Avg Installs per App        | 2 installs      | 3 installs      | 5 installs       | 0           |
-| **North Star Metric** | **10**    | **45**    | **150**    | **0** |
+| Apps Đã Tạo (Apps Created)  | 5 apps          | 15 apps         | 30 apps          | 0           |
+| Trung Bình Cài Đặt / App (Avg Installs per App) | 2 installs | 3 installs | 5 installs | 0 |
+| **Chỉ Số North Star (North Star Metric)** | **10** | **45** | **150** | **0** |
 
-**Breakdown by Week:**
+**Phân Chia Theo Tuần (Breakdown by Week):**
 
-- **Week 4:** 5 apps × 2 installs = 10 points
-- **Week 8:** 15 apps × 3 installs = 45 points
-- **Week 12:** 30 apps × 5 installs = 150 points
+- **Tuần 4 (Week 4):** 5 apps × 2 installs = 10 điểm (points)
+- **Tuần 8 (Week 8):** 15 apps × 3 installs = 45 điểm (points)
+- **Tuần 12 (Week 12):** 30 apps × 5 installs = 150 điểm (points)
 
 ---
 
@@ -586,27 +721,27 @@
 
 > "NEXUS is a Platform for building and sharing apps, NOT a task manager."
 
-**Focus:**
+**Trọng Tâm (Focus):**
 
-- ✅ Prioritize App Builder features
-- ✅ Prioritize Marketplace features
-- ✅ Measure success by "Apps Built and Shared"
-- ❌ Don't polish Task Management beyond MVP
+- ✅ Ưu tiên tính năng App Builder (Prioritize App Builder features)
+- ✅ Ưu tiên tính năng Marketplace (Prioritize Marketplace features)
+- ✅ Đo thành công bằng "Apps Được Xây Dựng và Chia Sẻ" (Measure success by "Apps Built and Shared")
+- ❌ Không hoàn thiện Task Management vượt MVP (Don't polish Task Management beyond MVP)
 
-**Decision Framework:**
+**Framework Ra Quyết Định (Decision Framework):**
 
-1. **Does this help users build apps?** → Prioritize
-2. **Does this help users discover/install apps?** → Prioritize
-3. **Does this improve Task Management?** → Backlog (unless critical bug)
+1. **Tính năng này có giúp users xây dựng apps không? (Does this help users build apps?)** → Ưu tiên (Prioritize)
+2. **Tính năng này có giúp users khám phá/cài đặt apps không? (Does this help users discover/install apps?)** → Ưu tiên (Prioritize)
+3. **Tính năng này có cải thiện Task Management không? (Does this improve Task Management?)** → Backlog (trừ khi critical bug - unless critical bug)
 
 ---
 
 **Cập nhật lần cuối:** 17 tháng 11, 2025
 
-**Next Review:** End of Week 1 (23/11/2025)
+**Đánh giá tiếp theo (Next Review):** Cuối tuần 1 (End of Week 1 - 23/11/2025)
 
-**Owner:** NEXUS Development Team
+**Người sở hữu (Owner):** NEXUS Development Team
 
 ---
 
-**Remember:** Ship fast, iterate fast. Measure what matters.
+**Nhớ nhé (Remember):** Ship nhanh, iterate nhanh. Đo những gì quan trọng (Measure what matters).

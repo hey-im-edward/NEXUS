@@ -4,26 +4,26 @@
 
 **Cập nhật:** 17 tháng 11, 2025
 
-**Mục đích:** Track all bugs discovered during development, their status, and fix history
+**Mục đích:** Theo dõi tất cả bugs phát hiện trong quá trình phát triển, trạng thái, và lịch sử sửa
 
 ---
 
 ## 📊 BUGS SUMMARY
 
 ```text
-🔴 Critical:         0 bugs (Blocker - must fix immediately)
-🟠 High:             0 bugs (Major issue - fix this week)
-🟡 Medium:           0 bugs (Minor issue - fix this sprint)
-🔵 Low:              2 bugs (Nice to fix - backlog)
+🔴 Critical (Nghiêm trọng):         0 bugs (Blocker - phải sửa ngay - must fix immediately)
+🟠 High (Cao):                      0 bugs (Vấn đề lớn - sửa tuần này - Major issue, fix this week)
+🟡 Medium (Trung bình):             0 bugs (Vấn đề nhỏ - sửa sprint này - Minor issue, fix this sprint)
+🔵 Low (Thấp):                      2 bugs (Nên sửa - backlog - Nice to fix, backlog)
 ────────────────────────────────────────────────────────────
-   Active Bugs:      2 bugs
-   Fixed Bugs:       4 bugs
-   Total Bugs:       6 bugs
+   Bugs Đang Hoạt Động (Active):    2 bugs
+   Bugs Đã Sửa (Fixed):             5 bugs
+   Tổng Bugs (Total):               7 bugs
 ```
 
-**Breakdown by Category:**
+**Phân Chia Theo Danh Mục:**
 
-| Category | Critical | High | Medium | Low | Total |
+| Danh Mục (Category) | Nghiêm trọng (Critical) | Cao (High) | Trung bình (Medium) | Thấp (Low) | Tổng (Total) |
 |----------|----------|------|--------|-----|-------|
 | **Dashboard Grid** | 0 | 0 | 0 | 0 | 0 |
 | **App Builder** | 0 | 0 | 0 | 0 | 0 |
@@ -37,47 +37,47 @@
 
 ---
 
-## 🔴 ACTIVE BUGS (Open & In Progress)
+## 🔴 BUGS ĐANG HOẠT ĐỘNG (Active Bugs - Open & In Progress)
 
-**Format:**
+**Định Dạng (Format):**
 
 ```markdown
-### BUG-XXX: [Short Bug Title]
+### BUG-XXX: [Tiêu Đề Bug Ngắn Gọn - Short Bug Title]
 
-**Status:** 🔴 Open | 🟡 In Progress | ⏸️ Blocked
+**Trạng thái (Status):** 🔴 Mở (Open) | 🟡 Đang Làm (In Progress) | ⏸️ Bị Chặn (Blocked)
 
-**Priority:** 🔴 Critical | 🟠 High | 🟡 Medium | 🔵 Low
+**Ưu tiên (Priority):** 🔴 Nghiêm trọng (Critical) | 🟠 Cao (High) | 🟡 Trung bình (Medium) | 🔵 Thấp (Low)
 
-**Discovered:** YYYY-MM-DD
+**Ngày phát hiện (Discovered):** YYYY-MM-DD
 
-**Category:** Dashboard Grid | App Builder | Marketplace | Task Management | Auth | Performance | UI/UX | Database | Other
+**Danh mục (Category):** Dashboard Grid | App Builder | Marketplace | Task Management | Auth | Performance | UI/UX | Database | Other
 
-**Affected Prompt:** [PROMPT X.Y](../AI_PROMPTS.md#prompt-xy-feature-name)
+**Prompt bị ảnh hưởng (Affected Prompt):** [PROMPT X.Y](../AI_PROMPTS.md#prompt-xy-feature-name)
 
-**Description:**
-Clear description of the bug, what's expected vs. what's happening
+**Mô tả (Description):**
+Mô tả rõ ràng về bug, mong đợi gì so với thực tế đang xảy ra (Clear description of the bug, what's expected vs. what's happening)
 
-**Steps to Reproduce:**
-1. Step 1
-2. Step 2
-3. Step 3
+**Các bước tái hiện (Steps to Reproduce):**
+1. Bước 1 (Step 1)
+2. Bước 2 (Step 2)
+3. Bước 3 (Step 3)
 
-**Environment:**
-- Browser: Chrome 120 / Safari 17 / Firefox 121
-- Device: Desktop / Mobile / Tablet
-- OS: Windows 11 / macOS 14 / iOS 17
+**Môi trường (Environment):**
+- Trình duyệt (Browser): Chrome 120 / Safari 17 / Firefox 121
+- Thiết bị (Device): Desktop / Mobile / Tablet
+- Hệ điều hành (OS): Windows 11 / macOS 14 / iOS 17
 
 **Screenshots/Logs:**
 - [Link to screenshot]
 - Error logs (if any)
 
-**Assigned To:** [Name]
+**Được giao cho (Assigned To):** [Name]
 
-**Related Files:**
+**Các file liên quan (Related Files):**
 - [path/to/file.tsx](../../path/to/file.tsx:42)
 
-**Notes:**
-- Additional context
+**Lưu ý (Notes):**
+- Ngữ cảnh bổ sung (Additional context)
 ```
 
 ---
@@ -86,47 +86,47 @@ Clear description of the bug, what's expected vs. what's happening
 
 **Status:** 🔴 Open
 
-**Priority:** 🔵 Low
+**Ưu tiên:** 🔵 Low
 
-**Discovered:** 2024-11-07
+**Discovered:** 2025-11-07
 
-**Category:** Task Management
+**Danh mục:** Task Management
 
 **Affected Prompt:** Pre-Platform (Task Management MVP)
 
-**Description:**
+**Mô tả (Description):**
 
-When users open `/today` or `/inbox` with no tasks, only plain text "No tasks" is shown. There's no illustration, icon, or helpful guidance on what to do next. This makes the UI feel unpolished.
+Khi users mở `/today` hoặc `/inbox` không có tasks, chỉ hiển thị text "No tasks". Không có illustration, icon, hoặc hướng dẫn làm gì tiếp theo. UI cảm giác chưa hoàn thiện (unpolished).
 
-**Steps to Reproduce:**
+**Các bước tái hiện (Steps to Reproduce):**
 
-1. Log in to NEXUS
-2. Navigate to `/today` page
-3. Delete all tasks (or use fresh account)
-4. See empty state with only text "No tasks"
+1. Đăng nhập vào NEXUS (Log in to NEXUS)
+2. Điều hướng đến trang `/today` (Navigate to `/today` page)
+3. Xóa tất cả tasks (hoặc dùng tài khoản mới - or use fresh account)
+4. Thấy empty state chỉ có text "No tasks"
 
-**Environment:**
+**Môi trường (Environment):**
 
-- Browser: Chrome 120 (Desktop)
-- Device: Desktop
-- OS: Windows 11
+- Trình duyệt (Browser): Chrome 120 (Desktop)
+- Thiết bị (Device): Desktop
+- Hệ điều hành (OS): Windows 11
 
 **Screenshots/Logs:**
 
-- (No screenshot available)
+- (Không có screenshot - No screenshot available)
 
-**Assigned To:** TBD
+**Được giao cho (Assigned To):** TBD
 
-**Related Files:**
+**Các file liên quan (Related Files):**
 
 - [frontend/components/tasks/TaskList.tsx](../../frontend/components/tasks/TaskList.tsx)
 
-**Notes:**
+**Lưu ý (Notes):**
 
-- Not blocking current development
-- Can be fixed during Week 4 UI polish phase
-- Consider using illustration from undraw.co or humaaans.com
-- Should include CTA button ("Add your first task")
+- Không chặn phát triển hiện tại (Not blocking current development)
+- Có thể sửa trong Week 4 UI polish phase
+- Cân nhắc dùng illustration từ undraw.co hoặc humaaans.com (Consider using illustration from)
+- Nên có nút CTA ("Add your first task" - Thêm task đầu tiên của bạn)
 
 ---
 
@@ -134,150 +134,238 @@ When users open `/today` or `/inbox` with no tasks, only plain text "No tasks" i
 
 **Status:** 🔴 Open
 
-**Priority:** 🔵 Low
+**Ưu tiên:** 🔵 Low
 
-**Discovered:** 2024-11-07
+**Discovered:** 2025-11-07
 
-**Category:** Task Management
+**Danh mục:** Task Management
 
 **Affected Prompt:** Pre-Platform (Task Management MVP)
 
-**Description:**
+**Mô tả (Description):**
 
-When fetching tasks from Supabase, there's a 1-2 second delay with a blank screen. No loading skeleton is shown, making it feel like the page is broken or laggy.
+Khi fetch tasks từ Supabase, có độ trễ 1-2 giây với màn hình trống. Không có loading skeleton hiển thị, làm cảm giác trang bị lỗi hoặc lag (there's a 1-2 second delay with a blank screen, making it feel broken or laggy).
 
-**Steps to Reproduce:**
+**Các bước tái hiện (Steps to Reproduce):**
 
-1. Log in to NEXUS
-2. Navigate to `/today` page
-3. Observe blank screen for 1-2 seconds during initial load
-4. Tasks suddenly appear
+1. Đăng nhập vào NEXUS (Log in to NEXUS)
+2. Điều hướng đến trang `/today` (Navigate to `/today` page)
+3. Quan sát màn hình trống 1-2 giây trong lần load đầu tiên (Observe blank screen during initial load)
+4. Tasks đột ngột xuất hiện (Tasks suddenly appear)
 
-**Environment:**
+**Môi trường (Environment):**
 
-- Browser: Chrome 120 (Desktop)
-- Device: Desktop
-- OS: Windows 11
+- Trình duyệt (Browser): Chrome 120 (Desktop)
+- Thiết bị (Device): Desktop
+- Hệ điều hành (OS): Windows 11
 
 **Screenshots/Logs:**
 
-- (No screenshot available)
+- (Không có screenshot - No screenshot available)
 
-**Assigned To:** TBD
+**Được giao cho (Assigned To):** TBD
 
-**Related Files:**
+**Các file liên quan (Related Files):**
 
 - [frontend/components/tasks/TaskList.tsx](../../frontend/components/tasks/TaskList.tsx)
 
-**Notes:**
+**Lưu ý (Notes):**
 
-- Not blocking current development
-- Can be fixed during Week 4 UI polish phase
-- Use shadcn/ui Skeleton component
-- Show 3-5 skeleton rows during loading
+- Không chặn phát triển hiện tại (Not blocking current development)
+- Có thể sửa trong Week 4 UI polish phase
+- Sử dụng shadcn/ui Skeleton component (Use)
+- Hiển thị 3-5 skeleton rows trong lúc loading (Show during loading)
 
 ---
 
-## ✅ FIXED BUGS (Newest First)
+## ✅ BUGS ĐÃ SỬA (Fixed Bugs - Newest First)
 
-**Format:**
+**Định Dạng (Format):**
 
 ```markdown
-### ✅ BUG-XXX: [Short Bug Title]
+### ✅ BUG-XXX: [Tiêu Đề Bug Ngắn Gọn - Short Bug Title]
 
-**Fixed:** YYYY-MM-DD
+**Ngày sửa (Fixed):** YYYY-MM-DD
 
-**Priority:** 🔴 Critical | 🟠 High | 🟡 Medium | 🔵 Low
+**Ưu tiên (Priority):** 🔴 Nghiêm trọng (Critical) | 🟠 Cao (High) | 🟡 Trung bình (Medium) | 🔵 Thấp (Low)
 
-**Discovered:** YYYY-MM-DD
+**Ngày phát hiện (Discovered):** YYYY-MM-DD
 
-**Time to Fix:** X hours
+**Thời gian sửa (Time to Fix):** X giờ (hours)
 
-**Category:** [Category]
+**Danh mục (Category):** [Category]
 
-**Root Cause:**
-What caused the bug
+**Nguyên nhân gốc (Root Cause):**
+Điều gì gây ra bug (What caused the bug)
 
-**Solution:**
-How it was fixed
+**Cách giải quyết (Solution):**
+Cách bug được sửa (How it was fixed)
 
-**Files Modified:**
+**Các file đã sửa đổi (Files Modified):**
 - [path/to/file.tsx](../../path/to/file.tsx)
 
-**Verification:**
-How we verified the fix works
+**Xác thực (Verification):**
+Cách chúng ta xác thực fix hoạt động (How we verified the fix works)
 
-**Lessons Learned:**
-- What we learned from this bug
+**Bài học rút ra (Lessons Learned):**
+- Chúng ta học được gì từ bug này (What we learned from this bug)
 ```
 
 ---
 
-### ✅ BUG-003: Hardcoded workspace_id in Supabase queries
+### ✅ BUG-007: Craft.js incompatible with React 19.2.0
 
-**Fixed:** 2024-11-09
+**Ngày sửa:** 2025-11-19
 
-**Priority:** 🟠 High
+**Ưu tiên:** 🔴 Critical
 
-**Discovered:** 2024-11-08
+**Ngày phát hiện:** 2025-11-18 (trong quá trình implement PROMPT 1.4)
 
-**Time to Fix:** 2 hours
+**Thời gian sửa:** 13 giờ (điều tra: 4h, migration: 7h, cleanup/testing: 2h)
 
-**Category:** Task Management
+**Danh mục:** App Builder
 
-**Root Cause:**
+**Nguyên nhân gốc:**
 
-During initial development, workspace_id was hardcoded as a temporary UUID to speed up development. This meant:
-- All users shared the same workspace
-- No multi-workspace support
-- Security risk (users could see each other's tasks)
+Craft.js v0.2.12 được xây dựng cho React 17/18. React 19.2.0 có breaking changes:
 
-**Solution:**
+- Ref callback timing thay đổi
+- Event handler attachment thay đổi
+- Synthetic event pooling bị loại bỏ
 
-Created `getOrCreateWorkspaceId()` helper function in `lib/supabase/workspace.ts`:
-- Automatically fetches user's workspace from database
-- Creates new workspace if user doesn't have one
-- Returns workspace_id for use in queries
-- Updated all productivity pages to use this helper
+**Chứng cứ:**
 
-**Files Modified:**
+```typescript
+// Drag setup hiển thị đúng:
+connectors.create() ✅ succeeded
+draggable="true" ✅ set correctly
+cursor: move ✅ displayed
 
-- `frontend/lib/supabase/workspace.ts` (NEW)
+// Nhưng drag events KHÔNG BAO GIỞ FIRE:
+dragstart event ❌ not triggered
+dragover event ❌ not triggered
+drop event ❌ not triggered
+```
+
+Test official Craft.js working example → cũng failed trong React 19.
+
+**Cách giải quyết:**
+
+Migrate sang @dnd-kit + Zustand manual implementation:
+
+- Cài đặt @dnd-kit/core v6.3.1, @dnd-kit/sortable v10.0.0
+- Gỡ bỏ @craftjs/core, @craftjs/layers
+- Xây dựng custom Zustand store (lib/stores/editor.ts, 334 dòng)
+- Triển khai Canvas với SortableContext
+- Triển khai ComponentPalette với useDraggable
+- Triển khai RenderedComponent với useSortable
+
+**Files đã sửa đổi:**
+
+- `package.json` - Added @dnd-kit packages, removed Craft.js
+- `app/app-builder/page.tsx` (NEW)
+- `components/app-builder/Canvas.tsx` (NEW)
+- `components/app-builder/RenderedComponent.tsx` (NEW)
+- `components/app-builder/ComponentPalette.tsx` (NEW)
+- `components/app-builder/PropertiesPanel.tsx` (NEW)
+- `components/app-builder/Toolbar.tsx` (NEW)
+- `lib/stores/editor.ts` (NEW)
+
+**Xác thực (Verification):**
+
+- ✅ Kéo từ palette vào canvas hoạt động
+- ✅ Sắp xếp lại (sortable reordering) hoạt động
+- ✅ Nested Container children sortable hoạt động
+- ✅ Undo/redo hoạt động
+- ✅ Properties panel cập nhật real-time
+- ✅ Xóa loại bỏ components đệ quy
+- ✅ Không lỗi TypeScript
+- ✅ Dev server chạy thành công
+
+**Bài học rút ra (Lessons Learned):**
+
+- Luôn verify library compatibility TRƯỚC KHI implement (đặc biệt với React 19)
+- React 19 rất mới (Oct 2025), nhiều libraries chưa cập nhật
+- Kiểm tra ngày cập nhật cuối của library (Craft.js: 2+ năm trước = cờ đỏ)
+- @dnd-kit chứng minh đáng tin cậy hơn Craft.js "chuyên biệt" cho React 19
+- Triển khai manual = nhiều code hơn nhưng hiểu rõ hơn + không có vấn đề black-box
+- Tài liệu trong quá trình migration tiết kiệm thời gian sau này
+
+**Cân nhắc tương lai:**
+
+- Theo dõi Craft.js repo cho React 19 support
+- Nếu Craft.js phát hành phiên bản tương thích React 19, cân nhắc migrate ngược lại để tận dụng các tính năng built-in (Frame/Element, serialization, undo/redo hooks)
+- Hiện tại, @dnd-kit + Zustand ổn định và đã được chứng minh
+
+---
+
+### ✅ BUG-003: Hardcoded workspace_id trong Supabase queries
+
+**Ngày sửa (Fixed):** 2025-11-09
+
+**Ưu tiên (Priority):** 🟠 Cao (High)
+
+**Ngày phát hiện (Discovered):** 2025-11-08
+
+**Thời gian sửa (Time to Fix):** 2 giờ (hours)
+
+**Danh mục (Category):** Task Management
+
+**Nguyên nhân gốc (Root Cause):**
+
+Trong quá trình phát triển ban đầu (during initial development), workspace_id bị hardcoded thành UUID tạm để tăng tốc development. Điều này có nghĩa:
+
+- Tất cả users chia sẻ cùng workspace (All users shared the same workspace)
+- Không hỗ trợ multi-workspace (No multi-workspace support)
+- Rủi ro bảo mật (Security risk - users có thể thấy tasks của nhau)
+
+**Cách giải quyết (Solution):**
+
+Tạo helper function `getOrCreateWorkspaceId()` trong `lib/supabase/workspace.ts`:
+
+- Tự động fetch workspace của user từ database (Automatically fetches)
+- Tạo workspace mới nếu user chưa có (Creates new workspace if user doesn't have one)
+- Trả về workspace_id để dùng trong queries (Returns for use in queries)
+- Cập nhật tất cả productivity pages để dùng helper này (Updated all pages to use this helper)
+
+**Các file đã sửa đổi (Files Modified):**
+
+- `frontend/lib/supabase/workspace.ts` (MỚI - NEW)
 - `frontend/app/(productivity)/today/page.tsx`
 - `frontend/app/(productivity)/inbox/page.tsx`
 - `frontend/app/(productivity)/projects/[id]/board/page.tsx`
 - `frontend/app/kanban-demo/page.tsx`
 
-**Verification:**
+**Xác thực (Verification):**
 
-- Created 2 test accounts
-- Verified each account has separate workspace
-- Verified tasks are not shared between accounts
-- Verified RLS policies enforce workspace isolation
+- Tạo 2 tài khoản test (Created 2 test accounts)
+- Xác thực mỗi tài khoản có workspace riêng biệt (Verified each account has separate workspace)
+- Xác thực tasks không được chia sẻ giữa tài khoản (Verified tasks are not shared between accounts)
+- Xác thực RLS policies thực thi workspace isolation
 
-**Lessons Learned:**
+**Bài học rút ra (Lessons Learned):**
 
-- Don't hardcode IDs, even for POC
-- Set up proper workspace management from Day 1
-- RLS policies are critical for multi-tenancy
+- Không hardcode IDs, ngay cả cho POC (Don't hardcode IDs, even for POC)
+- Thiết lập workspace management đúng cách từ ngày 1 (Set up proper workspace management from Day 1)
+- RLS policies rất quan trọng cho multi-tenancy (RLS policies are critical for multi-tenancy)
 
 ---
 
 ### ✅ BUG-004: Tasks disappear after marking complete
 
-**Fixed:** 2024-11-08
+**Ngày sửa (Fixed):** 2025-11-08
 
-**Priority:** 🟠 High
+**Ưu tiên (Priority):** 🟠 Cao (High)
 
-**Discovered:** 2024-11-08
+**Ngày phát hiện (Discovered):** 2025-11-08
 
-**Time to Fix:** 0.5 hours
+**Thời gian sửa (Time to Fix):** 0.5 giờ (hours)
 
-**Category:** Task Management
+**Danh mục:** Task Management
 
-**Root Cause:**
+**Nguyên nhân gốc (Root Cause):**
 
-Supabase query in `/today` page filtered out completed tasks:
+Supabase query trong trang `/today` đã lọc bỏ completed tasks (filtered out):
 
 ```typescript
 const { data: tasks } = await supabase
@@ -287,11 +375,11 @@ const { data: tasks } = await supabase
   .eq('completed', false) // ❌ This caused the bug
 ```
 
-When user toggled task completion, the task was marked as `completed: true`, which removed it from the query results, making it disappear from the UI.
+Khi user toggle task completion, task được đánh dấu `completed: true`, bị loại bỏ khỏi query results, làm nó biến mất khỏi UI (which removed it from the query results, making it disappear from the UI).
 
-**Solution:**
+**Cách giải quyết (Solution):**
 
-Removed the `.eq('completed', false)` filter to show all tasks (both complete and incomplete):
+Gỡ bỏ filter `.eq('completed', false)` để hiển thị tất cả tasks (cả complete và incomplete - both complete and incomplete):
 
 ```typescript
 const { data: tasks } = await supabase
@@ -301,40 +389,40 @@ const { data: tasks } = await supabase
 // ✅ Show all tasks, let UI handle styling
 ```
 
-**Files Modified:**
+**Các file đã sửa đổi (Files Modified):**
 
 - `frontend/app/(productivity)/today/page.tsx`
 - `frontend/app/(productivity)/inbox/page.tsx`
 
-**Verification:**
+**Xác thực (Verification):**
 
-- Toggled task completion on `/today` page
-- Verified task stays visible (with strikethrough)
-- Verified task state persists across page reloads
+- Toggle task completion trên trang `/today` (Toggled on page)
+- Xác thực task vẫn hiển thị (với strikethrough - with strikethrough)
+- Xác thực trạng thái task tồn tại qua các lần reload trang (persists across page reloads)
 
-**Lessons Learned:**
+**Bài học rút ra (Lessons Learned):**
 
-- Consider UX before filtering data
-- Completed tasks should remain visible (with visual distinction)
-- Test edge cases (empty state, all complete, etc.)
+- Cân nhắc UX trước khi lọc data (Consider UX before filtering data)
+- Tasks đã hoàn thành nên vẫn hiển thị (với visual distinction - Completed tasks should remain visible)
+- Test edge cases (empty state, tất cả complete, etc.)
 
 ---
 
 ### ✅ BUG-005: RLS infinite recursion in workspace_members
 
-**Fixed:** 2024-11-07
+**Ngày sửa (Fixed):** 2025-11-07
 
-**Priority:** 🔴 Critical
+**Ưu tiên (Priority):** 🔴 Nghiêm trọng (Critical)
 
-**Discovered:** 2024-11-07
+**Ngày phát hiện (Discovered):** 2025-11-07
 
-**Time to Fix:** 1 hour
+**Thời gian sửa (Time to Fix):** 1 giờ (hour)
 
-**Category:** Database
+**Danh mục:** Database
 
-**Root Cause:**
+**Nguyên nhân gốc (Root Cause):**
 
-Row Level Security (RLS) policy on `workspace_members` table created infinite recursion:
+Row Level Security (RLS) policy trên bảng `workspace_members` tạo ra infinite recursion (vòng lặp vô hạn - created infinite recursion):
 
 ```sql
 -- ❌ BROKEN POLICY
@@ -347,11 +435,11 @@ USING (
 );
 ```
 
-The policy checked `workspace_members` table to determine access to `workspace_members` table, creating infinite loop.
+Policy kiểm tra bảng `workspace_members` để xác định quyền truy cập vào bảng `workspace_members`, tạo ra vòng lặp vô hạn (The policy checked table to determine access to table, creating infinite loop).
 
-**Solution:**
+**Cách giải quyết (Solution):**
 
-Simplified RLS policy to only check user_id:
+Đơn giản hóa RLS policy chỉ kiểm tra user_id (Simplified to only check):
 
 ```sql
 -- ✅ FIXED POLICY
@@ -360,39 +448,39 @@ ON workspace_members FOR SELECT
 USING (user_id = auth.uid());
 ```
 
-**Files Modified:**
+**Các file đã sửa đổi (Files Modified):**
 
 - `backend/supabase/migrations/001_task_management_schema.sql`
 
-**Verification:**
+**Xác thực (Verification):**
 
-- Ran `npx supabase db reset` to apply migration
-- Verified query executes without timeout
-- Verified users can only see their own workspace memberships
+- Chạy `npx supabase db reset` để apply migration (Ran to apply)
+- Xác thực query thực thi không timeout (Verified executes without timeout)
+- Xác thực users chỉ có thể thấy workspace memberships của riêng mình (can only see their own)
 
-**Lessons Learned:**
+**Bài học rút ra (Lessons Learned):**
 
-- Avoid recursive subqueries in RLS policies
-- Test RLS policies in Supabase SQL editor before applying
-- Keep RLS policies simple (complexity = bugs)
+- Tránh recursive subqueries trong RLS policies (Avoid)
+- Test RLS policies trong Supabase SQL editor trước khi apply (before applying)
+- Giữ RLS policies đơn giản (complexity = bugs - Keep simple)
 
 ---
 
 ### ✅ BUG-006: TaskList infinite re-render loop
 
-**Fixed:** 2024-11-07
+**Ngày sửa (Fixed):** 2025-11-07
 
-**Priority:** 🔴 Critical
+**Ưu tiên (Priority):** 🔴 Nghiêm trọng (Critical)
 
-**Discovered:** 2024-11-07
+**Ngày phát hiện (Discovered):** 2025-11-07
 
-**Time to Fix:** 0.5 hours
+**Thời gian sửa (Time to Fix):** 0.5 giờ (hours)
 
-**Category:** Task Management
+**Danh mục:** Task Management
 
-**Root Cause:**
+**Nguyên nhân gốc (Root Cause):**
 
-`useEffect` dependency array included `fetchTasks` function, which was recreated on every render:
+`useEffect` dependency array bao gồm function `fetchTasks`, được tạo lại mỗi render (included function which was recreated on every render):
 
 ```typescript
 // ❌ BROKEN CODE
@@ -405,15 +493,16 @@ useEffect(() => {
 }, [fetchTasks]) // ❌ fetchTasks changes every render
 ```
 
-This caused infinite loop:
-1. Component renders → fetchTasks created
-2. useEffect runs → fetchTasks called → state updated
-3. Component re-renders → new fetchTasks created
-4. useEffect runs again (dependency changed) → repeat
+Điều này gây ra vòng lặp vô hạn (This caused infinite loop):
 
-**Solution:**
+1. Component renders → fetchTasks được tạo (created)
+2. useEffect chạy (runs) → fetchTasks được gọi (called) → state được cập nhật (updated)
+3. Component re-renders → fetchTasks mới được tạo (new created)
+4. useEffect chạy lại (runs again - dependency changed) → lặp lại (repeat)
 
-Changed dependency to only re-run when `workspace_id` changes:
+**Cách giải quyết (Solution):**
+
+Thay đổi dependency để chỉ re-run khi `workspace_id` thay đổi (Changed to only re-run when changes):
 
 ```typescript
 // ✅ FIXED CODE
@@ -422,51 +511,51 @@ useEffect(() => {
 }, [workspace_id]) // ✅ Only re-run when workspace_id changes
 ```
 
-**Files Modified:**
+**Các file đã sửa đổi (Files Modified):**
 
 - `frontend/components/tasks/TaskList.tsx`
 
-**Verification:**
+**Xác thực (Verification):**
 
-- Opened `/today` page
-- Verified tasks load once (not infinite loop)
-- Checked browser console (no errors)
-- Verified React DevTools shows single render
+- Mở trang `/today` (Opened page)
+- Xác thực tasks load một lần (không vòng lặp vô hạn - not infinite loop)
+- Kiểm tra browser console (không có lỗi - no errors)
+- Xác thực React DevTools hiển thị single render (shows)
 
-**Lessons Learned:**
+**Bài học rút ra (Lessons Learned):**
 
-- Be careful with useEffect dependencies
-- Functions should not be in dependency arrays (use useCallback or primitives)
-- Test for infinite loops in development
+- Cẩn thận với useEffect dependencies (Be careful with)
+- Functions không nên ở trong dependency arrays (dùng useCallback hoặc primitives - should not be in, use or)
+- Test cho vòng lặp vô hạn trong development (Test for infinite loops in)
 
 ---
 
-## 🚨 CRITICAL BUGS (Fix Immediately)
+## 🚨 BUGS NGHIÊM TRỌNG (Critical Bugs - Fix Immediately)
 
-**Definition:** Bugs that block core functionality or cause data loss
+**Định nghĩa (Definition):** Bugs chặn chức năng cốt lõi hoặc gây mất dữ liệu (that block core functionality or cause data loss)
 
-**Priority:** These bugs MUST be fixed before continuing with new features
+**Ưu tiên (Priority):** Những bugs này PHẢI được sửa trước khi tiếp tục với tính năng mới (These bugs MUST be fixed before continuing with new features)
 
-**Current Critical Bugs:** 0
+**Bugs Nghiêm trọng Hiện tại (Current Critical Bugs):** 0
 
-**Examples of Critical Bugs:**
+**Ví dụ về Bugs Nghiêm trọng (Examples of Critical Bugs):**
 
-- Users cannot log in (Auth broken)
-- Data loss when saving (Database corruption)
-- App crashes on load (Runtime error)
-- Security vulnerability (RLS policy broken)
-- Payment system broken (Billing issue)
+- Users không thể đăng nhập (Auth bị hỏng - cannot log in, Auth broken)
+- Mất dữ liệu khi lưu (Database bị hỏng - Data loss when saving, Database corruption)
+- App crashes khi load (Runtime error)
+- Lỗ hổng bảo mật (RLS policy bị hỏng - Security vulnerability, RLS policy broken)
+- Hệ thống thanh toán bị hỏng (Payment system broken - Billing issue)
 
-**Escalation Process:**
+**Quy Trình Báo Cáo Khẩn (Escalation Process):**
 
-1. **Discover Critical Bug** → Immediately stop current work
-2. **Document Bug** → Use BUG-XXX template above
-3. **Notify Team** → Post in team chat/Slack
-4. **Assign Owner** → Who will fix this?
-5. **Estimate Time** → How long to fix?
-6. **Fix & Test** → Fix bug, verify with tests
-7. **Deploy Hotfix** → Deploy to production ASAP
-8. **Postmortem** → Document lessons learned
+1. **Phát hiện Critical Bug (Discover)** → Ngay lập tức dừng công việc hiện tại (Immediately stop current work)
+2. **Tài liệu hóa Bug (Document)** → Dùng template BUG-XXX ở trên (Use template above)
+3. **Thông báo Team (Notify)** → Đăng trong team chat/Slack (Post in)
+4. **Giao Owner (Assign)** → Ai sẽ sửa? (Who will fix this?)
+5. **Ước tính Thời gian (Estimate Time)** → Mất bao lâu để sửa? (How long to fix?)
+6. **Sửa & Test (Fix & Test)** → Sửa bug, xác thực với tests (verify with tests)
+7. **Deploy Hotfix** → Deploy lên production ASAP
+8. **Phân tích sau sự cố (Postmortem)** → Tài liệu hóa bài học rút ra (Document lessons learned)
 
 ---
 
@@ -619,11 +708,11 @@ useEffect(() => {
 
 **Status:** 🔴 Open
 
-**Priority:** [🔴 Critical | 🟠 High | 🟡 Medium | 🔵 Low]
+**Ưu tiên:** [🔴 Critical | 🟠 High | 🟡 Medium | 🔵 Low]
 
 **Discovered:** YYYY-MM-DD
 
-**Category:** [Category]
+**Danh mục:** [Category]
 
 **Affected Prompt:** [PROMPT X.Y](../AI_PROMPTS.md#prompt-xy)
 
@@ -652,10 +741,10 @@ useEffect(() => {
 - [Additional context]
 ```
 
-5. **Paste into "ACTIVE BUGS" section** (sorted by priority: Critical → High → Medium → Low)
-6. **Update BUGS SUMMARY** table (increment counts)
-7. **Update THIS_WEEK.md** if blocking current sprint
-8. **Notify team** if Critical or High priority
+1. **Paste into "ACTIVE BUGS" section** (sorted by priority: Critical → High → Medium → Low)
+2. **Update BUGS SUMMARY** table (increment counts)
+3. **Update THIS_WEEK.md** if blocking current sprint
+4. **Notify team** if Critical or High priority
 
 ---
 
@@ -673,13 +762,13 @@ useEffect(() => {
 
 **Fixed:** YYYY-MM-DD
 
-**Priority:** [Priority]
+**Ưu tiên:** [Priority]
 
 **Discovered:** YYYY-MM-DD
 
 **Time to Fix:** X hours
 
-**Category:** [Category]
+**Danh mục:** [Category]
 
 **Root Cause:**
 [What caused the bug]
@@ -688,6 +777,7 @@ useEffect(() => {
 [How it was fixed]
 
 **Files Modified:**
+
 - [path/to/file.tsx](../../path/to/file.tsx)
 
 **Verification:**

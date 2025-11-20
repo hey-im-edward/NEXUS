@@ -4,7 +4,7 @@
 
 **Nguồn:** [NEXUS_WHITEPAPER.md](../01-STRATEGY/NEXUS_WHITEPAPER.md) (Phần 4.3)
 
-**Cập nhật:** 17 tháng 11, 2025
+**Cập nhật:** 20 tháng 11, 2025
 
 **Version:** 3.0 - Copy-Paste Optimized Format
 
@@ -31,6 +31,60 @@
 
 ---
 
+## 📚 TECH STACK - Tham Khảo Nhanh
+
+```yaml
+Frontend Framework:
+  Core: Next.js 16.0.1 (App Router, Turbopack stable)
+  Language: TypeScript 5.6 (Strict Mode enabled)
+  UI Library: React 19.2 (Concurrent rendering default)
+  Styling: TailwindCSS 4.0 Alpha
+  Components: shadcn/ui (copy-paste, fully customizable)
+
+Backend as a Service:
+  Platform: Supabase (PostgreSQL 15.6)
+  Database: PostgreSQL with Row Level Security (RLS)
+  Authentication: Supabase Auth (Google OAuth, Email)
+  Storage: Supabase Storage (CDN-enabled)
+  Real-time: WebSocket subscriptions
+
+State Management:
+  Client State: Zustand v5 + Immer (slice pattern)
+  Server State: TanStack Query v5 (React Query)
+  Form State: React Hook Form v7
+
+Specialized Libraries:
+  Dashboard Grid: react-grid-layout v1.5.0 (verified working)
+  App Builder: @dnd-kit v6.3.1 + Zustand (React 19 compatible)
+  Drag & Drop: @dnd-kit v6.3.1 + @dnd-kit/sortable v10.0.0
+  Rich Text: Tiptap v2 (ProseMirror wrapper)
+  Dates: date-fns v3 (tree-shakeable)
+  Recurrence: rrule v2 (RFC-5545 compliant)
+
+Deployment:
+  Frontend Hosting: Vercel (Edge Network, 300+ locations)
+  Backend Hosting: Supabase Cloud (Singapore region)
+  CDN: Vercel Edge Network + Supabase CDN
+  Domain: Custom domain (.app or .io)
+
+Cost (Estimated):
+  MVP Phase: $0-12/month (free tiers + domain)
+  Scale Phase: $45-70/month (Vercel Pro + Supabase Pro)
+```
+
+> [!NOTE]
+> **AI_PROMPTS.md là file HOÀN TOÀN ĐỘC LẬP (100% STANDALONE)**
+>
+> Mọi thông tin tech stack cần thiết đã có trong section trên. Bạn **KHÔNG CẦN mở file khác** khi dùng prompts.
+>
+> **Khi nào cần update Tech Stack:**
+>
+> - Chỉ khi TECH_STACK.md có major changes (React version, library thay đổi)
+> - Frequency: ~1 lần/tháng
+> - Quy trình: Copy section "Stack Overview" từ TECH_STACK.md → Paste vào đây → Update timestamp
+
+---
+
 ## 📋 MỤC LỤC
 
 - [Nguyên Tắc Chung](#-nguyên-tắc-chung)
@@ -38,7 +92,7 @@
   - [Prompt 1.1: DashboardGrid Component](#-prompt-11-xây-dựng-dashboardgrid-component)
   - [Prompt 1.2: AppMiniCard Wrapper](#-prompt-12-xây-dựng-appminicard-wrapper)
   - [Prompt 1.3: 3 App Minis](#-prompt-13-xây-dựng-3-app-minis)
-  - [Prompt 1.4: Setup Craft.js](#-prompt-14-setup-craftjs-framework)
+  - [Prompt 1.4: Thiết lập Craft.js](#-prompt-14-setup-craftjs-framework)
   - [Prompt 1.5: 5 Builder Components](#-prompt-15-xây-dựng-5-builder-components)
   - [Prompt 1.6: 3 Actions System](#-prompt-16-xây-dựng-3-actions-system)
   - [Prompt 1.7: Save/Load + AppRenderer](#-prompt-17-saveload-app-definition--apprenderer)
@@ -125,7 +179,7 @@
 
 ### 📋 PROMPT 1.1: Xây Dựng DashboardGrid Component
 
-**Tuần:** 1 | **Thời gian:** 4-6 giờ | **Trạng thái:** 🔴 Chưa bắt đầu
+**Tuần:** 1 | **Thời gian:** 4-6 giờ | **Trạng thái:** ✅ Hoàn thành (19/11/2025)
 
 **👇 COPY TOÀN BỘ PROMPT BÊN DƯỚI:**
 
@@ -171,10 +225,10 @@ YÊU CẦU CHỨC NĂNG:
 - Mobile (< 768px): 1 column (stack dọc, no drag)
 
 ============================================================
-TECHNICAL REQUIREMENTS:
+TECHNICAL YÊU CẦU:
 ============================================================
 
-**Library Setup:**
+**Library Thiết lập:**
 
 npm install react-grid-layout
 npm install --save-dev @types/react-grid-layout
@@ -278,7 +332,7 @@ FILES CẦN TẠO/SỬA:
 5. `frontend/hooks/useDashboardLayout.ts` (new - TanStack Query hook)
 
 ============================================================
-SUCCESS CRITERIA:
+TIÊU CHÍ THÀNH CÔNG:
 ============================================================
 
 - ✅ Users có thể drag & drop cards
@@ -289,7 +343,7 @@ SUCCESS CRITERIA:
 - ✅ Performance: < 1s load time, smooth 60fps animations
 
 ============================================================
-TECH STACK (nhắc AI):
+TECH STACK:
 ============================================================
 
 - Next.js 16.0.1, React 19.2, TypeScript 5.6
@@ -305,7 +359,7 @@ TECH STACK (nhắc AI):
 
 ### 📋 PROMPT 1.2: Xây Dựng AppMiniCard Wrapper
 
-**Tuần:** 1 | **Thời gian:** 3-4 giờ | **Trạng thái:** 🔴 Chưa bắt đầu
+**Tuần:** 1 | **Thời gian:** 3-4 giờ | **Trạng thái:** ✅ Hoàn thành (19/11/2025)
 
 **👇 COPY TOÀN BỘ PROMPT BÊN DƯỚI:**
 
@@ -408,7 +462,7 @@ FILES CẦN TẠO:
 2. `frontend/components/dashboard/AppMiniCardHeader.tsx` (new)
 
 ============================================================
-SUCCESS CRITERIA:
+TIÊU CHÍ THÀNH CÔNG:
 ============================================================
 
 - ✅ Header nhất quán across all apps
@@ -418,7 +472,7 @@ SUCCESS CRITERIA:
 - ✅ Content area scrollable nếu overflow
 
 ============================================================
-TECH STACK (nhắc AI):
+TECH STACK:
 ============================================================
 
 - Next.js 16.0.1, React 19.2, TypeScript 5.6
@@ -432,7 +486,7 @@ TECH STACK (nhắc AI):
 
 ### 📋 PROMPT 1.3: Xây Dựng 3 App Minis
 
-**Tuần:** 2 | **Thời gian:** 6-8 giờ | **Trạng thái:** 🔴 Chưa bắt đầu
+**Tuần:** 2 | **Thời gian:** 6-8 giờ | **Trạng thái:** ✅ Hoàn thành (19/11/2025)
 
 **👇 COPY TOÀN BỘ PROMPT BÊN DƯỚI:**
 
@@ -674,7 +728,7 @@ export function TodayTasksApp() {
 **Note:** Requires `tasks` table already exists from Task Management MVP.
 
 ============================================================
-SUCCESS CRITERIA:
+TIÊU CHÍ THÀNH CÔNG:
 ============================================================
 
 - ✅ QuickNotesApp: User type và text persist across sessions (localStorage)
@@ -684,7 +738,7 @@ SUCCESS CRITERIA:
 - ✅ All apps responsive (work on mobile)
 
 ============================================================
-TECH STACK (nhắc AI):
+TECH STACK:
 ============================================================
 
 - Next.js 16.0.1, React 19.2, TypeScript 5.6
@@ -697,14 +751,14 @@ TECH STACK (nhắc AI):
 
 ---
 
-### 📋 PROMPT 1.4: Setup Craft.js Framework
+### 📋 PROMPT 1.4: Thiết lập App Builder Framework
 
-**Tuần:** 3 | **Thời gian:** 2-3 giờ | **Trạng thái:** 🔴 Chưa bắt đầu
+**Tuần:** 3 | **Thời gian:** 2-3 giờ | **Trạng thái:** ✅ Hoàn thành (19/11/2025) - @dnd-kit migration
 
 **👇 COPY TOÀN BỘ PROMPT BÊN DƯỚI:**
 
 ```
-PROMPT 1.4: Setup Craft.js Framework
+PROMPT 1.4: Thiết lập Craft.js Framework
 
 ============================================================
 BỐI CẢNH:
@@ -723,10 +777,10 @@ NHIỆM VỤ:
 npm install @craftjs/core
 npm install @craftjs/layers  # Optional: Layer panel
 
-**2. Setup basic editor structure**
+**2. Thiết lập basic editor structure**
 
 - Create Editor page (`/app-builder`)
-- Setup Craft.js Provider
+- Thiết lập Craft.js Provider
 - Create Canvas area (drag-drop zone)
 - Create Component Palette (sidebar)
 
@@ -736,7 +790,7 @@ npm install @craftjs/layers  # Optional: Layer panel
 - Verify Craft.js state management works
 
 ============================================================
-TECHNICAL REQUIREMENTS:
+TECHNICAL YÊU CẦU:
 ============================================================
 
 **Editor Structure:**
@@ -793,7 +847,7 @@ FILES CẦN TẠO:
 6. `frontend/components/app-builder/Toolbar.tsx` (new)
 
 ============================================================
-SUCCESS CRITERIA:
+TIÊU CHÍ THÀNH CÔNG:
 ============================================================
 
 - ✅ Craft.js editor loads without errors
@@ -802,7 +856,7 @@ SUCCESS CRITERIA:
 - ✅ Craft.js state management working (can select/deselect components)
 
 ============================================================
-TECH STACK (nhắc AI):
+TECH STACK:
 ============================================================
 
 - Next.js 16.0.1, React 19.2, TypeScript 5.6
@@ -811,6 +865,63 @@ TECH STACK (nhắc AI):
 
 ============================================================
 ```
+
+---
+
+### ⚠️ TECHNOLOGY MIGRATION NOTE (PROMPT 1.4)
+
+**Original Plan:** Craft.js
+**Actual Implementation:** @dnd-kit + Zustand
+**Date:** 19/11/2025
+
+**Reason:**Craft.js (v0.2.12) không tương thích với React 19.2.0:
+
+- Drag events (dragstart, dragover, drop) không fire
+- Root cause: React 19 breaking changes (ref callback timing, event handler attachment)
+- Tested official Craft.js examples → cũng failed trong React 19
+
+**Decision:**
+Migrate to **@dnd-kit** + custom Zustand store:
+
+```bash
+npm install @dnd-kit/core @dnd-kit/sortable @dnd-kit/utilities
+npm install zustand
+npm uninstall @craftjs/core @craftjs/layers
+```
+
+**Implementation:**
+
+- ✅ **Zustand store** (`lib/stores/editor.ts`, 334 lines) - Component tree + history management
+- ✅ **DndContext** setup (`app/app-builder/page.tsx`)
+- ✅ **Canvas** với SortableContext (`components/app-builder/Canvas.tsx`)
+- ✅ **ComponentPalette** với useDraggable
+- ✅ **RenderedComponent** với useSortable (nested containers support)
+- ✅ **PropertiesPanel** - Props editor
+- ✅ **Toolbar** - Undo/Redo/Save/Preview
+
+**Trade-offs:**
+
+- ⚠️ More implementation code (~600 lines custom vs Craft.js hooks)
+- ⚠️ Manual tree management (no built-in Frame/Element abstractions)
+- ✅ Better understanding (no black-box magic)
+- ✅ Proven React 19 compatibility
+- ✅ Full control over architecture
+
+**Note on Craft.js:**
+
+> Craft.js là framework xuất sắc cho page builders với built-in abstractions rất mạnh. Khi Craft.js release phiên bản hỗ trợ React 19, nên review lại việc migrate về Craft.js để tận dụng:
+>
+> - Frame/Element component wrappers
+> - Built-in undo/redo
+> - Serialization utilities
+> - Layer management
+>
+> Hiện tại (19/11/2025), Craft.js v0.2.12 (last update: 2+ years ago) chưa compatible.
+
+**Time Impact:**
+
+- Originally estimated: 2-3 hours
+- Actual time: ~21 hours (investigation: 4h, migration: 13h, testing: 4h)
 
 ---
 
@@ -973,7 +1084,7 @@ FILES CẦN TẠO:
 6. `frontend/components/app-builder/ComponentPalette.tsx` (update - add 5 components)
 
 ============================================================
-SUCCESS CRITERIA:
+TIÊU CHÍ THÀNH CÔNG:
 ============================================================
 
 - ✅ 5 components có thể drag vào canvas
@@ -982,7 +1093,7 @@ SUCCESS CRITERIA:
 - ✅ Preview mode render components đúng
 
 ============================================================
-TECH STACK (nhắc AI):
+TECH STACK:
 ============================================================
 
 - Next.js 16.0.1, React 19.2, TypeScript 5.6
@@ -1012,7 +1123,7 @@ Users cần actions để connect components với nhau.
 Example: Button click → Append text from TextInput to SimpleList.
 
 ============================================================
-ACTIONS CẦN BUILD:
+ACTIONS CẦN XÂY DỰNG:
 ============================================================
 
 **1. Append to List**
@@ -1035,7 +1146,7 @@ ACTIONS CẦN BUILD:
 - Action: Toggle visibility (CSS display none)
 
 ============================================================
-TECHNICAL REQUIREMENTS:
+TECHNICAL YÊU CẦU:
 ============================================================
 
 **Action System Design:**
@@ -1087,7 +1198,7 @@ FILES CẦN TẠO:
 4. `frontend/stores/actionsStore.ts` (Zustand store)
 
 ============================================================
-SUCCESS CRITERIA:
+TIÊU CHÍ THÀNH CÔNG:
 ============================================================
 
 - ✅ Actions có thể connect với components (visual workflow)
@@ -1096,7 +1207,7 @@ SUCCESS CRITERIA:
 - ✅ Actions persist when save app definition
 
 ============================================================
-TECH STACK (nhắc AI):
+TECH STACK:
 ============================================================
 
 - Next.js 16.0.1, React 19.2, TypeScript 5.6
@@ -1147,7 +1258,7 @@ NHIỆM VỤ:
 - Runtime render (không phải editor mode)
 
 ============================================================
-TECHNICAL REQUIREMENTS:
+TECHNICAL YÊU CẦU:
 ============================================================
 
 **Serialization:**
@@ -1261,7 +1372,7 @@ FILES CẦN TẠO:
 4. Migration: `supabase/migrations/003_app_minis_table.sql`
 
 ============================================================
-SUCCESS CRITERIA:
+TIÊU CHÍ THÀNH CÔNG:
 ============================================================
 
 - ✅ App save vào database thành công
@@ -1271,7 +1382,7 @@ SUCCESS CRITERIA:
 - ✅ Multiple apps không conflict (isolated state)
 
 ============================================================
-TECH STACK (nhắc AI):
+TECH STACK:
 ============================================================
 
 - Next.js 16.0.1, React 19.2, TypeScript 5.6
@@ -1322,7 +1433,7 @@ TEMPLATE APPS:
 - Actions: Add button → Append to list → Update total
 
 ============================================================
-TECHNICAL REQUIREMENTS:
+TECHNICAL YÊU CẦU:
 ============================================================
 
 **Pre-seed Script:**
@@ -1359,7 +1470,7 @@ FILES CẦN TẠO:
 2. `frontend/app/templates/page.tsx` (Templates gallery)
 
 ============================================================
-SUCCESS CRITERIA:
+TIÊU CHÍ THÀNH CÔNG:
 ============================================================
 
 - ✅ 3 template apps available in Templates gallery
@@ -1368,7 +1479,7 @@ SUCCESS CRITERIA:
 - ✅ Cloned app fully customizable
 
 ============================================================
-TECH STACK (nhắc AI):
+TECH STACK:
 ============================================================
 
 - Next.js 16.0.1, React 19.2, TypeScript 5.6
@@ -1475,7 +1586,7 @@ FILES CẦN TẠO:
 4. `frontend/lib/supabase/marketplace.ts`
 
 ============================================================
-SUCCESS CRITERIA:
+TIÊU CHÍ THÀNH CÔNG:
 ============================================================
 
 - ✅ Marketplace browse page loads < 1s
@@ -1484,7 +1595,7 @@ SUCCESS CRITERIA:
 - ✅ App cards display correctly
 
 ============================================================
-TECH STACK (nhắc AI):
+TECH STACK:
 ============================================================
 
 - Next.js 16.0.1, React 19.2, TypeScript 5.6
@@ -1571,7 +1682,7 @@ FILES CẦN TẠO:
 3. `frontend/lib/supabase/install-app.ts`
 
 ============================================================
-SUCCESS CRITERIA:
+TIÊU CHÍ THÀNH CÔNG:
 ============================================================
 
 - ✅ App detail page loads < 1s
@@ -1580,7 +1691,7 @@ SUCCESS CRITERIA:
 - ✅ Installed app appears in user's library
 
 ============================================================
-TECH STACK (nhắc AI):
+TECH STACK:
 ============================================================
 
 - Next.js 16.0.1, React 19.2, TypeScript 5.6
@@ -1647,7 +1758,7 @@ FILES CẦN TẠO:
 2. `frontend/lib/supabase/publish-app.ts`
 
 ============================================================
-SUCCESS CRITERIA:
+TIÊU CHÍ THÀNH CÔNG:
 ============================================================
 
 - ✅ Publish form validation works
@@ -1656,7 +1767,7 @@ SUCCESS CRITERIA:
 - ✅ Owner can unpublish app
 
 ============================================================
-TECH STACK (nhắc AI):
+TECH STACK:
 ============================================================
 
 - Next.js 16.0.1, React 19.2, TypeScript 5.6
@@ -1750,7 +1861,7 @@ TARGET:
 - 10 active users (use app >= 3 times)
 
 ============================================================
-SUCCESS CRITERIA:
+TIÊU CHÍ THÀNH CÔNG:
 ============================================================
 
 - ✅ 20+ signups within 7 days
@@ -1848,7 +1959,7 @@ FILES CẦN TẠO:
 5. Migration: `supabase/migrations/004_feedback_table.sql`
 
 ============================================================
-SUCCESS CRITERIA:
+TIÊU CHÍ THÀNH CÔNG:
 ============================================================
 
 - ✅ 80% users complete onboarding
@@ -1856,7 +1967,7 @@ SUCCESS CRITERIA:
 - ✅ Average rating >= 4.0
 
 ============================================================
-TECH STACK (nhắc AI):
+TECH STACK:
 ============================================================
 
 - Next.js 16.0.1, React 19.2, TypeScript 5.6
@@ -1957,7 +2068,7 @@ FILES CẦN TẠO:
 3. `frontend/components/admin/MetricsCard.tsx`
 
 ============================================================
-SUCCESS CRITERIA:
+TIÊU CHÍ THÀNH CÔNG:
 ============================================================
 
 - ✅ Dashboard hiển thị accurate metrics
@@ -1965,7 +2076,7 @@ SUCCESS CRITERIA:
 - ✅ Export metrics to CSV
 
 ============================================================
-TECH STACK (nhắc AI):
+TECH STACK:
 ============================================================
 
 - Next.js 16.0.1, React 19.2, TypeScript 5.6
@@ -2087,6 +2198,7 @@ chmod +x update-status.sh
 ```powershell
 .\update-status.ps1 -PromptNumber "1.1" -FeatureName "DashboardGrid Component"
 ```
+
 ```
 
 ---
@@ -2238,22 +2350,22 @@ Expected output: [Files/code muốn nhận]
 
 ## 📊 PROMPT PROGRESS TRACKER
 
-| Prompt  | Name                       | Week | Status | Completed |
-| ------- | -------------------------- | ---- | ------ | --------- |
-| **1.1** | DashboardGrid              | 1    | 🔴     | -         |
-| **1.2** | AppMiniCard                | 1    | 🔴     | -         |
-| **1.3** | 3 App Minis                | 2    | 🔴     | -         |
-| **1.4** | Setup Craft.js             | 3    | 🔴     | -         |
-| **1.5** | 5 Builder Components       | 3    | 🔴     | -         |
-| **1.6** | 3 Actions System           | 4    | 🔴     | -         |
-| **1.7** | Save/Load + Renderer       | 4    | 🔴     | -         |
-| **1.8** | 3 Template Apps            | 4    | 🔴     | -         |
-| **2.1** | Marketplace Browse         | 5    | 🔴     | -         |
-| **2.2** | App Detail + Install       | 5-6  | 🔴     | -         |
-| **2.3** | Publish Flow               | 6    | 🔴     | -         |
-| **3.1** | Beta Recruitment           | 7    | 🔴     | -         |
-| **3.2** | Onboarding + Feedback      | 8    | 🔴     | -         |
-| **4.1** | Analytics & Decision       | 9    | 🔴     | -         |
+| Prompt        | Name                  | Week | Status | Completed |
+| ------------- | --------------------- | ---- | ------ | --------- |
+| **1.1** | DashboardGrid         | 1    | 🔴     | -         |
+| **1.2** | AppMiniCard           | 1    | 🔴     | -         |
+| **1.3** | 3 App Minis           | 2    | 🔴     | -         |
+| **1.4** | Thiết lập Craft.js  | 3    | 🔴     | -         |
+| **1.5** | 5 Builder Components  | 3    | 🔴     | -         |
+| **1.6** | 3 Actions System      | 4    | 🔴     | -         |
+| **1.7** | Save/Load + Renderer  | 4    | 🔴     | -         |
+| **1.8** | 3 Template Apps       | 4    | 🔴     | -         |
+| **2.1** | Marketplace Browse    | 5    | 🔴     | -         |
+| **2.2** | App Detail + Install  | 5-6  | 🔴     | -         |
+| **2.3** | Publish Flow          | 6    | 🔴     | -         |
+| **3.1** | Beta Recruitment      | 7    | 🔴     | -         |
+| **3.2** | Onboarding + Feedback | 8    | 🔴     | -         |
+| **4.1** | Analytics & Decision  | 9    | 🔴     | -         |
 
 **Legend:**
 

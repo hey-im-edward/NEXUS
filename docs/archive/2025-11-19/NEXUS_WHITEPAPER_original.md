@@ -1,12 +1,10 @@
 # 📘 NEXUS WHITEPAPER
 
-## Tuyên Ngôn Platform First (The Platform First Manifesto)
+## The Platform First Manifesto
 
 **Phiên bản:** 3.0 (The Platform Pivot)
-**Ngày cập nhật:** 19 tháng 11, 2025
-**Trạng thái:** Platform MVP Strategy - Week 1 Hoàn Thành (PROMPT 1.1-1.4)
-
-**⚠️ Tech Stack Update (19/11/2025):** App Builder migrated from Craft.js → @dnd-kit + Zustand due to React 19 incompatibility. See [TECH_STACK.md](../03-REFERENCE/TECH_STACK.md) for details.
+**Ngày cập nhật:** 18 tháng 11, 2025
+**Trạng thái:** Platform MVP Strategy - Week 1 Hoàn Thành
 
 ---
 
@@ -33,7 +31,7 @@
 - 3.3. Lợi Thế Của Người Đi Một Mình (Solo Founder's Edge)
 - 3.4. Vũ Khí Bí Mật: AI-Driven Development
 - 3.5. Phân Tích Cạnh Tranh (vs Notion, Airtable, ClickUp, Bubble)
-- 3.6. Quyết Định Pivot: 13/11/2025
+- 3.6. Quyết Định Pivot: 13/11/2024
 
 **PHẦN IV: SÁCH TRẮNG KỸ THUẬT & LỘ TRÌNH THỰC THI**
 
@@ -132,13 +130,13 @@ Lan nghe mọi người khen Notion, cô ấy nghĩ: "Notion flexible, mình s�
 
 ## 1.2. Tuyên bố Sứ mệnh
 
-### Tuyên Bố Tầm Nhìn (Vision Statement)
+### Vision Statement
 
 > **NEXUS là "Hệ điều hành" cho Năng suất Cá nhân và Đội Nhóm Nhỏ**
 >
 > Chúng tôi tin rằng mọi người, không chỉ các lập trình viên, đều có quyền tự tạo ra công cụ làm việc phù hợp chính xác với quy trình của họ.
 
-### Sứ Mệnh Cốt Lõi (Core Mission)
+### Core Mission
 
 **Democratize Tools Creation** (Dân chủ hóa Việc Tạo ra Công cụ)
 
@@ -158,23 +156,23 @@ Giống như:
 - ❌ **Old thinking:** NEXUS là task manager tốt hơn
 - ✅ **New thinking:** NEXUS là platform để build tools, trong đó Task Manager chỉ là một ví dụ
 
-### Tầm Nhìn 3 Năm (3-Year Vision)
+### 3-Year Vision
 
-**Năm 1 (2025): Platform MVP**
+**Year 1 (2025): Platform MVP**
 
 - ✅ Dashboard Grid + App Minis working
 - ✅ No-Code App Builder (simple components)
 - ✅ Task Management ở mức "đủ tốt" (proof of concept)
 - 🎯 **Goal:** 100 users build apps, 50 apps được share
 
-**Năm 2 (2026): Marketplace & Low-Code**
+**Year 2 (2026): Marketplace & Low-Code**
 
 - ✅ Low-Code Builder (conditional logic, database integration)
 - ✅ Marketplace với 500+ shared apps
 - ✅ Community-driven development
 - 🎯 **Goal:** 5,000 users, 1,000 apps, $10K MRR
 
-**Năm 3 (2027): Ecosystem & God Mode**
+**Year 3 (2027): Ecosystem & God Mode**
 
 - ✅ God Mode (custom code, API integrations)
 - ✅ Developer tools (Git, CI/CD, testing)
@@ -189,14 +187,14 @@ Giống như:
 
 **NEXUS không phải là một ứng dụng. NEXUS là một Platform.**
 
-**Platform so với Product (Platform vs Product):**
+**Platform vs Product:**
 
-| Đặc điểm          | Product (Todoist, ClickUp)      | Platform (NEXUS)                                       |
-| --------------------- | ------------------------------- | ------------------------------------------------------ |
-| **Tính năng** | Cố định, do PM quyết định | Tùy chỉnh, do user tạo ra                           |
-| **Mở rộng**   | Cài đặt integrations         | Build apps mới                                        |
-| **Giá trị**   | Tool cho user                   | Playground + building blocks                           |
-| **Ecosystem**   | Đóng, 1 vendor                | Mở, community-driven                                  |
+| Đặc điểm      | Product (Todoist, ClickUp)     | Platform (NEXUS)                                   |
+| ------------- | ------------------------------ | -------------------------------------------------- |
+| **Tính năng** | Cố định, do PM quyết định      | Tùy chỉnh, do user tạo ra                          |
+| **Mở rộng**   | Cài đặt integrations           | Build apps mới                                     |
+| **Giá trị**   | Tool cho user                  | Playground + building blocks                       |
+| **Ecosystem** | Đóng, 1 vendor                 | Mở, community-driven                               |
 | **Ví dụ**     | "Task manager với 50 features" | "Platform để build task manager và 1000 apps khác" |
 
 ### 3 Trụ Cột Của NEXUS
@@ -298,15 +296,15 @@ Developer → God Mode (full customization)
 
 **So sánh nhanh:**
 
-|                          | NEXUS                              | Notion                          | Airtable           | ClickUp                   | Bubble.io               |
-| ------------------------ | ---------------------------------- | ------------------------------- | ------------------ | ------------------------- | ----------------------- |
-| **Core Concept**   | Platform để build apps           | Document workspace              | Database workspace | Feature-rich task manager | No-code app builder     |
-| **Customization**  | ⭐⭐⭐⭐⭐ App Builder             | ⭐⭐⭐ Templates                | ⭐⭐⭐ Views       | ⭐⭐ Config               | ⭐⭐⭐⭐⭐ Full builder |
-| **Learning Curve** | ⭐⭐⭐ Progressive                 | ⭐⭐ Moderate                   | ⭐⭐⭐ Steep       | ⭐ Very steep             | ⭐⭐⭐⭐ Very steep     |
-| **Speed**          | ⭐⭐⭐⭐ Fast                      | ⭐⭐⭐ OK                       | ⭐⭐⭐ OK          | ⭐⭐ Slow                 | ⭐⭐⭐⭐ Fast           |
-| **Entry Point**    | ✅ Task Manager                    | ✅ Documents                    | ✅ Spreadsheet     | ✅ Tasks                  | ❌ Empty canvas         |
-| **Marketplace**    | ✅ Yes                             | ❌ Templates only               | ❌ No              | ❌ No                     | ✅ Plugins              |
-| **Pricing**        | $0-50/mo               | $4-8/user | $10-20/user        | $7-19/user | $25-115/mo         |                           |                         |
+|                    | NEXUS                  | Notion             | Airtable           | ClickUp                   | Bubble.io               |
+| ------------------ | ---------------------- | ------------------ | ------------------ | ------------------------- | ----------------------- | --- | --- |
+| **Core Concept**   | Platform để build apps | Document workspace | Database workspace | Feature-rich task manager | No-code app builder     |
+| **Customization**  | ⭐⭐⭐⭐⭐ App Builder | ⭐⭐⭐ Templates   | ⭐⭐⭐ Views       | ⭐⭐ Config               | ⭐⭐⭐⭐⭐ Full builder |
+| **Learning Curve** | ⭐⭐⭐ Progressive     | ⭐⭐ Moderate      | ⭐⭐⭐ Steep       | ⭐ Very steep             | ⭐⭐⭐⭐ Very steep     |
+| **Speed**          | ⭐⭐⭐⭐ Fast          | ⭐⭐⭐ OK          | ⭐⭐⭐ OK          | ⭐⭐ Slow                 | ⭐⭐⭐⭐ Fast           |
+| **Entry Point**    | ✅ Task Manager        | ✅ Documents       | ✅ Spreadsheet     | ✅ Tasks                  | ❌ Empty canvas         |
+| **Marketplace**    | ✅ Yes                 | ❌ Templates only  | ❌ No              | ❌ No                     | ✅ Plugins              |
+| **Pricing**        | $0-50/mo               | $4-8/user          | $10-20/user        | $7-19/user                | $25-115/mo              |     |     |
 
 **Unique Value Props:**
 
@@ -315,14 +313,17 @@ Developer → God Mode (full customization)
    - ✅ NEXUS: Thực sự là platform, không phải document workspace
    - ✅ NEXUS: App Builder 3-Level (No-Code → God Mode)
    - ✅ NEXUS: Marketplace với community apps
+
 2. **vs Airtable:**
 
    - ✅ NEXUS: Not database-first, mà app-first
    - ✅ NEXUS: Dễ dùng hơn cho non-technical users
+
 3. **vs ClickUp:**
 
    - ✅ NEXUS: Không phải feature bloat, mà platform approach
    - ✅ NEXUS: Users tạo features họ cần, không bị overwhelm
+
 4. **vs Bubble.io:**
 
    - ✅ NEXUS: Có entry point (Task Manager) → Dễ onboarding
@@ -390,7 +391,7 @@ Developer → God Mode (full customization)
 
 ---
 
-### Khoảnh Khắc "Aha!" (The "Aha!" Moment)
+### The "Aha!" Moment
 
 **Câu chuyện khởi nguồn:**
 
@@ -402,7 +403,7 @@ Week 0: "Đợi đã... Thị trường đã có 100+ task managers rồi."
 Insight: "Vấn đề không phải là task manager.
           Vấn đề là mọi người cần DIFFERENT tools."
    ↓
-Decision (13/11/2025): "Pivot to Platform.
+Decision (13/11/2024): "Pivot to Platform.
                         Thay vì build 1 tool tốt,
                         build 1 platform để users tự build tools họ cần."
    ↓
@@ -427,16 +428,16 @@ NEXUS được xây dựng dựa trên 3 trụ cột chính, mỗi trụ cột �
 
 ### Trụ Cột 1: Dashboard Grid (Nền tảng Hiển thị)
 
-**Khái niệm (Concept):** iOS Home Screen cho Productivity Tools
+**Khái niệm:** iOS Home Screen cho Productivity Tools
 
-**Chức năng (Functionality):**
+**Functionality:**
 
 - **Grid Layout:** Sử dụng `react-grid-layout` để drag-and-drop, resize widgets
 - **Responsive:** Desktop: tự do arrange, Mobile: auto-stack vertically
 - **Persistent:** Layout được lưu vào bảng `user_dashboard_layouts` trên Supabase
 - **Multi-Dashboard:** Users có thể tạo nhiều dashboards cho contexts khác nhau
 
-**Chi Tiết Kỹ Thuật (Technical Details):**
+**Technical Details:**
 
 ```typescript
 // Dashboard Layout Schema
@@ -457,7 +458,7 @@ NEXUS được xây dựng dựa trên 3 trụ cột chính, mỗi trụ cột �
 }
 ```
 
-**Trải Nghiệm Người Dùng (User Experience):**
+**User Experience:**
 
 1. User mở dashboard → Thấy grid với App Minis
 2. Click "Add App" → Chọn từ library hoặc marketplace
@@ -468,16 +469,16 @@ NEXUS được xây dựng dựa trên 3 trụ cột chính, mỗi trụ cột �
 
 ### Trụ Cột 2: App Minis (Micro-Applications)
 
-**Khái niệm (Concept):** Các ứng dụng độc lập, nhỏ gọn, chạy trong dashboard
+**Khái niệm:** Các ứng dụng độc lập, nhỏ gọn, chạy trong dashboard
 
-**Đặc điểm (Characteristics):**
+**Đặc điểm:**
 
 - **Self-contained:** Mỗi App Mini là một React component độc lập
 - **Sandboxed:** Không can thiệp lẫn nhau (isolated state)
 - **Composable:** Có thể kết hợp nhiều App Minis trên cùng dashboard
 - **Stateful:** Lưu state riêng vào localStorage hoặc Supabase
 
-**Ví Dụ Built-in App Minis (Example Built-in App Minis):**
+**Ví dụ Built-in App Minis:**
 
 **1. Quick Notes**
 
@@ -503,7 +504,7 @@ NEXUS được xây dựng dựa trên 3 trụ cột chính, mỗi trụ cột �
 // Use case: Quick view of urgent tasks
 ```
 
-**Cấu Trúc App Mini (App Mini Schema):**
+**App Mini Schema:**
 
 ```typescript
 {
@@ -524,15 +525,15 @@ NEXUS được xây dựng dựa trên 3 trụ cột chính, mỗi trụ cột �
 
 ### Trụ Cột 3: App Builder (Công cụ Xây dựng)
 
-**Khái niệm (Concept):** No-code/Low-code tool để users tự tạo App Minis
+**Khái niệm:** No-code/Low-code tool để users tự tạo App Minis
 
-**Kiến Trúc (Architecture):**
+**Architecture:**
 
 - **Builder UI:** Canvas + Component Palette + Properties Panel
 - **Runtime:** App Renderer đọc JSON definition và render React components
 - **Storage:** JSON definition lưu vào `user_apps` table
 
-**Quy Trình Làm Việc (Workflow):**
+**Workflow:**
 
 ```
 User vào /app-builder
@@ -548,7 +549,7 @@ Click "Publish to Dashboard"
 App xuất hiện trong App Library → Add to Dashboard
 ```
 
-**Ví Dụ JSON Definition (JSON Definition Example):**
+**JSON Definition Example:**
 
 ```json
 {
@@ -580,7 +581,7 @@ App xuất hiện trong App Library → Add to Dashboard
 
 ---
 
-### Sự Tương Tác Giữa 3 Trụ Cột (Interaction Between 3 Pillars)
+### Sự Tương Tác Giữa 3 Trụ Cột
 
 ```
 ┌─────────────────────────────────────────┐
@@ -609,7 +610,7 @@ App xuất hiện trong App Library → Add to Dashboard
         └──────────────┘
 ```
 
-**Luồng (Flow):**
+**Flow:**
 
 1. User builds app với **App Builder** → JSON lưu vào DB
 2. User adds app vào **Dashboard Grid** → Layout được persist
@@ -621,11 +622,11 @@ App xuất hiện trong App Library → Add to Dashboard
 
 ## 2.2. App Builder 3 Cấp Độ (No-Code, Low-Code, God Mode)
 
-### Chiến Lược Progressive Disclosure (Progressive Disclosure Strategy)
+### Progressive Disclosure Strategy
 
-**Triết Lý (Philosophy):** Không overwhelm users với complexity ngay từ đầu. Cho phép users "grow" với platform.
+**Triết lý:** Không overwhelm users với complexity ngay từ đầu. Cho phép users "grow" với platform.
 
-**Kế Hoạch Triển Khai (Rollout Plan):**
+**Kế hoạch Rollout:**
 
 ```
 Week 0-4:  No-Code MVP        [████████░░] 80%
@@ -637,15 +638,15 @@ Year 2:    God Mode (nếu có PMF)
 
 ### Level 1: No-Code Builder (MVP - Tuần 0-4)
 
-**Đối Tượng Mục Tiêu (Target Audience):**
+**Target Audience:**
 
 - Casual users không biết code
 - Personal/family use cases
 - Entry point cho platform
 
-**Khả Năng (Capabilities):**
+**Capabilities:**
 
-**Các Component Có Sẵn (Components Available - 5 cơ bản):**
+**Components Available (5 basic):**
 
 1. **Text Input** - User nhập text
 2. **Button** - Click để trigger action
@@ -653,13 +654,13 @@ Year 2:    God Mode (nếu có PMF)
 4. **Text Display** - Hiển thị dynamic text (từ input)
 5. **Simple List** - Hiển thị danh sách items
 
-**Các Hành Động Có Sẵn (Actions Available - 3 cơ bản):**
+**Actions Available (3 basic):**
 
 1. **Append to List** - Thêm item vào list
 2. **Clear Input** - Xóa input field
 3. **Show/Hide** - Toggle visibility
 
-**Giới Hạn (Limitations - Có chủ ý):**
+**Limitations (Intentional):**
 
 - ❌ No conditional logic (if/else)
 - ❌ No database integration
@@ -667,7 +668,7 @@ Year 2:    God Mode (nếu có PMF)
 - ❌ No external API calls
 - ❌ State chỉ lưu trong localStorage
 
-**Ví Dụ: Guest Book App (Example: Guest Book App)**
+**Example: Guest Book App**
 
 ```
 Components:
@@ -680,7 +681,7 @@ User flow:
 User nhập tên → Click Submit → Tên hiển thị trong list
 ```
 
-**Tại Sao Điều Này Là Đủ (Why This Is Enough):**
+**Why This Is Enough:**
 
 - ✅ Users có thể build useful apps (Notes, Shopping List, Guest Book)
 - ✅ Proof of concept: Platform approach works
@@ -699,16 +700,16 @@ User nhập tên → Click Submit → Tên hiển thị trong list
 
 ### Level 2: Low-Code Builder (Tuần 9-12, nếu có validation)
 
-**Đối Tượng Mục Tiêu (Target Audience):**
+**Target Audience:**
 
 - Power users
 - Small business owners
 - Tech-savvy individuals
 - Freelancers cần custom tools
 
-**Khả Năng Mới (New Capabilities):**
+**New Capabilities:**
 
-**1. Logic Có Điều Kiện (Conditional Logic - Visual Workflow Builder)**
+**1. Conditional Logic (Visual Workflow Builder)**
 
 ```
 IF [Status] = "New"
@@ -718,34 +719,34 @@ ELSE [Assign to] = "User B"
 
 **UI:** Zapier-style workflow builder, drag-drop logic blocks
 
-**2. Tích Hợp Cơ Sở Dữ Liệu (Database Integration - Supabase Tables)**
+**2. Database Integration (Supabase Tables)**
 
 - Connect to existing Supabase tables
 - CRUD operations: Create, Read, Update, Delete
 - Real-time subscriptions
 - Row-level security (automatic isolation per user)
 
-**3. Xác Thực Form (Form Validation)**
+**3. Form Validation**
 
 - Email format validation
 - Required fields
 - Min/max length
 - Custom error messages
 
-**4. Tính Toán Dữ Liệu (Data Calculations)**
+**4. Data Calculations**
 
 - SUM, COUNT, AVERAGE
 - Simple formulas (giống Excel)
 - Display calculated values
 
-**5. Tùy Chỉnh Giao Diện (Custom Styling)**
+**5. Custom Styling**
 
 - Color picker
 - Font selection
 - Spacing adjustments
 - Border radius, shadows
 
-**Ví Dụ: CRM với Auto-Assignment (Example: CRM with Auto-Assignment)**
+**Example: CRM with Auto-Assignment**
 
 ```
 Components:
@@ -767,7 +768,7 @@ Table: clients
 Columns: name, email, status, assigned_to, created_at
 ```
 
-**Gói Giá (Pricing Tier):** Pro Plan ($10/tháng)
+**Pricing Tier:** Pro Plan ($10/month)
 
 - Unlock Low-Code features
 - Unlimited apps
@@ -778,16 +779,16 @@ Columns: name, email, status, assigned_to, created_at
 
 ### Level 3: God Mode (Post-MVP, nếu có PMF)
 
-**Đối Tượng Mục Tiêu (Target Audience):**
+**Target Audience:**
 
 - Professional developers
 - Development teams
 - Agencies building client tools
 - Enterprises cần full control
 
-**Khả Năng Developer Đầy Đủ (Full Developer Capabilities):**
+**Full Developer Capabilities:**
 
-**1. Trình Soạn Thảo Code Tùy Chỉnh (Custom Code Editor)**
+**1. Custom Code Editor**
 
 - Monaco Editor (VS Code engine)
 - Full TypeScript support
@@ -795,14 +796,14 @@ Columns: name, email, status, assigned_to, created_at
 - Auto-completion
 - Linting & error checking
 
-**2. Tích Hợp API (API Integrations)**
+**2. API Integrations**
 
 - REST APIs
 - GraphQL queries
 - Webhooks
 - OAuth integrations (Stripe, HubSpot, Salesforce)
 
-**3. React Components Tùy Chỉnh (Custom React Components)**
+**3. Custom React Components**
 
 ```tsx
 // User có thể viết custom components
@@ -828,28 +829,28 @@ function CustomCRM() {
 }
 ```
 
-**4. Quản Lý Phiên Bản (Version Control - Git Integration)**
+**4. Version Control (Git Integration)**
 
 - Push/pull app definitions to GitHub
 - Branching & merging
 - Code review workflow
 - Rollback to previous versions
 
-**5. CI/CD Pipeline (CI/CD Pipeline)**
+**5. CI/CD Pipeline**
 
 - Auto-deploy on push
 - Testing framework (Jest, Playwright)
 - Environment variables
 - Staging vs Production
 
-**6. Cộng Tác Nhóm (Team Collaboration)**
+**6. Team Collaboration**
 
 - Code review system
 - Comments & discussions
 - Role-based permissions (Owner, Editor, Viewer)
 - Audit logs
 
-**Gói Giá (Pricing Tier):** Enterprise Plan ($50+/tháng)
+**Pricing Tier:** Enterprise Plan ($50+/month)
 
 - God Mode enabled
 - Team features (up to 10 devs)
@@ -859,25 +860,25 @@ function CustomCRM() {
 
 ---
 
-### So Sánh: 3 Cấp Độ (Comparison: 3 Levels)
+### Comparison: 3 Levels
 
-| Feature              | No-Code        | Low-Code                         | God Mode         |  |
-| -------------------- | -------------- | -------------------------------- | ---------------- | - |
-| **Components** | 5 basic        | 15+ advanced                     | Unlimited custom |  |
-| **Logic**      | ❌ None        | ✅ Visual workflows              | ✅ Full code     |  |
-| **Database**   | ❌ No          | ✅ Supabase tables               | ✅ Any database  |  |
-| **Styling**    | ❌ Preset only | ✅ Custom colors/fonts           | ✅ Full CSS      |  |
-| **APIs**       | ❌ No          | ❌ No                            | ✅ Yes           |  |
-| **Git**        | ❌ No          | ❌ No                            | ✅ Yes           |  |
-| **Team**       | ❌ Solo        | ✅ Small teams                   | ✅ Full teams    |  |
-| **Price**      | Free           | $10/mo                 | $50+/mo |                  |  |
-| **Timeline**   | Week 0-4       | Week 9-12                        | Year 2           |  |
+| Feature        | No-Code        | Low-Code               | God Mode         |
+| -------------- | -------------- | ---------------------- | ---------------- | --- |
+| **Components** | 5 basic        | 15+ advanced           | Unlimited custom |
+| **Logic**      | ❌ None        | ✅ Visual workflows    | ✅ Full code     |
+| **Database**   | ❌ No          | ✅ Supabase tables     | ✅ Any database  |
+| **Styling**    | ❌ Preset only | ✅ Custom colors/fonts | ✅ Full CSS      |
+| **APIs**       | ❌ No          | ❌ No                  | ✅ Yes           |
+| **Git**        | ❌ No          | ❌ No                  | ✅ Yes           |
+| **Team**       | ❌ Solo        | ✅ Small teams         | ✅ Full teams    |
+| **Price**      | Free           | $10/mo                 | $50+/mo          |     |
+| **Timeline**   | Week 0-4       | Week 9-12              | Year 2           |
 
 ---
 
-### Tại Sao Các Cấp Độ Tiến Triển Hoạt Động (Why Progressive Levels Work)
+### Why Progressive Levels Work
 
-**1. Phễu Onboarding (Onboarding Funnel):**
+**1. Onboarding Funnel:**
 
 ```
 100 users sign up (No-Code)
@@ -887,13 +888,13 @@ function CustomCRM() {
 6 users upgrade to God Mode (professional developers)
 ```
 
-**2. Mô Hình Doanh Thu (Revenue Model):**
+**2. Revenue Model:**
 
 - **Free tier:** Acquisition (viral growth)
 - **Pro tier:** Main revenue ($10/mo × volume)
 - **Enterprise:** High LTV ($50-200/mo × few customers)
 
-**3. Giữ Chân Người Dùng (Retention):**
+**3. Retention:**
 
 - Users "grow" với platform → Switching cost tăng
 - Đã build 10 apps → Khó migrate sang platform khác
@@ -903,22 +904,22 @@ function CustomCRM() {
 
 ## 2.3. Task Management: "Keep It, Don't Polish It"
 
-### Quyết Định Chiến Lược (Strategic Decision - 13/11/2025)
+### Strategic Decision (13/11/2025)
 
-**Quyết Định (Decision):**
+**Quyết định:**
 
 > **DỪNG đánh bóng Task Management. Đóng băng ở mức "đủ tốt". Tập trung vào Platform MVP.**
 
-**Lý Do (Rationale):**
+**Rationale:**
 
-**1. Thị trường Task Management đã quá đông đúc (Task Management market is too crowded):**
+**1. Thị trường Task Management đã quá đông đúc:**
 
 - 100+ task managers (Todoist, ClickUp, Asana, Linear, Height, Sunsama...)
 - Người dùng đã có công cụ yêu thích
 - Switching cost cao (data migration, habit change)
 - Khó cạnh tranh feature-to-feature với players có $100M funding
 
-**2. Nguy Cơ Feature Creep (Feature Creep Risk):**
+**2. Nguy cơ Feature Creep:**
 
 ```
 "Cần thêm tags" → "Cần modal" → "Cần search"
@@ -927,7 +928,7 @@ function CustomCRM() {
 → 6 tháng trôi qua, vẫn là task manager thứ 100
 ```
 
-**3. Platform First là điểm khác biệt thực sự (Platform First is real differentiation):**
+**3. Platform First là differentiation thực sự:**
 
 - Không ai đang làm "Task Manager + App Builder + Marketplace"
 - Đây là moat thực sự
@@ -935,7 +936,7 @@ function CustomCRM() {
 
 ---
 
-### Bài Học Từ Các Platform Thành Công (Lessons Learned from Successful Platforms)
+### Lessons Learned from Successful Platforms
 
 **Notion:**
 
@@ -961,7 +962,7 @@ function CustomCRM() {
 - ❌ Khó onboarding → Users không biết bắt đầu từ đâu
 - ✅ **Lesson:** Cần có một app cụ thể làm entry point
 
-**Chiến Lược NEXUS (NEXUS Strategy):**
+**NEXUS Strategy:**
 
 - ✅ **Giữ** Task Management ở mức "đủ tốt" (entry point)
 - ✅ **Không polish** để cạnh tranh với Todoist
@@ -969,9 +970,9 @@ function CustomCRM() {
 
 ---
 
-### "Đủ Tốt" Có Nghĩa Là Gì (What "Good Enough" Means)
+### What "Good Enough" Means
 
-**✅ Tính Năng Cần GIỮ LẠI (Features to KEEP - Already Implemented):**
+**✅ Features to KEEP (Already Implemented):**
 
 1. **Basic CRUD**
 
@@ -979,44 +980,52 @@ function CustomCRM() {
    - ✅ Edit task (inline edit)
    - ✅ Complete task (checkbox)
    - ✅ Task list views (Today, Inbox)
+
 2. **Kanban Board**
 
    - ✅ Drag-and-drop between columns
    - ✅ Custom board columns
    - ✅ Visual project management
+
 3. **Priority System**
 
    - ✅ Set priority (High, Medium, Low)
    - ✅ Priority badges with colors
    - ✅ Sort by priority
+
 4. **Basic Filters**
 
    - ✅ Today view (tasks due today)
    - ✅ Inbox view (unscheduled tasks)
    - ✅ Project-based filtering
 
-**🔄 Tính Năng Để SAU (Features to BACKLOG - Not Now):**
+**🔄 Features to BACKLOG (Not Now):**
 
 1. **Tags System** → Backlog
 
    - Reason: Nice-to-have, không critical
    - Alternative: Users có thể build "Tag Manager" app với App Builder
+
 2. **Task Detail Modal** → Backlog
 
    - Reason: Inline edit đã "đủ tốt"
    - Alternative: Future enhancement nếu users yêu cầu nhiều
+
 3. **Delete Task** → Backlog (Hide instead)
 
    - Reason: Soft delete dễ implement hơn
    - Implementation: Thêm `is_archived` column
+
 4. **Keyboard Shortcuts** → Backlog
 
    - Reason: Power user feature, không critical cho MVP
    - Alternative: Add later khi có power users
+
 5. **Recurring Tasks (Advanced)** → Backlog
 
    - Reason: Complex logic, tốn effort
    - Alternative: Basic recurring OK, advanced patterns sau
+
 6. **Calendar View** → Backlog
 
    - Reason: Can build với App Builder
@@ -1065,16 +1074,19 @@ Month 2: User has 5 custom apps on dashboard → Platform stickiness
 
    - 80% effort → Platform features (App Builder, Marketplace)
    - 20% effort → Maintaining Task Management (bug fixes only)
+
 2. **Clear Positioning:**
 
    - "We're not another task manager"
    - "We're a platform to build ANY productivity tool"
    - Task Manager là example, không phải competitor
+
 3. **Avoid Feature Creep:**
 
    - No endless polishing
    - No "just one more feature" syndrome
    - Pivot success depends on discipline
+
 4. **User Clarity:**
 
    - Users không confused về product identity
@@ -1710,20 +1722,24 @@ CREATE TABLE app_reviews (
 
    - Bản chất vẫn là documents với embedded databases
    - Không phải platform để build **standalone apps**
+
 2. **Performance issues:**
 
    - Với 500+ records: Load time 3-5 giây
    - Real-time collaboration lag
    - Mobile app chậm
+
 3. **No Marketplace:**
 
    - Có templates, nhưng không có app marketplace
    - Không thể "install" apps như App Store
    - Sharing phức tạp (duplicate template → manual setup)
+
 4. **Limited automation:**
 
    - Không có visual workflow builder (như Zapier)
    - Automation đơn giản (trigger-based only)
+
 5. **No sandboxing for user content:**
 
    - Nếu cho phép users tạo "apps", làm sao isolate malicious code?
@@ -1765,10 +1781,10 @@ CREATE TABLE app_reviews (
 - Budget: $10-30/month
 - Pain: No true app builder for productivity
 
-**Quy mô thị trường:**
+**Market Size:**
 
-- Global productivity software market: **$50B** (2025)
-- No-code/Low-code market: **$13B** (2025, growing 23% YoY)
+- Global productivity software market: **$50B** (2024)
+- No-code/Low-code market: **$13B** (2024, growing 23% YoY)
 - SME segment: **$15-20B** addressable
 - **NEXUS TAM (Total Addressable Market):** ~$5-8B (conservative estimate)
 
@@ -1783,17 +1799,20 @@ CREATE TABLE app_reviews (
    - Notion (docs) + Trello (tasks) + Google Sheets (data) + Zapier (automation)
    - Cost: $30-50/user/month
    - Effort: 5-10 hours/month maintaining integrations
+
 2. **Over-paying for enterprise tools:**
 
    - Dùng ClickUp nhưng chỉ dùng 30% features
    - Cost: $19/user/month
    - Effort: 3 ngày setup ban đầu
+
 3. **DIY với Google Sheets:**
 
    - Build "apps" trong Sheets với formulas + Apps Script
    - Cost: Free
    - Effort: 10-20 hours initial setup
    - Problems: Không scalable, khó maintain
+
 4. **Chịu đựng fragmentation:**
 
    - Accept tool switching hell
@@ -1963,8 +1982,8 @@ CREATE TABLE app_reviews (
 
 ### Summary: Why Big Tech Won't Build This
 
-| Company             | Has Capability? | Will Build? | Why Not?                                      |
-| ------------------- | --------------- | ----------- | --------------------------------------------- |
+| Company       | Has Capability? | Will Build? | Why Not?                                      |
+| ------------- | --------------- | ----------- | --------------------------------------------- |
 | **Microsoft** | ✅ Yes          | ❌ No       | Organizational silos, revenue cannibalization |
 | **Atlassian** | ✅ Yes          | ❌ No       | Brand separation strategy, technical debt     |
 | **Notion**    | ✅ Yes          | ❌ No       | Architecture rewrite needed, focusing on AI   |
@@ -2095,7 +2114,7 @@ vs.
 - Marketplace: 3-6 tháng
 - **Total: 18-36 tháng** (1.5-3 năm) → Không khả thi cho solo founder
 
-#### With AI (2025):
+#### With AI (2024):
 
 **AI capabilities:**
 
@@ -2177,8 +2196,8 @@ Result: 15 minutes instead of 2 hours
 
 ### Summary: The Solo Founder Edge
 
-| Advantage             | Impact                     | How to Maximize                          |
-| --------------------- | -------------------------- | ---------------------------------------- |
+| Advantage       | Impact                     | How to Maximize                          |
+| --------------- | -------------------------- | ---------------------------------------- |
 | **Speed**       | 100x faster decisions      | Say no to everything not critical        |
 | **Focus**       | Deep work, no distractions | Block time, single-task                  |
 | **Low Cost**    | Can survive indefinitely   | Use free tiers, avoid premature scaling  |
@@ -2197,16 +2216,16 @@ Result: 15 minutes instead of 2 hours
 
 #### Notion vs NEXUS
 
-| Tiêu chí                | Notion                                                         | NEXUS                                      |  |
-| ------------------------- | -------------------------------------------------------------- | ------------------------------------------ | - |
-| **Core Value Prop** | All-in-one workspace (docs + databases)                        | Platform to build custom productivity apps |  |
-| **Flexibility**     | Templates + Database views                                     | Full app builder (no-code/low-code)        |  |
-| **Performance**     | Slow với 500+ records                                         | Tối ưu cho app minis (isolated state)    |  |
-| **Marketplace**     | ❌ No app marketplace                                          | ✅ Yes (core feature)                      |  |
-| **Customization**   | Limited to blocks + templates                                  | Full app creation from scratch             |  |
-| **Entry Barrier**   | Low (familiar document interface)                              | Medium (need to learn builder)             |  |
-| **Pricing**         | $8-15/user/month                        | Free + $10/month Pro |                                            |  |
-| **Best For**        | Documentation + simple databases                               | Custom tools + app sharing                 |  |
+| Tiêu chí            | Notion                                  | NEXUS                                      |
+| ------------------- | --------------------------------------- | ------------------------------------------ | --- |
+| **Core Value Prop** | All-in-one workspace (docs + databases) | Platform to build custom productivity apps |
+| **Flexibility**     | Templates + Database views              | Full app builder (no-code/low-code)        |
+| **Performance**     | Slow với 500+ records                   | Tối ưu cho app minis (isolated state)      |
+| **Marketplace**     | ❌ No app marketplace                   | ✅ Yes (core feature)                      |
+| **Customization**   | Limited to blocks + templates           | Full app creation from scratch             |
+| **Entry Barrier**   | Low (familiar document interface)       | Medium (need to learn builder)             |
+| **Pricing**         | $8-15/user/month                        | Free + $10/month Pro                       |     |
+| **Best For**        | Documentation + simple databases        | Custom tools + app sharing                 |
 
 **NEXUS Advantages:**
 
@@ -2225,15 +2244,15 @@ Result: 15 minutes instead of 2 hours
 
 #### Airtable vs NEXUS
 
-| Tiêu chí                | Airtable                                                      | NEXUS                                      |  |
-| ------------------------- | ------------------------------------------------------------- | ------------------------------------------ | - |
-| **Core Value Prop** | Spreadsheet + Database hybrid                                 | Platform to build any productivity app     |  |
-| **Data Model**      | Relational tables                                             | Flexible (JSON + JSONB in Supabase)        |  |
-| **Views**           | Grid, Kanban, Calendar, Gallery, Forms                        | User-defined (build any view with builder) |  |
-| **Automation**      | Built-in automations                                          | Visual workflow builder (Low-Code tier)    |  |
-| **Marketplace**     | ❌ Templates only, no apps                                    | ✅ Full app marketplace                    |  |
-| **Pricing**         | $20-45/user/month                      | Free + $10/month Pro |                                            |  |
-| **Best For**        | Teams managing structured data                                | Building custom tools for any workflow     |  |
+| Tiêu chí            | Airtable                               | NEXUS                                      |
+| ------------------- | -------------------------------------- | ------------------------------------------ | --- |
+| **Core Value Prop** | Spreadsheet + Database hybrid          | Platform to build any productivity app     |
+| **Data Model**      | Relational tables                      | Flexible (JSON + JSONB in Supabase)        |
+| **Views**           | Grid, Kanban, Calendar, Gallery, Forms | User-defined (build any view with builder) |
+| **Automation**      | Built-in automations                   | Visual workflow builder (Low-Code tier)    |
+| **Marketplace**     | ❌ Templates only, no apps             | ✅ Full app marketplace                    |
+| **Pricing**         | $20-45/user/month                      | Free + $10/month Pro                       |     |
+| **Best For**        | Teams managing structured data         | Building custom tools for any workflow     |
 
 **NEXUS Advantages:**
 
@@ -2252,15 +2271,15 @@ Result: 15 minutes instead of 2 hours
 
 #### ClickUp vs NEXUS
 
-| Tiêu chí                | ClickUp                                                        | NEXUS                                        |  |
-| ------------------------- | -------------------------------------------------------------- | -------------------------------------------- | - |
-| **Core Value Prop** | "One app to replace them all"                                  | "Platform to build your own apps"            |  |
-| **Features Count**  | 90+ built-in features                                          | 5 No-Code → Unlimited with builder          |  |
-| **Complexity**      | Very high (steep learning curve)                               | Progressive (start simple, grow complex)     |  |
-| **Customization**   | Custom fields, views, automations                              | Full app builder (any UI, any logic)         |  |
-| **Performance**     | Slow with many features enabled                                | Fast (apps are isolated)                     |  |
-| **Pricing**         | $9-19/user/month                        | Free + $10/month Pro |                                              |  |
-| **Best For**        | Teams wanting feature-complete solution                        | Teams wanting to build exact tools they need |  |
+| Tiêu chí            | ClickUp                                 | NEXUS                                        |
+| ------------------- | --------------------------------------- | -------------------------------------------- | --- |
+| **Core Value Prop** | "One app to replace them all"           | "Platform to build your own apps"            |
+| **Features Count**  | 90+ built-in features                   | 5 No-Code → Unlimited with builder           |
+| **Complexity**      | Very high (steep learning curve)        | Progressive (start simple, grow complex)     |
+| **Customization**   | Custom fields, views, automations       | Full app builder (any UI, any logic)         |
+| **Performance**     | Slow with many features enabled         | Fast (apps are isolated)                     |
+| **Pricing**         | $9-19/user/month                        | Free + $10/month Pro                         |     |
+| **Best For**        | Teams wanting feature-complete solution | Teams wanting to build exact tools they need |
 
 **NEXUS Advantages:**
 
@@ -2279,11 +2298,11 @@ Result: 15 minutes instead of 2 hours
 
 #### Bubble.io vs NEXUS
 
-| Tiêu chí                | Bubble.io                         | NEXUS                                |
-| ------------------------- | --------------------------------- | ------------------------------------ |
+| Tiêu chí            | Bubble.io                         | NEXUS                                |
+| ------------------- | --------------------------------- | ------------------------------------ |
 | **Core Value Prop** | Build web apps without code       | Build productivity apps without code |
 | **Scope**           | General web apps (any domain)     | Productivity tools specifically      |
-| **Learning Curve**  | Very steep (full app development) | Low → High (progressive)            |
+| **Learning Curve**  | Very steep (full app development) | Low → High (progressive)             |
 | **Entry Point**     | ❌ Empty canvas (intimidating)    | ✅ Task Manager (familiar)           |
 | **Hosting**         | Bubble handles                    | Vercel (automatic)                   |
 | **Database**        | Bubble's DB                       | Supabase (PostgreSQL)                |
@@ -2355,18 +2374,18 @@ Result: 15 minutes instead of 2 hours
 
 ---
 
-## 3.6. Quyết Định Pivot: 13 tháng 11, 2025
+## 3.6. Quyết Định Pivot: 13/11/2024
 
 ### The Pivot Decision
 
-**Date:** 13 tháng 11, 2025
+**Date:** November 13, 2024
 **Context:** After 8 weeks building Task Manager, reached decision point
 
-**Original Vision (Aug 2025):**
+**Original Vision (Aug 2024):**
 
 > Build a better task manager than Todoist/ClickUp
 
-**New Vision (Nov 2025):**
+**New Vision (Nov 2024):**
 
 > Build a platform where users create their own productivity tools
 
@@ -2497,7 +2516,7 @@ Build App Builder
 
 ### Implementation Timeline
 
-**Week 0 (Nov 13-19, 2025): Decision & Planning**
+**Week 0 (Nov 13-19, 2024): Decision & Planning**
 
 - ✅ Analyze market (Notion, Airtable, ClickUp, Bubble)
 - ✅ Validate hypothesis (interview 10 users)
@@ -3343,18 +3362,18 @@ Monthly "Creator of the Month":
 
 ---
 
-### Week 0: Planning & Design (Nov 13-19, 2025)
+### Week 0: Planning & Design (Nov 13-19, 2024)
 
 **✅ COMPLETED**
 
 **Deliverables:**
 
-- [X] Market research (Notion, Airtable, ClickUp, Bubble)
-- [X] User interviews (10 potential users)
-- [X] Architecture design
-- [X] Database schema design
-- [X] Tech stack decisions
-- [X] Wireframes (Figma)
+- [x] Market research (Notion, Airtable, ClickUp, Bubble)
+- [x] User interviews (10 potential users)
+- [x] Architecture design
+- [x] Database schema design
+- [x] Tech stack decisions
+- [x] Wireframes (Figma)
 
 **Key Decisions:**
 
@@ -3752,16 +3771,19 @@ Users find App Builder too complex, give up after 5 minutes.
    - Start with 5 components only (not 20)
    - Templates (Guest Book) to get started quickly
    - Hide advanced features until needed
+
 2. **In-App Guidance:**
 
    - Interactive tutorial (first-time users)
    - Tooltips on every component
    - Video tutorials (< 3 min each)
+
 3. **Simplify UI:**
 
    - One-column layout (not 3-panel like Webflow)
    - Fewer options per component
    - Visual previews (drag-drop from palette shows preview)
+
 4. **Fast Feedback Loop:**
 
    - Weekly user interviews (first 8 weeks)
@@ -3796,16 +3818,19 @@ Not enough apps on marketplace → Users see no value → Don't sign up.
    - Build 10 high-quality apps ourselves
    - Cover diverse categories (productivity, finance, CRM)
    - Professional screenshots + descriptions
+
 2. **Incentivize Creators:**
 
    - $100 bounty for first 5 apps
    - $50 for next 10 apps
    - Featured creators (recognition)
+
 3. **Content Marketing:**
 
    - Blog posts: "10 Apps You Can Build in 30 Minutes"
    - YouTube tutorials: Build apps step-by-step
    - Community showcase (weekly highlights)
+
 4. **Lower Publishing Friction:**
 
    - One-click publish (no approval process for MVP)
@@ -3842,16 +3867,19 @@ Users sign up but don't engage. No retention. Product doesn't solve real problem
    - Interview 20 potential users
    - Validate problem (tool fragmentation)
    - Get early commitments ("I would use this")
+
 2. **Beta Waitlist:**
 
    - Landing page with signup form
    - Target: 50+ signups before launch
    - Email updates during development
+
 3. **Early Access:**
 
    - Invite 20 beta users (Week 5)
    - Close feedback loop (weekly surveys)
    - Iterate based on feedback
+
 4. **Clear Value Prop:**
 
    - Landing page: "Build your own productivity tools in minutes"
@@ -3887,15 +3915,18 @@ Dashboard lags with 10+ apps. Builder slow on mobile. Poor user experience.
 
    - React.lazy() for apps
    - Load only visible apps
+
 2. **Memoization:**
 
    - React.memo() to prevent re-renders
    - UseMemo for expensive computations
+
 3. **Optimize Bundle:**
 
    - Tree-shaking (remove unused code)
    - Analyze bundle (webpack-bundle-analyzer)
    - Stay under 300KB initial load
+
 4. **Performance Monitoring:**
 
    - Vercel Analytics (Core Web Vitals)
@@ -3930,16 +3961,19 @@ Working alone for 12 weeks. No team support. Risk of giving up.
    - Work 40-50 hrs/week (not 80)
    - Take 1 day off per week
    - Evening walks, exercise
+
 2. **Community Support:**
 
    - Join indie hackers community
    - Weekly check-ins (accountability partners)
    - Share progress publicly (Twitter, blog)
+
 3. **Celebrate Small Wins:**
 
    - Ship features incrementally
    - Celebrate each week's deliverables
    - Positive self-talk
+
 4. **Clear Scope:**
 
    - MVP only (no feature creep)
@@ -4244,7 +4278,7 @@ Total Monthly Cost: $121-186/mo
 **Break-Even:**
 
 - Need: 12-19 Pro users ($10/mo each)
-- **Lộ trình thời gian: Month 6** (realistic)
+- **Timeline: Month 6** (realistic)
 
 **Profitability:**
 
@@ -4304,16 +4338,19 @@ Total Monthly Cost: $121-186/mo
    - Không cạnh tranh trực tiếp với Todoist, ClickUp
    - Tạo khả năng để users tự build tools họ cần
    - Network effects qua Marketplace
+
 2. **Progressive Complexity**
 
    - No-Code (Week 0-4) → Dễ bắt đầu
    - Low-Code (Week 9-12) → Tăng sức mạnh
    - God Mode (Year 2) → Full control
+
 3. **Entry Point + Platform**
 
    - Task Manager = familiar starting point
    - App Builder = core differentiation
    - Marketplace = viral growth
+
 4. **AI-Powered Development**
 
    - Solo founder có thể compete với 10-person teams
