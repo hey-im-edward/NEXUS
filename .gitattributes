@@ -1,0 +1,19 @@
+# TypeScript
+*.ts linguist-detectable=true
+*.tsx linguist-detectable=true
+
+# JavaScript
+*.js linguist-detectable=true
+*.jsx linguist-detectable=true
+*.mjs linguist-detectable=true
+
+# SQL
+*.sql linguist-detectable=true
+
+# Exclude from language stats
+docs/** linguist-documentation
+*.md linguist-documentation
+LICENSE linguist-documentation
+
+# Archive folders
+docs/archive/** linguist-generated=true
