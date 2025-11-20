@@ -1,544 +1,235 @@
-# 🚀 NEXUS Platform
+# 🚀 NEXUS
 
-<div align="center">
+[![English](https://img.shields.io/badge/lang-English-blue?style=flat-square)](./README.md) [![Tiếng Việt](https://img.shields.io/badge/lang-Tiếng_Việt-red?style=flat-square)](./docs/archive/README.vn.md)
 
-![NEXUS Banner](https://via.placeholder.com/800x200/0EA5E9/FFFFFF?text=NEXUS+Platform)
+**Your Personal App Platform — Build productivity tools that actually fit your workflow**
 
-**"Hệ điều hành" cho Năng suất Cá nhân và Đội Nhóm Nhỏ**
-
-**The Operating System for Personal & Small Team Productivity**
-
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.6-blue)](https://www.typescriptlang.org/)
-[![Next.js](https://img.shields.io/badge/Next.js-16.0-black)](https://nextjs.org/)
-[![Supabase](https://img.shields.io/badge/Supabase-PostgreSQL-green)](https://supabase.com/)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
-
-[📖 Whitepaper](#-whitepaper) • [✨ Features](#-features) • [🚀 Quick Start](#-quick-start) • [📚 Docs](#-documentation) • [🤝 Contributing](#-contributing)
-
-</div>
+Stop adapting to rigid tools. Build custom apps without code, arrange them on your dashboard, and share with the community.
 
 ---
 
-## 🎯 NEXUS là gì?
+[![Next.js](https://img.shields.io/badge/Next.js-16.0-black?style=flat-square&logo=next.js&logoColor=white)](https://nextjs.org/)
+[![React](https://img.shields.io/badge/React-19.2-61DAFB?style=flat-square&logo=react&logoColor=black)](https://react.dev/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.6-3178C6?style=flat-square&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Supabase](https://img.shields.io/badge/Supabase-Cloud-3ECF8E?style=flat-square&logo=supabase&logoColor=white)](https://supabase.com/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4.0-38B2AC?style=flat-square&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
 
-> **NEXUS không phải là một ứng dụng. NEXUS là một Platform.**
+[![GitHub Stars](https://img.shields.io/github/stars/hey-im-edward/NEXUS?style=flat-square)](https://github.com/hey-im-edward/NEXUS/stargazers)
+[![GitHub Forks](https://img.shields.io/github/forks/hey-im-edward/NEXUS?style=flat-square)](https://github.com/hey-im-edward/NEXUS/network/members)
+[![GitHub Issues](https://img.shields.io/github/issues/hey-im-edward/NEXUS?style=flat-square)](https://github.com/hey-im-edward/NEXUS/issues)
+[![License](https://img.shields.io/github/license/hey-im-edward/NEXUS?style=flat-square)](./LICENSE)
 
-### Câu hỏi cốt lõi chúng tôi giải quyết:
-
-**"Tại sao chúng ta phải 'uốn mình' để phù hợp với công cụ, thay vì công cụ phù hợp với chúng ta?"**
-
-**Thực tế hiện nay:**
-
-- 📱 **10+ productivity apps riêng lẻ** → Context switching hell
-- 🔧 **Rigid tools** (Todoist, Trello) → Không đủ flexible
-- 🏢 **Complex platforms** (ClickUp, Monday) → Overkill, đắt đỏ, overwhelming
-- 📝 **Flexible tools** (Notion, Airtable) → Vẫn bị giới hạn, không phải platform thực sự
-
-### Giải pháp của NEXUS:
-
-**What if bạn có thể:**
-
-- ✅ Tự **build các công cụ** bạn cần với **visual programming**
-- ✅ **Chia sẻ công cụ** đó với người khác qua **Marketplace**
-- ✅ **Customize** bất kỳ app nào cho riêng bạn
-- ✅ Tất cả trong **một dashboard duy nhất**
-
-**Đó chính là NEXUS.**
+**Quick Links:** [Why NEXUS](#-why-nexus) • [What You Can Build](#-what-you-can-build) • [Tech Stack](#-tech-stack) • [Quick Start](#-quick-start) • [Who Is This For](#-who-is-this-for)
 
 ---
 
-## 💡 Vision: Democratize Tools Creation
+## 💡 Why NEXUS?
 
-Giống như:
+**Ever feel like you're adapting to your tools instead of the other way around?**
 
-- **WordPress** dân chủ hóa việc tạo website → Ai cũng có thể tạo blog
-- **Canva** dân chủ hóa thiết kế đồ họa → Ai cũng có thể thiết kế poster
-- **NEXUS** dân chủ hóa việc tạo productivity tools → **Ai cũng có thể build apps riêng**
+Most productivity apps force you into _their_ workflow:
 
----
+- 📝 **Todoist** is great for simple tasks — but what if you need a CRM?
+- 📊 **Notion** is flexible — but building complex workflows takes hours
+- ⚙️ **ClickUp** has every feature — but costs $10+/user and takes days to learn
 
-## 🏗️ Kiến Trúc: 3 Trụ Cột
+**NEXUS is different.**
 
-### 🏠 Trụ Cột 1: Dashboard Grid
+Instead of choosing between simple-but-limited or powerful-but-complex, you get:
 
-**"iOS Home Screen for Productivity"**
+✨ **Build custom apps** with drag-and-drop components (no coding required)  
+🎨 **Arrange your workspace** exactly how you want (iPhone-style home screen)  
+🏪 **Share & discover** apps built by the community (like an App Store)
+
+### How It Works
 
 ```
-┌──────────────────────────────────────┐
-│  Dashboard: Your Workspace           │
-├────────────┬────────────┬────────────┤
-│ Today      │ Team       │ Invoices   │
-│ Tasks      │ Workload   │ Tracker    │
-│ [App Mini] │ [App Mini] │ [App Mini] │
-├────────────┴────────────┴────────────┤
-│ Client CRM                           │
-│ [App Mini]                           │
-├──────────────────────┬───────────────┤
-│ Meeting Notes        │ Quick Capture │
-│ [App Mini]           │ [App Mini]    │
-└──────────────────────┴───────────────┘
-```
-
-- ✅ **Drag & Drop:** Sắp xếp app minis như iOS Home Screen
-- ✅ **Resizable:** Thay đổi kích thước widgets
-- ✅ **Multi-Dashboard:** Tạo nhiều dashboards cho contexts khác nhau
-- ✅ **Auto-Save:** Layout lưu real-time vào Supabase
-
-**Tech:** `react-grid-layout` v1.5.2 (used by 767+ projects)
-
----
-
-### 🛠️ Trụ Cột 2: App Builder (3 Levels)
-
-**"LEGO for Productivity Tools"**
-
-#### 🎨 Level 1: No-Code (Week 1-4 MVP)
-
-```typescript
-const components = [
-  'Text',      // Display text
-  'Button',    // Trigger actions
-  'Input',     // User input
-  'Container', // Layout wrapper
-  'List'       // Dynamic lists
-]
-
-const actions = [
-  'appendToList',  // Add item to list
-  'clearInput',    // Clear input field
-  'toggleElement'  // Show/hide elements
-]
-```
-
-**Target:** Người không biết code
-**Example Apps:** Guest Book, Shopping List, Expense Tracker
-**Limitations:** Không có conditional logic, không có database
-
----
-
-#### ⚙️ Level 2: Low-Code (Week 9-12 nếu GO)
-
-**Target:** Power users
-**Add:**
-
-- Conditional logic (if/else)
-- Database integration (Supabase)
-- Form validation
-- Workflows (giống Zapier)
-
-**Example Apps:** CRM với auto-assignment, Invoice tracker với calculations
-
----
-
-#### 💻 Level 3: God Mode (Post-MVP)
-
-**Target:** Developers
-**Add:**
-
-- Custom code (JavaScript/TypeScript)
-- API integrations
-- Git, CI/CD, testing
-- npm packages
-
-**Example Apps:** Custom Stripe integration, Slack bot, API connectors
-
----
-
-**Progressive Disclosure:**
-
-```
-👶 Người mới → No-Code (easy entry)
-         ↓
-👨‍💼 Power user → Low-Code (advanced features)
-         ↓
-👨‍💻 Developer → God Mode (full control)
+1. Choose Your Layout          2. Build or Install Apps       3. Customize Everything
+┌─────────────────┐           ┌─────────────────┐            ┌─────────────────┐
+│  [App] [App]    │           │  • Drag Button  │            │  Change colors  │
+│  [App] [App]    │    →      │  • Add Text     │     →      │  Edit layout    │
+│  [App] [App]    │           │  • Connect DB   │            │  Your workflow  │
+└─────────────────┘           └─────────────────┘            └─────────────────┘
 ```
 
 ---
 
-### 🛒 Trụ Cột 3: Marketplace
+## 🎯 What You Can Build
 
-**"App Store for Productivity"**
+### Built-in Apps (Ready to Use)
 
-- **Browse:** Khám phá apps do community tạo
-- **Install:** 1-click install vào dashboard
-- **Fork:** Clone và customize bất kỳ app nào
-- **Publish:** Share apps của bạn
+- ✅ **Task Manager** - Track todos with priorities, due dates, and kanban boards
+- ✅ **Quick Notes** - Jot down thoughts instantly (auto-saved to browser)
+- ✅ **Pomodoro Timer** - Stay focused with 25-minute work sessions
+- ✅ **Today's Tasks** - See what's due today across all your projects
 
-**Categories:**
+### Custom Apps (Build Your Own)
 
-- 📋 Task Management (Kanban, GTD, Eisenhower Matrix)
-- 💰 Finance (Expense Tracker, Invoice Manager, Budget Planner)
-- 👥 CRM (Sales Pipeline, Client Tracker, Lead Scoring)
-- 📊 Analytics (Time Tracker, Goal Tracker, Habit Tracker)
-- 🎯 Custom (Bất kỳ thứ gì bạn nghĩ ra)
+With the **No-Code App Builder**, you can create:
 
-**Network Effect:**
-Càng nhiều users → Càng nhiều apps → Càng thu hút users → Self-sustaining ecosystem
+- 📊 **Expense Tracker** - Budget planner with your own categories
+- 👥 **Simple CRM** - Track clients without Salesforce complexity
+- 📅 **Content Calendar** - Plan posts for Instagram, Twitter, LinkedIn
+- 🎯 **Habit Tracker** - Build streaks and visualize your progress
+- 💡 **Idea Board** - Capture and organize creative thoughts
+- 📈 **Dashboard** - Combine widgets into your perfect workspace
 
----
+### Coming Soon
 
-## ✨ Features
-
-### 📱 3 App Minis Built-in
-
-1. **QuickNotes** - Ghi chú nhanh với localStorage
-2. **Pomodoro** - Timer 25 phút focus
-3. **TodayTasks** - Hiển thị tasks hôm nay real-time từ Task Management
-
-### 📋 Task Management (Entry Point)
-
-- ✅ Kanban Boards
-- ✅ Inbox + Today + Projects views
-- ✅ Priority labels (P1/P2/P3)
-- ✅ Drag-and-drop tasks
-- ✅ Inline editing
-
-**Philosophy:** "Keep It, Don't Polish It"
-
-Task Management ở mức "**đủ tốt**" để:
-
-- Users có data trong platform ngay từ ngày đầu
-- Có entry point dễ onboarding
-- **Nhưng không lãng phí time** polish features (focus vào Platform instead)
+- 🏪 **Community Marketplace** - Install apps built by others (like a mini App Store)
+- 🧩 **Low-Code Mode** - Add conditional logic ("if task is urgent, send notification")
+- 🔗 **Database Integration** - Connect to your own data sources
+- 👥 **Team Sharing** - Collaborate with teammates on shared workspaces
 
 ---
 
-## 🏗️ Tech Stack
+## 🛠 Tech Stack
 
-<div align="center">
+Built with modern, proven technologies:
 
-| Category                   | Technology        | Version         | Rationale                              |
-| -------------------------- | ----------------- | --------------- | -------------------------------------- |
-| **Framework**        | Next.js           | 16.0.1          | App Router, Turbopack stable, RSC      |
-|                            | React             | 19.2            | Concurrent rendering default           |
-|                            | TypeScript        | 5.6             | Type safety, developer experience      |
-| **UI**               | TailwindCSS       | 4.0 Alpha       | Utility-first, performance             |
-|                            | shadcn/ui         | Latest          | Beautiful, accessible components       |
-| **Backend**          | Supabase          | PostgreSQL 15.6 | BaaS, RLS policies, real-time          |
-| **State Management** | Zustand + Immer   | Latest          | Simple, performant client state        |
-|                            | TanStack Query    | v5              | Server state, caching, optimistic UI   |
-| **Grid Layout**      | react-grid-layout | v1.5.2          | Drag & drop, responsive (767+ users)   |
-| **App Builder**      | Craft.js          | Latest          | Visual page editor, JSON serialization |
-| **Deployment**       | Vercel            | -               | Edge network, zero-config              |
-|                            | Supabase Cloud    | -               | Managed PostgreSQL, Auth               |
+- **Frontend:** Next.js 16 + React 19 + TypeScript
+- **Backend:** Supabase (PostgreSQL + Auth + Realtime)
+- **UI:** Tailwind CSS + shadcn/ui components
+- **Deployment:** Vercel (instant deploys, global CDN)
 
-</div>
+**Why these choices?**
 
-**📖 Chi tiết:** [TECH_STACK.md](docs/03-REFERENCE/TECH_STACK.md)
+- ⚡ **Fast development** - AI-friendly stack with great documentation
+- 💰 **$0 hosting** for MVP (free tiers cover everything)
+- 🔒 **Battle-tested** - Used by companies like Vercel, Supabase, Airbnb
+- 📚 **Great docs** - Easy to learn, easy to contribute
 
-**💰 Cost Estimate:**
-
-- **MVP (Week 1-4):** $1/tháng (Supabase Free + Vercel Hobby)
-- **Scale (100 users):** $46-72/tháng
-- **Growth (1000 users):** $101/tháng
+> For developers: See [TECH_STACK.md](./docs/03-REFERENCE/TECH_STACK.md) for detailed technical documentation.
 
 ---
 
 ## 🚀 Quick Start
 
-### Requirements
+### Prerequisites
 
-```bash
-Node.js >= 18.x
-npm >= 9.x (hoặc pnpm >= 8.x)
-Supabase Account (free tier)
-```
+- **Node.js** 18+ and npm/pnpm/yarn
+- **Supabase Account** ([sign up free](https://supabase.com))
+- **Git**
 
 ### Installation
 
 ```bash
-# 1. Clone repository
-git clone https://github.com/yourusername/NEXUS.git
-cd NEXUS
+# Clone the repository
+git clone https://github.com/hey-im-edward/NEXUS.git
+cd NEXUS/frontend
 
-# 2. Install dependencies
+# Install dependencies
 npm install
 
-# 3. Setup environment variables
+# Set up environment variables
 cp .env.example .env.local
+# Edit .env.local with your Supabase credentials
 
-# Thêm Supabase credentials vào .env.local:
-# NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co
-# NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
-# SUPABASE_SERVICE_ROLE_KEY=your-service-role-key
+# Run database migrations (from supabase folder)
+cd ../supabase
+supabase db push
 
-# 4. Run database migrations
-cd backend/supabase
-npx supabase db reset
-cd ../..
-
-# 5. Start development server
-cd frontend
+# Start development server
+cd ../frontend
 npm run dev
 ```
 
-Mở [http://localhost:3000](http://localhost:3000)
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-### Docker Setup (Optional)
+### Environment Variables
 
-```bash
-docker-compose up -d
+Create a `.env.local` file in the `frontend` folder:
+
+```env
+NEXT_PUBLIC_SUPABASE_URL=your_supabase_project_url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
 ```
+
+Get these from your [Supabase Dashboard](https://app.supabase.com/) → Project Settings → API.
 
 ---
 
 ## 📚 Documentation
 
-### 📖 Strategy Docs
+**For users:**
 
-- **[NEXUS_WHITEPAPER.md](docs/01-STRATEGY/NEXUS_WHITEPAPER.md)** - Vision, strategy, market analysis (3,000+ words)
+- 📖 [User Guide](./docs/USER_GUIDE.md) _(coming soon)_ - How to build your first app
+- 💡 [Examples](./docs/EXAMPLES.md) _(coming soon)_ - Sample apps and use cases
 
-### 🗺️ Execution Docs
+**For developers:**
 
-- **[ROADMAP.md](docs/02-EXECUTION/ROADMAP.md)** - 12-week roadmap (Platform MVP → Validation → Decision Point)
-- **[AI_PROMPTS.md](docs/02-EXECUTION/AI_PROMPTS.md)** - 14 parent prompts cho từng tuần (copy-paste ready)
-- **[PRIMING_PROMPT.md](docs/02-EXECUTION/PRIMING_PROMPT.md)** - Context cho AI assistants
+- 🗺️ [Roadmap](./docs/02-EXECUTION/ROADMAP.md) - What we're building (12-week plan)
+- 🛠️ [Tech Stack](./docs/03-REFERENCE/TECH_STACK.md) - Architecture and technical decisions
+- 📋 [Contributing](./CONTRIBUTING.md) | [Tiếng Việt](./CONTRIBUTING.vn.md) - How to contribute code
 
-### 📊 Status Docs
+**Vision & Strategy:**
 
-- **[THIS_WEEK.md](docs/02-EXECUTION/status/THIS_WEEK.md)** - Current week progress
-- **[FEATURES.md](docs/02-EXECUTION/status/FEATURES.md)** - Changelog (10 completed, 2 in progress, 128 planned)
-- **[BUGS.md](docs/02-EXECUTION/status/BUGS.md)** - Bug tracker (2 active, 4 fixed)
-
-### 🛠️ Reference Docs
-
-- **[TECH_STACK.md](docs/03-REFERENCE/TECH_STACK.md)** - Tech decisions & rationales (1,264 lines)
-- **[PRINCIPLES.md](docs/03-REFERENCE/PRINCIPLES.md)** - 12 core development principles
+- 📘 [Whitepaper](./docs/01-STRATEGY/NEXUS_WHITEPAPER.md) - Comprehensive vision and strategy
 
 ---
 
-## 🎯 Roadmap & Status
+## 🌟 Who Is This For?
 
-### ✅ Week 0-4: Platform MVP (Current)
+### 💼 Freelancers & Solopreneurs
 
-**Status:** 🚧 In Progress (2/8 completed)
+"I need a simple CRM, but Salesforce is $25/month and takes 2 hours to set up."
 
-| Prompt        | Feature                 | Status         |
-| ------------- | ----------------------- | -------------- |
-| **1.1** | DashboardGrid component | ✅ Completed   |
-| **1.2** | AppMiniCard wrapper     | ✅ Completed   |
-| **1.3** | 3 App Minis             | 🚧 In Progress |
-| **1.4** | Craft.js setup          | ⏳ Pending     |
-| **1.5** | 5 Builder components    | ⏳ Pending     |
-| **1.6** | 3 Actions system        | ⏳ Pending     |
-| **1.7** | Save/load + AppRenderer | ⏳ Pending     |
-| **1.8** | 3 Template apps         | ⏳ Pending     |
+→ **Build a lightweight client tracker** in 10 minutes with NEXUS.
 
----
+### 📝 Power Users
 
-### 🔜 Week 5-6: Marketplace
+"I use Notion for notes, Todoist for tasks, and Sheets for budgets. Too many tabs!"
 
-| Prompt        | Feature                   | Status     |
-| ------------- | ------------------------- | ---------- |
-| **2.1** | Marketplace browse page   | ⏳ Pending |
-| **2.2** | App detail + install flow | ⏳ Pending |
-| **2.3** | Publish flow              | ⏳ Pending |
+→ **Combine everything** in one customizable dashboard.
 
----
+### 🎨 Content Creators
 
-### 💭 Week 7-8: Validation
+"I need a content calendar that tracks Instagram, Twitter, AND YouTube."
 
-| Prompt        | Feature                     | Status     |
-| ------------- | --------------------------- | ---------- |
-| **3.1** | Beta recruitment (20 users) | ⏳ Pending |
-| **3.2** | Onboarding + feedback       | ⏳ Pending |
+→ **Build your own** with exactly the columns you need.
 
----
+### 👥 Small Teams (2-10 people)
 
-### 🚀 Week 9-12: Decision Point
+"ClickUp has 100 features. We only need 5, but still pay $10/user."
 
-| Prompt        | Feature              | Status     |
-| ------------- | -------------------- | ---------- |
-| **4.1** | Analytics & GO/NO-GO | ⏳ Pending |
-
-**📖 Chi tiết:** [ROADMAP.md](docs/02-EXECUTION/ROADMAP.md)
-
----
-
-## 📊 North Star Metric
-
-```
-Formula: (Apps Built by Users) × (Average Installs per App)
-
-Targets:
-├─ Week 4:   5 apps × 2 installs  = 10 points
-├─ Week 8:  15 apps × 3 installs  = 45 points
-└─ Week 12: 30 apps × 5 installs  = 150 points
-```
-
-**❌ KHÔNG PHẢI:** "How many tasks created?" (Task Management thinking)
-
-**✅ MÀ LÀ:** **"How many apps built and shared?"** (Platform thinking)
+→ **Create team workflows** without enterprise bloat.
 
 ---
 
 ## 🤝 Contributing
 
-Contributions are welcome! 🎉
+NEXUS is open source and we'd love your help!
 
-### Quick Contribution Flow
+- 🐛 **Found a bug?** [Open an issue](https://github.com/hey-im-edward/NEXUS/issues)
+- 💡 **Have an idea?** [Start a discussion](https://github.com/hey-im-edward/NEXUS/discussions)
+- 💻 **Want to code?** See [![Contributing|English](https://img.shields.io/badge/Contributing-English-blue?style=flat-square)](./CONTRIBUTING.md) [![Contributing|Tiếng Việt](https://img.shields.io/badge/Contributing-Tiếng_Việt-red?style=flat-square)](./docs/archive/CONTRIBUTING.vn.md)
 
-```bash
-# 1. Fork repo
-# 2. Create feature branch
-git checkout -b feature/amazing-feature
-
-# 3. Make changes
-# 4. Commit (following conventions)
-git commit -m 'feat: add amazing feature'
-
-# 5. Push
-git push origin feature/amazing-feature
-
-# 6. Open Pull Request
-```
-
-### Guidelines
-
-Đọc [CONTRIBUTING.md](CONTRIBUTING.md) để biết:
-
-- 🔧 Development environment setup
-- 📝 Coding conventions (TypeScript strict mode, ESLint, Prettier)
-- 🧪 Testing strategy
-- 📋 Pull Request process
-- 🐛 Bug reporting template
-- 📜 Commit message conventions
-
----
-
-## 🌟 Contributors
-
-<div align="center">
-
-<!-- ALL-CONTRIBUTORS-LIST:START -->
-
-<!-- Auto-generated by all-contributors bot -->
-
-<!-- ALL-CONTRIBUTORS-LIST:END -->
-
-Cảm ơn tất cả contributors! ❤️
-
-[Become a contributor](CONTRIBUTING.md)
-
-</div>
-
----
-
-## 📊 Project Stats
-
-<div align="center">
-
-![GitHub Stars](https://img.shields.io/github/stars/yourusername/NEXUS?style=social)
-![GitHub Forks](https://img.shields.io/github/forks/yourusername/NEXUS?style=social)
-![GitHub Issues](https://img.shields.io/github/issues/yourusername/NEXUS)
-![GitHub PRs](https://img.shields.io/github/issues-pr/yourusername/NEXUS)
-![Last Commit](https://img.shields.io/github/last-commit/yourusername/NEXUS)
-
-</div>
-
----
-
-## 📞 Contact & Community
-
-- 📧 **Email:** [support@nexus.dev](mailto:support@nexus.dev)
-- 💬 **Discord:** [Join community](https://discord.gg/nexus)
-- 🐦 **Twitter:** [@NexusPlatform](https://twitter.com/NexusPlatform)
-- 📝 **Blog:** [blog.nexus.dev](https://blog.nexus.dev)
-- 🐛 **Issues:** [GitHub Issues](https://github.com/yourusername/NEXUS/issues)
-
----
-
-## 📄 License
-
-This project is licensed under the **MIT License** - see [LICENSE](LICENSE) file for details.
-
-```text
-Copyright (c) 2025 NEXUS Contributors
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software...
-```
+**For developers:** Check out [ROADMAP.md](./docs/02-EXECUTION/ROADMAP.md) to see what we're building next.
 
 ---
 
 ## 🙏 Acknowledgments
 
-**Technologies:**
+Inspired by world-class products:
 
-- [Next.js](https://nextjs.org/) - React framework for production
-- [Supabase](https://supabase.com/) - Open source Firebase alternative
-- [shadcn/ui](https://ui.shadcn.com/) - Beautiful, accessible component library
-- [Craft.js](https://craft.js.org/) - React framework for drag-and-drop page editors
-- [react-grid-layout](https://github.com/react-grid-layout/react-grid-layout) - Draggable and resizable grid layouts
-
-**Inspiration:**
-
-- [Notion](https://notion.so) - Document-centric platform approach
-- [Airtable](https://airtable.com) - Database-first flexibility
-- [Bubble.io](https://bubble.io) - No-code app builder concept
-- [WordPress](https://wordpress.org) - Platform democratization
+- **[Notion](https://notion.so)** — All-in-one workspace flexibility
+- **[Airtable](https://airtable.com)** — Database power for everyone
+- **[Bubble.io](https://bubble.io)** — No-code application development
+- **[Linear](https://linear.app)** — Beautifully designed project management
+- **[Craft.js](https://craft.js.org)** — Initial inspiration for page builder (migrated to @dnd-kit for React 19)
 
 ---
 
-## 🚀 Deploy
+## ⭐️ Support
 
-### Vercel (Recommended)
+If NEXUS helps you build better workflows, consider starring the repository.
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/yourusername/NEXUS&env=NEXT_PUBLIC_SUPABASE_URL,NEXT_PUBLIC_SUPABASE_ANON_KEY,SUPABASE_SERVICE_ROLE_KEY)
-
-1. Click button trên
-2. Connect GitHub repository
-3. Add environment variables (Supabase credentials)
-4. Deploy!
-
-### Manual Deployment
-
-```bash
-# Build for production
-npm run build
-
-# Start production server
-npm start
-```
-
-**📖 Chi tiết:** [DEPLOY.md](docs/04-technical/DEPLOY.md)
+[![Star History Chart](https://api.star-history.com/svg?repos=hey-im-edward/NEXUS&type=Date)](https://star-history.com/#hey-im-edward/NEXUS&Date)
 
 ---
 
-<div align="center">
+## 📄 License
 
-## 📜 Documentation Index
+Released under the [MIT License](./LICENSE).
 
-| Document                                                 | Description                                      |
-| -------------------------------------------------------- | ------------------------------------------------ |
-| [NEXUS_WHITEPAPER.md](docs/01-STRATEGY/NEXUS_WHITEPAPER.md) | Vision, strategy, market analysis (3,000+ words) |
-| [ROADMAP.md](docs/02-EXECUTION/ROADMAP.md)                  | 12-week execution roadmap                        |
-| [AI_PROMPTS.md](docs/02-EXECUTION/AI_PROMPTS.md)            | 14 parent prompts (copy-paste ready)             |
-| [TECH_STACK.md](docs/03-REFERENCE/TECH_STACK.md)            | Tech stack rationales & examples                 |
-| [PRINCIPLES.md](docs/03-REFERENCE/PRINCIPLES.md)            | 12 core development principles                   |
-| [CONTRIBUTING.md](CONTRIBUTING.md)                          | How to contribute                                |
-| [FEATURES.md](docs/02-EXECUTION/status/FEATURES.md)         | Changelog & progress tracker                     |
-| [BUGS.md](docs/02-EXECUTION/status/BUGS.md)                 | Bug tracker & fix history                        |
-
-</div>
-
----
-
-<div align="center">
-
-**[⬆ Back to top](#-nexus-platform)**
-
----
-
-**Made with ❤️ by [NEXUS Team](https://github.com/yourusername)**
-
-⭐ **Star this repo nếu bạn thấy hữu ích!**
-
-**Platform First. Code Second. Ship Fast.**
-
-</div>
+Copyright © 2025 NEXUS Contributors.
