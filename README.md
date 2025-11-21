@@ -161,6 +161,7 @@ Get these from your [Supabase Dashboard](https://app.supabase.com/) → Project 
 - 🗺️ [Roadmap](./docs/02-EXECUTION/ROADMAP.md) - What we're building (12-week plan)
 - 🛠️ [Tech Stack](./docs/03-REFERENCE/TECH_STACK.md) - Architecture and technical decisions
 - 📋 [Contributing](./CONTRIBUTING.md) | [Tiếng Việt](./CONTRIBUTING.vn.md) - How to contribute code
+
 [![Contributing|English](https://img.shields.io/badge/Contributing-English-blue?style=flat-square)](./CONTRIBUTING.md) [![Contributing|Tiếng Việt](https://img.shields.io/badge/Contributing-Tiếng_Việt-red?style=flat-square)](./docs/archive/CONTRIBUTING.vn.md)
 
 **Vision & Strategy:**
@@ -203,7 +204,8 @@ NEXUS is open source and we'd love your help!
 
 - 🐛 **Found a bug?** [Open an issue](https://github.com/hey-im-edward/NEXUS/issues)
 - 💡 **Have an idea?** [Start a discussion](https://github.com/hey-im-edward/NEXUS/discussions)
-- 💻 **Want to code?** See [![Contributing|English](https://img.shields.io/badge/Contributing-English-blue?style=flat-square)](./CONTRIBUTING.md) [![Contributing|Tiếng Việt](https://img.shields.io/badge/Contributing-Tiếng_Việt-red?style=flat-square)](./docs/archive/CONTRIBUTING.vn.md)
+- 💻 **Want to code?** See 
+[![Contributing|English](https://img.shields.io/badge/Contributing-English-blue?style=flat-square)](./CONTRIBUTING.md) [![Contributing|Tiếng Việt](https://img.shields.io/badge/Contributing-Tiếng_Việt-red?style=flat-square)](./docs/archive/CONTRIBUTING.vn.md)
 
 **For developers:** Check out [ROADMAP.md](./docs/02-EXECUTION/ROADMAP.md) to see what we're building next.
 
