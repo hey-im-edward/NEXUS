@@ -23,7 +23,7 @@ npm run dev
 
 ## 📁 Project Structure
 
-```
+```text
 frontend/
 ├── app/
 │   ├── (auth)/login/          # Authentication
