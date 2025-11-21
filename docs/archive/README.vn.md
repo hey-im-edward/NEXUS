@@ -23,7 +23,7 @@
 
 ---
 
-## 💡 Tại sao NEXUS?
+## 💡 Tại sao lại là NEXUS?
 
 **Bạn có bao giờ cảm thấy mình đang phải thích nghi với công cụ thay vì công cụ phù hợp với mình?**
 
@@ -161,7 +161,8 @@ Lấy thông tin từ [Supabase Dashboard](https://app.supabase.com/) → Projec
 
 - 🗺️ [Roadmap](./docs/02-EXECUTION/ROADMAP.md) - Chúng tôi đang xây dựng gì (kế hoạch 12 tuần)
 - 🛠️ [Tech Stack](./docs/03-REFERENCE/TECH_STACK.md) - Kiến trúc và quyết định kỹ thuật
-- 📋 [Đóng góp](./CONTRIBUTING.vn.md) | [English](./CONTRIBUTING.md) - Cách đóng góp code
+- 📋 [Contributing](./CONTRIBUTING.md) - Hướng dẫn đóng góp code
+[![Contributing|English](https://img.shields.io/badge/Contributing-English-blue?style=flat-square)](../../CONTRIBUTING.md) [![Contributing|Tiếng Việt](https://img.shields.io/badge/Contributing-Tiếng_Việt-red?style=flat-square)](./CONTRIBUTING.vn.md)
 
 **Tầm nhìn & Chiến lược:**
 
@@ -203,7 +204,9 @@ NEXUS là mã nguồn mở và chúng tôi rất mong nhận được sự giúp
 
 - 🐛 **Tìm thấy bug?** [Mở issue](https://github.com/hey-im-edward/NEXUS/issues)
 - 💡 **Có ý tưởng?** [Bắt đầu thảo luận](https://github.com/hey-im-edward/NEXUS/discussions)
-- 💻 **Muốn code?** Xem [![Contributing|English](https://img.shields.io/badge/Contributing-English-blue?style=flat-square)](../../CONTRIBUTING.md) [![Contributing|Tiếng Việt](https://img.shields.io/badge/Contributing-Tiếng_Việt-red?style=flat-square)](./CONTRIBUTING.vn.md)
+- 💻 **Muốn code?** Xem 
+
+  [![Contributing|English](https://img.shields.io/badge/Contributing-English-blue?style=flat-square)](../../CONTRIBUTING.md) [![Contributing|Tiếng Việt](https://img.shields.io/badge/Contributing-Tiếng_Việt-red?style=flat-square)](./CONTRIBUTING.vn.md)
 
 **Dành cho developers:** Xem [ROADMAP.md](./docs/02-EXECUTION/ROADMAP.md) để biết chúng tôi đang xây dựng gì tiếp theo.
 

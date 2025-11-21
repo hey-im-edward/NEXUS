@@ -57,13 +57,26 @@ frontend/
 │
 ├── lib/
 │   ├── stores/                # Zustand stores
-│   │   └── tasks.ts          # Task state management
-│   ├── hooks/                 # React hooks
-│   │   └── use-tasks.ts      # Task CRUD + Supabase
-│   ├── supabase/              # Supabase clients
+│   │   ├── tasks.ts          # Task state management
+│   │   └── editor.ts         # Editor state management
+│   ├── supabase/              # Supabase clients & queries
 │   │   ├── client.ts         # Browser client
-│   │   └── server.ts         # Server client
-│   └── utils/                 # Helper functions
+│   │   ├── server.ts         # Server client
+│   │   └── workspace.ts      # Workspace helpers
+│   ├── constants/             # App constants
+│   │   └── priority.ts       # Task priorities
+│   ├── utils/                 # Helper functions
+│   └── utils.ts              # General utilities
+│
+├── hooks/                     # Custom React hooks
+│   ├── use-tasks.ts          # Task CRUD + Supabase
+│   ├── use-inline-edit.ts    # Inline editing
+│   ├── use-toast.ts          # Toast notifications
+│   └── useDebounce.ts        # Debounce utility
+│
+├── scripts/                   # Utility scripts
+│   ├── test-supabase-connection.js
+│   └── README.md             # Scripts documentation
 │
 ├── types/                     # TypeScript types
 │   ├── index.ts              # Task, Project, Page types
@@ -151,9 +164,10 @@ npm run start        # Start production server
 # Code Quality
 npm run lint         # Run ESLint
 npm run type-check   # Run TypeScript compiler
+npm run test         # Run tests
 
 # Database
-npm run db:types     # Generate Supabase types
+npm run test:db      # Test Supabase connection
 ```
 
 ---
@@ -228,5 +242,5 @@ npm run build
 
 ---
 
-**Cập nhật lần cuối:** 13 tháng 11, 2024
-**Phiên bản:** 2.0.0 - Productivity Platform (Pivot to Platform)
+**Cập nhật lần cuối:** 21 tháng 11, 2025
+**Phiên bản:** 0.1.0 - POC Phase

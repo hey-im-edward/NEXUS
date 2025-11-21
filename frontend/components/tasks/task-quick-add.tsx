@@ -1,7 +1,7 @@
 'use client';
 
 import { Input } from '@/components/ui/input';
-import { useTasks } from '@/lib/hooks/use-tasks';
+import { useTasks } from '@/hooks/use-tasks';
 import { Plus } from 'lucide-react';
 import { useState } from 'react';
 

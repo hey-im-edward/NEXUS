@@ -1,6 +1,10 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+/* stylelint-disable-next-line at-rule-no-unknown */
+/* @custom-variant is a Tailwind CSS v4 feature */
+/* stylelint-disable-next-line at-rule-no-unknown */
+/* stylelint-disable-next-line at-rule-no-unknown */
 @custom-variant dark (&:is(.dark *));
 
 /* stylelint-disable-next-line at-rule-no-unknown */
@@ -236,10 +240,15 @@
 
 /* Custom scrollbar class - always reserves space, but thumb is hidden */
 .scrollbar-modern {
-  /* Firefox */
-  scrollbar-width: thin;
-  scrollbar-color: transparent transparent;
+  /* Firefox - Note: scrollbar-width not supported in older browsers */
+  /* scrollbar-width: thin; */
   transition: scrollbar-color 0.35s ease-out;
+}
+
+@supports (scrollbar-color: auto) {
+  .scrollbar-modern {
+    scrollbar-color: transparent transparent;
+  }
 }
 
 /* Webkit - fixed width scrollbar track (always takes space) */
@@ -264,29 +273,34 @@
   height: 0 !important;
   display: none !important;
 }
-
-.scrollbar-modern::-webkit-scrollbar-corner {
-  background: transparent !important;
+/* Show scrollbar thumb ONLY when actively scrolling */
+@supports (scrollbar-color: auto) {
+  .scrollbar-modern.scrollbar-visible {
+    scrollbar-color: rgba(71, 85, 105, 0.5) transparent;
+  }
 }
 
 /* Show scrollbar thumb ONLY when actively scrolling */
-.scrollbar-modern.scrollbar-visible {
-  scrollbar-color: rgba(71, 85, 105, 0.5) transparent;
+@supports (scrollbar-color: auto) {
+  .scrollbar-modern.scrollbar-visible {
+    scrollbar-color: rgba(71, 85, 105, 0.5) transparent;
+  }
 }
 
 .scrollbar-modern.scrollbar-visible::-webkit-scrollbar-thumb {
   background-color: rgba(71, 85, 105, 0.5) !important;
 }
 
-/* Darker when hovering the scrollbar thumb itself while scrolling */
 .scrollbar-modern.scrollbar-visible::-webkit-scrollbar-thumb:hover {
-  background-color: rgba(51, 65, 85, 0.7) !important;
+  background-color: rgba(100, 116, 139, 0.7) !important;
 }
 
 /* Dark mode support */
 @media (prefers-color-scheme: dark) {
-  .scrollbar-modern.scrollbar-visible {
-    scrollbar-color: rgba(148, 163, 184, 0.5) transparent;
+  @supports (scrollbar-color: auto) {
+    .scrollbar-modern.scrollbar-visible {
+      scrollbar-color: rgba(148, 163, 184, 0.5) transparent;
+    }
   }
 
   .scrollbar-modern.scrollbar-visible::-webkit-scrollbar-thumb {
@@ -369,6 +383,7 @@
 
 @layer base {
   * {
+    /* stylelint-disable-next-line at-rule-no-unknown */
     @apply border-border outline-ring/50;
   }
   body {
