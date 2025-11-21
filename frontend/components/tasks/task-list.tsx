@@ -1,6 +1,6 @@
 'use client';
 
-import { useTasks } from '@/lib/hooks/use-tasks';
+import { useTasks } from '@/hooks/use-tasks';
 import { useTaskStore } from '@/lib/stores/tasks';
 import { Loader2 } from 'lucide-react';
 import { useEffect } from 'react';

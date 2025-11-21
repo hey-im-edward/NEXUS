@@ -1,17 +1,17 @@
 'use client';
 
-import { useTasks } from '@/lib/hooks/use-tasks';
+import { useTasks } from '@/hooks/use-tasks';
 import { useTaskStore } from '@/lib/stores/tasks';
 import { Task, TaskStatus } from '@/types';
 import {
-  DndContext,
-  DragEndEvent,
-  DragOverEvent,
-  DragOverlay,
-  DragStartEvent,
-  PointerSensor,
-  useSensor,
-  useSensors,
+    DndContext,
+    DragEndEvent,
+    DragOverEvent,
+    DragOverlay,
+    DragStartEvent,
+    PointerSensor,
+    useSensor,
+    useSensors,
 } from '@dnd-kit/core';
 import { arrayMove } from '@dnd-kit/sortable';
 import { useEffect, useMemo, useState } from 'react';

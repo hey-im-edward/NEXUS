@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "eslint app components hooks lib types --ext .ts,.tsx --max-warnings=0",
     "type-check": "tsc --noEmit",
-    "test": "vitest run"
+    "test": "vitest run",
+    "test:db": "node scripts/test-supabase-connection.js"
   },
   "dependencies": {
     "@dnd-kit/core": "^6.3.1",
