@@ -161,7 +161,8 @@ Lấy thông tin từ [Supabase Dashboard](https://app.supabase.com/) → Projec
 
 - 🗺️ [Roadmap](./docs/02-EXECUTION/ROADMAP.md) - Chúng tôi đang xây dựng gì (kế hoạch 12 tuần)
 - 🛠️ [Tech Stack](./docs/03-REFERENCE/TECH_STACK.md) - Kiến trúc và quyết định kỹ thuật
-- 📋 **Muốn code?** Xem [![Contributing|English](https://img.shields.io/badge/Contributing-English-blue?style=flat-square)](../../CONTRIBUTING.md) [![Contributing|Tiếng Việt](https://img.shields.io/badge/Contributing-Tiếng_Việt-red?style=flat-square)](./CONTRIBUTING.vn.md)
+- 📋 [![Contributing|English](https://img.shields.io/badge/Contributing-English-blue?style=flat-square)](../../CONTRIBUTING.md) [![Contributing|Tiếng Việt](https://img.shields.io/badge/Contributing-Tiếng_Việt-red?style=flat-square)](./CONTRIBUTING.vn.md)
+
 **Tầm nhìn & Chiến lược:**
 
 - 📘 [Whitepaper](./docs/01-STRATEGY/NEXUS_WHITEPAPER.md) - Tầm nhìn và chiến lược toàn diện
