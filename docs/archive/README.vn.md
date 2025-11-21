@@ -23,7 +23,7 @@
 
 ---
 
-## 💡 Tại sao NEXUS?
+## 💡 Tại sao lại là NEXUS?
 
 **Bạn có bao giờ cảm thấy mình đang phải thích nghi với công cụ thay vì công cụ phù hợp với mình?**
 
