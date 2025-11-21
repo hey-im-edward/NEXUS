@@ -1,6 +1,13 @@
 @import "tailwindcss";
+@import "tw-animate-css";
 
-@theme {
+@custom-variant dark (&:is(.dark *));
+
+/* stylelint-disable-next-line at-rule-no-unknown */
+/* @theme is a Tailwind CSS v4 feature */
+/* @theme inline { */
+/* @theme inline { */
+@theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
@@ -367,9 +374,4 @@
   body {
     @apply bg-background text-foreground;
   }
-}
-
-/* Disable transitions when this class is applied */
-.no-transitions .react-grid-item {
-  transition: none !important;
 }
