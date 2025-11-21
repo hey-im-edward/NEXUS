@@ -205,6 +205,7 @@ NEXUS là mã nguồn mở và chúng tôi rất mong nhận được sự giúp
 - 🐛 **Tìm thấy bug?** [Mở issue](https://github.com/hey-im-edward/NEXUS/issues)
 - 💡 **Có ý tưởng?** [Bắt đầu thảo luận](https://github.com/hey-im-edward/NEXUS/discussions)
 - 💻 **Muốn code?** Xem 
+
 [![Contributing|English](https://img.shields.io/badge/Contributing-English-blue?style=flat-square)](../../CONTRIBUTING.md) [![Contributing|Tiếng Việt](https://img.shields.io/badge/Contributing-Tiếng_Việt-red?style=flat-square)](./CONTRIBUTING.vn.md)
 
 **Dành cho developers:** Xem [ROADMAP.md](./docs/02-EXECUTION/ROADMAP.md) để biết chúng tôi đang xây dựng gì tiếp theo.
