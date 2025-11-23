@@ -8,7 +8,8 @@
       "Bash(tree:*)",
       "Bash(find:*)",
       "Bash(cat \"D:\\elros\\Documents\\GitHub\\NEXUS\\README.md\")",
-      "Bash(test:*)"
+      "Bash(test:*)",
+      "Bash(npm install:*)"
     ],
     "deny": [],
     "ask": []
@@ -18,4 +19,3 @@
     "MCP_DOCKER"
   ]
 }
-
