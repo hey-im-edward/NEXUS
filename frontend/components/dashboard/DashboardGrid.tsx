@@ -3,22 +3,21 @@
  * 
  * Main dashboard grid component using react-grid-layout
  * Features:
+ * - Native RGL Physics (No custom collision logic)
  * - Drag & drop cards
  * - Resize cards (min: 3x3, max: 12x8)
- * - Auto-save with debounce (1 second)
+ * - Auto-save with debounce
  * - Responsive (Desktop: 12 cols, Tablet: 8 cols, Mobile: 1 col)
- * - Loading skeleton
- * - Empty state
  */
 
 'use client'
 
-import { useDashboardLayout } from '@/hooks/useDashboardLayout'
+import { useDashboardLayout } from '@/hooks/use-dashboard-layout'
 import { saveDashboardLayout } from '@/lib/supabase/dashboard-layouts'
 import { useQueryClient } from '@tanstack/react-query'
 import { useCallback, useEffect, useState } from 'react'
 import { Layout, Layouts, Responsive, WidthProvider } from 'react-grid-layout'
-// @ts-ignore - CSS import không có type definitions
+// @ts-ignore - CSS import no types
 import 'react-grid-layout/css/styles.css'
 import { AppMiniCard } from './AppMiniCard'
 
@@ -48,8 +47,13 @@ export function DashboardGrid({
     dashboardName,
   })
 
-  const [currentBreakpoint, setCurrentBreakpoint] = useState('lg')
+  const [mounted, setMounted] = useState(false)
   const [apps, setApps] = useState(initialApps)
+  
+  // Hydration fix
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
   // Update apps when initialApps changes
   useEffect(() => {
@@ -72,8 +76,8 @@ export function DashboardGrid({
         y: row,
         w: 3,
         h: 3,
-        minW: 1,
-        minH: 1,
+        minW: 3, // Enforce min size
+        minH: 3,
         maxW: 12,
         maxH: 8,
       }
@@ -82,19 +86,14 @@ export function DashboardGrid({
 
   // Handle layout change (drag/resize)
   const handleLayoutChange = useCallback(
-    (newLayout: Layout[]) => {
-      // Only save if not loading and layout actually changed
-      if (!isLoading) {
-        saveLayout(newLayout)
-      }
-    },
-    [isLoading, saveLayout]
-  )
+    (currentLayout: Layout[]) => {
+      if (isLoading || !mounted) return
 
-  // Breakpoint change handler
-  const handleBreakpointChange = useCallback((breakpoint: string) => {
-    setCurrentBreakpoint(breakpoint)
-  }, [])
+      // Save to local state and DB
+      saveLayout(currentLayout)
+    },
+    [isLoading, mounted, saveLayout]
+  )
 
   // Handle remove app from dashboard
   const handleRemoveApp = useCallback(
@@ -112,11 +111,11 @@ export function DashboardGrid({
         })
       })
     },
-    [layout, userId, dashboardName, queryClient, setApps]
+    [layout, userId, dashboardName, queryClient]
   )
 
-  // Nếu đang loading, chỉ hiển thị loading indicator
-  if (isLoading) {
+  // Loading state
+  if (isLoading || !mounted) {
     return (
       <div className="relative w-full p-4 min-h-[600px] flex items-center justify-center">
         <div className="animate-pulse text-muted-foreground text-lg">Đang tải dashboard...</div>
@@ -124,7 +123,7 @@ export function DashboardGrid({
     )
   }
 
-  // Nếu không có apps, hiển thị empty state
+  // Empty state
   if (apps.length === 0) {
     return (
       <div className="flex flex-col items-center justify-center h-[calc(100vh-200px)] text-center px-4">
@@ -138,13 +137,14 @@ export function DashboardGrid({
     )
   }
 
-  // Chỉ generate layout khi đã có data từ database
-  const currentLayout = generateDefaultLayout()
+  // Combine current layout with defaults
+  const activeLayout = generateDefaultLayout()
+
   const layouts: Layouts = {
-    lg: currentLayout,
-    md: currentLayout.map(l => ({ ...l, w: Math.min(l.w, 8) })),
-    sm: currentLayout.map(l => ({ ...l, w: 4, x: 0 })),
-    xs: currentLayout.map((l, index) => ({ ...l, w: 1, h: 3, x: 0, y: index * 3 })),
+    lg: activeLayout,
+    md: activeLayout.map(l => ({ ...l, w: Math.min(l.w, 8) })),
+    sm: activeLayout.map(l => ({ ...l, w: 4, x: 0 })),
+    xs: activeLayout.map((l, index) => ({ ...l, w: 1, h: 3, x: 0, y: index * 3 })),
   }
 
   return (
@@ -162,18 +162,15 @@ export function DashboardGrid({
         breakpoints={{ lg: 1024, md: 768, sm: 640, xs: 0 }}
         cols={{ lg: 12, md: 8, sm: 4, xs: 1 }}
         rowHeight={60}
+        margin={[16, 16]}
+        containerPadding={[0, 0]}
         onLayoutChange={handleLayoutChange}
-        onBreakpointChange={handleBreakpointChange}
-        draggableHandle=".drag-handle"
-        isDraggable={currentBreakpoint !== 'xs'}
-        isResizable={currentBreakpoint !== 'xs'}
-        compactType={null}
-        preventCollision={false}
-        margin={[32, 32]}
-        containerPadding={[16, 16]}
+        isDraggable={true}
+        isResizable={true}
+        draggableHandle=".drag-handle" // Use specific handle if needed, or remove for whole card
       >
         {apps.map((app) => {
-          const cardLayout = currentLayout.find(l => l.i === app.id)
+          const cardLayout = activeLayout.find(l => l.i === app.id)
           return (
             <div key={app.id} className="group">
               <AppMiniCard
@@ -192,81 +189,60 @@ export function DashboardGrid({
 
       {/* Custom styles for grid layout */}
       <style jsx global>{`
-        /* Ẩn scrollbar ngang */
+        /* Disable scrollbars */
         .layout {
-          scrollbar-width: none; /* Firefox */
-          -ms-overflow-style: none; /* IE/Edge */
+          scrollbar-width: none;
         }
         .layout::-webkit-scrollbar {
-          display: none; /* Chrome/Safari */
+          display: none;
         }
 
-        /* Fix text selection khi drag */
-        .react-grid-item.react-draggable-dragging * {
-          user-select: none !important;
-          -webkit-user-select: none !important;
-        }
-
-        /* Fix text selection khi resize */
-        .react-grid-item.react-resizable-resizing *,
-        .react-grid-item:active * {
-          user-select: none !important;
-          -webkit-user-select: none !important;
-        }
-
-        /* Tắt transition để không có animation khi reload */
+        /* Smooth transitions */
         .react-grid-item {
-          transition: none;
+          transition: all 200ms ease;
+          transition-property: left, top, width, height;
         }
-
-        .react-grid-item.react-draggable-dragging {
-          transition: none;
-          z-index: 100;
-        }
-
-        /* Hiển thị grid dots khi đang drag */\n        .layout.react-grid-layout:has(.react-draggable-dragging)::before {
-          content: '';
-          position: fixed;
-          top: 0;
-          left: 0;
-          right: 0;
-          bottom: 0;
-          pointer-events: none;
-          z-index: 1;
-          background-image: 
-            radial-gradient(circle at center, rgba(59, 130, 246, 0.5) 2px, transparent 2px);
-          background-size: calc((100vw - 2rem) / 12) 60px;
-          background-position: 1rem 0;
-        }
-
+        
+        /* Disable transition during drag */
         .react-grid-item.react-grid-placeholder {
-          background: rgba(59, 130, 246, 0.15);
-          opacity: 1;
-          border: 2px dashed rgba(59, 130, 246, 0.6);
-          border-radius: 0.5rem;
-          z-index: 2;
-          -webkit-user-select: none;
-          -moz-user-select: none;
-          -ms-user-select: none;
-          -o-user-select: none;
-          user-select: none;
+          background: rgba(59, 130, 246, 0.1) !important;
+          border: 2px dashed rgba(59, 130, 246, 0.5) !important;
+          border-radius: 0.75rem !important;
+          opacity: 0.8 !important;
         }
 
-        .react-grid-item > .react-resizable-handle::after {
-          border-right: 2px solid hsl(var(--border));
-          border-bottom: 2px solid hsl(var(--border));
+        .react-grid-item.resizing {
+          z-index: 100;
+          box-shadow: 0 0 10px rgba(0,0,0,0.1);
         }
 
-        .react-grid-item:hover > .react-resizable-handle::after {
-          border-right: 2px solid hsl(var(--primary));
-          border-bottom: 2px solid hsl(var(--primary));
+        /* Resize Handle Styling */
+        .react-resizable-handle {
+          position: absolute;
+          width: 20px;
+          height: 20px;
+          bottom: 0;
+          right: 0;
+          cursor: se-resize;
+          z-index: 10;
         }
-
-        /* Hide resize handle on mobile */
-        @media (max-width: 640px) {
-          .react-grid-item > .react-resizable-handle {
-            display: none;
-          }
+        
+        .react-resizable-handle::after {
+          content: "";
+          position: absolute;
+          right: 6px;
+          bottom: 6px;
+          width: 8px;
+          height: 8px;
+          border-right: 2px solid hsl(var(--muted-foreground));
+          border-bottom: 2px solid hsl(var(--muted-foreground));
+          transition: all 0.2s;
+        }
+        
+        .react-grid-item:hover .react-resizable-handle::after {
+          border-color: hsl(var(--primary));
+          width: 12px;
+          height: 12px;
         }
       `}</style>
     </div>
